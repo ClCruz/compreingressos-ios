@@ -14,6 +14,12 @@
 		252FD8271AB73C820007C29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252FD8261AB73C820007C29B /* Images.xcassets */; };
 		252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252FD8281AB73C820007C29B /* LaunchScreen.xib */; };
 		252FD8361AB73C820007C29B /* compreingressos_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8351AB73C820007C29B /* compreingressos_iosTests.m */; };
+		252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
+		252FD8451AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
+		252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
+		252FD8491AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
+		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
+		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,12 @@
 		252FD82F1AB73C820007C29B /* compreingressos-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "compreingressos-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD8341AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD8351AB73C820007C29B /* compreingressos_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = compreingressos_iosTests.m; sourceTree = "<group>"; };
+		252FD8421AB7419E0007C29B /* QMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMHomeViewController.h; sourceTree = "<group>"; };
+		252FD8431AB7419E0007C29B /* QMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMHomeViewController.m; sourceTree = "<group>"; };
+		252FD8461AB748C90007C29B /* QMGenreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGenreCell.h; sourceTree = "<group>"; };
+		252FD8471AB748C90007C29B /* QMGenreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenreCell.m; sourceTree = "<group>"; };
+		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
+		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +93,9 @@
 		252FD8181AB73C820007C29B /* compreingressos-ios */ = {
 			isa = PBXGroup;
 			children = (
+				252FD8401AB7417E0007C29B /* models */,
+				252FD8411AB7417E0007C29B /* views */,
+				252FD83F1AB7417E0007C29B /* controllers */,
 				252FD81D1AB73C820007C29B /* AppDelegate.h */,
 				252FD81E1AB73C820007C29B /* AppDelegate.m */,
 				252FD8201AB73C820007C29B /* ViewController.h */,
@@ -117,6 +132,33 @@
 				252FD8341AB73C820007C29B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		252FD83F1AB7417E0007C29B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				252FD8421AB7419E0007C29B /* QMHomeViewController.h */,
+				252FD8431AB7419E0007C29B /* QMHomeViewController.m */,
+				255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */,
+				255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		252FD8401AB7417E0007C29B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		252FD8411AB7417E0007C29B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				252FD8461AB748C90007C29B /* QMGenreCell.h */,
+				252FD8471AB748C90007C29B /* QMGenreCell.m */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +262,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				252FD8221AB73C820007C29B /* ViewController.m in Sources */,
+				255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */,
+				252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */,
 				252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */,
 				252FD81C1AB73C820007C29B /* main.m in Sources */,
+				252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				252FD8491AB748C90007C29B /* QMGenreCell.m in Sources */,
 				252FD8361AB73C820007C29B /* compreingressos_iosTests.m in Sources */,
+				252FD8451AB7419E0007C29B /* QMHomeViewController.m in Sources */,
+				255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +460,7 @@
 				252FD83B1AB73C820007C29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		252FD83C1AB73C820007C29B /* Build configuration list for PBXNativeTarget "compreingressos-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +469,7 @@
 				252FD83E1AB73C820007C29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
