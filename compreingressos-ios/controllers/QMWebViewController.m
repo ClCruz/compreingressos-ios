@@ -7,13 +7,14 @@
 //
 
 #import "QMWebViewController.h"
-//#import "SVProgressHUD.h"
+#import "SVProgressHUD.h"
 
 @interface QMWebViewController () {
     UIWebView *_webview;
     NSString *_url;
 //    NSString *_title;
     BOOL _firstTimeLoad;
+    BOOL _loaded;
 }
 
 @end
@@ -28,6 +29,7 @@
     [super viewDidLoad];
     _webview.delegate = self;
     _firstTimeLoad = YES;
+    _loaded = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,7 +46,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?app=tokecompre", _url]];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
     [_webview loadRequest:requestURL];
-//    [SVProgressHUD show];
+    [SVProgressHUD show];
 }
 
 
@@ -59,16 +61,21 @@
 */
 
 - (void)pollDocumentReadyState {
-    NSLog(@"polling");
-    if ([[_webview stringByEvaluatingJavaScriptFromString:@"document.UIWebViewDocumentIsReady;"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
-        NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
-        "$('#menu_topo').hide(); "
-        "$('.aba' && '.fechado').hide(); ";
-        [_webview stringByEvaluatingJavaScriptFromString:hideScript];
-        NSLog(@"==================== LOADED ============================");
-    } else {
-        [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
-    }
+    NSLog(@"polling %@", [_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"]);
+
+        if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
+            NSString *hideScript = @"$('#selos').hide(); "
+            "$('#menu_topo').hide(); "
+            "$('.aba' && '.fechado').hide(); ";
+            [_webview stringByEvaluatingJavaScriptFromString:hideScript];
+            NSLog(@"==================== LOADED ============================");
+            [_webview setHidden:NO];
+            [SVProgressHUD dismiss];
+            _loaded = YES;
+        } else {
+            [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
+        }
+
 }
 
 #pragma mark -
@@ -80,34 +87,39 @@
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
 //    NSString *script = @"var tok_result = ''; $('input[type=\"text\"]').each(function() {tok_result += $(this).val() + ' --- '}); tok_result;";
+    NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
+    "$('#menu_topo').hide(); "
+    "$('.aba' && '.fechado').hide(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:hideScript];
     if (_firstTimeLoad) {
-        NSString *detectDOMReadyScript = @"if (/loaded|complete/.test(document.readyState)) "
-        "{ "
-        "    document.UIWebViewDocumentIsReady = true; "
-        "} "
-        "else "
-        "{ "
-        "    document.addEventListener('DOMContentLoaded', function(){document.UIWebViewDocumentIsReady = true;}, false); "
-        "} ";
-        [_webview stringByEvaluatingJavaScriptFromString:detectDOMReadyScript];
-        _firstTimeLoad = NO;
         [self pollDocumentReadyState];
     } else {
+        
     }
-    
 //    NSString *script = @"$('input[id=\"login\"]').val();";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
 //    [self filterEmail:result];
 }
 
-- (BOOL)webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"[%@] [%@]", [[request URL] absoluteString], _url);
+    if (_loaded && ![_url hasPrefix:[[request URL] absoluteString]]) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+        QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
+        [controller setUrl:_url];
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
+    }
 //    NSString *script = @"$('input[id=\"login\"]').val();";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
 //    [self filterEmail:result];
+//    if (!_loaded) {
+//        [_webview setHidden:YES];
+//        [SVProgressHUD show];
+//    }
+
     return YES;
 }
 
