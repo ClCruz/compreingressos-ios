@@ -10,6 +10,7 @@
 #import "QMGenreCell.h"
 #import "QMWebViewController.h"
 
+//static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/espetaculos";
 static NSDictionary *kIconsForGenres;
 NSArray *kGenres;
