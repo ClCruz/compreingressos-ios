@@ -34,7 +34,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self openUrl];
+    if (_firstTimeLoad) {
+        [self openUrl];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,14 +63,11 @@
 */
 
 - (void)pollDocumentReadyState {
-    NSLog(@"polling %@", [_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"]);
+//    NSLog(@"polling %@", [_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"]);
 
         if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
-            NSString *hideScript = @"$('#selos').hide(); "
-            "$('#menu_topo').hide(); "
-            "$('.aba' && '.fechado').hide(); ";
-            [_webview stringByEvaluatingJavaScriptFromString:hideScript];
-            NSLog(@"==================== LOADED ============================");
+//            NSLog(@"==================== LOADED ============================");
+            [self hideScript];
             [_webview setHidden:NO];
             [SVProgressHUD dismiss];
             _loaded = YES;
@@ -81,18 +80,31 @@
 #pragma mark -
 #pragma mark - UIWebViewDelegate
 
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+        NSLog(@"DID_START_LOAD [%@]", [webView.request.URL absoluteString]);
+}
+
+- (void)hideScript {
+    NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
+    "$('#menu_topo').hide(); "
+    "$('.aba' && '.fechado').hide(); "
+    "$('#overlay').hide(); "
+    "$('#footer').hide(); "
+    "$('#selos').hide(); "
+    "$('.botao' && '.voltar').hide(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:hideScript];
+}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+            NSLog(@"DID_FINISH_LOAD [%@]", [webView.request.URL absoluteString]);
 //    NSString *script = @"var tok_result = ''; $('.destaque_menor_v2').each(function() { tok_result += $(this).find('h3').first().text()}); tok_result;";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
 //    NSString *script = @"var tok_result = ''; $('input[type=\"text\"]').each(function() {tok_result += $(this).val() + ' --- '}); tok_result;";
-    NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
-    "$('#menu_topo').hide(); "
-    "$('.aba' && '.fechado').hide(); ";
-    [_webview stringByEvaluatingJavaScriptFromString:hideScript];
+    [self hideScript];
     if (_firstTimeLoad) {
         [self pollDocumentReadyState];
+        _firstTimeLoad = NO;
     } else {
         
     }
@@ -103,24 +115,69 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"[%@] [%@]", [[request URL] absoluteString], _url);
-    if (_loaded && ![_url hasPrefix:[[request URL] absoluteString]]) {
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    NSLog(@"SHOULD_START_LOAD [%@]", [request.URL absoluteString]);
+    NSString *body = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
+    NSLog(@"    BODY [%@]", body);
+    
+    NSString *url = [[request URL] absoluteString];
+    if ([self isNextStep:url]) {
+        /* Troca a url do fluxo de compra para homol */
+        if ([self isSecondStep:_url]) {
+            url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
+        }
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
-        [controller setUrl:_url];
+        [controller setUrl:url];
         [self.navigationController pushViewController:controller animated:YES];
+        [_webview stopLoading];
         return NO;
     }
-//    NSString *script = @"$('input[id=\"login\"]').val();";
-//    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
-//    NSLog(@"script output: %@", result);
-//    [self filterEmail:result];
-//    if (!_loaded) {
-//        [_webview setHidden:YES];
-//        [SVProgressHUD show];
-//    }
-
+    
     return YES;
+}
+
+- (BOOL)string:(NSString *)string matchesRegex:(NSString *)pattern {
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRange visibleRange = NSMakeRange(0, string.length);
+    NSArray *matches = [regex matchesInString:string options:NSMatchingProgress range:visibleRange];
+    return [matches count] > 0;
+}
+
+- (BOOL)isFirstStep:(NSString *)url {
+    return [url isEqualToString:@"http://www.compreingressos.com/espetaculos"];
+}
+
+- (BOOL)isSecondStep:(NSString *)url {
+    return [self string:url matchesRegex:@"[\\d]+-[\\w-]+"];
+}
+
+- (BOOL)isThirdStep:(NSString *)url {
+    return [self string:url matchesRegex:@"etapa1.php"];
+}
+
+- (BOOL)isFourthStep:(NSString *)url {
+    return [self string:url matchesRegex:@"etapa2.php"];
+}
+
+- (BOOL)isFifthStep:(NSString *)url {
+    return [self string:url matchesRegex:@"etapa3.php"];
+}
+
+- (BOOL)isNextStep:(NSString *)url {
+    if ([self isFirstStep:_url]) {
+        return [self isSecondStep:url];
+    }
+    else if ([self isSecondStep:_url]) {
+        return [self isThirdStep:url];
+    }
+    else if ([self isThirdStep:_url]) {
+        return [self isFourthStep:url];
+    }
+    else if ([self isFourthStep:_url]) {
+        return [self isFifthStep:url];
+    }
+    return NO;
 }
 
 - (void)filterEmail:(NSString *)string {
