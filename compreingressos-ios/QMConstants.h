@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/espetaculos";
+
 static NSString *const kOpenEspetaculoWebviewNotificationTag = @"kOpenEspetaculoWebviewNotificationTag";
 
 static const float kRetina3Height = 480.0;

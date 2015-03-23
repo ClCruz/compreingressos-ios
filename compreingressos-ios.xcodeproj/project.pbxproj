@@ -40,6 +40,7 @@
 		25BB6A731AC0746B00A927A1 /* QMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A721AC0746B00A927A1 /* QMConstants.m */; };
 		25BB6A741AC0746B00A927A1 /* QMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A721AC0746B00A927A1 /* QMConstants.m */; };
 		25BB6A7A1AC08F6400A927A1 /* QMGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A791AC08F6400A927A1 /* QMGenre.m */; };
+		25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */; };
 		7D0ACBD35497B0A56B7E3A48 /* libPods-compreingressos-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */; };
 		A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,8 @@
 		25BB6A721AC0746B00A927A1 /* QMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMConstants.m; sourceTree = "<group>"; };
 		25BB6A781AC08F6400A927A1 /* QMGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGenre.h; sourceTree = "<group>"; };
 		25BB6A791AC08F6400A927A1 /* QMGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenre.m; sourceTree = "<group>"; };
+		25BB6A7B1AC0A2D400A927A1 /* QMEspetaculosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculosViewController.h; sourceTree = "<group>"; };
+		25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculosViewController.m; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +207,8 @@
 				252FD8431AB7419E0007C29B /* QMHomeViewController.m */,
 				255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */,
 				255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */,
+				25BB6A7B1AC0A2D400A927A1 /* QMEspetaculosViewController.h */,
+				25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */,
 				25BB6A5A1AC0706F00A927A1 /* QMEspetaculoCell.m in Sources */,
 				258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */,
+				25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */,
 				258B93DD1AC054730007C584 /* QMRequester.m in Sources */,
 				252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */,
 				25BB6A6D1AC0741900A927A1 /* QMBannerView.m in Sources */,

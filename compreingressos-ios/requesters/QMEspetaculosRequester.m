@@ -26,7 +26,7 @@ static NSString *const kEspetaculosPath = @"espetaculos.json";
                                onFailBlock:(void (^)(NSError *error)) onFailBlock {
     
     NSString *path = kEspetaculosPath;
-    if (options && options[@"genero"]) {
+    if (options && options[@"genre"]) {
         path = [self addQueryStringParamenter:@"genero" withValue:options[@"genero"] toUrl:path];
     }
     if (options && options[@"cidade"]) {

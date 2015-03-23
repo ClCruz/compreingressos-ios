@@ -102,16 +102,16 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QMWebViewController *controller = segue.destinationViewController;
+    QMGenre *genre = sender;
+    [controller setTitle:genre.title];
     [controller setUrl:kCompreIngressosURL];
-    NSString *genre = sender;
-    [controller setTitle:genre];
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
 }
 
 - (void)configureNextViewBackButtonWithTitle:(NSString *)title {
     UIBarButtonItem *nextViewBackButton = [[UIBarButtonItem alloc] initWithTitle:title
-                                                                           style:UIBarButtonItemStyleBordered
+                                                                           style:UIBarButtonItemStyleDone
                                                                           target:nil
                                                                           action:nil];
     [self.navigationItem setBackBarButtonItem:nextViewBackButton];
@@ -152,7 +152,7 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     QMGenre *genre = _genres[indexPath.row];
-//    [self performSegueWithIdentifier:kEspetaculoWebviewSegueIdentifier sender:espetaculo];
+    [self performSegueWithIdentifier:@"webviewSegue" sender:genre];
 }
 
 @end
