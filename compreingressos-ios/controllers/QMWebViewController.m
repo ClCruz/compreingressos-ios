@@ -12,7 +12,6 @@
 @interface QMWebViewController () {
     UIWebView *_webview;
     NSString *_url;
-//    NSString *_title;
     BOOL _firstTimeLoad;
     BOOL _loaded;
 }

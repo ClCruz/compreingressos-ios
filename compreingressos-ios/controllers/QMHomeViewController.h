@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QMHomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface QMHomeViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

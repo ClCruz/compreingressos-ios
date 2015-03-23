@@ -1,0 +1,24 @@
+//
+// Prefix header for all source files of the 'qprodelivery-ios' target in the 'qprodelivery-ios' project
+//
+
+#import <Availability.h>
+
+#define CGRectSetWidth(r, w) CGRectMake(r.origin.x, r.origin.y, w, r.size.height)
+#define CGRectSetHeight(r, h) CGRectMake(r.origin.x, r.origin.y, r.size.width, h)
+#define CGRectSetOrigin(r, o) CGRectMake(o.x, o.y, r.size.width, r.size.height)
+#define CGRectSetOriginX(r, x) CGRectMake(x, r.origin.y, r.size.width, r.size.height)
+#define CGRectSetOriginY(r, y) CGRectMake(r.origin.x, y, r.size.width, r.size.height)
+#define CGRectSetSize(r, s) CGRectMake(r.origin.x, r.origin.y, s.width, s.height)
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define USING_TABBAR 1
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

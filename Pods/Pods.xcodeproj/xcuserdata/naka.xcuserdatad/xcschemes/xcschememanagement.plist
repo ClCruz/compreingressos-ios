@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-compreingressos-ios-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-compreingressos-ios-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-compreingressos-ios-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-compreingressos-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-compreingressos-iosTests-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-compreingressos-iosTests-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2CE48328F824AAA4F9C141AA</key>
+		<key>182DED715AE083D3C72C9A1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>432868F7B6C53078323C0658</key>
+		<key>61D5FFD9E0F354AB605333DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89C0B9CECDACE8C0014D66D5</key>
+		<key>6DD175830F78E17996D89D13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AC007F9AF0477D717B548D5</key>
+		<key>88EBAC6BE711E37D21008B29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD81CA87CD38FE690458C7C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D21A08C2FF6E58656B860B57</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D958FA1E481BD8CD6BB7283E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E700FA15419AEA2EDC827729</key>
 		<dict>
 			<key>primary</key>
 			<true/>
