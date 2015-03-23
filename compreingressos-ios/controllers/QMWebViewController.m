@@ -30,6 +30,11 @@
     _webview.delegate = self;
     _firstTimeLoad = YES;
     _loaded = NO;
+    if ([self isLastStep]) {
+        self.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton)];
+        self.navigationItem.rightBarButtonItem = closeButton;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -51,6 +56,9 @@
     [SVProgressHUD show];
 }
 
+- (void)clickedOnCloseButton {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation
@@ -153,31 +161,60 @@
 }
 
 - (BOOL)isThirdStep:(NSString *)url {
-    return [self string:url matchesRegex:@"etapa1.php"];
+    return [self string:url matchesRegex:@"etapa1\\.php"];
 }
 
 - (BOOL)isFourthStep:(NSString *)url {
-    return [self string:url matchesRegex:@"etapa2.php"];
+    return [self string:url matchesRegex:@"etapa2\\.php"];
 }
 
 - (BOOL)isFifthStep:(NSString *)url {
-    return [self string:url matchesRegex:@"etapa3.php"];
+    return [self string:url matchesRegex:@"etapa3\\.php\\?redirect=etapa4\\.php"];
+}
+
+- (BOOL)isSixthStep:(NSString *)url {
+    return [self string:url matchesRegex:@"etapa4\\.php"] && [self string:url matchesRegex:@"^((?!etapa3\\.php).)*$"];
+}
+
+- (BOOL)isSeventhStep:(NSString *)url {
+    return [self string:url matchesRegex:@"etapa5\\.php"];
+}
+
+- (BOOL)isEighthStep:(NSString *)url {
+    return [self string:url matchesRegex:@"pagamento_ok"];
+}
+
+- (BOOL)isLastStep {
+    return [self isEighthStep:_url];
 }
 
 - (BOOL)isNextStep:(NSString *)url {
+    BOOL nextStep = NO;
     if ([self isFirstStep:_url]) {
-        return [self isSecondStep:url];
+        nextStep = [self isSecondStep:url];
     }
     else if ([self isSecondStep:_url]) {
-        return [self isThirdStep:url];
+        nextStep = [self isThirdStep:url];
     }
     else if ([self isThirdStep:_url]) {
-        return [self isFourthStep:url];
+        nextStep = [self isFourthStep:url];
     }
     else if ([self isFourthStep:_url]) {
-        return [self isFifthStep:url];
+        nextStep = [self isFifthStep:url];
     }
-    return NO;
+    else if ([self isFifthStep:_url]) {
+        nextStep = [self isSixthStep:url];
+    }
+    else if ([self isSixthStep:_url]) {
+        nextStep = [self isSeventhStep:url];
+    }
+    else if ([self isSeventhStep:_url]) {
+        nextStep = [self isEighthStep:url];
+    }
+    
+    
+    NSLog(@"Nextstep: %i", nextStep);
+    return nextStep;
 }
 
 - (void)filterEmail:(NSString *)string {
