@@ -62,6 +62,7 @@
     /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?app=tokecompre", _url]];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
+    _webview.alpha = 0.0;
     [_webview loadRequest:requestURL];
     [SVProgressHUD show];
 }
@@ -86,7 +87,9 @@
         if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
 //            NSLog(@"==================== LOADED ============================");
             [self hideScript];
-            [_webview setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                _webview.alpha = 1.0;
+            }];
             [SVProgressHUD dismiss];
             _loaded = YES;
         } else {
@@ -106,7 +109,6 @@
     NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
     "$('#menu_topo').hide(); "
     "$('.aba' && '.fechado').hide(); "
-    "$('#overlay').hide(); "
     "$('#footer').hide(); "
     "$('#selos').hide(); "
     "$('.botao' && '.voltar').hide(); ";
@@ -140,7 +142,7 @@
     NSString *url = [[request URL] absoluteString];
     if ([self isNextStep:url]) {
         /* Troca a url do fluxo de compra para homol */
-        if ([self isSecondStep:_url]) {
+        if ([self isFirstStep:_url]) {
             url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
         }
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -163,39 +165,35 @@
 }
 
 - (BOOL)isFirstStep:(NSString *)url {
-    return [url isEqualToString:@"http://www.compreingressos.com/espetaculos"];
-}
-
-- (BOOL)isSecondStep:(NSString *)url {
     return [self string:url matchesRegex:@"[\\d]+-[\\w-]+"];
 }
 
-- (BOOL)isThirdStep:(NSString *)url {
+- (BOOL)isSecondStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa1\\.php"];
 }
 
-- (BOOL)isFourthStep:(NSString *)url {
+- (BOOL)isThirdStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa2\\.php"];
 }
 
-- (BOOL)isFifthStep:(NSString *)url {
+- (BOOL)isFourthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa3\\.php\\?redirect=etapa4\\.php"];
 }
 
-- (BOOL)isSixthStep:(NSString *)url {
+- (BOOL)isFifthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa4\\.php"] && [self string:url matchesRegex:@"^((?!etapa3\\.php).)*$"];
 }
 
-- (BOOL)isSeventhStep:(NSString *)url {
+- (BOOL)isSixthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa5\\.php"];
 }
 
-- (BOOL)isEighthStep:(NSString *)url {
+- (BOOL)isSeventhStep:(NSString *)url {
     return [self string:url matchesRegex:@"pagamento_ok"];
 }
 
 - (BOOL)isLastStep {
-    return [self isEighthStep:_url];
+    return [self isSeventhStep:_url];
 }
 
 - (BOOL)isNextStep:(NSString *)url {
@@ -218,10 +216,6 @@
     else if ([self isSixthStep:_url]) {
         nextStep = [self isSeventhStep:url];
     }
-    else if ([self isSeventhStep:_url]) {
-        nextStep = [self isEighthStep:url];
-    }
-    
     
     NSLog(@"Nextstep: %i", nextStep);
     return nextStep;
