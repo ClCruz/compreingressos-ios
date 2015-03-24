@@ -117,7 +117,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UTQ-JF-xZg">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QMEspetaculoCell" id="UTQ-JF-xZg" customClass="QMEspetaculoCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -127,6 +127,12 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLm-vb-dHm">
                                                     <rect key="frame" x="0.0" y="0.0" width="155" height="155"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKt-Nm-ach" userLabel="titulo">
+                                                    <rect key="frame" x="10" y="155" width="135" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.5590820312" green="0.028623070970000001" blue="0.025224478580000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sN-QF-dmx">
                                                     <rect key="frame" x="10" y="179" width="135" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -145,16 +151,17 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKt-Nm-ach" userLabel="titulo">
-                                                    <rect key="frame" x="10" y="155" width="135" height="25"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.5590820312" green="0.028623070970000001" blue="0.025224478580000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <size key="customSize" width="155" height="252"/>
+                                        <connections>
+                                            <outlet property="genero" destination="T6n-eE-Dq9" id="WHm-Qy-79R"/>
+                                            <outlet property="image" destination="dLm-vb-dHm" id="xz3-5L-k5d"/>
+                                            <outlet property="local" destination="IWd-mE-mKM" id="DuT-Do-B6G"/>
+                                            <outlet property="teatro" destination="2sN-QF-dmx" id="vuu-lm-YOe"/>
+                                            <outlet property="titulo" destination="PKt-Nm-ach" id="06b-wQ-WQK"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

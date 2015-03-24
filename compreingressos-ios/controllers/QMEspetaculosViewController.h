@@ -10,7 +10,7 @@
 
 @class QMGenre;
 
-@interface QMEspetaculosViewController : UIViewController
+@interface QMEspetaculosViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic)          QMGenre          *genre;

@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class QMGenre;
+@class QMEspetaculo;
+
 @interface QMWebViewController : UIViewController <UIWebViewDelegate> {
     
 }
 
 @property (nonatomic, strong) NSString *url;
 //@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) QMGenre *genre;
+@property (nonatomic, strong) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
 @end

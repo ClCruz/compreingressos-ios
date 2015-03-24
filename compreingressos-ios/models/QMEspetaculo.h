@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class QMGenre;
+
 @interface QMEspetaculo : NSObject
 
 @property(nonatomic, strong) NSNumber *codigo;
@@ -20,6 +22,7 @@
 @property(nonatomic, strong) NSString *url;
 @property(nonatomic, strong) NSString *data;
 @property(nonatomic, strong) NSString *relevancia;
+@property(nonatomic, weak)   QMGenre  *genre;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSString *)local;

@@ -7,6 +7,8 @@
 //
 
 #import "QMEspetaculo.h"
+#import "QMRequester.h"
+#import "QMGenre.h"
 
 @implementation QMEspetaculo {
     @private
@@ -20,6 +22,7 @@
     NSString *_url;
     NSString *_data;
     NSString *_relevancia;
+    __weak QMGenre *_genre;
 }
 
 @synthesize codigo = _codigo;
@@ -38,7 +41,8 @@
     if (self) {
         _titulo = dictionary[@"titulo"];
         _genero = dictionary[@"genero"];
-        _teatro = dictionary[@"teatro"];
+        _teatro = [QMRequester objectOrNilForKey:@"teatro" forDictionary:dictionary];
+        if (!_teatro) _teatro = [QMRequester objectOrNilForKey:@"nome_teatro" forDictionary:dictionary];
         _cidade = dictionary[@"cidade"];
         _estado = dictionary[@"estado"];
         _miniatura = dictionary[@"miniatura"];
@@ -52,6 +56,5 @@
 - (NSString *)local {
     return [NSString stringWithFormat:@"%@ - %@", _cidade, _estado];
 }
-
 
 @end

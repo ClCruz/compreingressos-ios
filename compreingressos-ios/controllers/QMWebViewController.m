@@ -8,10 +8,14 @@
 
 #import "QMWebViewController.h"
 #import "SVProgressHUD.h"
+#import "QMGenre.h"
+#import "QMEspetaculo.h"
 
 @interface QMWebViewController () {
     UIWebView *_webview;
     NSString *_url;
+    QMGenre *_genre;
+    QMEspetaculo *_espetaculo;
     BOOL _firstTimeLoad;
     BOOL _loaded;
 }
@@ -22,7 +26,8 @@
 
 @synthesize webview = _webview;
 @synthesize url = _url;
-//@synthesize title = _title;
+@synthesize genre = _genre;
+@synthesize espetaculo = _espetaculo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +53,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setEspetaculo:(QMEspetaculo *)espetaculo {
+    _espetaculo = espetaculo;
+    _url = _espetaculo.url;
+}
+
 - (void)openUrl {
+    /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?app=tokecompre", _url]];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
     [_webview loadRequest:requestURL];
