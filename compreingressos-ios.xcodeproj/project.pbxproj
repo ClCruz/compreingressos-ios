@@ -18,6 +18,7 @@
 		252FD8451AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
 		252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
 		252FD8491AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
+		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93CA1AC053120007C584 /* QMEspetaculo.m */; };
@@ -75,6 +76,7 @@
 		252FD8431AB7419E0007C29B /* QMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMHomeViewController.m; sourceTree = "<group>"; };
 		252FD8461AB748C90007C29B /* QMGenreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGenreCell.h; sourceTree = "<group>"; };
 		252FD8471AB748C90007C29B /* QMGenreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenreCell.m; sourceTree = "<group>"; };
+		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
 		258B93C91AC053120007C584 /* QMEspetaculo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculo.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */,
 				A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +266,7 @@
 		CDC8D68087B6BC8338626F97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				255963E71AC1C8A100319BEB /* CoreLocation.framework */,
 				0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */,
 				ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */,
 			);

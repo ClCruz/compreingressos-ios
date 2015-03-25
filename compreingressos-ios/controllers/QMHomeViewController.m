@@ -28,33 +28,68 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     NSMutableArray *_genres;
     IBOutlet UICollectionView *_collectionView;
     QMEspetaculosGridHeaderView *_carrosselVisores;
+    CLLocationManager *_locationManager;
+    CLLocation *_location;
+    UIAlertView *_gpsErrorAlertView;
+    BOOL _segueLock;
+    QMGenre *_selectedGenre;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
-                    @{@"title": @"Perto de Mim", @"icon_url": @"", @"image_url": @""},
-                    @{@"title": @"Comédia", @"icon_url": @"", @"image_url": @""},
-                    @{@"title": @"Shows", @"icon_url": @"", @"image_url": @""},
-                    @{@"title": @"Drama", @"icon_url": @"", @"image_url": @""}
+                    @{@"title": @"Perto de Mim", @"icon_url": @"perto-de-min-icon.png", @"image_url": @"perto-de-min-image.png"},
+                    @{@"title": @"Concertos Sinfônicos", @"icon_url": @"concertos-sinfonicos-icon.png", @"image_url": @"concertos-sinfonicos-image.png"},
+                    @{@"title": @"Comédia", @"icon_url": @"comedia-icon.png", @"image_url": @"comedia-image.png"},
+                    @{@"title": @"Shows", @"icon_url": @"shows-icon.png", @"image_url": @"shows-image.png"},
+                    @{@"title": @"Infantil", @"icon_url": @"infantil-icon.png", @"image_url": @"infantil-image.png"},
+                    @{@"title": @"Drama", @"icon_url": @"drama-icon.png", @"image_url": @"drama-image.png"},
+                    @{@"title": @"Stand-Up", @"icon_url": @"stand-up-icon.png", @"image_url": @"stand-up-image.png"},
+                    @{@"title": @"Musical", @"icon_url": @"musical-icon.png", @"image_url": @"musical-image.png"},
+                    @{@"title": @"Ópera", @"icon_url": @"opera-icon.png", @"image_url": @"opera-image.png"},
+                    @{@"title": @"Romance", @"icon_url": @"romance-icon.png", @"image_url": @"romance-image.png"},
+                    @{@"title": @"Espírita", @"icon_url": @"espirita-icon.png", @"image_url": @"espirita-image.png"},
+                    @{@"title": @"Musical Infantil", @"icon_url": @"musical-infantil-icon.png", @"image_url": @"musical-infantil-image.png"},
+                    @{@"title": @"Comédia Musical", @"icon_url": @"comedia-musical-icon.png", @"image_url": @"comedia-musical-image.png"},
+                    @{@"title": @"Dança", @"icon_url": @"danca-icon.png", @"image_url": @"danca-image.png"},
+                    @{@"title": @"Comédia Romântica", @"icon_url": @"comedia-romantica-icon.png", @"image_url": @"comedia-romantica-image.png"},
+                    @{@"title": @"Comédia Dramática", @"icon_url": @"comedia-dramatica-icon.png", @"image_url": @"comedia-dramatica-image.png"},
+                    @{@"title": @"Suspense", @"icon_url": @"suspense-icon.png", @"image_url": @"suspense-image.png"},
+                    @{@"title": @"Comédia Perversa", @"icon_url": @"comedia-perversa-icon.png", @"image_url": @"comedia-perversa-image.png"},
+                    @{@"title": @"Música", @"icon_url": @"musica-icon.png", @"image_url": @"musica-image.png"},
+                    @{@"title": @"Circo", @"icon_url": @"circo-icon.png", @"image_url": @"circo-image.png"}
                  ];
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = UIColorFromRGB(0xefeff4);
+//    [self configureLocationManager];
     [self parseGenres];
     [self requestData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _segueLock = NO;
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_locationManager stopUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+- (void)configureLocationManager {
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = 100.0f;
+}
+
 
 - (void)parseGenres {
     for (NSDictionary *genreDict in _genresJson) {
@@ -103,8 +138,7 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QMEspetaculosViewController *controller = segue.destinationViewController;
-    QMGenre *genre = sender;
-    [controller setGenre:genre];
+    [controller setGenre:_selectedGenre];
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
 }
@@ -116,6 +150,24 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
                                                                           action:nil];
     [self.navigationItem setBackBarButtonItem:nextViewBackButton];
 }
+
+- (void)goToSearchResults {
+    if (!_segueLock) {
+        /*  Se o usuário permitir ou proibir o tokecompre de usar o gps esta callback tb será chamada. */
+        [self performSegueWithIdentifier:@"espetaculosSegue" sender:nil];
+        _segueLock = YES;
+    }
+}
+
+- (void)checkLocationBeforeGoToResults {
+    if (!_location || [self locationIsOld:_location]) {
+        NSLog(@"location is old, fetching another one");
+        [_locationManager startUpdatingLocation];
+    } else {
+        [self goToSearchResults];
+    }
+}
+
 
 # pragma mark
 # pragma mark - UICollectionView Datasource
@@ -144,15 +196,86 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     return cell;
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    QMGenre *genre = _genres[indexPath.row];
-//    CGSize size = [QMEspetaculoCell sizeForEspetaculo:espetaculo];
-//    return size;
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize size = CGSizeMake(104.0, 86.0);
+    return size;
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    QMGenre *genre = _genres[indexPath.row];
-    [self performSegueWithIdentifier:@"espetaculosSegue" sender:genre];
+    _selectedGenre = _genres[indexPath.row];
+    // [self checkLocationBeforeGoToResults];
+    [self goToSearchResults];
+}
+
+
+#pragma mark -
+#pragma mark - Location Methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    /* Vamos testar pegando a primeira localização que vier. Por dois motivos:
+     1 - Nao precisamos de precisão absurda
+     2 - Fica mais fácil controlar o fluxo, pois este método chama o goToSearchResults toda
+     vez que um update é recebido. E se não pararmos o updatingLocation pode dar confusão */
+    [_locationManager stopUpdatingLocation];
+    _location = [locations lastObject];
+    NSLog(@" fix -- latitude %+.6f, longitude %+.6f\n",
+          _location.coordinate.latitude,
+          _location.coordinate.longitude);
+    [self goToSearchResults];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    if (error.code ==  kCLErrorDenied) {
+        NSString *message = @"Você não autorizou o tokEcompre para utilizar sua localização atual.";
+        [self showGpsErrorWithMessage:message];
+    } else {
+        NSString *message = @"Não foi possível pegar sua localização atual.";
+        [self showGpsErrorWithMessage:message];
+    }
+    
+    NSLog(@"  -- Location failed");
+}
+
+- (void)showGpsErrorWithMessage:(NSString *)message {
+    _gpsErrorAlertView = [[UIAlertView alloc] initWithTitle:nil
+                                                   message:message
+                                                  delegate:self
+                                         cancelButtonTitle:@"Fechar"
+                                         otherButtonTitles:nil];
+    [_gpsErrorAlertView show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    NSLog(@"  -- didChangeAuthorizationStatus: %i", status);
+    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusAuthorized) {
+        if (status == kCLAuthorizationStatusAuthorized) {
+            /* Se o gps está permitido, então não precisa chamar o goToSearchResults pois
+             * a callback didUpdateLocations será chamada */
+            NSLog(@"  -- permitiu o gps");
+        }
+        if (status == kCLAuthorizationStatusDenied) {
+            /* Neste ponto é necessário chamar o goToSearchResults porque na primeira vez q o aplicativo
+             * é executado e a msg de permissão do gps aparece, se o usuário negar a permissão, a callback
+             * didFailWithError não será chamada. */
+            NSLog(@"  -- nao permitiu o gps");
+            [self goToSearchResults];
+        }
+    } else if (status == kCLAuthorizationStatusNotDetermined) {
+        if ([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            [[UIApplication sharedApplication] sendAction:@selector(requestAlwaysAuthorization)
+                                                       to:_locationManager
+                                                     from:self
+                                                 forEvent:nil];
+        }
+        [SVProgressHUD showErrorWithStatus:@"Você não autorizou o tokEcompre para utilizar sua localização atual"];
+    }
+}
+
+- (BOOL)locationIsOld:(CLLocation *)aLocation {
+    //    NSDate* eventDate = aLocation.timestamp;
+    //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    //    NSLog(@"     elapsed %f, %f", howRecent, [eventDate timeIntervalSince1970]);
+    return true;
 }
 
 @end

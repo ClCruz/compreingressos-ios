@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface QMHomeViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface QMHomeViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate>
 
 @end

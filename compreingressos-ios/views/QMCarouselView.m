@@ -12,8 +12,8 @@
 #import "QMBannerView.h"
 
 static const int kCarrosselPeriod = 5;
-static const int kBannersHeightRetina4 = 271;
-static const int kBannersHeightRetina3 = 182;
+static const int kBannersHeightRetina4 = 156;
+static const int kBannersHeightRetina3 = 156;
 
 @implementation QMCarouselView {
 @private
@@ -40,6 +40,8 @@ static const int kBannersHeightRetina3 = 182;
     [self setClipsToBounds:YES];
     [_spinner startAnimating];
     _bannerViews = [[NSMutableArray alloc] init];
+    self.layer.borderColor = [[UIColor yellowColor] CGColor];
+    self.layer.borderWidth = 1.0f;
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -50,7 +52,7 @@ static const int kBannersHeightRetina3 = 182;
 - (void)prepareCarouselForRetina4:(BOOL)retina4 {
     isRetina4 = retina4;
     _bannersHeight = isRetina4 ? kBannersHeightRetina4 : kBannersHeightRetina3;
-    self.frame = CGRectSetHeight(self.frame, _bannersHeight);
+//    self.frame = CGRectSetHeight(self.frame, _bannersHeight);
 }
 
 - (void)setBanners:(NSArray *)banners {
