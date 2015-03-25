@@ -28,6 +28,9 @@
 		251FA1EF1AC3386400C20391 /* teatro.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1DB1AC3386400C20391 /* teatro.png */; };
 		251FA1F11AC339B600C20391 /* romance.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F01AC339B600C20391 /* romance.png */; };
 		251FA1F31AC33E2600C20391 /* ingressos.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F21AC33E2600C20391 /* ingressos.png */; };
+		251FA1F61AC3476400C20391 /* background-azul.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F41AC3476400C20391 /* background-azul.png */; };
+		251FA1F71AC3476400C20391 /* background-cinza.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F51AC3476400C20391 /* background-cinza.png */; };
+		251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1FC1AC3484C00C20391 /* ingressos@2x.png */; };
 		252FD81C1AB73C820007C29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81B1AB73C820007C29B /* main.m */; };
 		252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81E1AB73C820007C29B /* AppDelegate.m */; };
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
@@ -101,6 +104,9 @@
 		251FA1DB1AC3386400C20391 /* teatro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teatro.png; sourceTree = "<group>"; };
 		251FA1F01AC339B600C20391 /* romance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = romance.png; sourceTree = "<group>"; };
 		251FA1F21AC33E2600C20391 /* ingressos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingressos.png; sourceTree = "<group>"; };
+		251FA1F41AC3476400C20391 /* background-azul.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-azul.png"; sourceTree = "<group>"; };
+		251FA1F51AC3476400C20391 /* background-cinza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cinza.png"; sourceTree = "<group>"; };
+		251FA1FC1AC3484C00C20391 /* ingressos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@2x.png"; sourceTree = "<group>"; };
 		252FD8161AB73C820007C29B /* compreingressos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "compreingressos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD81A1AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD81B1AB73C820007C29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 			isa = PBXGroup;
 			children = (
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
+				251FA1FC1AC3484C00C20391 /* ingressos@2x.png */,
+				251FA1F41AC3476400C20391 /* background-azul.png */,
+				251FA1F51AC3476400C20391 /* background-cinza.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
 			path = res;
@@ -450,13 +459,16 @@
 			files = (
 				251FA1E01AC3386400C20391 /* comedia_perversa.png in Resources */,
 				251FA1E51AC3386400C20391 /* infantil.png in Resources */,
+				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
 				251FA1E21AC3386400C20391 /* concerto_sinfonico.png in Resources */,
 				251FA1DC1AC3386400C20391 /* circo.png in Resources */,
 				251FA1E41AC3386400C20391 /* drama.png in Resources */,
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
+				251FA1F71AC3476400C20391 /* background-cinza.png in Resources */,
 				251FA1EF1AC3386400C20391 /* teatro.png in Resources */,
+				251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */,
 				251FA1E11AC3386400C20391 /* comedia_romantica.png in Resources */,
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,

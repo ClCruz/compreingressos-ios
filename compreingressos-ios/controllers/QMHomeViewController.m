@@ -66,7 +66,7 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     _collectionView.backgroundColor = UIColorFromRGB(0xefeff4);
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     self.navigationItem.titleView = compreIngressos;
-//    [self configureLocationManager];
+    [self configureLocationManager];
     [self parseGenres];
     [self requestData];
 }
