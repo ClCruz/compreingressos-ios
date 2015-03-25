@@ -205,8 +205,8 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _selectedGenre = _genres[indexPath.row];
-    // [self checkLocationBeforeGoToResults];
-    [self goToSearchResults];
+    [self checkLocationBeforeGoToResults];
+    // [self goToSearchResults];
 }
 
 
