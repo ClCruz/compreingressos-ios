@@ -109,7 +109,7 @@
     QMEspetaculo *espetaculo = _espetaculos[indexPath.row];
     [cell setEspetaculo:espetaculo];
     cell.layer.borderWidth = 1.0f;
-    cell.layer.borderColor = [[UIColor grayColor] CGColor];
+    cell.layer.borderColor = [[UIColor colorWithWhite:0.8 alpha:1.0] CGColor];
     // cell.backgroundColor = [UIColor whiteColor];
     // cell.layer.borderWidth = 1.0;
     // cell.layer.borderColor = [[UIColor blueColor] CGColor];
