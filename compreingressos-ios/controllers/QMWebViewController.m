@@ -46,6 +46,14 @@
     if (_firstTimeLoad) {
         [self openUrl];
     }
+    self.navigationItem.title = [self titleForStep];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (_firstTimeLoad) {
+        [SVProgressHUD show];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,11 +72,34 @@
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
     _webview.alpha = 0.0;
     [_webview loadRequest:requestURL];
-    [SVProgressHUD show];
 }
 
 - (void)clickedOnCloseButton {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (NSString *)titleForStep {
+    NSString *title = nil;
+    if ([self isFirstStep:_url]) {
+        title = _espetaculo.titulo;
+    }
+    else if ([self isSecondStep:_url]) {
+        title = @"Setores";
+    }
+    else if ([self isThirdStep:_url]) {
+        title = @"Tipo do Ingresso";
+    }
+    else if ([self isFourthStep:_url]) {
+        title = @"Login";
+    }
+    else if ([self isFifthStep:_url]) {
+        title = @"Confirmação";
+    }
+    else if ([self isSixthStep:_url]) {
+        title = @"Pagamento";
+    }
+
+    return title;
 }
 
 /*
