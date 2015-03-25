@@ -25,6 +25,7 @@
 - (void)setGenre:(QMGenre *)genre {
     _genre = genre;
     [_titleLabel setText:_genre.title];
+    [_iconImageView setImage:[UIImage imageNamed:_genre.iconUrl]];
 }
 
 @end

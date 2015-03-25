@@ -38,26 +38,26 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
-                    @{@"title": @"Perto de Mim", @"icon_url": @"perto-de-min-icon.png", @"image_url": @"perto-de-min-image.png"},
-                    @{@"title": @"Concertos Sinfônicos", @"icon_url": @"concertos-sinfonicos-icon.png", @"image_url": @"concertos-sinfonicos-image.png"},
-                    @{@"title": @"Comédia", @"icon_url": @"comedia-icon.png", @"image_url": @"comedia-image.png"},
-                    @{@"title": @"Shows", @"icon_url": @"shows-icon.png", @"image_url": @"shows-image.png"},
-                    @{@"title": @"Infantil", @"icon_url": @"infantil-icon.png", @"image_url": @"infantil-image.png"},
-                    @{@"title": @"Drama", @"icon_url": @"drama-icon.png", @"image_url": @"drama-image.png"},
-                    @{@"title": @"Stand-Up", @"icon_url": @"stand-up-icon.png", @"image_url": @"stand-up-image.png"},
-                    @{@"title": @"Musical", @"icon_url": @"musical-icon.png", @"image_url": @"musical-image.png"},
-                    @{@"title": @"Ópera", @"icon_url": @"opera-icon.png", @"image_url": @"opera-image.png"},
-                    @{@"title": @"Romance", @"icon_url": @"romance-icon.png", @"image_url": @"romance-image.png"},
-                    @{@"title": @"Espírita", @"icon_url": @"espirita-icon.png", @"image_url": @"espirita-image.png"},
-                    @{@"title": @"Musical Infantil", @"icon_url": @"musical-infantil-icon.png", @"image_url": @"musical-infantil-image.png"},
-                    @{@"title": @"Comédia Musical", @"icon_url": @"comedia-musical-icon.png", @"image_url": @"comedia-musical-image.png"},
-                    @{@"title": @"Dança", @"icon_url": @"danca-icon.png", @"image_url": @"danca-image.png"},
-                    @{@"title": @"Comédia Romântica", @"icon_url": @"comedia-romantica-icon.png", @"image_url": @"comedia-romantica-image.png"},
-                    @{@"title": @"Comédia Dramática", @"icon_url": @"comedia-dramatica-icon.png", @"image_url": @"comedia-dramatica-image.png"},
-                    @{@"title": @"Suspense", @"icon_url": @"suspense-icon.png", @"image_url": @"suspense-image.png"},
-                    @{@"title": @"Comédia Perversa", @"icon_url": @"comedia-perversa-icon.png", @"image_url": @"comedia-perversa-image.png"},
-                    @{@"title": @"Música", @"icon_url": @"musica-icon.png", @"image_url": @"musica-image.png"},
-                    @{@"title": @"Circo", @"icon_url": @"circo-icon.png", @"image_url": @"circo-image.png"}
+                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_min_image.png"},
+                    @{@"title": @"Concertos Sinfônicos", @"icon_url": @"concerto_sinfonico.png", @"image_url": @"concertos_sinfonicos_image.png"},
+                    @{@"title": @"Comédia", @"icon_url": @"comedia.png", @"image_url": @"comedia_image.png"},
+                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows_image.png"},
+                    @{@"title": @"Infantil", @"icon_url": @"infantil.png", @"image_url": @"infantil_image.png"},
+                    @{@"title": @"Drama", @"icon_url": @"drama.png", @"image_url": @"drama_image.png"},
+                    @{@"title": @"Stand-Up", @"icon_url": @"stand_up.png", @"image_url": @"stand_up_image.png"},
+                    @{@"title": @"Musical", @"icon_url": @"musical.png", @"image_url": @"musical_image.png"},
+                    @{@"title": @"Ópera", @"icon_url": @"opera.png", @"image_url": @"opera_image.png"},
+                    @{@"title": @"Romance", @"icon_url": @"romance.png", @"image_url": @"romance_image.png"},
+// @{@"title": @"Espírita", @"icon_url": @"espirita.png", @"image_url": @"espirita_image.png"},
+                    @{@"title": @"Musical Infantil", @"icon_url": @"musical_infantil.png", @"image_url": @"musical_infantil_image.png"},
+                    @{@"title": @"Comédia Musical", @"icon_url": @"comedia_musical.png", @"image_url": @"comedia_musical_image.png"},
+                    @{@"title": @"Dança", @"icon_url": @"danca.png", @"image_url": @"danca_image.png"},
+                    @{@"title": @"Comédia Romântica", @"icon_url": @"comedia_romantica.png", @"image_url": @"comedia_romantica_image.png"},
+                    @{@"title": @"Comédia Dramática", @"icon_url": @"comedia_dramatica.png", @"image_url": @"comedia_dramatica_image.png"},
+                    @{@"title": @"Suspense", @"icon_url": @"suspense.png", @"image_url": @"suspense_image.png"},
+                    @{@"title": @"Comédia Perversa", @"icon_url": @"comedia_perversa.png", @"image_url": @"comedia_perversa_image.png"},
+                    @{@"title": @"Música", @"icon_url": @"musica.png", @"image_url": @"musica_image.png"},
+                    @{@"title": @"Circo", @"icon_url": @"circo.png", @"image_url": @"circo_image.png"}
                  ];
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
