@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class QMGenre;
 
@@ -14,5 +15,6 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic)          QMGenre          *genre;
+@property (strong, nonatomic)          CLLocation       *location;
 
 @end

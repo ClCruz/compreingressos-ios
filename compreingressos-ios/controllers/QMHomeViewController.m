@@ -141,6 +141,7 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QMEspetaculosViewController *controller = segue.destinationViewController;
     [controller setGenre:_selectedGenre];
+    [controller setLocation:_location];
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
 }

@@ -22,10 +22,12 @@
     QMGenre *_genre;
     UICollectionView *_collectionView;
     NSArray *_espetaculos;
+    CLLocation *_location;
 }
 
 @synthesize genre = _genre;
 @synthesize collectionView = _collectionView;
+@synthesize location = _location;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +56,12 @@
             genreTitle = @"Show";
         }
         options[@"genero"] = genreTitle;
+    }
+    if (_location) {
+        NSNumber *latitude = [NSNumber numberWithDouble:_location.coordinate.latitude];
+        NSNumber *longitude = [NSNumber numberWithDouble:_location.coordinate.longitude];
+        options[@"latitude"] = latitude;
+        options[@"longitude"] = longitude;
     }
     [QMEspetaculosRequester requestEspetaculosWithOptions:options forGenre:_genre onCompleteBlock:^(NSArray *array, NSNumber *total) {
         _espetaculos = array;

@@ -39,9 +39,14 @@ static NSString *const kEspetaculosPath = @"espetaculos.json";
         NSString *keywords = [self urlEncodeString:options[@"busca"]];
         path = [self addQueryStringParamenter:@"busca" withValue:keywords toUrl:path];
     }
+    if (options && options[@"latitude"] && options[@"longitude"]) {
+        NSNumber *lat = options[@"latitude"];
+        path = [self addQueryStringParamenter:@"latitude" withValue:[lat stringValue] toUrl:path];
+        NSNumber *lng = options[@"longitude"];
+        path = [self addQueryStringParamenter:@"longitude" withValue:[lng stringValue] toUrl:path];
+    }
     
     NSURL *url = [NSURL URLWithString:[self getUrlForPath:path]];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request setTimeoutInterval:[self requestTimeout]];
