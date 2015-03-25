@@ -51,7 +51,7 @@ static const CGFloat kImageBottomMargin = 8.0;
     
     // NSLog(@"   altura %f", height);
     
-    return CGSizeMake(155.0, height);
+    return CGSizeMake(154.0, height);
 }
 
 - (void)setEspetaculo:(QMEspetaculo *)espetaculo {

@@ -101,6 +101,8 @@
     QMEspetaculoCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"QMEspetaculoCell" forIndexPath:indexPath];
     QMEspetaculo *espetaculo = _espetaculos[indexPath.row];
     [cell setEspetaculo:espetaculo];
+    cell.layer.borderWidth = 1.0f;
+    cell.layer.borderColor = [[UIColor grayColor] CGColor];
     // cell.backgroundColor = [UIColor whiteColor];
     // cell.layer.borderWidth = 1.0;
     // cell.layer.borderColor = [[UIColor blueColor] CGColor];
