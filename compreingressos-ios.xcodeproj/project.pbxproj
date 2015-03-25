@@ -27,6 +27,7 @@
 		251FA1EE1AC3386400C20391 /* suspense.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1DA1AC3386400C20391 /* suspense.png */; };
 		251FA1EF1AC3386400C20391 /* teatro.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1DB1AC3386400C20391 /* teatro.png */; };
 		251FA1F11AC339B600C20391 /* romance.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F01AC339B600C20391 /* romance.png */; };
+		251FA1F31AC33E2600C20391 /* ingressos.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F21AC33E2600C20391 /* ingressos.png */; };
 		252FD81C1AB73C820007C29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81B1AB73C820007C29B /* main.m */; };
 		252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81E1AB73C820007C29B /* AppDelegate.m */; };
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
@@ -99,6 +100,7 @@
 		251FA1DA1AC3386400C20391 /* suspense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suspense.png; sourceTree = "<group>"; };
 		251FA1DB1AC3386400C20391 /* teatro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teatro.png; sourceTree = "<group>"; };
 		251FA1F01AC339B600C20391 /* romance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = romance.png; sourceTree = "<group>"; };
+		251FA1F21AC33E2600C20391 /* ingressos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingressos.png; sourceTree = "<group>"; };
 		252FD8161AB73C820007C29B /* compreingressos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "compreingressos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD81A1AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD81B1AB73C820007C29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				251FA1F21AC33E2600C20391 /* ingressos.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
 			path = res;
@@ -464,6 +467,7 @@
 				252FD8271AB73C820007C29B /* Images.xcassets in Resources */,
 				251FA1E71AC3386400C20391 /* musical.png in Resources */,
 				251FA1E81AC3386400C20391 /* musical_infantil.png in Resources */,
+				251FA1F31AC33E2600C20391 /* ingressos.png in Resources */,
 				251FA1E91AC3386400C20391 /* opera.png in Resources */,
 				251FA1F11AC339B600C20391 /* romance.png in Resources */,
 				251FA1DE1AC3386400C20391 /* comedia_dramatica.png in Resources */,

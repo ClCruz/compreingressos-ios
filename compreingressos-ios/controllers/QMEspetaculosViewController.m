@@ -47,7 +47,14 @@
 
 - (void)requestEspetaculos {
     [SVProgressHUD show];
-    NSDictionary *options = @{@"genero": _genre.title};
+    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+    if (![_genre.title isEqualToString:@"Perto de Mim"]) {
+        NSString *genreTitle = _genre.title;
+        if ([_genre.title isEqualToString:@"Shows"]) {
+            genreTitle = @"Show";
+        }
+        options[@"genero"] = genreTitle;
+    }
     [QMEspetaculosRequester requestEspetaculosWithOptions:options forGenre:_genre onCompleteBlock:^(NSArray *array, NSNumber *total) {
         _espetaculos = array;
         [_collectionView reloadData];

@@ -65,12 +65,12 @@
                                                         <constraint firstAttribute="height" constant="36" id="o56-OH-L5b"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GH-jW-kHZ">
-                                                    <rect key="frame" x="2" y="44" width="100" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="85" translatesAutoresizingMaskIntoConstraints="NO" id="6GH-jW-kHZ">
+                                                    <rect key="frame" x="9" y="52" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="PwB-GT-Ry1"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -82,12 +82,12 @@
                                             <constraint firstAttribute="trailing" secondItem="mzz-eC-ZZi" secondAttribute="trailing" id="1Dw-h9-Bap"/>
                                             <constraint firstAttribute="centerX" secondItem="rkH-yf-H7d" secondAttribute="centerX" id="4lY-Tx-Ohc"/>
                                             <constraint firstAttribute="centerX" secondItem="6GH-jW-kHZ" secondAttribute="centerX" id="9mj-kP-NLl"/>
-                                            <constraint firstAttribute="trailing" secondItem="6GH-jW-kHZ" secondAttribute="trailing" constant="2" id="AWn-E5-vyK"/>
+                                            <constraint firstAttribute="trailing" secondItem="6GH-jW-kHZ" secondAttribute="trailing" constant="10" id="AWn-E5-vyK"/>
                                             <constraint firstAttribute="bottom" secondItem="mzz-eC-ZZi" secondAttribute="bottom" id="KPF-X3-PVW"/>
                                             <constraint firstItem="mzz-eC-ZZi" firstAttribute="top" secondItem="GUq-OA-GRa" secondAttribute="top" id="P4x-Z9-pJo"/>
-                                            <constraint firstItem="6GH-jW-kHZ" firstAttribute="top" secondItem="rkH-yf-H7d" secondAttribute="bottom" constant="-5" id="VOc-Y2-7NT"/>
+                                            <constraint firstItem="6GH-jW-kHZ" firstAttribute="top" secondItem="rkH-yf-H7d" secondAttribute="bottom" constant="3" id="VOc-Y2-7NT"/>
                                             <constraint firstItem="mzz-eC-ZZi" firstAttribute="leading" secondItem="GUq-OA-GRa" secondAttribute="leading" id="XuS-QT-mkX"/>
-                                            <constraint firstItem="6GH-jW-kHZ" firstAttribute="leading" secondItem="GUq-OA-GRa" secondAttribute="leading" constant="2" id="pe7-PI-y5G"/>
+                                            <constraint firstItem="6GH-jW-kHZ" firstAttribute="leading" secondItem="GUq-OA-GRa" secondAttribute="leading" constant="9" id="pe7-PI-y5G"/>
                                             <constraint firstItem="rkH-yf-H7d" firstAttribute="top" secondItem="GUq-OA-GRa" secondAttribute="top" constant="13" id="wI8-EX-fhw"/>
                                         </constraints>
                                         <size key="customSize" width="104" height="86"/>
