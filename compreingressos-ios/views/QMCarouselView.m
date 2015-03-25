@@ -40,8 +40,6 @@ static const int kBannersHeightRetina3 = 156;
     [self setClipsToBounds:YES];
     [_spinner startAnimating];
     _bannerViews = [[NSMutableArray alloc] init];
-    self.layer.borderColor = [[UIColor yellowColor] CGColor];
-    self.layer.borderWidth = 1.0f;
 }
 
 - (void)setFrame:(CGRect)frame {

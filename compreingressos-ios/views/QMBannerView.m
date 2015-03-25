@@ -25,10 +25,6 @@
 
 - (void)awakeFromNib {
     [_spinner removeFromSuperview];
-    self.layer.borderColor = [[UIColor redColor] CGColor];
-    self.layer.borderWidth = 1.0f;
-    _bannerImage.layer.borderColor = [[UIColor blueColor] CGColor];
-    _bannerImage.layer.borderWidth = 1.0f;
 }
 
 - (void)setBanner:(QMBanner *)banner {
