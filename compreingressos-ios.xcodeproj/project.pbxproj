@@ -66,6 +66,7 @@
 		25BB6A741AC0746B00A927A1 /* QMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A721AC0746B00A927A1 /* QMConstants.m */; };
 		25BB6A7A1AC08F6400A927A1 /* QMGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A791AC08F6400A927A1 /* QMGenre.m */; };
 		25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */; };
+		25EF7DD71AC37C7C0052986D /* background-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EF7DD61AC37C7C0052986D /* background-red.png */; };
 		7D0ACBD35497B0A56B7E3A48 /* libPods-compreingressos-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */; };
 		A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		25BB6A791AC08F6400A927A1 /* QMGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenre.m; sourceTree = "<group>"; };
 		25BB6A7B1AC0A2D400A927A1 /* QMEspetaculosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculosViewController.h; sourceTree = "<group>"; };
 		25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculosViewController.m; sourceTree = "<group>"; };
+		25EF7DD61AC37C7C0052986D /* background-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-red.png"; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				25EF7DD61AC37C7C0052986D /* background-red.png */,
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
 				251FA1FC1AC3484C00C20391 /* ingressos@2x.png */,
 				251FA1F41AC3476400C20391 /* background-azul.png */,
@@ -470,6 +473,7 @@
 				251FA1EF1AC3386400C20391 /* teatro.png in Resources */,
 				251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */,
 				251FA1E11AC3386400C20391 /* comedia_romantica.png in Resources */,
+				25EF7DD71AC37C7C0052986D /* background-red.png in Resources */,
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,

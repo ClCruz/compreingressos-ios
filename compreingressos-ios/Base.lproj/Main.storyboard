@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -24,7 +24,7 @@
         <!--Compre Ingressos-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="QMHomeViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="QMHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -33,6 +33,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-azul.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pz2-wl-4Ud">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -77,7 +81,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="mzz-eC-ZZi" secondAttribute="trailing" id="1Dw-h9-Bap"/>
                                             <constraint firstAttribute="centerX" secondItem="rkH-yf-H7d" secondAttribute="centerX" id="4lY-Tx-Ohc"/>
@@ -105,16 +109,20 @@
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.43921568630000002" green="0.47843137250000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pz2-wl-4Ud" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ak7-QZ-5UF"/>
+                            <constraint firstAttribute="trailing" secondItem="ooI-lv-R2j" secondAttribute="trailing" id="ClY-Dd-eeS"/>
                             <constraint firstItem="pz2-wl-4Ud" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="KfM-6u-wfk"/>
+                            <constraint firstItem="ooI-lv-R2j" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Kng-b8-ky1"/>
+                            <constraint firstItem="ooI-lv-R2j" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ta2-Y5-jaZ"/>
                             <constraint firstAttribute="trailing" secondItem="pz2-wl-4Ud" secondAttribute="trailing" id="aNa-oU-M7m"/>
+                            <constraint firstAttribute="bottom" secondItem="ooI-lv-R2j" secondAttribute="bottom" id="hMF-M3-hVd"/>
                             <constraint firstItem="pz2-wl-4Ud" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ua8-eG-psm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compre Ingressos" id="GTJ-Zb-bgV"/>
                     <connections>
+                        <outlet property="_background" destination="ooI-lv-R2j" id="VaB-J6-QbX"/>
                         <outlet property="_collectionView" destination="pz2-wl-4Ud" id="4zn-p0-YGm"/>
                         <segue destination="g87-6N-Wvn" kind="push" identifier="espetaculosSegue" id="9oE-t6-Xwp"/>
                     </connections>
@@ -249,6 +257,9 @@
             <point key="canvasLocation" x="1449" y="415"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background-azul.png" width="640" height="1136"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

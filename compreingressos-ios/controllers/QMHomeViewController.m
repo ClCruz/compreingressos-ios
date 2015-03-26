@@ -27,6 +27,7 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     NSArray *_genresJson;
     NSMutableArray *_genres;
     IBOutlet UICollectionView *_collectionView;
+    IBOutlet UIImageView *_background;
     QMEspetaculosGridHeaderView *_carrosselVisores;
     CLLocationManager *_locationManager;
     CLLocation *_location;
@@ -63,7 +64,8 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     _genres = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = UIColorFromRGB(0xefeff4);
+//    _collectionView.backgroundColor = UIColorFromRGB(0xefeff4);
+//    _collectionView.backgroundColor = [UIColor clearColor];
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     self.navigationItem.titleView = compreIngressos;
     [self configureLocationManager];
@@ -74,6 +76,8 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _segueLock = NO;
+//    [self.view bringSubviewToFront:_collectionView];
+    _collectionView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
