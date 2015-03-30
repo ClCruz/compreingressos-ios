@@ -25,6 +25,9 @@
 
 - (void)awakeFromNib {
     [_spinner removeFromSuperview];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(clickedOnLinkButton)];
+    singleTap.numberOfTapsRequired = 1;
+    [self addGestureRecognizer:singleTap];
 }
 
 - (void)setBanner:(QMBanner *)banner {

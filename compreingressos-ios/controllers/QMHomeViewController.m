@@ -14,9 +14,9 @@
 #import "QMEspetaculosGridHeaderView.h"
 #import "QMGenre.h"
 #import "QMEspetaculosViewController.h"
+#import "QMConstants.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
-static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/espetaculos";
 
 @interface QMHomeViewController ()
 
@@ -68,6 +68,11 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 //    _collectionView.backgroundColor = [UIColor clearColor];
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     self.navigationItem.titleView = compreIngressos;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(openWebview:)
+                                                 name:kOpenEspetaculoWebviewNotificationTag
+                                               object:nil];
+
     [self configureLocationManager];
     [self parseGenres];
     [self requestData];
@@ -139,13 +144,24 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
     }];
 }
 
+- (void)openWebview:(UILocalNotification *)notification {
+    NSString *url = notification.userInfo[@"url"];
+    [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
+}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    QMEspetaculosViewController *controller = segue.destinationViewController;
-    [controller setGenre:_selectedGenre];
-    [controller setLocation:_location];
+    if ([segue.destinationViewController isKindOfClass:[QMEspetaculosViewController class]]) {
+        QMEspetaculosViewController *controller = segue.destinationViewController;
+        [controller setGenre:_selectedGenre];
+        [controller setLocation:_location];
+    }
+    else if ([segue.destinationViewController isKindOfClass:[QMWebViewController class]]) {
+        QMWebViewController *controller = segue.destinationViewController;
+        NSString *url = (NSString *)sender;
+        [controller setUrl:url];
+    }
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
 }
