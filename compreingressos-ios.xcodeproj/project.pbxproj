@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */; };
 		251FA1DC1AC3386400C20391 /* circo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1C81AC3386400C20391 /* circo.png */; };
 		251FA1DD1AC3386400C20391 /* comedia.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1C91AC3386400C20391 /* comedia.png */; };
 		251FA1DE1AC3386400C20391 /* comedia_dramatica.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1CA1AC3386400C20391 /* comedia_dramatica.png */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA94D18BE45DD585C66725A /* Pods-compreingressos-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compreingressos_big_logo.png; sourceTree = "<group>"; };
 		251FA1C81AC3386400C20391 /* circo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circo.png; sourceTree = "<group>"; };
 		251FA1C91AC3386400C20391 /* comedia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comedia.png; sourceTree = "<group>"; };
 		251FA1CA1AC3386400C20391 /* comedia_dramatica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comedia_dramatica.png; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */,
 				25EF7DD61AC37C7C0052986D /* background-red.png */,
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
 				251FA1FC1AC3484C00C20391 /* ingressos@2x.png */,
@@ -475,6 +478,7 @@
 				251FA1E11AC3386400C20391 /* comedia_romantica.png in Resources */,
 				25EF7DD71AC37C7C0052986D /* background-red.png in Resources */,
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
+				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
