@@ -18,6 +18,8 @@
     QMEspetaculo *_espetaculo;
     BOOL _firstTimeLoad;
     BOOL _loaded;
+    IBOutlet UIButton *_nativeButton;
+    IBOutlet UIView *_nativeButtonContainer;
 }
 
 @end
@@ -34,6 +36,7 @@
     _webview.delegate = self;
     _firstTimeLoad = YES;
     _loaded = NO;
+    _nativeButtonContainer.alpha = 0.0;
     if ([self isLastStep]) {
         self.navigationItem.hidesBackButton = YES;
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton)];
@@ -47,6 +50,9 @@
         [self openUrl];
     }
     self.navigationItem.title = [self titleForStep];
+    if ([self isSecondStep:_url]) {
+        _nativeButtonContainer.alpha = 1.0;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -151,6 +157,31 @@
     [_webview stringByEvaluatingJavaScriptFromString:hideScript];
 }
 
+- (void)hideNextButtonOnWebview {
+    NSString *script = @"$('.container_botoes_etapas').hide(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (void)changeViewPortForZooming {
+    NSString *script = @"var all_metas=document.getElementsByTagName('meta'); "
+    @"if (all_metas){ "
+    @"    var k; "
+    @"    for (k=0; k<all_metas.length;k++) { "
+    @"        var meta_tag=all_metas[k]; "
+    @"        var viewport= meta_tag.getAttribute('name'); "
+    @"        if (viewport&& viewport=='viewport'){ "
+    @"            meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=5.0; user-scalable=1;'); "
+    @"        } "
+    @"    } "
+    @"} ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (void)clickNextButtonOnWebview {
+    NSString *script = @"$('.container_botoes_etapas').find('a')[0].click();";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
             NSLog(@"DID_FINISH_LOAD [%@]", [webView.request.URL absoluteString]);
 //    NSString *script = @"var tok_result = ''; $('.destaque_menor_v2').each(function() { tok_result += $(this).find('h3').first().text()}); tok_result;";
@@ -163,6 +194,12 @@
         _firstTimeLoad = NO;
     } else {
         
+    }
+    
+    if ([self isSecondStep:_url]) {
+        [self hideNextButtonOnWebview];
+        [self changeViewPortForZooming];
+        _webview.scalesPageToFit = YES;
     }
 //    NSString *script = @"$('input[id=\"login\"]').val();";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
@@ -261,6 +298,10 @@
     if ([string rangeOfString:@"@"].length > 0) {
         NSLog(@"-------------------------\n\n\n%@\n\n\n-------------------------", string);
     }
+}
+
+- (IBAction)clickedOnNativeButton:(id)sender {
+    [self clickNextButtonOnWebview];
 }
 
 @end

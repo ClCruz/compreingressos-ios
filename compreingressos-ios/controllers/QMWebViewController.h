@@ -21,4 +21,6 @@
 @property (nonatomic, strong) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
+- (IBAction)clickedOnNativeButton:(id)sender;
+
 @end

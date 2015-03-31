@@ -247,17 +247,46 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM5-bl-0Td">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baj-mt-JGv">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Avançar">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickedOnNativeButton:" destination="x8J-8q-76o" eventType="touchUpInside" id="gWl-er-YcL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.83758634135472365" green="0.10926088369192501" blue="0.19366114919388716" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="baj-mt-JGv" secondAttribute="bottom" id="Czv-AP-j7W"/>
+                                    <constraint firstAttribute="trailing" secondItem="baj-mt-JGv" secondAttribute="trailing" id="Jjp-4B-l2s"/>
+                                    <constraint firstItem="baj-mt-JGv" firstAttribute="leading" secondItem="YM5-bl-0Td" secondAttribute="leading" id="Q4a-hy-krQ"/>
+                                    <constraint firstItem="baj-mt-JGv" firstAttribute="top" secondItem="YM5-bl-0Td" secondAttribute="top" id="TRj-Ab-7Px"/>
+                                    <constraint firstAttribute="height" constant="50" id="Wn0-wi-zmN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="wt5-0X-8KT" secondAttribute="bottom" id="QPW-oZ-ou1"/>
+                            <constraint firstAttribute="trailing" secondItem="YM5-bl-0Td" secondAttribute="trailing" id="bCn-um-MeI"/>
                             <constraint firstItem="wt5-0X-8KT" firstAttribute="top" secondItem="6Ue-vA-fah" secondAttribute="top" id="ekb-WH-dy0"/>
                             <constraint firstAttribute="trailing" secondItem="wt5-0X-8KT" secondAttribute="trailing" id="eny-TJ-LM4"/>
+                            <constraint firstAttribute="bottom" secondItem="YM5-bl-0Td" secondAttribute="bottom" id="fAb-il-5t9"/>
                             <constraint firstItem="wt5-0X-8KT" firstAttribute="leading" secondItem="6Ue-vA-fah" secondAttribute="leading" id="nFx-cY-ZPm"/>
+                            <constraint firstItem="YM5-bl-0Td" firstAttribute="leading" secondItem="6Ue-vA-fah" secondAttribute="leading" id="t5f-3K-fwC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jwu-ax-eZj"/>
                     <connections>
+                        <outlet property="_nativeButton" destination="baj-mt-JGv" id="vb7-yi-fcn"/>
+                        <outlet property="_nativeButtonContainer" destination="YM5-bl-0Td" id="sNC-7i-Caw"/>
                         <outlet property="webview" destination="wt5-0X-8KT" id="Sxw-qZ-lu2"/>
                     </connections>
                 </viewController>
