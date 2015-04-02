@@ -22,6 +22,7 @@
 @property (nonatomic, weak) QMCarouselView *carousel;
 
 + (QMBannerView *)allocFromNib;
++ (CGSize)sizeForBanner;
 - (void)hideDescription;
 
 @end

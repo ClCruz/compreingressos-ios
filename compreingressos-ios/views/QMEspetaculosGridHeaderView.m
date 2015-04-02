@@ -31,6 +31,10 @@
     [_carrossel setShowLinkButton:NO];
     [_carrossel setIsWebviewLink:YES];
     [_carrossel stopSpinner];
+    CGFloat h1 = _carrossel.frame.size.height;
+    CGFloat h2 = self.frame.size.height;
+    self.frame = CGRectSetSize(self.frame, _carrossel.frame.size);
+    NSLog(@"@@ (%f, %f)", self.frame.size.width, self.frame.size.height);
 }
 
 - (void)setVisores:(NSArray *)visores {
@@ -40,6 +44,7 @@
         [_banners addObject:[visor toBanner]];
     }
     [_carrossel setBanners:_banners];
+    NSLog(@"@@ (%f, %f)", self.frame.size.width, self.frame.size.height);
 }
 
 @end

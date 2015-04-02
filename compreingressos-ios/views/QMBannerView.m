@@ -23,11 +23,26 @@
 @synthesize descriptionCover = _descriptionCover;
 @synthesize carousel = _carousel;
 
++ (CGSize)sizeForBanner {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat bannerWidth = screenWidth / 0.865f;
+    CGFloat bannerHeight = bannerWidth / 2.37f;
+    return CGSizeMake(bannerWidth, bannerHeight);
+}
+
 - (void)awakeFromNib {
     [_spinner removeFromSuperview];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(clickedOnLinkButton)];
     singleTap.numberOfTapsRequired = 1;
     [self addGestureRecognizer:singleTap];
+    
+    self.layer.borderWidth = 1.0;
+    self.layer.borderColor = [[UIColor yellowColor] CGColor];
+    
+    _bannerImage.layer.borderColor = [[UIColor greenColor] CGColor];
+    _bannerImage.layer.borderWidth = 3.0f;
+    
+    self.frame = CGRectSetSize(self.frame, [QMBannerView sizeForBanner]);
 }
 
 - (void)setBanner:(QMBanner *)banner {

@@ -47,10 +47,37 @@ static const int kBannersHeightRetina3 = 156;
     [_spinner setCenter:self.center];
 }
 
+- (CGFloat)carouselHeight {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat carouselHeight = screenWidth / 1.684f;
+    return carouselHeight;
+}
+
 - (void)prepareCarouselForRetina4:(BOOL)retina4 {
     isRetina4 = retina4;
     _bannersHeight = isRetina4 ? kBannersHeightRetina4 : kBannersHeightRetina3;
-//    self.frame = CGRectSetHeight(self.frame, _bannersHeight);
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat carouselHeight = [self carouselHeight];
+    self.frame = CGRectSetWidth(self.frame, screenWidth);
+    self.frame = CGRectSetHeight(self.frame, carouselHeight);
+    
+    self.layer.borderColor = [[UIColor redColor] CGColor];
+    self.layer.borderWidth = 1.0f;
+    
+    scrollView.layer.borderWidth = 1.0f;
+    scrollView.layer.borderColor = [[UIColor blackColor] CGColor];
+    scrollView.frame = CGRectSetSize(scrollView.frame, [QMBannerView sizeForBanner]);
+    
+    _pageControl.center = self.center;
+    CGFloat pageControlY = ((self.frame.size.height - scrollView.frame.size.height - _pageControl.frame.size.height) / 2.0f) + scrollView.frame.size.height;
+    _pageControl.frame = CGRectSetOriginY(_pageControl.frame, pageControlY);
+    
+    _pageControlBg.layer.borderColor = [[UIColor purpleColor] CGColor];
+    _pageControlBg.layer.borderWidth = 1.0f;
+    
+    
+    NSLog(@"@@ (%f, %f)", self.frame.size.width, self.frame.size.height);
 }
 
 - (void)setBanners:(NSArray *)banners {
@@ -117,7 +144,6 @@ static const int kBannersHeightRetina3 = 156;
         [bannerView setCarousel:self];
         [bannerView setBanner:banner];
         _pageWidth = CGRectGetWidth(bannerView.frame);
-        [bannerView setFrame:CGRectSetHeight(bannerView.frame, _bannersHeight)];
         [bannerView setFrame:CGRectSetOrigin(bannerView.frame, CGPointMake(_pageWidth * i, 0.0))];
         [bannerView setBackgroundColor:self.backgroundColor]; // forward da backgroundcolor
         if (!_showBannerDescription) [bannerView hideDescription];

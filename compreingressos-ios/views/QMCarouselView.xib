@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">2048</int>
-		<string key="IBDocument.SystemVersion">14C109</string>
+		<string key="IBDocument.SystemVersion">14C1514</string>
 		<string key="IBDocument.InterfaceBuilderVersion">6751</string>
 		<string key="IBDocument.AppKitVersion">1344.72</string>
 		<string key="IBDocument.HIToolboxVersion">757.30</string>
@@ -68,7 +68,7 @@
 					</object>
 					<object class="IBUIView" id="478390156">
 						<reference key="NSNextResponder" ref="252359514"/>
-						<int key="NSvFlags">-2147483360</int>
+						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{67, 165}, {185, 15}}</string>
 						<reference key="NSSuperview" ref="252359514"/>
 						<reference key="NSWindow"/>
@@ -83,7 +83,7 @@
 					</object>
 					<object class="IBUIPageControl" id="141819903">
 						<reference key="NSNextResponder" ref="252359514"/>
-						<int key="NSvFlags">-2147482336</int>
+						<int key="NSvFlags">-2147482360</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{141, 155}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="252359514"/>
@@ -209,7 +209,7 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">QMCarouselView</string>
 				<reference key="3.IBNSViewMetadataGestureRecognizers" ref="0"/>
-				<string key="3.IBPersistedLastKnownCanvasPosition">{326, 209.5}</string>
+				<string key="3.IBPersistedLastKnownCanvasPosition">{326, 209}</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
