@@ -229,6 +229,12 @@
     return size;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat carouselHeight = screenWidth / 1.684f;
+    return CGSizeMake(screenWidth, carouselHeight);
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _selectedGenre = _genres[indexPath.row];
     [self checkLocationBeforeGoToResults];
