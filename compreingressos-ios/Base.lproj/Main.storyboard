@@ -85,7 +85,6 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="mzz-eC-ZZi" secondAttribute="trailing" id="1Dw-h9-Bap"/>
                                             <constraint firstAttribute="centerX" secondItem="rkH-yf-H7d" secondAttribute="centerX" id="4lY-Tx-Ohc"/>
-                                            <constraint firstAttribute="centerX" secondItem="6GH-jW-kHZ" secondAttribute="centerX" id="9mj-kP-NLl"/>
                                             <constraint firstAttribute="trailing" secondItem="6GH-jW-kHZ" secondAttribute="trailing" constant="10" id="AWn-E5-vyK"/>
                                             <constraint firstAttribute="bottom" secondItem="mzz-eC-ZZi" secondAttribute="bottom" id="KPF-X3-PVW"/>
                                             <constraint firstItem="mzz-eC-ZZi" firstAttribute="top" secondItem="GUq-OA-GRa" secondAttribute="top" id="P4x-Z9-pJo"/>
