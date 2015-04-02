@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-azul.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.92549019610000005" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -294,6 +294,9 @@
             <point key="canvasLocation" x="1449" y="415"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background-azul.png" width="640" height="1136"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

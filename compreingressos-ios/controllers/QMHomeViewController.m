@@ -198,11 +198,9 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"(%d, %d)", (int)indexPath.section, (int)indexPath.row);
     _carrosselVisores = [_collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                             withReuseIdentifier:@"QMEspetaculosGridHeaderView"
                                                                    forIndexPath:indexPath];
-    NSLog(@"@@ (%f, %f)", _carrosselVisores.frame.size.width, _carrosselVisores.frame.size.height);
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat carouselHeight = screenWidth / 1.684f;
     _carrosselVisores.frame = CGRectSetSize(_carrosselVisores.frame, CGSizeMake(screenWidth, carouselHeight));

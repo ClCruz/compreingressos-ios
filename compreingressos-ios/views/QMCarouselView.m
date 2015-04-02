@@ -61,23 +61,11 @@ static const int kBannersHeightRetina3 = 156;
     CGFloat carouselHeight = [self carouselHeight];
     self.frame = CGRectSetWidth(self.frame, screenWidth);
     self.frame = CGRectSetHeight(self.frame, carouselHeight);
-    
-    self.layer.borderColor = [[UIColor redColor] CGColor];
-    self.layer.borderWidth = 1.0f;
-    
-    scrollView.layer.borderWidth = 1.0f;
-    scrollView.layer.borderColor = [[UIColor blackColor] CGColor];
     scrollView.frame = CGRectSetSize(scrollView.frame, [QMBannerView sizeForBanner]);
     
     _pageControl.center = self.center;
     CGFloat pageControlY = ((self.frame.size.height - scrollView.frame.size.height - _pageControl.frame.size.height) / 2.0f) + scrollView.frame.size.height;
-    _pageControl.frame = CGRectSetOriginY(_pageControl.frame, pageControlY);
-    
-    _pageControlBg.layer.borderColor = [[UIColor purpleColor] CGColor];
-    _pageControlBg.layer.borderWidth = 1.0f;
-    
-    
-    NSLog(@"@@ (%f, %f)", self.frame.size.width, self.frame.size.height);
+    _pageControl.frame = CGRectSetOriginY(_pageControl.frame, pageControlY);    
 }
 
 - (void)setBanners:(NSArray *)banners {
