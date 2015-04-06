@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -143,7 +143,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OPa-FY-oXa">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OPa-FY-oXa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="baV-Mo-ps5">
@@ -197,14 +197,15 @@
                                         <constraints>
                                             <constraint firstAttribute="centerX" secondItem="2sN-QF-dmx" secondAttribute="centerX" id="4g5-7w-TS6"/>
                                             <constraint firstItem="PKt-Nm-ach" firstAttribute="top" secondItem="dLm-vb-dHm" secondAttribute="bottom" constant="5" id="Add-Ps-ng0"/>
+                                            <constraint firstAttribute="trailing" secondItem="dLm-vb-dHm" secondAttribute="trailing" constant="4" id="Efa-Xh-K1R"/>
                                             <constraint firstItem="dLm-vb-dHm" firstAttribute="top" secondItem="UTQ-JF-xZg" secondAttribute="top" constant="5" id="I2w-H3-0KK"/>
                                             <constraint firstItem="IWd-mE-mKM" firstAttribute="top" secondItem="2sN-QF-dmx" secondAttribute="bottom" constant="5" id="MOt-th-lWn"/>
                                             <constraint firstAttribute="centerX" secondItem="PKt-Nm-ach" secondAttribute="centerX" id="W7V-BM-5q3"/>
                                             <constraint firstAttribute="centerX" secondItem="IWd-mE-mKM" secondAttribute="centerX" id="fXz-P7-Lsa"/>
-                                            <constraint firstAttribute="centerX" secondItem="dLm-vb-dHm" secondAttribute="centerX" id="gAo-2b-RgB"/>
                                             <constraint firstItem="T6n-eE-Dq9" firstAttribute="top" secondItem="IWd-mE-mKM" secondAttribute="bottom" constant="5" id="sba-qE-nm1"/>
                                             <constraint firstAttribute="centerX" secondItem="T6n-eE-Dq9" secondAttribute="centerX" id="wtQ-HQ-Pm8"/>
                                             <constraint firstItem="2sN-QF-dmx" firstAttribute="top" secondItem="PKt-Nm-ach" secondAttribute="bottom" constant="5" id="ysG-Rq-eB3"/>
+                                            <constraint firstItem="dLm-vb-dHm" firstAttribute="leading" secondItem="UTQ-JF-xZg" secondAttribute="leading" constant="4" id="zM1-6c-e0M"/>
                                         </constraints>
                                         <size key="customSize" width="154" height="252"/>
                                         <connections>
@@ -219,6 +220,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OPa-FY-oXa" firstAttribute="top" secondItem="px0-66-wnT" secondAttribute="top" id="5Eg-MW-tSV"/>
+                            <constraint firstItem="OPa-FY-oXa" firstAttribute="leading" secondItem="px0-66-wnT" secondAttribute="leading" id="RGD-4o-9ya"/>
+                            <constraint firstAttribute="bottom" secondItem="OPa-FY-oXa" secondAttribute="bottom" id="kwK-ab-NY8"/>
+                            <constraint firstAttribute="trailing" secondItem="OPa-FY-oXa" secondAttribute="trailing" id="n5A-2l-tUU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fz2-iu-HeZ"/>
                     <connections>
@@ -303,6 +310,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jfz-gb-XnO"/>
+        <segue reference="wip-cO-2jL"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -33,17 +33,27 @@ static const CGFloat kImageBottomMargin = 8.0;
 @synthesize image = _image;
 
 + (CGSize)sizeForEspetaculo:(QMEspetaculo *)espetaculo {
+    
     static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         LabelForMetrics = [[UILabel alloc] init];
         originalTituloFrame = CGRectMake(0.0, 0.0, 135.0, 25.0);
     });
+    
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat widthFactor = 1.0/320.0f;
+//    CGFloat imageSide = 146.0f * widthFactor * screenWidth;
+//    CGFloat cellWidth = imageSide + 8.0f;
+    
+    CGFloat cellWidth = [self cellWidth];
+    CGFloat imageSide = [self imageSide];
+    
     UILabel *tituloLabel = [[UILabel alloc] initWithFrame:originalTituloFrame];
     [tituloLabel setText:espetaculo.titulo];
     [tituloLabel setNumberOfLines:0];
     [tituloLabel sizeToFit];
     
-    CGFloat height = 155.0 + kImageBottomMargin;
+    CGFloat height = imageSide + kImageBottomMargin;
     height += tituloLabel.frame.size.height + 3.0;
     height += 21.0 + 3.0;
     height += 21.0 + 3.0;
@@ -51,7 +61,17 @@ static const CGFloat kImageBottomMargin = 8.0;
     
     // NSLog(@"   altura %f", height);
     
-    return CGSizeMake(154.0, height);
+    return CGSizeMake(cellWidth, height);
+}
+
++ (CGFloat)cellWidth {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat cellWidth = (screenWidth - 12.0f) / 2.0f;
+    return cellWidth;
+}
+
++ (int)imageSide {
+    return (int)(fabsf([self cellWidth]) - 8.0f);
 }
 
 - (void)setEspetaculo:(QMEspetaculo *)espetaculo {
@@ -81,6 +101,15 @@ static const CGFloat kImageBottomMargin = 8.0;
 }
 
 - (void)configureImage {
+    NSDictionary *viewsDictionary = @{@"imageView":_image};
+    int imageSide = [QMEspetaculoCell imageSide];
+    NSString *constraintHeightFormat = [NSString stringWithFormat:@"V:[imageView(%i)]", imageSide];
+    NSString *constraintWidthFormat = [NSString stringWithFormat:@"H:[imageView(%i)]", imageSide];
+    NSArray *constraintHeight = [NSLayoutConstraint constraintsWithVisualFormat:constraintHeightFormat options:0 metrics:nil views:viewsDictionary];
+    NSArray *constraintWidth = [NSLayoutConstraint constraintsWithVisualFormat:constraintWidthFormat options:0 metrics:nil views:viewsDictionary];
+    [_image addConstraints:constraintHeight];
+    [_image addConstraints:constraintWidth];
+    
     if (_espetaculo.miniatura) {
         @try {
 //            __block UIActivityIndicatorView *imageActivityIndicator;
