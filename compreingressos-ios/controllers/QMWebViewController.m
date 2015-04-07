@@ -42,6 +42,10 @@
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton)];
         self.navigationItem.rightBarButtonItem = closeButton;
     }
+    
+    if ([self isFifthStep:_url]) {
+        [self removeLoginControllerFromQueue];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,6 +57,13 @@
     if ([self isShowNativeButton]) {
         _nativeButtonContainer.alpha = 1.0;
     }
+}
+
+- (void)removeLoginControllerFromQueue {
+    int count = (int)[self.navigationController.viewControllers count];
+    NSMutableArray *controllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    [controllers removeObjectAtIndex:count - 2];
+    [self.navigationController setViewControllers:controllers];
 }
 
 - (BOOL)isShowNativeButton {
@@ -242,30 +253,37 @@
     return [matches count] > 0;
 }
 
+/* Tela do detalhe do Espetáculo */
 - (BOOL)isFirstStep:(NSString *)url {
     return [self string:url matchesRegex:@"[\\d]+-[\\w-]+"];
 }
 
+/* Tela de escolha do assento */
 - (BOOL)isSecondStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa1\\.php"];
 }
 
+/* Tela do tipo do ingresso */
 - (BOOL)isThirdStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa2\\.php"];
 }
 
+/* Tela de login/cadastro */
 - (BOOL)isFourthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa3\\.php\\?redirect=etapa4\\.php"];
 }
 
+/* Tela de confirmação */
 - (BOOL)isFifthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa4\\.php"] && [self string:url matchesRegex:@"^((?!etapa3\\.php).)*$"];
 }
 
+/* Tela de pagamento */
 - (BOOL)isSixthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa5\\.php"];
 }
 
+/* Tela final */
 - (BOOL)isSeventhStep:(NSString *)url {
     return [self string:url matchesRegex:@"pagamento_ok"];
 }
