@@ -144,13 +144,9 @@
 }
 
 - (void)openUrl {
-    if ([_carousel isWebviewLink]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kOpenEspetaculoWebviewNotificationTag
                                                             object:self
                                                           userInfo:@{@"url":_banner.linkUrl}];
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_banner.linkUrl]];
-    }
 }
 
 @end
