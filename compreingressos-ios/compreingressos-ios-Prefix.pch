@@ -10,6 +10,7 @@
 #define CGRectSetOriginX(r, x) CGRectMake(x, r.origin.y, r.size.width, r.size.height)
 #define CGRectSetOriginY(r, y) CGRectMake(r.origin.x, y, r.size.width, r.size.height)
 #define CGRectSetSize(r, s) CGRectMake(r.origin.x, r.origin.y, s.width, s.height)
+#define CGRectGetHeightWithOffset(r) r.origin.y + r.size.height
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define USING_TABBAR 1

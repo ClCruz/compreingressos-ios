@@ -35,12 +35,6 @@
 }
 
 - (void)setVisores:(NSArray *)visores {
-    _visores = visores;
-    _banners = [[NSMutableArray alloc] init];
-    for (QMVisor *visor in visores) {
-        [_banners addObject:[visor toBanner]];
-    }
-    [_carrossel setBanners:_banners];
 }
 
 @end

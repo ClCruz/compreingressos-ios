@@ -24,7 +24,7 @@
         <!--Compre Ingressos-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="QMHomeViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="QMHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -33,12 +33,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-azul.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-azul.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.92549019610000005" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pz2-wl-4Ud">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pz2-wl-4Ud">
+                                <rect key="frame" x="0.0" y="532" width="320" height="297"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="6tt-mb-Zne">
                                     <size key="itemSize" width="140" height="140"/>
@@ -107,22 +107,31 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </collectionReusableView>
                             </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="156-va-qNP" userLabel="scrollview">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="156-va-qNP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="3g7-aV-E39"/>
                             <constraint firstItem="pz2-wl-4Ud" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ak7-QZ-5UF"/>
                             <constraint firstAttribute="trailing" secondItem="ooI-lv-R2j" secondAttribute="trailing" id="ClY-Dd-eeS"/>
-                            <constraint firstItem="pz2-wl-4Ud" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="KfM-6u-wfk"/>
+                            <constraint firstItem="pz2-wl-4Ud" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" constant="261" id="KfM-6u-wfk"/>
                             <constraint firstItem="ooI-lv-R2j" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Kng-b8-ky1"/>
                             <constraint firstItem="ooI-lv-R2j" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ta2-Y5-jaZ"/>
+                            <constraint firstAttribute="trailing" secondItem="156-va-qNP" secondAttribute="trailing" id="XFS-cq-D42"/>
                             <constraint firstAttribute="trailing" secondItem="pz2-wl-4Ud" secondAttribute="trailing" id="aNa-oU-M7m"/>
                             <constraint firstAttribute="bottom" secondItem="ooI-lv-R2j" secondAttribute="bottom" id="hMF-M3-hVd"/>
-                            <constraint firstItem="pz2-wl-4Ud" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ua8-eG-psm"/>
+                            <constraint firstItem="156-va-qNP" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="mgB-Mj-aRN"/>
+                            <constraint firstAttribute="bottom" secondItem="156-va-qNP" secondAttribute="bottom" id="tTX-On-FGl"/>
+                            <constraint firstItem="pz2-wl-4Ud" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="532" id="ua8-eG-psm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compre Ingressos" id="GTJ-Zb-bgV"/>
                     <connections>
                         <outlet property="_background" destination="ooI-lv-R2j" id="VaB-J6-QbX"/>
                         <outlet property="_collectionView" destination="pz2-wl-4Ud" id="4zn-p0-YGm"/>
+                        <outlet property="_scrollView" destination="156-va-qNP" id="sRf-hJ-gmq"/>
                         <segue destination="g87-6N-Wvn" kind="push" identifier="espetaculosSegue" id="9oE-t6-Xwp"/>
                         <segue destination="x8J-8q-76o" kind="push" identifier="espetaculoWebViewSegue" id="jfz-gb-XnO"/>
                     </connections>
@@ -310,6 +319,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wip-cO-2jL"/>
+        <segue reference="jfz-gb-XnO"/>
     </inferredMetricsTieBreakers>
 </document>

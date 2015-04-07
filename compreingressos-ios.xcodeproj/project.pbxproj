@@ -67,6 +67,23 @@
 		25BB6A741AC0746B00A927A1 /* QMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A721AC0746B00A927A1 /* QMConstants.m */; };
 		25BB6A7A1AC08F6400A927A1 /* QMGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A791AC08F6400A927A1 /* QMGenre.m */; };
 		25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */; };
+		25C179FB1AD2EC4000DD541F /* classica.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179EC1AD2EC4000DD541F /* classica.png */; };
+		25C179FC1AD2EC4000DD541F /* classica@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179ED1AD2EC4000DD541F /* classica@2x.png */; };
+		25C179FD1AD2EC4000DD541F /* classica@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179EE1AD2EC4000DD541F /* classica@3x.png */; };
+		25C179FE1AD2EC4000DD541F /* muito_mais.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179EF1AD2EC4000DD541F /* muito_mais.png */; };
+		25C179FF1AD2EC4000DD541F /* muito_mais@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F01AD2EC4000DD541F /* muito_mais@2x.png */; };
+		25C17A001AD2EC4000DD541F /* muito_mais@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F11AD2EC4000DD541F /* muito_mais@3x.png */; };
+		25C17A011AD2EC4000DD541F /* perto_de_mim.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F21AD2EC4000DD541F /* perto_de_mim.png */; };
+		25C17A021AD2EC4000DD541F /* perto_de_mim@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F31AD2EC4000DD541F /* perto_de_mim@2x.png */; };
+		25C17A031AD2EC4000DD541F /* perto_de_mim@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F41AD2EC4000DD541F /* perto_de_mim@3x.png */; };
+		25C17A041AD2EC4000DD541F /* shows.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F51AD2EC4000DD541F /* shows.png */; };
+		25C17A051AD2EC4000DD541F /* shows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F61AD2EC4000DD541F /* shows@2x.png */; };
+		25C17A061AD2EC4000DD541F /* shows@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F71AD2EC4000DD541F /* shows@3x.png */; };
+		25C17A071AD2EC4000DD541F /* teatro.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F81AD2EC4000DD541F /* teatro.png */; };
+		25C17A081AD2EC4000DD541F /* teatro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179F91AD2EC4000DD541F /* teatro@2x.png */; };
+		25C17A091AD2EC4000DD541F /* teatro@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C179FA1AD2EC4000DD541F /* teatro@3x.png */; };
+		25C17A0C1AD3026F00DD541F /* QMGenreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C17A0B1AD3026F00DD541F /* QMGenreView.m */; };
+		25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C17A0D1AD3028200DD541F /* QMGenreView.xib */; };
 		25EF7DD71AC37C7C0052986D /* background-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EF7DD61AC37C7C0052986D /* background-red.png */; };
 		7D0ACBD35497B0A56B7E3A48 /* libPods-compreingressos-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */; };
 		A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */; };
@@ -159,6 +176,24 @@
 		25BB6A791AC08F6400A927A1 /* QMGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenre.m; sourceTree = "<group>"; };
 		25BB6A7B1AC0A2D400A927A1 /* QMEspetaculosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculosViewController.h; sourceTree = "<group>"; };
 		25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculosViewController.m; sourceTree = "<group>"; };
+		25C179EC1AD2EC4000DD541F /* classica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classica.png; sourceTree = "<group>"; };
+		25C179ED1AD2EC4000DD541F /* classica@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classica@2x.png"; sourceTree = "<group>"; };
+		25C179EE1AD2EC4000DD541F /* classica@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classica@3x.png"; sourceTree = "<group>"; };
+		25C179EF1AD2EC4000DD541F /* muito_mais.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muito_mais.png; sourceTree = "<group>"; };
+		25C179F01AD2EC4000DD541F /* muito_mais@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "muito_mais@2x.png"; sourceTree = "<group>"; };
+		25C179F11AD2EC4000DD541F /* muito_mais@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "muito_mais@3x.png"; sourceTree = "<group>"; };
+		25C179F21AD2EC4000DD541F /* perto_de_mim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perto_de_mim.png; sourceTree = "<group>"; };
+		25C179F31AD2EC4000DD541F /* perto_de_mim@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "perto_de_mim@2x.png"; sourceTree = "<group>"; };
+		25C179F41AD2EC4000DD541F /* perto_de_mim@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "perto_de_mim@3x.png"; sourceTree = "<group>"; };
+		25C179F51AD2EC4000DD541F /* shows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shows.png; sourceTree = "<group>"; };
+		25C179F61AD2EC4000DD541F /* shows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shows@2x.png"; sourceTree = "<group>"; };
+		25C179F71AD2EC4000DD541F /* shows@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shows@3x.png"; sourceTree = "<group>"; };
+		25C179F81AD2EC4000DD541F /* teatro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teatro.png; sourceTree = "<group>"; };
+		25C179F91AD2EC4000DD541F /* teatro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teatro@2x.png"; sourceTree = "<group>"; };
+		25C179FA1AD2EC4000DD541F /* teatro@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teatro@3x.png"; sourceTree = "<group>"; };
+		25C17A0A1AD3026F00DD541F /* QMGenreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGenreView.h; sourceTree = "<group>"; };
+		25C17A0B1AD3026F00DD541F /* QMGenreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenreView.m; sourceTree = "<group>"; };
+		25C17A0D1AD3028200DD541F /* QMGenreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QMGenreView.xib; sourceTree = "<group>"; };
 		25EF7DD61AC37C7C0052986D /* background-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-red.png"; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +225,7 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				25C179EB1AD2EC4000DD541F /* generos */,
 				251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */,
 				25EF7DD61AC37C7C0052986D /* background-red.png */,
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
@@ -340,6 +376,9 @@
 				25BB6A601AC073E800A927A1 /* QMEspetaculosGridHeaderView.m */,
 				252FD8461AB748C90007C29B /* QMGenreCell.h */,
 				252FD8471AB748C90007C29B /* QMGenreCell.m */,
+				25C17A0A1AD3026F00DD541F /* QMGenreView.h */,
+				25C17A0B1AD3026F00DD541F /* QMGenreView.m */,
+				25C17A0D1AD3028200DD541F /* QMGenreView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -355,6 +394,28 @@
 				258B93DB1AC054730007C584 /* QMVisoresRequester.m */,
 			);
 			path = requesters;
+			sourceTree = "<group>";
+		};
+		25C179EB1AD2EC4000DD541F /* generos */ = {
+			isa = PBXGroup;
+			children = (
+				25C179EC1AD2EC4000DD541F /* classica.png */,
+				25C179ED1AD2EC4000DD541F /* classica@2x.png */,
+				25C179EE1AD2EC4000DD541F /* classica@3x.png */,
+				25C179EF1AD2EC4000DD541F /* muito_mais.png */,
+				25C179F01AD2EC4000DD541F /* muito_mais@2x.png */,
+				25C179F11AD2EC4000DD541F /* muito_mais@3x.png */,
+				25C179F21AD2EC4000DD541F /* perto_de_mim.png */,
+				25C179F31AD2EC4000DD541F /* perto_de_mim@2x.png */,
+				25C179F41AD2EC4000DD541F /* perto_de_mim@3x.png */,
+				25C179F51AD2EC4000DD541F /* shows.png */,
+				25C179F61AD2EC4000DD541F /* shows@2x.png */,
+				25C179F71AD2EC4000DD541F /* shows@3x.png */,
+				25C179F81AD2EC4000DD541F /* teatro.png */,
+				25C179F91AD2EC4000DD541F /* teatro@2x.png */,
+				25C179FA1AD2EC4000DD541F /* teatro@3x.png */,
+			);
+			path = generos;
 			sourceTree = "<group>";
 		};
 		CDC8D68087B6BC8338626F97 /* Frameworks */ = {
@@ -465,35 +526,51 @@
 			files = (
 				251FA1E01AC3386400C20391 /* comedia_perversa.png in Resources */,
 				251FA1E51AC3386400C20391 /* infantil.png in Resources */,
+				25C17A091AD2EC4000DD541F /* teatro@3x.png in Resources */,
+				25C179FB1AD2EC4000DD541F /* classica.png in Resources */,
 				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
+				25C17A071AD2EC4000DD541F /* teatro.png in Resources */,
 				251FA1E21AC3386400C20391 /* concerto_sinfonico.png in Resources */,
+				25C179FF1AD2EC4000DD541F /* muito_mais@2x.png in Resources */,
 				251FA1DC1AC3386400C20391 /* circo.png in Resources */,
+				25C17A061AD2EC4000DD541F /* shows@3x.png in Resources */,
 				251FA1E41AC3386400C20391 /* drama.png in Resources */,
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
+				25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */,
+				25C17A021AD2EC4000DD541F /* perto_de_mim@2x.png in Resources */,
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
 				251FA1F71AC3476400C20391 /* background-cinza.png in Resources */,
 				251FA1EF1AC3386400C20391 /* teatro.png in Resources */,
+				25C179FD1AD2EC4000DD541F /* classica@3x.png in Resources */,
 				251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */,
 				251FA1E11AC3386400C20391 /* comedia_romantica.png in Resources */,
 				25EF7DD71AC37C7C0052986D /* background-red.png in Resources */,
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
+				25C17A001AD2EC4000DD541F /* muito_mais@3x.png in Resources */,
 				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
+				25C179FE1AD2EC4000DD541F /* muito_mais.png in Resources */,
 				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,
 				25BB6A681AC0740500A927A1 /* QMCarouselView.xib in Resources */,
 				252FD8271AB73C820007C29B /* Images.xcassets in Resources */,
 				251FA1E71AC3386400C20391 /* musical.png in Resources */,
+				25C17A031AD2EC4000DD541F /* perto_de_mim@3x.png in Resources */,
 				251FA1E81AC3386400C20391 /* musical_infantil.png in Resources */,
+				25C179FC1AD2EC4000DD541F /* classica@2x.png in Resources */,
 				251FA1F31AC33E2600C20391 /* ingressos.png in Resources */,
+				25C17A011AD2EC4000DD541F /* perto_de_mim.png in Resources */,
 				251FA1E91AC3386400C20391 /* opera.png in Resources */,
 				251FA1F11AC339B600C20391 /* romance.png in Resources */,
 				251FA1DE1AC3386400C20391 /* comedia_dramatica.png in Resources */,
+				25C17A041AD2EC4000DD541F /* shows.png in Resources */,
 				251FA1EE1AC3386400C20391 /* suspense.png in Resources */,
+				25C17A051AD2EC4000DD541F /* shows@2x.png in Resources */,
 				251FA1EC1AC3386400C20391 /* shows.png in Resources */,
 				251FA1E61AC3386400C20391 /* musica.png in Resources */,
+				25C17A081AD2EC4000DD541F /* teatro@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +671,7 @@
 				258B93DC1AC054730007C584 /* QMEspetaculosRequester.m in Sources */,
 				258B93D41AC053E60007C584 /* QMBanner.m in Sources */,
 				252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */,
+				25C17A0C1AD3026F00DD541F /* QMGenreView.m in Sources */,
 				25BB6A7A1AC08F6400A927A1 /* QMGenre.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

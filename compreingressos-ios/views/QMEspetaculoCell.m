@@ -40,11 +40,6 @@ static const CGFloat kImageBottomMargin = 8.0;
         originalTituloFrame = CGRectMake(0.0, 0.0, 135.0, 25.0);
     });
     
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat widthFactor = 1.0/320.0f;
-//    CGFloat imageSide = 146.0f * widthFactor * screenWidth;
-//    CGFloat cellWidth = imageSide + 8.0f;
-    
     CGFloat cellWidth = [self cellWidth];
     CGFloat imageSide = [self imageSide];
     
@@ -58,8 +53,6 @@ static const CGFloat kImageBottomMargin = 8.0;
     height += 21.0 + 3.0;
     height += 21.0 + 3.0;
     height += 21.0 + 3.0;
-    
-    // NSLog(@"   altura %f", height);
     
     return CGSizeMake(cellWidth, height);
 }

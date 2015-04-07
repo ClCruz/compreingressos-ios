@@ -15,6 +15,8 @@
 #import "QMGenre.h"
 #import "QMEspetaculosViewController.h"
 #import "QMConstants.h"
+#import "QMCarouselView.h"
+#import "QMVisor.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -29,36 +31,24 @@
     IBOutlet UICollectionView *_collectionView;
     IBOutlet UIImageView *_background;
     QMEspetaculosGridHeaderView *_carrosselVisores;
+    QMCarouselView *_carouselView;
+    UIView *_bottomView; // Última view da scrollview
     CLLocationManager *_locationManager;
     CLLocation *_location;
     UIAlertView *_gpsErrorAlertView;
     BOOL _segueLock;
     QMGenre *_selectedGenre;
+    IBOutlet UIScrollView *_scrollView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
-                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_min_image.png"},
-                    @{@"title": @"Concertos Sinfônicos", @"icon_url": @"concerto_sinfonico.png", @"image_url": @"concertos_sinfonicos_image.png"},
-                    @{@"title": @"Comédia", @"icon_url": @"comedia.png", @"image_url": @"comedia_image.png"},
-                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows_image.png"},
-                    @{@"title": @"Infantil", @"icon_url": @"infantil.png", @"image_url": @"infantil_image.png"},
-                    @{@"title": @"Drama", @"icon_url": @"drama.png", @"image_url": @"drama_image.png"},
-                    @{@"title": @"Stand-Up", @"icon_url": @"stand_up.png", @"image_url": @"stand_up_image.png"},
-                    @{@"title": @"Musical", @"icon_url": @"musical.png", @"image_url": @"musical_image.png"},
-                    @{@"title": @"Ópera", @"icon_url": @"opera.png", @"image_url": @"opera_image.png"},
-                    @{@"title": @"Romance", @"icon_url": @"romance.png", @"image_url": @"romance_image.png"},
-// @{@"title": @"Espírita", @"icon_url": @"espirita.png", @"image_url": @"espirita_image.png"},
-                    @{@"title": @"Musical Infantil", @"icon_url": @"musical_infantil.png", @"image_url": @"musical_infantil_image.png"},
-                    @{@"title": @"Comédia Musical", @"icon_url": @"comedia_musical.png", @"image_url": @"comedia_musical_image.png"},
-                    @{@"title": @"Dança", @"icon_url": @"danca.png", @"image_url": @"danca_image.png"},
-                    @{@"title": @"Comédia Romântica", @"icon_url": @"comedia_romantica.png", @"image_url": @"comedia_romantica_image.png"},
-                    @{@"title": @"Comédia Dramática", @"icon_url": @"comedia_dramatica.png", @"image_url": @"comedia_dramatica_image.png"},
-                    @{@"title": @"Suspense", @"icon_url": @"suspense.png", @"image_url": @"suspense_image.png"},
-                    @{@"title": @"Comédia Perversa", @"icon_url": @"comedia_perversa.png", @"image_url": @"comedia_perversa_image.png"},
-                    @{@"title": @"Música", @"icon_url": @"musica.png", @"image_url": @"musica_image.png"},
-                    @{@"title": @"Circo", @"icon_url": @"circo.png", @"image_url": @"circo_image.png"}
+                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
+                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"show"},
+                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Concertos Sinfônicos"},
+                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"},
+                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@"Todos os gêneros"}
                  ];
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
@@ -74,6 +64,7 @@
                                                object:nil];
 
     [self configureLocationManager];
+    [self configureCarousel];
     [self parseGenres];
     [self requestData];
 }
@@ -81,8 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _segueLock = NO;
-//    [self.view bringSubviewToFront:_collectionView];
-    _collectionView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
+    _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -103,11 +93,30 @@
 
 
 - (void)parseGenres {
-    for (NSDictionary *genreDict in _genresJson) {
+    for (int i=0; i<[_genresJson count]; i++) {
+        NSDictionary *genreDict = _genresJson[i];
         QMGenre *genre = [[QMGenre alloc] initWithDictionary:genreDict];
         [_genres addObject:genre];
+        [self showGenre:genre onIndex:i];
     }
 }
+
+- (void)showGenre:(QMGenre *)genre onIndex:(int)index {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat genreViewHeight = screenWidth * 0.3875f;
+    QMGenreView *genreView = (QMGenreView *)[self loadNibNamed:@"QMGenreView"];
+    [genreView setDelegate:self];
+    [genreView setGenre: genre];
+    genreView.frame = CGRectSetSize(genreView.frame, CGSizeMake(screenWidth, genreViewHeight));
+    CGFloat topMargin = index == 0 ? 0.0f : 6.0f;
+    CGFloat y = CGRectGetHeightWithOffset(_bottomView.frame) + topMargin;
+    genreView.frame = CGRectSetOriginX(genreView.frame, 0.0f);
+    genreView.frame = CGRectSetOriginY(genreView.frame, y);
+    [_scrollView addSubview:genreView];
+    _bottomView = genreView;
+    [_scrollView setContentSize:CGSizeMake(screenWidth, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
+}
+
 - (void)requestData {
     if ([self isConnected]) {
         [SVProgressHUD show];
@@ -137,7 +146,11 @@
 - (void)requestVisores {
     [QMVisoresRequester requestVisoresOnCompleteBlock:^(NSArray *array) {
         _visores = array;
-        [_carrosselVisores setVisores:_visores];
+        NSMutableArray *banners = [[NSMutableArray alloc] init];
+        for (QMVisor *visor in _visores) {
+            [banners addObject:[visor toBanner]];
+        }
+        [_carouselView setBanners:banners];
         [SVProgressHUD dismiss];
     } onFailBlock:^(NSError *error) {
         [SVProgressHUD dismiss];
@@ -147,6 +160,21 @@
 - (void)openWebview:(UILocalNotification *)notification {
     NSString *url = notification.userInfo[@"url"];
     [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
+}
+
+- (void)configureCarousel {
+    _carouselView = (QMCarouselView *)[self loadNibNamed:@"QMCarouselView"];
+    [_carouselView prepareCarouselForRetina4:YES];
+    [_scrollView addSubview:_carouselView];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat carouselHeight = screenWidth / 1.684f;
+    _carouselView.frame = CGRectSetSize(_carouselView.frame, CGSizeMake(screenWidth, carouselHeight));
+    _bottomView = _carouselView;
+}
+
+- (UIView *)loadNibNamed:(NSString *)name {
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
+    return nibs[0];
 }
 
 #pragma mark - Navigation
@@ -191,6 +219,10 @@
     }
 }
 
+- (void)didSelectGenre:(QMGenre *)genre {
+    _selectedGenre = genre;
+    [self checkLocationBeforeGoToResults];
+}
 
 # pragma mark
 # pragma mark - UICollectionView Datasource
@@ -208,7 +240,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [_genres count];
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
