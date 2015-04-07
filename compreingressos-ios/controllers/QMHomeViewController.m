@@ -20,6 +20,8 @@
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
+static CGFloat kGenresMargin = 6.0f;
+
 @interface QMHomeViewController ()
 
 @end
@@ -72,7 +74,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _segueLock = NO;
-    _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
+    _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -108,7 +110,7 @@
     [genreView setDelegate:self];
     [genreView setGenre: genre];
     genreView.frame = CGRectSetSize(genreView.frame, CGSizeMake(screenWidth, genreViewHeight));
-    CGFloat topMargin = index == 0 ? 0.0f : 6.0f;
+    CGFloat topMargin = index == 0 ? 0.0f : kGenresMargin;
     CGFloat y = CGRectGetHeightWithOffset(_bottomView.frame) + topMargin;
     genreView.frame = CGRectSetOriginX(genreView.frame, 0.0f);
     genreView.frame = CGRectSetOriginY(genreView.frame, y);
