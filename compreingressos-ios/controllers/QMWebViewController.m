@@ -50,9 +50,13 @@
         [self openUrl];
     }
     self.navigationItem.title = [self titleForStep];
-    if ([self isSecondStep:_url]) {
+    if ([self isShowNativeButton]) {
         _nativeButtonContainer.alpha = 1.0;
     }
+}
+
+- (BOOL)isShowNativeButton {
+    return [self isSecondStep:_url] || [self isThirdStep:_url] || [self isFifthStep:_url] || [self isSixthStep:_url];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -178,7 +182,8 @@
 }
 
 - (void)clickNextButtonOnWebview {
-    NSString *script = @"$('.container_botoes_etapas').find('a')[0].click();";
+    NSString *script = @"var length = $('.container_botoes_etapas').find('a').length; "
+    @"$('.container_botoes_etapas').find('a')[length - 1].click(); ";
     [_webview stringByEvaluatingJavaScriptFromString:script];
 }
 
@@ -196,8 +201,8 @@
         
     }
     
+    [self hideNextButtonOnWebview];
     if ([self isSecondStep:_url]) {
-        [self hideNextButtonOnWebview];
         [self changeViewPortForZooming];
         _webview.scalesPageToFit = YES;
     }
