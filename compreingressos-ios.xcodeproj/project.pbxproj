@@ -46,6 +46,8 @@
 		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
+		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
+		256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509C21AD5B86100D6DCA2 /* QMTicket.m */; };
 		258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93CA1AC053120007C584 /* QMEspetaculo.m */; };
 		258B93D11AC0537D0007C584 /* QMVisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D01AC0537D0007C584 /* QMVisor.m */; };
 		258B93D41AC053E60007C584 /* QMBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D31AC053E60007C584 /* QMBanner.m */; };
@@ -147,6 +149,10 @@
 		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
+		256509BE1AD5B6DD00D6DCA2 /* QMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrder.h; sourceTree = "<group>"; };
+		256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrder.m; sourceTree = "<group>"; };
+		256509C11AD5B86100D6DCA2 /* QMTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTicket.h; sourceTree = "<group>"; };
+		256509C21AD5B86100D6DCA2 /* QMTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTicket.m; sourceTree = "<group>"; };
 		258B93C91AC053120007C584 /* QMEspetaculo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculo.h; sourceTree = "<group>"; };
 		258B93CA1AC053120007C584 /* QMEspetaculo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculo.m; sourceTree = "<group>"; };
 		258B93CF1AC0537D0007C584 /* QMVisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMVisor.h; sourceTree = "<group>"; };
@@ -357,6 +363,10 @@
 				258B93D01AC0537D0007C584 /* QMVisor.m */,
 				25BB6A781AC08F6400A927A1 /* QMGenre.h */,
 				25BB6A791AC08F6400A927A1 /* QMGenre.m */,
+				256509BE1AD5B6DD00D6DCA2 /* QMOrder.h */,
+				256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */,
+				256509C11AD5B86100D6DCA2 /* QMTicket.h */,
+				256509C21AD5B86100D6DCA2 /* QMTicket.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -655,6 +665,8 @@
 			files = (
 				25BB6A661AC0740500A927A1 /* QMCarouselView.m in Sources */,
 				25BB6A731AC0746B00A927A1 /* QMConstants.m in Sources */,
+				256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */,
+				256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */,
 				25BB6A611AC073E800A927A1 /* QMEspetaculosGridHeaderView.m in Sources */,
 				252FD8221AB73C820007C29B /* ViewController.m in Sources */,
 				255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */,
