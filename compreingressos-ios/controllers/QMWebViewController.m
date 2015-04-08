@@ -156,12 +156,19 @@
             [UIView animateWithDuration:0.3 animations:^{
                 _webview.alpha = 1.0;
             }];
+            [self processOrderIfNeeded];
             [SVProgressHUD dismiss];
             _loaded = YES;
         } else {
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
         }
 
+}
+
+- (void)processOrderIfNeeded {
+    if ([self isLastStep]) {
+        NSDictionary *json = [self getOrderJsonScript];
+    }
 }
 
 #pragma mark -
@@ -205,6 +212,58 @@
     NSString *script = @"var length = $('.container_botoes_etapas').find('a').length; "
     @"$('.container_botoes_etapas').find('a')[length - 1].click(); ";
     [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (NSDictionary *)getOrderJsonScript {
+    NSString *script = @"var date_aux = new Array; "
+    @"$('.data').children().each(function(){date_aux.push($(this).html())}); "
+    @"var order_date = date_aux.join(' '); "
+    @"var spectacle_name = $('.resumo').find('.nome').html(); "
+    @"var address = $('.resumo').find('.endereco').html(); "
+    @"var theater = $('.resumo').find('.teatro').html(); "
+    @"var time = $('.resumo').find('.horario').html(); "
+    @"var order_number = $('.numero').find('a').html(); "
+    @"var order_total = $('.pedido_total').find('.valor').html(); "
+    @"var tickets = new Array; "
+    @"$('tr').each(function() { "
+    @"	var qrcode = $(this).attr('data:uid'); "
+    @"	if (typeof qrcode !== typeof undefined && qrcode !== false) { "
+    @"		var local   = $(this).find('.local').find('td').html().replace('<br>', '').split('\n').map(trim).join(' ').trim(); "
+    @"		var type    = $(this).find('.tipo').html(); "
+    @"		var aux     = $(this).find('td'); "
+    @"		var price   = aux.eq(3).children().eq(0).html(); "
+    @"		var service = aux.eq(4).html().replace('R$', ''); "
+    @"		var total   = aux.eq(5).children().eq(0).html(); "
+    @"		tickets.push({ "
+    @"			qrcode:  qrcode, "
+    @"			local:   local, "
+    @"			type:    type, "
+    @"			price:   price, "
+    @"			service: service, "
+    @"			total:   total "
+    @"		}); "
+    @"	} "
+    @"}); "
+    @"var payload = { "
+    @"	order: { "
+    @"		number: order_number, "
+    @"		date:   order_date, "
+    @"		total:  order_total, "
+    @"		spectacle: { "
+    @"			name: spectacle_name, "
+    @"			address: address, "
+    @"			theater: theater, "
+    @"			time: time "
+    @"		}, "
+    @"		tickets: tickets "
+    @"	} "
+    @"} "
+    @"return JSON.stringify(payload); ";
+    NSString *json = [_webview stringByEvaluatingJavaScriptFromString:script];
+    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    return jsonDictionary;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
