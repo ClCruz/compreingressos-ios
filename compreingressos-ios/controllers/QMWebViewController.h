@@ -20,6 +20,7 @@
 @property (nonatomic, strong) QMGenre *genre;
 @property (nonatomic, strong) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
+@property (nonatomic) BOOL isZerothStep;
 
 - (IBAction)clickedOnNativeButton:(id)sender;
 

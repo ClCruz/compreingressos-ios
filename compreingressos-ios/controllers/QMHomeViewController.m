@@ -191,6 +191,7 @@ static CGFloat kGenresMargin = 6.0f;
         QMWebViewController *controller = segue.destinationViewController;
         NSString *url = (NSString *)sender;
         [controller setUrl:url];
+        [controller setIsZerothStep:YES];
     }
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];

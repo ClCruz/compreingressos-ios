@@ -18,6 +18,7 @@
     QMEspetaculo *_espetaculo;
     BOOL _firstTimeLoad;
     BOOL _loaded;
+    BOOL _isZerothStep;
     IBOutlet UIButton *_nativeButton;
     IBOutlet UIView *_nativeButtonContainer;
 }
@@ -30,6 +31,7 @@
 @synthesize url = _url;
 @synthesize genre = _genre;
 @synthesize espetaculo = _espetaculo;
+@synthesize isZerothStep = _isZerothStep;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -106,8 +108,15 @@
 
 - (NSString *)titleForStep {
     NSString *title = nil;
+    if (_isZerothStep) {
+        title = @"Destaque";
+    }
     if ([self isFirstStep:_url]) {
-        title = _espetaculo.titulo;
+        if (_espetaculo) {
+            title = _espetaculo.titulo;
+        } else {
+            title = @"Espetáculo";
+        }
     }
     else if ([self isSecondStep:_url]) {
         title = @"Setores";
@@ -255,7 +264,7 @@
 
 /* Tela do detalhe do Espetáculo */
 - (BOOL)isFirstStep:(NSString *)url {
-    return [self string:url matchesRegex:@"[\\d]+-[\\w-]+"];
+    return [url containsString:@"espetaculos"];
 }
 
 /* Tela de escolha do assento */
@@ -294,7 +303,10 @@
 
 - (BOOL)isNextStep:(NSString *)url {
     BOOL nextStep = NO;
-    if ([self isFirstStep:_url]) {
+    if (_isZerothStep && ![self isFirstStep:_url]) {
+        nextStep = [self isFirstStep:url];
+    }
+    else if ([self isFirstStep:_url]) {
         nextStep = [self isSecondStep:url];
     }
     else if ([self isSecondStep:_url]) {
