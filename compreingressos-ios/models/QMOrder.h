@@ -18,6 +18,9 @@
 @property (strong, nonatomic) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) NSMutableArray *tickets;
 
++ (QMOrder *)sharedInstance;
++ (NSArray *)orderHistory;
++ (void)addOrderToHistory:(QMOrder *)order;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSMutableDictionary *)toDictionary;
 

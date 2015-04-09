@@ -10,6 +10,9 @@
 #import "QMEspetaculo.h"
 #import "QMTicket.h"
 
+static QMOrder *instance;
+static NSMutableDictionary *orderHistoryInstance;
+
 @implementation QMOrder {
     @private
     NSString       *_number;
@@ -24,6 +27,56 @@
 @synthesize total      = _total;
 @synthesize espetaculo = _espetaculo;
 @synthesize tickets    = _tickets;
+
++ (QMOrder *)sharedInstance {
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        if (!instance) {
+            instance = [[QMOrder alloc] init];
+        }
+    });
+    return instance;
+}
+
++ (NSArray *)orderHistory {
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        if (!orderHistoryInstance) {
+            orderHistoryInstance = [[NSMutableDictionary alloc] init];
+            NSArray *ordersDictArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"orderHistory"];
+            if (ordersDictArray) {
+                for (NSDictionary *dict in ordersDictArray) {
+                    QMOrder *order = [[QMOrder alloc] initWithDictionary:dict];
+                    orderHistoryInstance[order.number] = order;
+                }
+            }
+        }
+    });
+    return [orderHistoryInstance allValues];
+}
+
++ (void)setOrderHistory:(NSArray *)orders {
+    orderHistoryInstance = [[NSMutableDictionary alloc] init];
+    for (QMOrder *order in orders) {
+        orderHistoryInstance[order.number] = order;
+    }
+    [self persistOrderHistory];
+}
+
++ (void)addOrderToHistory:(QMOrder *)order {
+    [QMOrder orderHistory];
+    orderHistoryInstance[order.number] = order;
+    [self persistOrderHistory];
+}
+
++ (void)persistOrderHistory {
+    NSMutableArray *ordersDictArray = [[NSMutableArray alloc] initWithCapacity:[orderHistoryInstance count]];
+    [orderHistoryInstance enumerateKeysAndObjectsUsingBlock:^(id key, QMOrder *obj, BOOL *stop) {
+        [ordersDictArray addObject:[obj toDictionary]];
+    }];
+    [[NSUserDefaults standardUserDefaults] setObject:ordersDictArray forKey:@"orderHistory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];

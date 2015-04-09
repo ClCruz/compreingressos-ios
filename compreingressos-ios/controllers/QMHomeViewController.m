@@ -43,6 +43,7 @@ static CGFloat kGenresMargin = 6.0f;
     IBOutlet UIScrollView *_scrollView;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
@@ -69,6 +70,12 @@ static CGFloat kGenresMargin = 6.0f;
     [self configureCarousel];
     [self parseGenres];
     [self requestData];
+    
+//    NSString *json = @"{\"order\":{\"number\":\"436448\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE 2\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"xx0054721128200000100133\",\"local\":\"SETOR 3 BALCÃO SIMPLES D-44\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}}";
+//    
+//    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *error = nil;
+//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,7 +99,6 @@ static CGFloat kGenresMargin = 6.0f;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.distanceFilter = 100.0f;
 }
-
 
 - (void)parseGenres {
     for (int i=0; i<[_genresJson count]; i++) {

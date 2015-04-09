@@ -173,7 +173,8 @@
 - (void)processOrderIfNeeded {
     if ([self isLastStep]) {
         NSDictionary *json = [self getOrderJsonScript];
-        QMOrder *order = [[QMOrder alloc] initWithDictionary:json[@"order"]];
+        QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json[@"order"]];
+        [QMOrder addOrderToHistory:order];
     }
 }
 

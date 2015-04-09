@@ -63,10 +63,10 @@
 
 - (NSMutableDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    dictionary[@"titulo"] = _titulo;
-    dictionary[@"nome_teatro"] = _teatro;
-    dictionary[@"horario"] = _horario;
-    dictionary[@"endereco"] = _endereco;
+    if (_titulo)   dictionary[@"titulo"]      = _titulo;
+    if (_teatro)   dictionary[@"nome_teatro"] = _teatro;
+    if (_horario)  dictionary[@"horario"]     = _horario;
+    if (_endereco) dictionary[@"endereco"]    = _endereco;
     return dictionary;
 }
 

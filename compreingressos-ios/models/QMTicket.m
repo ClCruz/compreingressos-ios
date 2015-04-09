@@ -19,33 +19,33 @@
 }
 
 @synthesize qrcodeString = _qrcodeString;
-@synthesize place = _place;
-@synthesize type = _type;
-@synthesize price = _price;
+@synthesize place        = _place;
+@synthesize type         = _type;
+@synthesize price        = _price;
 @synthesize servicePrice = _servicePrice;
-@synthesize total = _total;
+@synthesize total        = _total;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
         _qrcodeString = dictionary[@"qrcode"];
-        _place = dictionary[@"place"];
-        _type = dictionary[@"type"];
-        _price = dictionary[@"price"];
+        _place        = dictionary[@"local"];
+        _type         = dictionary[@"type"];
+        _price        = dictionary[@"price"];
         _servicePrice = dictionary[@"service_price"];
-        _total = dictionary[@"total"];
+        _total        = dictionary[@"total"];
     }
     return self;
 }
 
 - (NSMutableDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    dictionary[@"qrcode"] = _qrcodeString;
-    dictionary[@"place"] = _place;
-    dictionary[@"type"] = _type;
-    dictionary[@"price"] = _price;
-    dictionary[@"service_price"] = _servicePrice;
-    dictionary[@"total"] = _total;
+    if (_qrcodeString) dictionary[@"qrcode"]        = _qrcodeString;
+    if (_place)        dictionary[@"local"]         = _place;
+    if (_type)         dictionary[@"type"]          = _type;
+    if (_price)        dictionary[@"price"]         = _price;
+    if (_servicePrice) dictionary[@"service_price"] = _servicePrice;
+    if (_total)        dictionary[@"total"]         = _total;
     return dictionary;
 }
 
