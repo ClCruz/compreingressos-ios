@@ -18,4 +18,6 @@
 @property (strong, nonatomic) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) NSMutableArray *tickets;
 
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
 @end

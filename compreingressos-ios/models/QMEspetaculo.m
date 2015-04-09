@@ -22,33 +22,37 @@
     NSString *_url;
     NSString *_data;
     NSString *_relevancia;
+    NSString *_horario;
     __weak QMGenre *_genre;
 }
 
-@synthesize codigo = _codigo;
-@synthesize titulo = _titulo;
-@synthesize genero = _genero;
-@synthesize teatro = _teatro;
-@synthesize cidade = _cidade;
-@synthesize estado = _estado;
-@synthesize miniatura = _miniatura;
-@synthesize url = _url;
-@synthesize data = _data;
+@synthesize codigo     = _codigo;
+@synthesize titulo     = _titulo;
+@synthesize genero     = _genero;
+@synthesize teatro     = _teatro;
+@synthesize cidade     = _cidade;
+@synthesize estado     = _estado;
+@synthesize miniatura  = _miniatura;
+@synthesize url        = _url;
+@synthesize data       = _data;
 @synthesize relevancia = _relevancia;
+@synthesize horario    = _horario;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
-        _titulo = dictionary[@"titulo"];
-        _genero = dictionary[@"genero"];
-        _teatro = [QMRequester objectOrNilForKey:@"teatro" forDictionary:dictionary];
+        _titulo     = dictionary[@"titulo"];
+        _genero     = [QMRequester objectOrNilForKey:@"genero"     forDictionary:dictionary];
+        _teatro     = [QMRequester objectOrNilForKey:@"teatro"     forDictionary:dictionary];
+        _cidade     = [QMRequester objectOrNilForKey:@"cidade"     forDictionary:dictionary];
+        _estado     = [QMRequester objectOrNilForKey:@"estado"     forDictionary:dictionary];
+        _miniatura  = [QMRequester objectOrNilForKey:@"miniatura"  forDictionary:dictionary];
+        _url        = [QMRequester objectOrNilForKey:@"url"        forDictionary:dictionary];
+        _data       = [QMRequester objectOrNilForKey:@"data"       forDictionary:dictionary];
+        _relevancia = [QMRequester objectOrNilForKey:@"relevancia" forDictionary:dictionary];
+        _horario    = [QMRequester objectOrNilForKey:@"horario"    forDictionary:dictionary]; // vem do detalhe de pedido
+        
         if (!_teatro) _teatro = [QMRequester objectOrNilForKey:@"nome_teatro" forDictionary:dictionary];
-        _cidade = dictionary[@"cidade"];
-        _estado = dictionary[@"estado"];
-        _miniatura = dictionary[@"miniatura"];
-        _url = dictionary[@"url"];
-        _data = dictionary[@"data"];
-        _relevancia = dictionary[@"relevancia"];
     }
     return self;
 }

@@ -32,7 +32,7 @@
         _place = dictionary[@"place"];
         _type = dictionary[@"type"];
         _price = dictionary[@"price"];
-        _servicePrice = dictionary[@"service "];
+        _servicePrice = dictionary[@"service_price"];
         _total = dictionary[@"total"];
     }
     return self;

@@ -10,6 +10,8 @@
 #import "SVProgressHUD.h"
 #import "QMGenre.h"
 #import "QMEspetaculo.h"
+#import "QMOrder.h"
+#import "QMRequester.h"
 
 @interface QMWebViewController () {
     UIWebView *_webview;
@@ -171,6 +173,7 @@
 - (void)processOrderIfNeeded {
     if ([self isLastStep]) {
         NSDictionary *json = [self getOrderJsonScript];
+        QMOrder *order = [[QMOrder alloc] initWithDictionary:json[@"order"]];
     }
 }
 
@@ -231,19 +234,19 @@
     @"$('tr').each(function() { "
     @"	var qrcode = $(this).attr('data:uid'); "
     @"	if (typeof qrcode !== typeof undefined && qrcode !== false) { "
-    @"		var local   = $(this).find('.local').find('td').html().replace('<br>', '').split('\n').map(trim).join(' ').trim(); "
+    @"		var local   = $(this).find('.local').find('td').html().replace('<br>', '').split('\\n').map(trim).join(' ').trim(); "
     @"		var type    = $(this).find('.tipo').html(); "
     @"		var aux     = $(this).find('td'); "
     @"		var price   = aux.eq(3).children().eq(0).html(); "
     @"		var service = aux.eq(4).html().replace('R$', ''); "
     @"		var total   = aux.eq(5).children().eq(0).html(); "
     @"		tickets.push({ "
-    @"			qrcode:  qrcode, "
-    @"			local:   local, "
-    @"			type:    type, "
-    @"			price:   price, "
-    @"			service: service, "
-    @"			total:   total "
+    @"			qrcode:        qrcode, "
+    @"			local:         local, "
+    @"			type:          type, "
+    @"			price:         price, "
+    @"			service_price: service, "
+    @"			total:         total "
     @"		}); "
     @"	} "
     @"}); "
@@ -252,16 +255,17 @@
     @"		number: order_number, "
     @"		date:   order_date, "
     @"		total:  order_total, "
-    @"		spectacle: { "
-    @"			name: spectacle_name, "
-    @"			address: address, "
-    @"			theater: theater, "
-    @"			time: time "
+    @"		espetaculo: { "
+    @"			titulo: spectacle_name, "
+    @"			endereco: address, "
+    @"			teatro: theater, "
+    @"			horario: time "
     @"		}, "
-    @"		tickets: tickets "
+    @"		ingressos: tickets "
     @"	} "
-    @"} "
-    @"return JSON.stringify(payload); ";
+    @"}; "
+    @"JSON.stringify(payload); ";
+    
     NSString *json = [_webview stringByEvaluatingJavaScriptFromString:script];
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;

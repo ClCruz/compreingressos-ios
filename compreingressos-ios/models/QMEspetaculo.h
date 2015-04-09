@@ -22,6 +22,7 @@
 @property(nonatomic, strong) NSString *url;
 @property(nonatomic, strong) NSString *data;
 @property(nonatomic, strong) NSString *relevancia;
+@property(nonatomic, strong) NSString *horario; // info que vem no pedido
 @property(nonatomic, weak)   QMGenre  *genre;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
