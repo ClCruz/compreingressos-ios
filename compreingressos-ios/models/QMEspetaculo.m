@@ -61,6 +61,15 @@
     return self;
 }
 
+- (NSMutableDictionary *)toDictionary {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    dictionary[@"titulo"] = _titulo;
+    dictionary[@"nome_teatro"] = _teatro;
+    dictionary[@"horario"] = _horario;
+    dictionary[@"endereco"] = _endereco;
+    return dictionary;
+}
+
 - (NSString *)local {
     return [NSString stringWithFormat:@"%@ - %@", _cidade, _estado];
 }

@@ -30,6 +30,7 @@
 
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSMutableDictionary *)toDictionary;
 - (NSString *)local;
 
 @end

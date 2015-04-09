@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSMutableArray *tickets;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSMutableDictionary *)toDictionary;
 
 @end

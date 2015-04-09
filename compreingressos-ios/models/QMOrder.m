@@ -37,6 +37,16 @@
     return self;
 }
 
+- (NSMutableDictionary *)toDictionary {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    dictionary[@"number"] = _number;
+    dictionary[@"date"] = _date;
+    dictionary[@"total"] = _total;
+    dictionary[@"espetaculo"] = [_espetaculo toDictionary];
+    dictionary[@"ingressos"] = [self ticketsDictionaryArray];
+    return dictionary;
+}
+
 - (NSMutableArray *)parseTickets:(NSArray *)array {
     NSMutableArray *tickets = [[NSMutableArray alloc] init];
     for (NSDictionary *dictionary in array) {
@@ -44,6 +54,14 @@
         [tickets addObject:ticket];
     }
     return tickets;
+}
+
+- (NSArray *)ticketsDictionaryArray {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (QMTicket *ticket in _tickets) {
+        [array addObject:[ticket toDictionary]];
+    }
+    return array;
 }
 
 @end

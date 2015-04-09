@@ -38,4 +38,16 @@
     return self;
 }
 
+- (NSMutableDictionary *)toDictionary {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    dictionary[@"qrcode"] = _qrcodeString;
+    dictionary[@"place"] = _place;
+    dictionary[@"type"] = _type;
+    dictionary[@"price"] = _price;
+    dictionary[@"service_price"] = _servicePrice;
+    dictionary[@"total"] = _total;
+    return dictionary;
+}
+
+
 @end

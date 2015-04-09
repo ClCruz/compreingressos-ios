@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSString *total;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSMutableDictionary *)toDictionary;
 
 @end
