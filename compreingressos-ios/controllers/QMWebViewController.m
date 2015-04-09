@@ -258,7 +258,7 @@
     @"		espetaculo: { "
     @"			titulo: spectacle_name, "
     @"			endereco: address, "
-    @"			teatro: theater, "
+    @"			nome_teatro: theater, "
     @"			horario: time "
     @"		}, "
     @"		ingressos: tickets "

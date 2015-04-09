@@ -23,6 +23,7 @@
     NSString *_data;
     NSString *_relevancia;
     NSString *_horario;
+    NSString *_endereco;
     __weak QMGenre *_genre;
 }
 
@@ -37,6 +38,7 @@
 @synthesize data       = _data;
 @synthesize relevancia = _relevancia;
 @synthesize horario    = _horario;
+@synthesize endereco   = _endereco;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
@@ -50,9 +52,11 @@
         _url        = [QMRequester objectOrNilForKey:@"url"        forDictionary:dictionary];
         _data       = [QMRequester objectOrNilForKey:@"data"       forDictionary:dictionary];
         _relevancia = [QMRequester objectOrNilForKey:@"relevancia" forDictionary:dictionary];
-        _horario    = [QMRequester objectOrNilForKey:@"horario"    forDictionary:dictionary]; // vem do detalhe de pedido
-        
         if (!_teatro) _teatro = [QMRequester objectOrNilForKey:@"nome_teatro" forDictionary:dictionary];
+        
+        /* Dados que vem do pedido */
+        _horario    = [QMRequester objectOrNilForKey:@"horario"    forDictionary:dictionary];
+        _endereco   = [QMRequester objectOrNilForKey:@"endereco"   forDictionary:dictionary];
     }
     return self;
 }
