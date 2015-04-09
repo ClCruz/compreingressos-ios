@@ -96,7 +96,10 @@
 
 - (void)openUrl {
     /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?app=tokecompre", _url]];
+    if (_url && ![_url containsString:@"app=tokecompre"]) {
+        _url = [QMRequester addQueryStringParamenter:@"app" withValue:@"tokecompre" toUrl:_url];
+    }
+    NSURL *url = [NSURL URLWithString:_url];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
     _webview.alpha = 0.0;
     [_webview loadRequest:requestURL];
