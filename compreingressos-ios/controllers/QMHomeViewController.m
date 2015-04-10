@@ -17,6 +17,7 @@
 #import "QMConstants.h"
 #import "QMCarouselView.h"
 #import "QMVisor.h"
+#import "QMOrder.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -82,6 +83,8 @@ static CGFloat kGenresMargin = 6.0f;
     [super viewWillAppear:animated];
     _segueLock = NO;
     _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
+    NSArray *orderHistory = [QMOrder orderHistory];
+    NSLog(@"history count: %i", (int)[orderHistory count]);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

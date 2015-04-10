@@ -172,7 +172,7 @@
 
 - (void)processOrderIfNeeded {
     if ([self isLastStep]) {
-        NSDictionary *json = [self getOrderJsonScript];
+        NSDictionary *json = [self extractOrderJsonFromPage];
         QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json[@"order"]];
         [QMOrder addOrderToHistory:order];
     }
@@ -221,7 +221,7 @@
     [_webview stringByEvaluatingJavaScriptFromString:script];
 }
 
-- (NSDictionary *)getOrderJsonScript {
+- (NSDictionary *)extractOrderJsonFromPage {
     NSString *script = @"var date_aux = new Array; "
     @"$('.data').children().each(function(){date_aux.push($(this).html())}); "
     @"var order_date = date_aux.join(' '); "
