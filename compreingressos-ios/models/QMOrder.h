@@ -23,5 +23,7 @@
 + (void)addOrderToHistory:(QMOrder *)order;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSMutableDictionary *)toDictionary;
+- (NSString *)formattedDateAndHour;
+- (NSString *)formattedOrderNumber;
 
 @end

@@ -117,4 +117,12 @@ static NSMutableDictionary *orderHistoryInstance;
     return array;
 }
 
+- (NSString *)formattedOrderNumber {
+    return [NSString stringWithFormat:@"Nº #%@", _number];
+}
+
+- (NSString *)formattedDateAndHour {
+    return [NSString stringWithFormat:@"%@ às %@", _date, _espetaculo.horario];
+}
+
 @end

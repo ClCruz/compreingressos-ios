@@ -43,11 +43,19 @@
 		252FD8451AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
 		252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
 		252FD8491AB748C90007C29B /* QMGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8471AB748C90007C29B /* QMGenreCell.m */; };
+		2534775B1ADBED9B00307DE8 /* order_history_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 253477581ADBED9B00307DE8 /* order_history_icon.png */; };
+		2534775C1ADBED9B00307DE8 /* order_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253477591ADBED9B00307DE8 /* order_history_icon@2x.png */; };
+		2534775D1ADBED9B00307DE8 /* order_history_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */; };
+		253477631ADBF05800307DE8 /* QMOrderHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253477621ADBF05800307DE8 /* QMOrderHistoryViewController.m */; };
 		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
 		256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509C21AD5B86100D6DCA2 /* QMTicket.m */; };
+		2588EA1E1ADC015700BC09D4 /* QMOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */; };
+		2588EA221ADC0EED00BC09D4 /* ingresso_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */; };
+		2588EA231ADC0EED00BC09D4 /* ingresso_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA201ADC0EED00BC09D4 /* ingresso_icon@2x.png */; };
+		2588EA241ADC0EED00BC09D4 /* ingresso_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA211ADC0EED00BC09D4 /* ingresso_icon@3x.png */; };
 		258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93CA1AC053120007C584 /* QMEspetaculo.m */; };
 		258B93D11AC0537D0007C584 /* QMVisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D01AC0537D0007C584 /* QMVisor.m */; };
 		258B93D41AC053E60007C584 /* QMBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D31AC053E60007C584 /* QMBanner.m */; };
@@ -146,6 +154,11 @@
 		252FD8431AB7419E0007C29B /* QMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMHomeViewController.m; sourceTree = "<group>"; };
 		252FD8461AB748C90007C29B /* QMGenreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGenreCell.h; sourceTree = "<group>"; };
 		252FD8471AB748C90007C29B /* QMGenreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMGenreCell.m; sourceTree = "<group>"; };
+		253477581ADBED9B00307DE8 /* order_history_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_history_icon.png; sourceTree = "<group>"; };
+		253477591ADBED9B00307DE8 /* order_history_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_history_icon@2x.png"; sourceTree = "<group>"; };
+		2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_history_icon@3x.png"; sourceTree = "<group>"; };
+		253477611ADBF05800307DE8 /* QMOrderHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryViewController.h; sourceTree = "<group>"; };
+		253477621ADBF05800307DE8 /* QMOrderHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryViewController.m; sourceTree = "<group>"; };
 		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
@@ -153,6 +166,11 @@
 		256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrder.m; sourceTree = "<group>"; };
 		256509C11AD5B86100D6DCA2 /* QMTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTicket.h; sourceTree = "<group>"; };
 		256509C21AD5B86100D6DCA2 /* QMTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTicket.m; sourceTree = "<group>"; };
+		2588EA1C1ADC015700BC09D4 /* QMOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryCell.h; sourceTree = "<group>"; };
+		2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryCell.m; sourceTree = "<group>"; };
+		2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingresso_icon.png; sourceTree = "<group>"; };
+		2588EA201ADC0EED00BC09D4 /* ingresso_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingresso_icon@2x.png"; sourceTree = "<group>"; };
+		2588EA211ADC0EED00BC09D4 /* ingresso_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingresso_icon@3x.png"; sourceTree = "<group>"; };
 		258B93C91AC053120007C584 /* QMEspetaculo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculo.h; sourceTree = "<group>"; };
 		258B93CA1AC053120007C584 /* QMEspetaculo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculo.m; sourceTree = "<group>"; };
 		258B93CF1AC0537D0007C584 /* QMVisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMVisor.h; sourceTree = "<group>"; };
@@ -231,6 +249,7 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				253477571ADBED9B00307DE8 /* buttons */,
 				25C179EB1AD2EC4000DD541F /* generos */,
 				251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */,
 				25EF7DD61AC37C7C0052986D /* background-red.png */,
@@ -246,6 +265,9 @@
 		251FA1C71AC3386400C20391 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */,
+				2588EA201ADC0EED00BC09D4 /* ingresso_icon@2x.png */,
+				2588EA211ADC0EED00BC09D4 /* ingresso_icon@3x.png */,
 				251FA1C81AC3386400C20391 /* circo.png */,
 				251FA1C91AC3386400C20391 /* comedia.png */,
 				251FA1CA1AC3386400C20391 /* comedia_dramatica.png */,
@@ -348,6 +370,8 @@
 				255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */,
 				25BB6A7B1AC0A2D400A927A1 /* QMEspetaculosViewController.h */,
 				25BB6A7C1AC0A2D400A927A1 /* QMEspetaculosViewController.m */,
+				253477611ADBF05800307DE8 /* QMOrderHistoryViewController.h */,
+				253477621ADBF05800307DE8 /* QMOrderHistoryViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -389,8 +413,20 @@
 				25C17A0A1AD3026F00DD541F /* QMGenreView.h */,
 				25C17A0B1AD3026F00DD541F /* QMGenreView.m */,
 				25C17A0D1AD3028200DD541F /* QMGenreView.xib */,
+				2588EA1C1ADC015700BC09D4 /* QMOrderHistoryCell.h */,
+				2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		253477571ADBED9B00307DE8 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				253477581ADBED9B00307DE8 /* order_history_icon.png */,
+				253477591ADBED9B00307DE8 /* order_history_icon@2x.png */,
+				2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */,
+			);
+			path = buttons;
 			sourceTree = "<group>";
 		};
 		258B93D51AC054730007C584 /* requesters */ = {
@@ -539,11 +575,14 @@
 				25C17A091AD2EC4000DD541F /* teatro@3x.png in Resources */,
 				25C179FB1AD2EC4000DD541F /* classica.png in Resources */,
 				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
+				2588EA241ADC0EED00BC09D4 /* ingresso_icon@3x.png in Resources */,
 				25C17A071AD2EC4000DD541F /* teatro.png in Resources */,
 				251FA1E21AC3386400C20391 /* concerto_sinfonico.png in Resources */,
 				25C179FF1AD2EC4000DD541F /* muito_mais@2x.png in Resources */,
+				2588EA221ADC0EED00BC09D4 /* ingresso_icon.png in Resources */,
 				251FA1DC1AC3386400C20391 /* circo.png in Resources */,
 				25C17A061AD2EC4000DD541F /* shows@3x.png in Resources */,
+				2588EA231ADC0EED00BC09D4 /* ingresso_icon@2x.png in Resources */,
 				251FA1E41AC3386400C20391 /* drama.png in Resources */,
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
 				25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */,
@@ -564,6 +603,7 @@
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
 				25C179FE1AD2EC4000DD541F /* muito_mais.png in Resources */,
 				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,
+				2534775D1ADBED9B00307DE8 /* order_history_icon@3x.png in Resources */,
 				25BB6A681AC0740500A927A1 /* QMCarouselView.xib in Resources */,
 				252FD8271AB73C820007C29B /* Images.xcassets in Resources */,
 				251FA1E71AC3386400C20391 /* musical.png in Resources */,
@@ -574,12 +614,14 @@
 				25C17A011AD2EC4000DD541F /* perto_de_mim.png in Resources */,
 				251FA1E91AC3386400C20391 /* opera.png in Resources */,
 				251FA1F11AC339B600C20391 /* romance.png in Resources */,
+				2534775C1ADBED9B00307DE8 /* order_history_icon@2x.png in Resources */,
 				251FA1DE1AC3386400C20391 /* comedia_dramatica.png in Resources */,
 				25C17A041AD2EC4000DD541F /* shows.png in Resources */,
 				251FA1EE1AC3386400C20391 /* suspense.png in Resources */,
 				25C17A051AD2EC4000DD541F /* shows@2x.png in Resources */,
 				251FA1EC1AC3386400C20391 /* shows.png in Resources */,
 				251FA1E61AC3386400C20391 /* musica.png in Resources */,
+				2534775B1ADBED9B00307DE8 /* order_history_icon.png in Resources */,
 				25C17A081AD2EC4000DD541F /* teatro@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,6 +714,7 @@
 				255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */,
 				25BB6A5A1AC0706F00A927A1 /* QMEspetaculoCell.m in Sources */,
 				258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */,
+				253477631ADBF05800307DE8 /* QMOrderHistoryViewController.m in Sources */,
 				25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */,
 				258B93DD1AC054730007C584 /* QMRequester.m in Sources */,
 				252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */,
@@ -681,6 +724,7 @@
 				252FD81C1AB73C820007C29B /* main.m in Sources */,
 				258B93DE1AC054730007C584 /* QMVisoresRequester.m in Sources */,
 				258B93DC1AC054730007C584 /* QMEspetaculosRequester.m in Sources */,
+				2588EA1E1ADC015700BC09D4 /* QMOrderHistoryCell.m in Sources */,
 				258B93D41AC053E60007C584 /* QMBanner.m in Sources */,
 				252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */,
 				25C17A0C1AD3026F00DD541F /* QMGenreView.m in Sources */,

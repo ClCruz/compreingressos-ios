@@ -14,15 +14,15 @@
 #import "QMRequester.h"
 
 @interface QMWebViewController () {
-    UIWebView *_webview;
-    NSString *_url;
-    QMGenre *_genre;
-    QMEspetaculo *_espetaculo;
+    UIWebView* _webview;
+    NSString* _url;
+    QMGenre* _genre;
+    QMEspetaculo* _espetaculo;
     BOOL _firstTimeLoad;
     BOOL _loaded;
     BOOL _isZerothStep;
-    IBOutlet UIButton *_nativeButton;
-    IBOutlet UIView *_nativeButtonContainer;
+    IBOutlet UIButton* _nativeButton;
+    IBOutlet UIView* _nativeButtonContainer;
 }
 
 @end
@@ -147,7 +147,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    // Get the new view controller using [segue destinationViewController]
     // Pass the selected object to the new view controller.
 }
 */

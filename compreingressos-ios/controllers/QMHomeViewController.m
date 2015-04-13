@@ -6,18 +6,22 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#import "QMHomeViewController.h"
-#import "QMGenreCell.h"
-#import "QMWebViewController.h"
-#import "QMVisoresRequester.h"
+
+
+
 #import "SVProgressHUD.h"
-#import "QMEspetaculosGridHeaderView.h"
-#import "QMGenre.h"
-#import "QMEspetaculosViewController.h"
+#import "QMVisoresRequester.h"
 #import "QMConstants.h"
-#import "QMCarouselView.h"
+#import "QMGenre.h"
 #import "QMVisor.h"
 #import "QMOrder.h"
+#import "QMGenreCell.h"
+#import "QMCarouselView.h"
+#import "QMHomeViewController.h"
+#import "QMWebViewController.h"
+#import "QMEspetaculosViewController.h"
+#import "QMEspetaculosGridHeaderView.h"
+#import "QMOrderHistoryViewController.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -42,6 +46,7 @@ static CGFloat kGenresMargin = 6.0f;
     BOOL _segueLock;
     QMGenre *_selectedGenre;
     IBOutlet UIScrollView *_scrollView;
+    IBOutlet UIBarButtonItem *_orderHistoryButton;
 }
 
 
@@ -76,7 +81,7 @@ static CGFloat kGenresMargin = 6.0f;
 //    
 //    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
 //    NSError *error = nil;
-//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];#import "QMVisoresRequester.h"
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -186,6 +191,10 @@ static CGFloat kGenresMargin = 6.0f;
 - (UIView *)loadNibNamed:(NSString *)name {
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
     return nibs[0];
+}
+
+- (IBAction)clickedOnOrderHistory:(id)sender {
+    [self performSegueWithIdentifier:@"orderHistorySegue" sender:nil];
 }
 
 #pragma mark - Navigation
