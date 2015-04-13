@@ -125,4 +125,8 @@ static NSMutableDictionary *orderHistoryInstance;
     return [NSString stringWithFormat:@"%@ às %@", _date, _espetaculo.horario];
 }
 
+- (NSString *)spectacleTitle {
+    return _espetaculo.titulo;
+}
+
 @end

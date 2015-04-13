@@ -25,5 +25,6 @@
 - (NSMutableDictionary *)toDictionary;
 - (NSString *)formattedDateAndHour;
 - (NSString *)formattedOrderNumber;
+- (NSString *)spectacleTitle;
 
 @end

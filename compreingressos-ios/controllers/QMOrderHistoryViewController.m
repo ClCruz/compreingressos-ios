@@ -9,6 +9,7 @@
 #import "QMOrder.h"
 #import "QMOrderHistoryCell.h"
 #import "QMOrderHistoryViewController.h"
+#import "QMOrderDetailViewController.h"
 
 
 @interface QMOrderHistoryViewController ()
@@ -35,15 +36,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    QMOrderDetailViewController *controller = segue.destinationViewController;
+    [controller setOrder:(QMOrder *)sender];
+    [super prepareForSegue:segue sender:sender];
 }
-*/
+
 
 #pragma mark - 
 #pragma mark - TableView Methods
@@ -60,7 +62,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    QMOrder *order = _orderHistory[(int)indexPath.row];
+    [self performSegueWithIdentifier:@"orderDetailSegue" sender:order];
 }
 
 

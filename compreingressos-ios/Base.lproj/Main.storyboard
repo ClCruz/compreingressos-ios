@@ -149,7 +149,7 @@
             </objects>
             <point key="canvasLocation" x="311" y="415"/>
         </scene>
-        <!--Order History View Controller-->
+        <!--Meus Ingressos-->
         <scene sceneID="G2c-v8-9ZN">
             <objects>
                 <viewController id="fst-ze-HmB" customClass="QMOrderHistoryViewController" sceneMemberID="viewController">
@@ -211,14 +211,83 @@
                             <constraint firstItem="Yea-PF-hha" firstAttribute="leading" secondItem="fek-3d-0BE" secondAttribute="leading" id="zMj-Yj-6JJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="WVx-6L-zEa"/>
+                    <navigationItem key="navigationItem" title="Meus Ingressos" id="WVx-6L-zEa"/>
                     <connections>
                         <outlet property="_tableView" destination="Yea-PF-hha" id="1n3-Ze-qek"/>
+                        <segue destination="6ss-N3-Izd" kind="push" identifier="orderDetailSegue" id="gR8-QU-OoJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pko-Bn-XyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="916" y="-243"/>
+        </scene>
+        <!--Detalhe do Ingresso-->
+        <scene sceneID="RlY-eG-djg">
+            <objects>
+                <viewController title="Detalhe do Ingresso" id="6ss-N3-Izd" customClass="QMOrderDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6cd-9O-6Vd"/>
+                        <viewControllerLayoutGuide type="bottom" id="xBc-9E-dlO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fqs-39-L6a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-2c-YTZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QMOrderDetailHeaderCell" rowHeight="91" id="tzQ-Pf-vVv" customClass="QMOrderDetailHeaderCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tzQ-Pf-vVv" id="CfK-nc-azO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUG-dV-emk" userLabel="endereco">
+                                                    <rect key="frame" x="8" y="34" width="298" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf2-MZ-uLo" userLabel="horario">
+                                                    <rect key="frame" x="8" y="61" width="298" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwv-Ad-Pqa">
+                                                    <rect key="frame" x="16" y="8" width="290" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_addressLabel" destination="LUG-dV-emk" id="e9X-23-LpX"/>
+                                            <outlet property="_dateAndHourLabel" destination="Vf2-MZ-uLo" id="hFg-fT-jTQ"/>
+                                            <outlet property="_titleLabel" destination="bwv-Ad-Pqa" id="jnX-PR-CcC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ucc-2c-YTZ" firstAttribute="leading" secondItem="Fqs-39-L6a" secondAttribute="leading" id="Qx8-Sq-o8X"/>
+                            <constraint firstAttribute="bottom" secondItem="Ucc-2c-YTZ" secondAttribute="bottom" id="Rjb-vy-Okw"/>
+                            <constraint firstAttribute="trailing" secondItem="Ucc-2c-YTZ" secondAttribute="trailing" id="VUg-Tw-v6d"/>
+                            <constraint firstItem="Ucc-2c-YTZ" firstAttribute="top" secondItem="Fqs-39-L6a" secondAttribute="top" id="pse-uh-h93"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detalhe" id="Bv9-pV-7pf"/>
+                    <connections>
+                        <outlet property="_tableView" destination="Ucc-2c-YTZ" id="jdh-T8-dj2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6oX-XO-RHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1476" y="-243"/>
         </scene>
         <!--Espetaculos View Controller-->
         <scene sceneID="MPV-0Q-4Mq">
