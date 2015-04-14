@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#import "UIImage+MDQRCode.h"
+
 #import "QMOrder.h"
 #import "QMTicket.h"
 #import "QMOrderDetailViewController.h"
 #import "QMOrderDetailHeaderCell.h"
+#import "QMOrderHistoryTicketCell.h"
 
 @interface QMOrderDetailViewController ()
 
@@ -30,12 +31,6 @@
     NSLog(@"qrcode: %@", ingresso.qrcodeString);
     
 //    [self.navigationItem setTitle:[_order spectacleTitle]];
-    
-    
-//    CGFloat imageSize = 150.0f;
-//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((320.0f - imageSize) / 2.0f, 100.0f, imageSize, imageSize)];
-//    [self.view addSubview:imageView];
-//    [imageView setImage:[UIImage mdQRCodeForString:ingresso.qrcodeString size:imageSize fillColor:[UIColor blackColor]]];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -61,14 +56,56 @@
 #pragma mark -
 #pragma mark - TableView Methods
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 1 + [_order.tickets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    QMOrderDetailHeaderCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderDetailHeaderCell" forIndexPath:indexPath];
-    [cell setOrder:_order];
+    UITableViewCell *cell = nil;
+    int row = (int)indexPath.row;
+    if (row == 0) {
+        QMOrderDetailHeaderCell *headerCell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderDetailHeaderCell" forIndexPath:indexPath];
+        [headerCell setOrder:_order];
+        cell = headerCell;
+    } else {
+        QMOrderHistoryTicketCell *ticketCell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderHistoryTicketCell" forIndexPath:indexPath];
+        [self configureTicketCell:ticketCell forIndexPath:indexPath];
+        cell = ticketCell;
+    }
     return cell;
+}
+
+- (void)configureTicketCell:(QMOrderHistoryTicketCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+    int ticketIndex = (int)indexPath.row - 1;
+    QMTicket *ticket = _order.tickets[ticketIndex];
+    [cell setTicket:ticket];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *sizingCell = nil;
+    int row = (int)indexPath.row;
+    if (row == 0) {
+        static QMOrderDetailHeaderCell *sizingHeaderCell = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            sizingHeaderCell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderDetailHeaderCell"];
+        });
+        [sizingHeaderCell setOrder:_order];
+        sizingCell = sizingHeaderCell;
+    } else {
+        static QMOrderHistoryTicketCell *sizingTicketCell = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            sizingTicketCell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderHistoryTicketCell"];
+        });
+        [self configureTicketCell:sizingTicketCell forIndexPath:indexPath];
+        sizingCell = sizingTicketCell;
+    }
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -104,6 +104,7 @@
 		25D3B18E1ADC31F100CB3924 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1841ADC31F100CB3924 /* split.c */; };
 		25D3B18F1ADC31F100CB3924 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1871ADC31F100CB3924 /* UIImage+MDQRCode.m */; };
 		25D3B1921ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1911ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m */; };
+		25D3B1951ADD363D00CB3924 /* QMOrderHistoryTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */; };
 		25EF7DD71AC37C7C0052986D /* background-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EF7DD61AC37C7C0052986D /* background-red.png */; };
 		7D0ACBD35497B0A56B7E3A48 /* libPods-compreingressos-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */; };
 		A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */; };
@@ -248,6 +249,8 @@
 		25D3B1871ADC31F100CB3924 /* UIImage+MDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MDQRCode.m"; sourceTree = "<group>"; };
 		25D3B1901ADD2D2400CB3924 /* QMOrderDetailHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderDetailHeaderCell.h; sourceTree = "<group>"; };
 		25D3B1911ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderDetailHeaderCell.m; sourceTree = "<group>"; };
+		25D3B1931ADD363D00CB3924 /* QMOrderHistoryTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryTicketCell.h; sourceTree = "<group>"; };
+		25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryTicketCell.m; sourceTree = "<group>"; };
 		25EF7DD61AC37C7C0052986D /* background-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-red.png"; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 				2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */,
 				25D3B1901ADD2D2400CB3924 /* QMOrderDetailHeaderCell.h */,
 				25D3B1911ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m */,
+				25D3B1931ADD363D00CB3924 /* QMOrderHistoryTicketCell.h */,
+				25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -789,6 +794,7 @@
 				256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */,
 				25D3B18A1ADC31F100CB3924 /* qrencode.c in Sources */,
 				25BB6A611AC073E800A927A1 /* QMEspetaculosGridHeaderView.m in Sources */,
+				25D3B1951ADD363D00CB3924 /* QMOrderHistoryTicketCell.m in Sources */,
 				25D3B1881ADC31F100CB3924 /* bitstream.c in Sources */,
 				25D3B1891ADC31F100CB3924 /* mask.c in Sources */,
 				252FD8221AB73C820007C29B /* ViewController.m in Sources */,
