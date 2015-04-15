@@ -17,8 +17,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self configureNavigationBar];
     [self configureStatusBarColor];
     return YES;
+}
+
+- (void)configureNavigationBar {
+    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
 }
 
 - (void)configureStatusBarColor {
