@@ -54,19 +54,13 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _genresJson = @[
-//                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
-//                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"show"},
-//                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Concertos Sinfônicos"},
-//                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"},
-//                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@"Todos os gêneros"}
-//                 ];
     _genresJson = @[
                     @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
                     @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"show"},
                     @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Concertos Sinfônicos"},
-                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"}
-                    ];
+                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"},
+                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@"Todos os gêneros"}
+                 ];
     
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
