@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25033B511ADECCB800A469A4 /* ingressos@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25033B501ADECCB700A469A4 /* ingressos@3x.png */; };
 		251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */; };
 		251FA1DC1AC3386400C20391 /* circo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1C81AC3386400C20391 /* circo.png */; };
 		251FA1DD1AC3386400C20391 /* comedia.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1C91AC3386400C20391 /* comedia.png */; };
@@ -123,6 +124,7 @@
 /* Begin PBXFileReference section */
 		0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA94D18BE45DD585C66725A /* Pods-compreingressos-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		25033B501ADECCB700A469A4 /* ingressos@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@3x.png"; sourceTree = "<group>"; };
 		251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compreingressos_big_logo.png; sourceTree = "<group>"; };
 		251FA1C81AC3386400C20391 /* circo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circo.png; sourceTree = "<group>"; };
 		251FA1C91AC3386400C20391 /* comedia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comedia.png; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				25EF7DD61AC37C7C0052986D /* background-red.png */,
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
 				251FA1FC1AC3484C00C20391 /* ingressos@2x.png */,
+				25033B501ADECCB700A469A4 /* ingressos@3x.png */,
 				251FA1F41AC3476400C20391 /* background-azul.png */,
 				251FA1F51AC3476400C20391 /* background-cinza.png */,
 				251FA1C71AC3386400C20391 /* icons */,
@@ -682,6 +685,7 @@
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
 				25C179FE1AD2EC4000DD541F /* muito_mais.png in Resources */,
 				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,
+				25033B511ADECCB800A469A4 /* ingressos@3x.png in Resources */,
 				2534775D1ADBED9B00307DE8 /* order_history_icon@3x.png in Resources */,
 				25BB6A681AC0740500A927A1 /* QMCarouselView.xib in Resources */,
 				252FD8271AB73C820007C29B /* Images.xcassets in Resources */,

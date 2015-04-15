@@ -47,6 +47,7 @@ static CGFloat kGenresMargin = 6.0f;
     IBOutlet UIImageView        *_background;
     IBOutlet UIScrollView       *_scrollView;
     IBOutlet UIBarButtonItem    *_orderHistoryButton;
+    IBOutlet UIBarButtonItem    *_buttonForLogo;
     QMEspetaculosGridHeaderView *_carrosselVisores;
 }
 
@@ -71,12 +72,8 @@ static CGFloat kGenresMargin = 6.0f;
     _genres = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
-    self.navigationItem.titleView = compreIngressos;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(openWebview:)
-                                                 name:kOpenEspetaculoWebviewNotificationTag
-                                               object:nil];
+    
+    [self configureCompreIngressosLogo];
     [self configureLocationManager];
     [self configureCarousel];
     [self parseGenres];
@@ -99,6 +96,12 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)configureCompreIngressosLogo {
+    UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
+    [_buttonForLogo setCustomView:compreIngressos];
+    [self.navigationItem setTitle:nil];
 }
 
 - (void)configureLocationManager {

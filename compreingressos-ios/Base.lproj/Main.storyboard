@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-234" y="415"/>
         </scene>
-        <!--Compre Ingressos-->
+        <!--Home View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="QMHomeViewController" sceneMemberID="viewController">
@@ -127,8 +127,8 @@
                             <constraint firstItem="pz2-wl-4Ud" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="532" id="ua8-eG-psm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Compre Ingressos" id="GTJ-Zb-bgV">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="rvP-j1-1sS"/>
+                    <navigationItem key="navigationItem" id="GTJ-Zb-bgV">
+                        <barButtonItem key="leftBarButtonItem" title="logo" id="rvP-j1-1sS"/>
                         <barButtonItem key="rightBarButtonItem" image="order_history_icon.png" id="tRc-gI-C0W">
                             <color key="tintColor" red="0.47450980392156861" green="0.0" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -138,6 +138,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="_background" destination="ooI-lv-R2j" id="VaB-J6-QbX"/>
+                        <outlet property="_buttonForLogo" destination="rvP-j1-1sS" id="Zzn-2Y-WSA"/>
                         <outlet property="_collectionView" destination="pz2-wl-4Ud" id="4zn-p0-YGm"/>
                         <outlet property="_orderHistoryButton" destination="tRc-gI-C0W" id="g61-G2-F8z"/>
                         <outlet property="_scrollView" destination="156-va-qNP" id="sRf-hJ-gmq"/>
