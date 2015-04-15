@@ -124,23 +124,17 @@ static CGFloat kGenresMargin = 6.0f;
     [genreView setDelegate:self];
     [genreView setGenre: genre];
     genreView.frame = CGRectSetSize(genreView.frame, CGSizeMake(screenWidth, genreViewHeight));
-    CGFloat topMargin = index == 0 ? 0.0f : kGenresMargin;
-    CGFloat y = CGRectGetHeightWithOffset(_bottomView.frame) + topMargin;
+    CGFloat y = CGRectGetHeightWithOffset(_bottomView.frame) + kGenresMargin;
     genreView.frame = CGRectSetOriginX(genreView.frame, 0.0f);
     genreView.frame = CGRectSetOriginY(genreView.frame, y);
     [_scrollView addSubview:genreView];
     _bottomView = genreView;
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
-
     //    [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
     //    [genreView setTranslatesAutoresizingMaskIntoConstraints:NO];
     //    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(genreView);
     //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
     //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
-
-    NSLog(@"SIZE: %@", NSStringFromCGRect(_scrollView.frame));
-    NSLog(@"CONTENT SIZE: %@", NSStringFromCGSize(_scrollView.contentSize));
-    NSLog(@"OFFSET: %@", NSStringFromCGPoint(_scrollView.contentOffset));
 }
 
 - (void)requestData {
@@ -178,7 +172,6 @@ static CGFloat kGenresMargin = 6.0f;
         }
         [_carouselView setBanners:banners];
         [SVProgressHUD dismiss];
-//        [self scrollViewDirtyFix];
     } onFailBlock:^(NSError *error) {
         [SVProgressHUD dismiss];
     }];
@@ -199,7 +192,7 @@ static CGFloat kGenresMargin = 6.0f;
     [_carouselView prepareCarouselForRetina4:YES];
     [_scrollView addSubview:_carouselView];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 1.684f;
+    CGFloat carouselHeight = screenWidth / 2.051f;
     _carouselView.frame = CGRectSetSize(_carouselView.frame, CGSizeMake(screenWidth, carouselHeight));
     _bottomView = _carouselView;
 }

@@ -128,6 +128,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compre Ingressos" id="GTJ-Zb-bgV">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="rvP-j1-1sS"/>
                         <barButtonItem key="rightBarButtonItem" image="order_history_icon.png" id="tRc-gI-C0W">
                             <color key="tintColor" red="0.47450980392156861" green="0.0" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

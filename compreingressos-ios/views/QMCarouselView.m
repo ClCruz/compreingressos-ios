@@ -49,7 +49,7 @@ static const int kBannersHeightRetina3 = 156;
 
 - (CGFloat)carouselHeight {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 1.684f;
+    CGFloat carouselHeight = screenWidth / 2.051f;
     return carouselHeight;
 }
 
@@ -62,10 +62,10 @@ static const int kBannersHeightRetina3 = 156;
     self.frame = CGRectSetWidth(self.frame, screenWidth);
     self.frame = CGRectSetHeight(self.frame, carouselHeight);
     scrollView.frame = CGRectSetSize(scrollView.frame, [QMBannerView sizeForBanner]);
-    
-    _pageControl.center = self.center;
-    CGFloat pageControlY = ((self.frame.size.height - scrollView.frame.size.height - _pageControl.frame.size.height) / 2.0f) + scrollView.frame.size.height;
-    _pageControl.frame = CGRectSetOriginY(_pageControl.frame, pageControlY);    
+
+    _pageControlBg.frame = CGRectSetHeight(_pageControlBg.frame, screenWidth / 12.8f);
+    _pageControlBg.frame = CGRectSetOriginY(_pageControlBg.frame, self.frame.size.height - _pageControlBg.frame.size.height);
+    [_pageControlBg setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
 }
 
 - (void)setBanners:(NSArray *)banners {
@@ -79,7 +79,6 @@ static const int kBannersHeightRetina3 = 156;
     [UIView animateWithDuration:0.2 animations:^{
         [_spinner setAlpha:0.0];
         if (_pageControl.numberOfPages > 1) {
-            [self generatePageControlBgView];
             [_pageControl setHidden:NO];
             [_pageControlBg setHidden:NO];
         } else {
@@ -89,17 +88,7 @@ static const int kBannersHeightRetina3 = 156;
     } completion:^(BOOL finished) {
         [_spinner stopAnimating];
     }];
-}
-
-- (void)generatePageControlBgView {
-    CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_pageControl.numberOfPages];
-    CGSize pageControlBgSize = _pageControlBg.frame.size;
-    pageControlBgSize.width = pageControlSize.width + 20;
-    _pageControlBg.frame = CGRectSetSize(_pageControlBg.frame, pageControlBgSize);
-    [_pageControlBg setCenter:_pageControl.center];
-    _pageControlBg.layer.cornerRadius = 5.0;
-    [_pageControlBg.layer setRasterizationScale:[UIScreen mainScreen].scale];
-    [_pageControlBg.layer shouldRasterize];
+    _pageControl.center = _pageControlBg.center;
 }
 
 - (void)resetCaroselTimer {
