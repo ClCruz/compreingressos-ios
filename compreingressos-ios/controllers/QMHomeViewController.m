@@ -32,56 +32,56 @@ static CGFloat kGenresMargin = 6.0f;
 @end
 
 @implementation QMHomeViewController {
-    NSArray *_visores;
-    NSArray *_genresJson;
-    NSMutableArray *_genres;
-    IBOutlet UICollectionView *_collectionView;
-    IBOutlet UIImageView *_background;
-    QMEspetaculosGridHeaderView *_carrosselVisores;
-    QMCarouselView *_carouselView;
-    UIView *_bottomView; // Última view da scrollview
+    NSArray           *_visores;
+    NSArray           *_genresJson;
+    NSMutableArray    *_genres;
+    QMCarouselView    *_carouselView;
+    UIView            *_bottomView; // Última view da scrollview
     CLLocationManager *_locationManager;
-    CLLocation *_location;
-    UIAlertView *_gpsErrorAlertView;
-    BOOL _segueLock;
-    QMGenre *_selectedGenre;
-    IBOutlet UIScrollView *_scrollView;
-    IBOutlet UIBarButtonItem *_orderHistoryButton;
+    CLLocation        *_location;
+    UIAlertView       *_gpsErrorAlertView;
+    QMGenre           *_selectedGenre;
+    BOOL              _segueLock;
+    
+    IBOutlet UICollectionView   *_collectionView;
+    IBOutlet UIImageView        *_background;
+    IBOutlet UIScrollView       *_scrollView;
+    IBOutlet UIBarButtonItem    *_orderHistoryButton;
+    QMEspetaculosGridHeaderView *_carrosselVisores;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    _genresJson = @[
+//                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
+//                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"show"},
+//                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Concertos Sinfônicos"},
+//                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"},
+//                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@"Todos os gêneros"}
+//                 ];
     _genresJson = @[
                     @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
                     @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"show"},
                     @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Concertos Sinfônicos"},
-                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"},
-                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@"Todos os gêneros"}
-                 ];
+                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatro"}
+                    ];
+    
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-//    _collectionView.backgroundColor = UIColorFromRGB(0xefeff4);
-//    _collectionView.backgroundColor = [UIColor clearColor];
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     self.navigationItem.titleView = compreIngressos;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(openWebview:)
                                                  name:kOpenEspetaculoWebviewNotificationTag
                                                object:nil];
-
     [self configureLocationManager];
     [self configureCarousel];
     [self parseGenres];
+    [self scrollViewDirtyFix];
     [self requestData];
-    
-//    NSString *json = @"{\"order\":{\"number\":\"436448\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE 2\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"xx0054721128200000100133\",\"local\":\"SETOR 3 BALCÃO SIMPLES D-44\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}}";
-//    
-//    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
-//    NSError *error = nil;
-//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];#import "QMVisoresRequester.h"
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,7 +130,17 @@ static CGFloat kGenresMargin = 6.0f;
     genreView.frame = CGRectSetOriginY(genreView.frame, y);
     [_scrollView addSubview:genreView];
     _bottomView = genreView;
-    [_scrollView setContentSize:CGSizeMake(screenWidth, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
+    [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
+
+    //    [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //    [genreView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(genreView);
+    //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
+    //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
+
+    NSLog(@"SIZE: %@", NSStringFromCGRect(_scrollView.frame));
+    NSLog(@"CONTENT SIZE: %@", NSStringFromCGSize(_scrollView.contentSize));
+    NSLog(@"OFFSET: %@", NSStringFromCGPoint(_scrollView.contentOffset));
 }
 
 - (void)requestData {
@@ -168,9 +178,15 @@ static CGFloat kGenresMargin = 6.0f;
         }
         [_carouselView setBanners:banners];
         [SVProgressHUD dismiss];
+//        [self scrollViewDirtyFix];
     } onFailBlock:^(NSError *error) {
         [SVProgressHUD dismiss];
     }];
+}
+
+/*  */
+- (void)scrollViewDirtyFix {
+    [_scrollView setContentOffset:CGPointMake(0.0, -64.0f) animated:YES];
 }
 
 - (void)openWebview:(UILocalNotification *)notification {
