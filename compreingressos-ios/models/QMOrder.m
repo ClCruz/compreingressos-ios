@@ -20,13 +20,15 @@ static NSMutableDictionary *orderHistoryInstance;
     NSString       *_total;
     QMEspetaculo   *_espetaculo;
     NSMutableArray *_tickets;
+    NSNumber       *_numericOrderNumber; // for sorting
 }
 
-@synthesize number     = _number;
-@synthesize date       = _date;
-@synthesize total      = _total;
-@synthesize espetaculo = _espetaculo;
-@synthesize tickets    = _tickets;
+@synthesize number             = _number;
+@synthesize date               = _date;
+@synthesize total              = _total;
+@synthesize espetaculo         = _espetaculo;
+@synthesize tickets            = _tickets;
+@synthesize numericOrderNumber = _numericOrderNumber;
 
 + (QMOrder *)sharedInstance {
     static dispatch_once_t token;
@@ -39,6 +41,11 @@ static NSMutableDictionary *orderHistoryInstance;
 }
 
 + (NSArray *)orderHistory {
+    [self loadHistory];
+    return [self sortedHistory];
+}
+
++ (void)loadHistory {
     static dispatch_once_t token;
     dispatch_once(&token, ^{
         if (!orderHistoryInstance) {
@@ -52,7 +59,18 @@ static NSMutableDictionary *orderHistoryInstance;
             }
         }
     });
-    return [orderHistoryInstance allValues];
+}
+
++ (NSArray *)sortedHistory {
+    NSArray *history = [orderHistoryInstance allValues];
+    NSArray *sorted = [history sortedArrayUsingComparator:^NSComparisonResult(QMOrder *obj1, QMOrder *obj2) {
+        if (obj1.numericOrderNumber >= obj2.numericOrderNumber) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+    return sorted;
 }
 
 + (void)setOrderHistory:(NSArray *)orders {
@@ -86,6 +104,15 @@ static NSMutableDictionary *orderHistoryInstance;
         _total      = dictionary[@"total"];
         _espetaculo = [[QMEspetaculo alloc] initWithDictionary:dictionary[@"espetaculo"]];
         _tickets    = [self parseTickets:dictionary[@"ingressos"]];
+        
+        static NSNumberFormatter *formatter = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            formatter = [[NSNumberFormatter alloc] init];
+        });
+        if (_number) {
+            _numericOrderNumber = [formatter numberFromString:_number];
+        }
     }
     return self;
 }

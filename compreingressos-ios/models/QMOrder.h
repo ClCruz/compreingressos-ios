@@ -12,11 +12,12 @@
 
 @interface QMOrder : NSObject
 
-@property (strong, nonatomic) NSString *number;
-@property (strong, nonatomic) NSString *date;
-@property (strong, nonatomic) NSString *total;
-@property (strong, nonatomic) QMEspetaculo *espetaculo;
-@property (strong, nonatomic) NSMutableArray *tickets;
+@property(strong, nonatomic) NSString *number;
+@property(strong, nonatomic) NSString *date;
+@property(strong, nonatomic) NSString *total;
+@property(strong, nonatomic) QMEspetaculo *espetaculo;
+@property(strong, nonatomic) NSMutableArray *tickets;
+@property(strong, nonatomic) NSNumber *numericOrderNumber;
 
 + (QMOrder *)sharedInstance;
 + (NSArray *)orderHistory;
