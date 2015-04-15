@@ -12,6 +12,8 @@
 #import "QMEspetaculo.h"
 #import "QMOrder.h"
 #import "QMRequester.h"
+#import "QMConstants.h"
+#import "compreingressos-ios-Prefix.pch"
 
 @interface QMWebViewController () {
     UIWebView* _webview;
@@ -41,6 +43,7 @@
     _firstTimeLoad = YES;
     _loaded = NO;
     _nativeButtonContainer.alpha = 0.0;
+    [_nativeButtonContainer setBackgroundColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
     if ([self isLastStep]) {
         self.navigationItem.hidesBackButton = YES;
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton)];
