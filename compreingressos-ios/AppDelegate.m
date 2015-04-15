@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "QMConstants.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self configureStatusBarColor];
     return YES;
+}
+
+- (void)configureStatusBarColor {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 20)];
+    view.backgroundColor = UIColorFromRGB(kCompreIngressosDefaultRedColor);
+    [self.window.rootViewController.view addSubview:view];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

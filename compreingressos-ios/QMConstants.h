@@ -13,6 +13,8 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 static NSString *const kOpenEspetaculoWebviewNotificationTag = @"kOpenEspetaculoWebviewNotificationTag";
 
+static int             kCompreIngressosDefaultRedColor = 0x8d0a0c;
+
 static const float kRetina3Height = 480.0;
 
 @interface QMConstants : NSObject
