@@ -74,6 +74,11 @@ static CGFloat kGenresMargin = 6.0f;
     [self scrollViewDirtyFix];
     [self requestData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clickedOnBanner:)
+                                                 name:kOpenEspetaculoWebviewNotificationTag
+                                               object:nil];
+    
     
 //    NSString *json = @"{\"number\":\"436464\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"nome_teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"0054741128200000100146\",\"local\":\"SETOR 3 ANFITEATRO C-06\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}";
 //    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
@@ -211,6 +216,12 @@ static CGFloat kGenresMargin = 6.0f;
 - (IBAction)clickedOnOrderHistory:(id)sender {
     [self performSegueWithIdentifier:@"orderHistorySegue" sender:nil];
 }
+
+- (void)clickedOnBanner:(UILocalNotification *)notification {
+    NSString *url = notification.userInfo[@"url"];
+    [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
+}
+
 
 #pragma mark - Navigation
 
