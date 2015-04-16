@@ -176,7 +176,7 @@
 - (void)processOrderIfNeeded {
     if ([self isLastStep]) {
         NSDictionary *json = [self extractOrderJsonFromPage];
-        QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json[@"order"]];
+        QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
         [QMOrder addOrderToHistory:order];
     }
 }
@@ -255,7 +255,6 @@
     @"	} "
     @"}); "
     @"var payload = { "
-    @"	order: { "
     @"		number: order_number, "
     @"		date:   order_date, "
     @"		total:  order_total, "
@@ -266,7 +265,6 @@
     @"			horario: time "
     @"		}, "
     @"		ingressos: tickets "
-    @"	} "
     @"}; "
     @"JSON.stringify(payload); ";
     

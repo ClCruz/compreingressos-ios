@@ -73,6 +73,15 @@ static CGFloat kGenresMargin = 6.0f;
     [self parseGenres];
     [self scrollViewDirtyFix];
     [self requestData];
+    
+    
+//    NSString *json = @"{\"number\":\"436464\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"nome_teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"0054741128200000100146\",\"local\":\"SETOR 3 ANFITEATRO C-06\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}";
+//    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *error = nil;
+//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+//
+//    QMOrder *order = [[QMOrder alloc] initWithDictionary:jsonDictionary];
+//    [QMOrder addOrderToHistory:order];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
