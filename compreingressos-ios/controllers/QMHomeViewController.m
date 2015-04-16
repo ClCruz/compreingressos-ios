@@ -93,13 +93,14 @@ static CGFloat kGenresMargin = 6.0f;
     [super viewWillAppear:animated];
     _segueLock = NO;
     _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
-    NSArray *orderHistory = [QMOrder orderHistory];
-    NSLog(@"history count: %i", (int)[orderHistory count]);
+    [_carouselView resetCaroselTimer];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_locationManager stopUpdatingLocation];
+    [_carouselView stopCaroselTimer];
 }
 
 - (void)didReceiveMemoryWarning {
