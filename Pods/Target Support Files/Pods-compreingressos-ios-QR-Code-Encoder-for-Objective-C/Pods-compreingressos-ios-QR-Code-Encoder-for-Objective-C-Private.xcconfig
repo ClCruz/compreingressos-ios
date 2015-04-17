@@ -1,5 +1,0 @@
-#include "Pods-compreingressos-ios-QR-Code-Encoder-for-Objective-C.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/QR-Code-Encoder-for-Objective-C" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/QR-Code-Encoder-for-Objective-C" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
-OTHER_LDFLAGS = -ObjC
-PODS_ROOT = ${SRCROOT}
