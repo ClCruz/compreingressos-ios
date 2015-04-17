@@ -114,7 +114,16 @@
 }
 
 - (void)clickedOnCloseButton {
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    
+    CATransition *transition = [CATransition animation];
+    [transition setType:kCATransitionFade];
+    [self.navigationController.view.layer addAnimation:transition forKey:@"someAnimation"];
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [CATransaction commit];
+
 }
 
 - (NSString *)titleForStep {
