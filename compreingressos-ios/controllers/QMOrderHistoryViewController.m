@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
+#import "QMConstants.h"
 #import "QMOrder.h"
 #import "QMOrderHistoryCell.h"
 #import "QMOrderHistoryViewController.h"
@@ -29,6 +30,13 @@
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHideBadgeTag
+                                                        object:self
+                                                      userInfo:nil];
 }
 
 - (void)didReceiveMemoryWarning {

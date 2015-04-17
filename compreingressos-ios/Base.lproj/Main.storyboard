@@ -129,7 +129,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="GTJ-Zb-bgV">
                         <barButtonItem key="leftBarButtonItem" title="logo" id="rvP-j1-1sS"/>
-                        <barButtonItem key="rightBarButtonItem" image="order_history_icon.png" id="tRc-gI-C0W">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="tRc-gI-C0W">
                             <color key="tintColor" red="0.47450980392156861" green="0.0" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="clickedOnOrderHistory:" destination="vXZ-lx-hvc" id="CDy-z7-mTb"/>
@@ -510,7 +510,6 @@
     <resources>
         <image name="background-azul.png" width="640" height="1136"/>
         <image name="ingresso_icon.png" width="45" height="45"/>
-        <image name="order_history_icon.png" width="28" height="29"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

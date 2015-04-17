@@ -7,8 +7,7 @@
 //
 
 
-
-
+#import "JSBadgeView.h"
 #import "SVProgressHUD.h"
 #import "QMVisoresRequester.h"
 #import "QMConstants.h"
@@ -37,11 +36,15 @@ static CGFloat kGenresMargin = 6.0f;
     NSMutableArray    *_genres;
     QMCarouselView    *_carouselView;
     UIView            *_bottomView; // Última view da scrollview
+    UIView            *_badgeContainer;
+    JSBadgeView       *_badgeView;
     CLLocationManager *_locationManager;
     CLLocation        *_location;
     UIAlertView       *_gpsErrorAlertView;
     QMGenre           *_selectedGenre;
     BOOL              _segueLock;
+    BOOL              _showBadgeOnViewDidAppear;
+    BOOL              _hideBadgeOnViewDidAppear;
     
     IBOutlet UICollectionView   *_collectionView;
     IBOutlet UIImageView        *_background;
@@ -70,6 +73,7 @@ static CGFloat kGenresMargin = 6.0f;
     [self configureCompreIngressosLogo];
     [self configureLocationManager];
     [self configureCarousel];
+    [self configureOrderHistoryButton];
     [self parseGenres];
     [self scrollViewDirtyFix];
     [self requestData];
@@ -78,7 +82,16 @@ static CGFloat kGenresMargin = 6.0f;
                                              selector:@selector(clickedOnBanner:)
                                                  name:kOpenEspetaculoWebviewNotificationTag
                                                object:nil];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orderFinished:)
+                                                 name:kOrderFinishedTag
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideBadge:)
+                                                 name:kHideBadgeTag
+                                               object:nil];
     
 //    NSString *json = @"{\"number\":\"436464\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"nome_teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"0054741128200000100146\",\"local\":\"SETOR 3 ANFITEATRO C-06\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}";
 //    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
@@ -96,6 +109,22 @@ static CGFloat kGenresMargin = 6.0f;
     [_carouselView resetCaroselTimer];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (_showBadgeOnViewDidAppear) {
+        _showBadgeOnViewDidAppear = NO;
+        [_badgeView setBadgeText:@"! "];
+        [self animateBadge];
+    }
+    if (_badgeContainer.alpha > 0.0 && _hideBadgeOnViewDidAppear) {
+        _hideBadgeOnViewDidAppear = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            _badgeContainer.alpha = 0.0;
+        }];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_locationManager stopUpdatingLocation];
@@ -104,6 +133,19 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)configureOrderHistoryButton {
+    UIButton *orderHistoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 28.0, 29.0)];
+    [orderHistoryButton setImage:[UIImage imageNamed:@"order_history_icon.png"] forState:UIControlStateNormal];
+    [orderHistoryButton addTarget:self action:@selector(clickedOnOrderHistory:) forControlEvents:UIControlEventTouchUpInside];
+    [_orderHistoryButton setCustomView:orderHistoryButton];
+    
+    _badgeContainer = [[UIView alloc] init];
+    _badgeContainer.frame = CGRectSetOrigin(_badgeContainer.frame, CGPointMake(27.0, 2.0));
+    _badgeContainer.frame = CGRectSetSize(_badgeContainer.frame, CGSizeMake(1,1));
+    [orderHistoryButton addSubview:_badgeContainer];
+    _badgeView = [[JSBadgeView alloc] initWithParentView:_badgeContainer alignment:JSBadgeViewAlignmentTopRight];
 }
 
 - (void)configureCompreIngressosLogo {
@@ -222,6 +264,26 @@ static CGFloat kGenresMargin = 6.0f;
     [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
 }
 
+- (void)animateBadge {
+    [_badgeView layoutIfNeeded];
+    [_badgeView layoutSubviews];
+    
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 1.8, 1.8);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 0.55556, 0.55556);
+        } completion:nil];
+    }];
+}
+
+- (void)orderFinished:(UILocalNotification *)notification {
+    _showBadgeOnViewDidAppear = YES;
+}
+
+- (void)hideBadge:(UILocalNotification *)notification {
+    _hideBadgeOnViewDidAppear = YES;
+}
 
 #pragma mark - Navigation
 

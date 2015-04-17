@@ -123,7 +123,6 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
     [CATransaction commit];
-
 }
 
 - (NSString *)titleForStep {
@@ -208,7 +207,8 @@
     "$('#selos').hide(); "
     "$('.botao' && '.voltar').hide(); "
     "$('.minha_conta').hide(); "
-    "$('.meu_codigo_cartao').hide(); ";
+    "$('.meu_codigo_cartao').hide(); "
+    "$('.imprima_agora').hide(); ";
     [_webview stringByEvaluatingJavaScriptFromString:hideScript];
 }
 
@@ -286,6 +286,11 @@
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (json && json.length > 0 && !error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kOrderFinishedTag
+                                                            object:self
+                                                          userInfo:nil];
+    }
     return jsonDictionary;
 }
 
