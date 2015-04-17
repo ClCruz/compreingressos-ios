@@ -194,7 +194,9 @@
     "$('.aba' && '.fechado').hide(); "
     "$('#footer').hide(); "
     "$('#selos').hide(); "
-    "$('.botao' && '.voltar').hide(); ";
+    "$('.botao' && '.voltar').hide(); "
+    "$('.minha_conta').hide(); "
+    "$('.meu_codigo_cartao').hide(); ";
     [_webview stringByEvaluatingJavaScriptFromString:hideScript];
 }
 
