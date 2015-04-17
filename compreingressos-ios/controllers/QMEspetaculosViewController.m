@@ -50,12 +50,8 @@
 - (void)requestEspetaculos {
     [SVProgressHUD show];
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-    if (![_genre.title isEqualToString:@"Perto de Mim"]) {
-        NSString *genreTitle = _genre.title;
-        if ([_genre.title isEqualToString:@"Shows"]) {
-            genreTitle = @"Show";
-        }
-        options[@"genero"] = genreTitle;
+    if (_genre.searchTerm) {
+        options[@"genero"] = _genre.searchTerm;
     }
     if (_location) {
         NSNumber *latitude = [NSNumber numberWithDouble:_location.coordinate.latitude];

@@ -17,6 +17,7 @@
 @property(nonatomic, strong) NSString *iconUrl;
 @property(nonatomic, strong) NSString *imageUrl;
 @property(nonatomic, strong) NSString *title;
+@property(nonatomic, strong) NSString *searchTerm;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
