@@ -63,6 +63,9 @@
     self.navigationItem.title = [self titleForStep];
     if ([self isShowNativeButton]) {
         _nativeButtonContainer.alpha = 1.0;
+        if ([self isSixthStep:_url]) {
+            [_nativeButton setTitle:@"Pagar" forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -127,7 +130,7 @@
         }
     }
     else if ([self isSecondStep:_url]) {
-        title = @"Setores";
+        title = @"Seu Ingresso";
     }
     else if ([self isThirdStep:_url]) {
         title = @"Tipo do Ingresso";
@@ -296,10 +299,17 @@
         [self changeViewPortForZooming];
         _webview.scalesPageToFit = YES;
     }
+    if ([self isSixthStep:_url]) {
+        [self changePaymentProcessingMessage];
+    }
 //    NSString *script = @"$('input[id=\"login\"]').val();";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
 //    [self filterEmail:result];
+}
+
+- (void)changePaymentProcessingMessage {
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

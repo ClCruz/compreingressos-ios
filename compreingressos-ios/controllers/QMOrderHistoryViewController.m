@@ -41,11 +41,19 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self configureNextViewBackButtonWithTitle:@"Voltar"];
     QMOrderDetailViewController *controller = segue.destinationViewController;
     [controller setOrder:(QMOrder *)sender];
     [super prepareForSegue:segue sender:sender];
 }
 
+- (void)configureNextViewBackButtonWithTitle:(NSString *)title {
+    UIBarButtonItem *nextViewBackButton = [[UIBarButtonItem alloc] initWithTitle:title
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:nil
+                                                                          action:nil];
+    [self.navigationItem setBackBarButtonItem:nextViewBackButton];
+}
 
 #pragma mark - 
 #pragma mark - TableView Methods
