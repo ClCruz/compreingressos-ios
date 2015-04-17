@@ -70,7 +70,7 @@
                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                 if (!imageActivityIndicator) {
                     [weakImageView addSubview:imageActivityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-                    imageActivityIndicator.center = self.center;
+                    imageActivityIndicator.center = _carousel.center;
                     [imageActivityIndicator startAnimating];
                 }
             }

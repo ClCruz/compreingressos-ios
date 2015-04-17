@@ -30,7 +30,7 @@
                 </view>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="21">
                     <rect key="frame" x="167" y="59" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

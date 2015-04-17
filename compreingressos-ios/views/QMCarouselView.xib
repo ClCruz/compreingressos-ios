@@ -40,7 +40,20 @@
 					<object class="IBUIScrollView" id="268339329">
 						<reference key="NSNextResponder" ref="252359514"/>
 						<int key="NSvFlags">292</int>
-						<array class="NSMutableArray" key="NSSubviews"/>
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIActivityIndicatorView" id="752834992">
+								<reference key="NSNextResponder" ref="268339329"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{167, 59}, {37, 37}}</string>
+								<reference key="NSSuperview" ref="268339329"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="992757784"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">0</int>
+							</object>
+						</array>
 						<string key="NSFrame">{{-25, 0}, {370, 156}}</string>
 						<reference key="NSSuperview" ref="252359514"/>
 						<reference key="NSWindow"/>
@@ -52,18 +65,6 @@
 						<bool key="IBUIPagingEnabled">YES</bool>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
-					</object>
-					<object class="IBUIActivityIndicatorView" id="752834992">
-						<reference key="NSNextResponder" ref="252359514"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{142, 76}, {37, 37}}</string>
-						<reference key="NSSuperview" ref="252359514"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="992757784"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">0</int>
 					</object>
 					<object class="IBUIView" id="992757784">
 						<reference key="NSNextResponder" ref="252359514"/>
@@ -99,7 +100,6 @@
 						<string key="NSFrame">{{141, 125}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="252359514"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -184,14 +184,15 @@
 							<reference ref="478390156"/>
 							<reference ref="268339329"/>
 							<reference ref="992757784"/>
-							<reference ref="752834992"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="268339329"/>
-						<array class="NSMutableArray" key="children"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="752834992"/>
+						</array>
 						<reference key="parent" ref="252359514"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -213,7 +214,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
 						<reference key="object" ref="752834992"/>
-						<reference key="parent" ref="252359514"/>
+						<reference key="parent" ref="268339329"/>
 					</object>
 				</array>
 			</object>

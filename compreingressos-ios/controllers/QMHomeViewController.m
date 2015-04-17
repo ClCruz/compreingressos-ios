@@ -58,11 +58,11 @@ static CGFloat kGenresMargin = 6.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
-                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim.png", @"search_term":@""},
-                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows.png", @"search_term":@"Show"},
-                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica.png", @"search_term":@"Classicos"},
-                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro.png", @"search_term":@"Teatros"},
-                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais.png", @"search_term":@""}
+                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim_photo.png", @"search_term":@""},
+                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows_photo.png", @"search_term":@"Show"},
+                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica_photo.png", @"search_term":@"Classicos"},
+                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro_photo.png", @"search_term":@"Teatros"},
+                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais_photo.png", @"search_term":@""}
                  ];
     
     _visores = [[NSArray alloc] init];
