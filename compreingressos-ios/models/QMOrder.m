@@ -82,9 +82,11 @@ static NSMutableDictionary *orderHistoryInstance;
 }
 
 + (void)addOrderToHistory:(QMOrder *)order {
-    [QMOrder orderHistory];
-    orderHistoryInstance[order.number] = order;
-    [self persistOrderHistory];
+    if (order.number) {
+        [QMOrder orderHistory];
+        orderHistoryInstance[order.number] = order;
+        [self persistOrderHistory];        
+    }
 }
 
 + (void)persistOrderHistory {

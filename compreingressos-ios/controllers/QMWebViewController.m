@@ -172,24 +172,38 @@
         if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
 //            NSLog(@"==================== LOADED ============================");
             [self hideScript];
-            [UIView animateWithDuration:0.3 animations:^{
-                _webview.alpha = 1.0;
-            }];
-            [self processOrderIfNeeded];
             [SVProgressHUD dismiss];
             _loaded = YES;
+            if ([self isLastStep]) {
+                [self processOrder];
+                [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];
+            } else {
+                [UIView animateWithDuration:0.3 animations:^{
+                    _webview.alpha = 1.0;
+                }];
+            }
         } else {
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
         }
 
 }
 
-- (void)processOrderIfNeeded {
-    if ([self isLastStep]) {
-        NSDictionary *json = [self extractOrderJsonFromPage];
-        QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
-        [QMOrder addOrderToHistory:order];
-    }
+- (void)processOrder {
+    NSDictionary *json = [self extractOrderJsonFromPage];
+    QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
+    [QMOrder addOrderToHistory:order];
+}
+
+- (void)showFinalizationScreen {
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    
+    CATransition *transition = [CATransition animation];
+    [transition setType:kCATransitionFade];
+    [self.navigationController.view.layer addAnimation:transition forKey:@"someAnimation"];
+    
+
+    [CATransaction commit];
 }
 
 #pragma mark -

@@ -500,16 +500,54 @@
                         <outlet property="_nativeButton" destination="baj-mt-JGv" id="vb7-yi-fcn"/>
                         <outlet property="_nativeButtonContainer" destination="YM5-bl-0Td" id="sNC-7i-Caw"/>
                         <outlet property="webview" destination="wt5-0X-8KT" id="Sxw-qZ-lu2"/>
+                        <segue destination="Z2I-54-MT9" kind="custom" identifier="paymentFinalizationSegue" customClass="QMFadeInSegue" id="gK2-6s-WLx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rU6-J1-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1449" y="415"/>
         </scene>
+        <!--Payment Finalization View Controller-->
+        <scene sceneID="8mF-xT-c49">
+            <objects>
+                <viewController storyboardIdentifier="QMPaymentFinalizationViewController" id="Z2I-54-MT9" customClass="QMPaymentFinalizationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MD7-Gd-fGS"/>
+                        <viewControllerLayoutGuide type="bottom" id="rOT-bu-eX1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R8v-Q9-z5w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ov-yb-VMA">
+                                <rect key="frame" x="69" y="77" width="183" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.81568627450980391" green="0.066666666666666666" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seus ingressos estão disponíveis na área &quot;Meus ingressos&quot;. Basta apresenta-los na entrada do evento!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh6-n1-F1Y">
+                                <rect key="frame" x="16" y="107" width="288" height="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_finalizacao_pedido.png" translatesAutoresizingMaskIntoConstraints="NO" id="QRg-g0-1ha">
+                                <rect key="frame" x="63" y="215" width="194" height="138"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RKq-wa-Dgb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8EB-YQ-Glk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2095" y="415"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background-azul.png" width="640" height="1136"/>
         <image name="ingresso_icon.png" width="45" height="45"/>
+        <image name="tutorial_finalizacao_pedido.png" width="640" height="735"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
