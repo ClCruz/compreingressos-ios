@@ -8,8 +8,8 @@
 
 #import "QMEspetaculoCell.h"
 #import "QMEspetaculo.h"
+#import "QMConstants.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
 
 static UILabel *LabelForMetrics;
 static CGRect originalTituloFrame;
@@ -18,19 +18,19 @@ static const CGFloat kImageBottomMargin = 8.0;
 @implementation QMEspetaculoCell {
     @private
     QMEspetaculo *_espetaculo;
-    UILabel *_titulo;
-    UILabel *_genero;
-    UILabel *_local;
-    UILabel *_teatro;
-    UIImageView *_image;
+    UILabel      *_titulo;
+    UILabel      *_genero;
+    UILabel      *_local;
+    UILabel      *_teatro;
+    UIImageView  *_image;
 }
 
 @synthesize espetaculo = _espetaculo;
-@synthesize titulo = _titulo;
-@synthesize genero = _genero;
-@synthesize local = _local;
-@synthesize teatro = _teatro;
-@synthesize image = _image;
+@synthesize titulo     = _titulo;
+@synthesize genero     = _genero;
+@synthesize local      = _local;
+@synthesize teatro     = _teatro;
+@synthesize image      = _image;
 
 + (CGSize)sizeForEspetaculo:(QMEspetaculo *)espetaculo {
     
@@ -74,6 +74,7 @@ static const CGFloat kImageBottomMargin = 8.0;
     [_genero setText:espetaculo.genero];
     [_teatro setText:espetaculo.teatro];
     [_local setText:[espetaculo local]];
+    [_titulo setTextColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
     
     // _titulo.layer.borderColor = [[UIColor redColor] CGColor];
     // _titulo.layer.borderWidth = 1.0;
