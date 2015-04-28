@@ -278,7 +278,7 @@ static CGFloat kGenresMargin = 6.0f;
 }
 
 - (void)orderFinished:(UILocalNotification *)notification {
-    _showBadgeOnViewDidAppear = YES;
+    //    _showBadgeOnViewDidAppear = YES;
 }
 
 - (void)hideBadge:(UILocalNotification *)notification {
