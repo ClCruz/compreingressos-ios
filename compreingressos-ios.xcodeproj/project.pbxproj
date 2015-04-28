@@ -61,9 +61,10 @@
 		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
+		255DF68A1AF00D9D00486B6F /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF6891AF00D9D00486B6F /* smile.png */; };
+		255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */; };
 		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
 		256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509C21AD5B86100D6DCA2 /* QMTicket.m */; };
-		256A77A31AEFA0AC003DD32F /* Add_to_Passbook_Badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */; };
 		256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256A77A41AEFB7CA003DD32F /* PassKit.framework */; };
 		2588EA1E1ADC015700BC09D4 /* QMOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */; };
 		2588EA221ADC0EED00BC09D4 /* ingresso_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */; };
@@ -184,11 +185,12 @@
 		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
+		255DF6891AF00D9D00486B6F /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
+		255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_to_Passbook_Badge.png; sourceTree = "<group>"; };
 		256509BE1AD5B6DD00D6DCA2 /* QMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrder.h; sourceTree = "<group>"; };
 		256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrder.m; sourceTree = "<group>"; };
 		256509C11AD5B86100D6DCA2 /* QMTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTicket.h; sourceTree = "<group>"; };
 		256509C21AD5B86100D6DCA2 /* QMTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTicket.m; sourceTree = "<group>"; };
-		256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Add_to_Passbook_Badge.png; path = ../../../../../Desktop/Add_to_Passbook_Badge.png; sourceTree = "<group>"; };
 		256A77A41AEFB7CA003DD32F /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2588EA1C1ADC015700BC09D4 /* QMOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryCell.h; sourceTree = "<group>"; };
 		2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryCell.m; sourceTree = "<group>"; };
@@ -291,7 +293,8 @@
 				251FA1F41AC3476400C20391 /* background-azul.png */,
 				251FA1F51AC3476400C20391 /* background-cinza.png */,
 				251D471F1AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png */,
-				256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */,
+				255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */,
+				255DF6891AF00D9D00486B6F /* smile.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
 			path = res;
@@ -663,6 +666,8 @@
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
 				25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */,
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
+				255DF68A1AF00D9D00486B6F /* smile.png in Resources */,
+				255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
 				251FA1F71AC3476400C20391 /* background-cinza.png in Resources */,
 				251FA1EF1AC3386400C20391 /* teatro.png in Resources */,
@@ -674,7 +679,6 @@
 				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
-				256A77A31AEFA0AC003DD32F /* Add_to_Passbook_Badge.png in Resources */,
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
 				251D47201AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png in Resources */,
 				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,
