@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class QMOrder;
+
 @interface QMTicket : NSObject
 
 @property (strong, nonatomic) NSString *qrcodeString;
@@ -16,8 +18,10 @@
 @property (strong, nonatomic) NSString *price;
 @property (strong, nonatomic) NSString *servicePrice;
 @property (strong, nonatomic) NSString *total;
+@property (weak,   nonatomic) QMOrder  *order;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSMutableDictionary *)toDictionary;
+- (void)addToPassbook;
 
 @end

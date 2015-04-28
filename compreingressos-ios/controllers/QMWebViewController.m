@@ -189,8 +189,10 @@
 }
 
 - (void)processOrder {
-    NSDictionary *json = [self extractOrderJsonFromPage];
+    NSString *jsonString = [self extractOrderJsonFromPage];
+    NSDictionary *json = [self dictionaryWithJson:jsonString];
     QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
+    [order setOriginalJson:jsonString];
     [QMOrder addOrderToHistory:order];
 }
 
@@ -252,7 +254,7 @@
     [_webview stringByEvaluatingJavaScriptFromString:script];
 }
 
-- (NSDictionary *)extractOrderJsonFromPage {
+- (NSString *)extractOrderJsonFromPage {
     NSString *script = @"var date_aux = new Array; "
     @"$('.data').children().each(function(){date_aux.push($(this).html())}); "
     @"var order_date = date_aux.join(' '); "
@@ -297,6 +299,10 @@
     @"JSON.stringify(payload); ";
     
     NSString *json = [_webview stringByEvaluatingJavaScriptFromString:script];
+    return json;
+}
+
+- (NSDictionary *)dictionaryWithJson:(NSString *)json {
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];

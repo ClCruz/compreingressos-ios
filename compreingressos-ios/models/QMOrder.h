@@ -18,6 +18,7 @@
 @property(strong, nonatomic) QMEspetaculo *espetaculo;
 @property(strong, nonatomic) NSMutableArray *tickets;
 @property(strong, nonatomic) NSNumber *numericOrderNumber;
+@property(strong, nonatomic) NSString *originalJson; // json utilizado para criar o pedido
 
 + (QMOrder *)sharedInstance;
 + (NSArray *)orderHistory;

@@ -14,4 +14,6 @@
 
 @property(strong, nonatomic) QMTicket *ticket;
 
+- (IBAction)clickedOnAddToPassbook:(id)sender;
+
 @end

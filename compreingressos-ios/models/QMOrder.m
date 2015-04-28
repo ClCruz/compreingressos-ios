@@ -18,6 +18,7 @@ static NSMutableDictionary *orderHistoryInstance;
     NSString       *_number;
     NSString       *_date;
     NSString       *_total;
+    NSString       *_originalJson;
     QMEspetaculo   *_espetaculo;
     NSMutableArray *_tickets;
     NSNumber       *_numericOrderNumber; // for sorting
@@ -29,6 +30,7 @@ static NSMutableDictionary *orderHistoryInstance;
 @synthesize espetaculo         = _espetaculo;
 @synthesize tickets            = _tickets;
 @synthesize numericOrderNumber = _numericOrderNumber;
+@synthesize originalJson       = _originalJson;
 
 + (QMOrder *)sharedInstance {
     static dispatch_once_t token;
@@ -101,11 +103,12 @@ static NSMutableDictionary *orderHistoryInstance;
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
-        _number     = dictionary[@"number"];
-        _date       = dictionary[@"date"];
-        _total      = dictionary[@"total"];
-        _espetaculo = [[QMEspetaculo alloc] initWithDictionary:dictionary[@"espetaculo"]];
-        _tickets    = [self parseTickets:dictionary[@"ingressos"]];
+        _number       = dictionary[@"number"];
+        _date         = dictionary[@"date"];
+        _total        = dictionary[@"total"];
+        _espetaculo   = [[QMEspetaculo alloc] initWithDictionary:dictionary[@"espetaculo"]];
+        _tickets      = [self parseTickets:dictionary[@"ingressos"]];
+        _originalJson = dictionary[@"originalJson"];
         
         static NSNumberFormatter *formatter = nil;
         static dispatch_once_t onceToken;
@@ -121,11 +124,12 @@ static NSMutableDictionary *orderHistoryInstance;
 
 - (NSMutableDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    dictionary[@"number"] = _number;
-    dictionary[@"date"] = _date;
-    dictionary[@"total"] = _total;
-    dictionary[@"espetaculo"] = [_espetaculo toDictionary];
-    dictionary[@"ingressos"] = [self ticketsDictionaryArray];
+    dictionary[@"number"]       = _number;
+    dictionary[@"date"]         = _date;
+    dictionary[@"total"]        = _total;
+    dictionary[@"espetaculo"]   = [_espetaculo toDictionary];
+    dictionary[@"ingressos"]    = [self ticketsDictionaryArray];
+    dictionary[@"originalJson"] = _originalJson;
     return dictionary;
 }
 
@@ -133,6 +137,7 @@ static NSMutableDictionary *orderHistoryInstance;
     NSMutableArray *tickets = [[NSMutableArray alloc] init];
     for (NSDictionary *dictionary in array) {
         QMTicket *ticket = [[QMTicket alloc] initWithDictionary:dictionary];
+        [ticket setOrder:self];
         [tickets addObject:ticket];
     }
     return tickets;

@@ -63,6 +63,8 @@
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
 		256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509C21AD5B86100D6DCA2 /* QMTicket.m */; };
+		256A77A31AEFA0AC003DD32F /* Add_to_Passbook_Badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */; };
+		256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256A77A41AEFB7CA003DD32F /* PassKit.framework */; };
 		2588EA1E1ADC015700BC09D4 /* QMOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */; };
 		2588EA221ADC0EED00BC09D4 /* ingresso_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */; };
 		2588EA231ADC0EED00BC09D4 /* ingresso_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588EA201ADC0EED00BC09D4 /* ingresso_icon@2x.png */; };
@@ -186,6 +188,8 @@
 		256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrder.m; sourceTree = "<group>"; };
 		256509C11AD5B86100D6DCA2 /* QMTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTicket.h; sourceTree = "<group>"; };
 		256509C21AD5B86100D6DCA2 /* QMTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMTicket.m; sourceTree = "<group>"; };
+		256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Add_to_Passbook_Badge.png; path = ../../../../../Desktop/Add_to_Passbook_Badge.png; sourceTree = "<group>"; };
+		256A77A41AEFB7CA003DD32F /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2588EA1C1ADC015700BC09D4 /* QMOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryCell.h; sourceTree = "<group>"; };
 		2588EA1D1ADC015700BC09D4 /* QMOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryCell.m; sourceTree = "<group>"; };
 		2588EA1F1ADC0EED00BC09D4 /* ingresso_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingresso_icon.png; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */,
 				255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */,
 				A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */,
 			);
@@ -286,6 +291,7 @@
 				251FA1F41AC3476400C20391 /* background-azul.png */,
 				251FA1F51AC3476400C20391 /* background-cinza.png */,
 				251D471F1AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png */,
+				256A77A21AEFA0AC003DD32F /* Add_to_Passbook_Badge.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
 			path = res;
@@ -538,6 +544,7 @@
 		CDC8D68087B6BC8338626F97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				256A77A41AEFB7CA003DD32F /* PassKit.framework */,
 				255963E71AC1C8A100319BEB /* CoreLocation.framework */,
 				0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */,
 				ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */,
@@ -667,6 +674,7 @@
 				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
 				251FA1ED1AC3386400C20391 /* stand_up.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
+				256A77A31AEFA0AC003DD32F /* Add_to_Passbook_Badge.png in Resources */,
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
 				251D47201AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png in Resources */,
 				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,

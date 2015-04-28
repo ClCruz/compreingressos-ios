@@ -33,4 +33,8 @@
     [_qrcodeImageView layoutSubviews];
 }
 
+- (IBAction)clickedOnAddToPassbook:(id)sender {
+    [_ticket addToPassbook];
+}
+
 @end

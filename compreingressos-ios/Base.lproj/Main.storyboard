@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aVp-xb-9Sp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -296,20 +296,35 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nq3-Zu-anU" userLabel="qrcode">
-                                                    <rect key="frame" x="100" y="61" width="120" height="120"/>
+                                                    <rect key="frame" x="32" y="57" width="120" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="Aua-Ob-ome"/>
                                                         <constraint firstAttribute="height" constant="120" id="rvZ-Zg-mXx"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITG-5d-6x2">
+                                                    <rect key="frame" x="180" y="97" width="120" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="0Ng-lJ-Chm"/>
+                                                        <constraint firstAttribute="height" constant="40" id="0cM-sx-Soi"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="Add_to_Passbook_Badge.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clickedOnAddToPassbook:" destination="vec-1T-xbl" eventType="touchUpInside" id="4OQ-OO-EQ5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="bJz-x9-u9a" firstAttribute="top" secondItem="eji-2N-GJU" secondAttribute="top" constant="20" id="8XZ-7K-l4W"/>
-                                                <constraint firstItem="nq3-Zu-anU" firstAttribute="top" secondItem="bJz-x9-u9a" secondAttribute="bottom" constant="20" id="N7Y-pb-i2j"/>
+                                                <constraint firstAttribute="trailing" secondItem="ITG-5d-6x2" secondAttribute="trailing" constant="20" id="LT8-Nm-QFT"/>
+                                                <constraint firstItem="nq3-Zu-anU" firstAttribute="top" secondItem="bJz-x9-u9a" secondAttribute="bottom" constant="16" id="N7Y-pb-i2j"/>
                                                 <constraint firstAttribute="trailing" secondItem="bJz-x9-u9a" secondAttribute="trailing" constant="20" id="a3K-3h-EEV"/>
-                                                <constraint firstAttribute="centerX" secondItem="nq3-Zu-anU" secondAttribute="centerX" id="hhe-O8-MOQ"/>
+                                                <constraint firstItem="ITG-5d-6x2" firstAttribute="top" secondItem="eji-2N-GJU" secondAttribute="top" constant="97" id="g04-A9-syv"/>
+                                                <constraint firstAttribute="centerX" secondItem="nq3-Zu-anU" secondAttribute="centerX" constant="68" id="hhe-O8-MOQ"/>
                                                 <constraint firstItem="bJz-x9-u9a" firstAttribute="leading" secondItem="eji-2N-GJU" secondAttribute="leading" constant="20" id="r0e-Qa-20c"/>
-                                                <constraint firstAttribute="bottom" secondItem="nq3-Zu-anU" secondAttribute="bottom" constant="20" id="zpd-GW-v4O"/>
+                                                <constraint firstAttribute="bottom" secondItem="nq3-Zu-anU" secondAttribute="bottom" constant="24" id="zpd-GW-v4O"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -545,6 +560,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add_to_Passbook_Badge.png" width="240" height="80"/>
         <image name="background-azul.png" width="640" height="1136"/>
         <image name="ingresso_icon.png" width="45" height="45"/>
         <image name="tutorial_finalizacao_pedido.png" width="640" height="735"/>
