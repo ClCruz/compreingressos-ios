@@ -520,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rU6-J1-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="415"/>
+            <point key="canvasLocation" x="1476" y="415"/>
         </scene>
         <!--Payment Finalization View Controller-->
         <scene sceneID="8mF-xT-c49">
@@ -540,30 +540,42 @@
                                 <color key="textColor" red="0.81568627450980391" green="0.066666666666666666" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seus ingressos estão disponíveis na área &quot;Meus ingressos&quot;. Basta apresenta-los na entrada do evento!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh6-n1-F1Y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Seus ingressos estão disponíveis na área &quot;Meus ingressos&quot;. Basta apresenta-los na entrada do evento!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh6-n1-F1Y">
                                 <rect key="frame" x="16" y="107" width="288" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_finalizacao_pedido.png" translatesAutoresizingMaskIntoConstraints="NO" id="QRg-g0-1ha">
-                                <rect key="frame" x="63" y="215" width="194" height="138"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XM-QR-KNp">
+                                <rect key="frame" x="88" y="215" width="144" height="30"/>
+                                <state key="normal" title="Ver Ingressos">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedOrderHistory:" destination="Z2I-54-MT9" eventType="touchUpInside" id="1LX-8Z-c5o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1XM-QR-KNp" firstAttribute="top" secondItem="bh6-n1-F1Y" secondAttribute="bottom" constant="8" id="8eh-yi-NyG"/>
+                            <constraint firstAttribute="centerX" secondItem="1XM-QR-KNp" secondAttribute="centerX" id="hqp-td-IwN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RKq-wa-Dgb"/>
+                    <connections>
+                        <segue destination="6ss-N3-Izd" kind="push" identifier="orderDetailSegue" id="LUj-BX-06L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EB-YQ-Glk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="415"/>
+            <point key="canvasLocation" x="2177" y="95"/>
         </scene>
     </scenes>
     <resources>
         <image name="Add_to_Passbook_Badge.png" width="240" height="80"/>
         <image name="background-azul.png" width="640" height="1136"/>
         <image name="ingresso_icon.png" width="45" height="45"/>
-        <image name="tutorial_finalizacao_pedido.png" width="640" height="735"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -572,5 +584,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="jfz-gb-XnO"/>
+        <segue reference="LUj-BX-06L"/>
     </inferredMetricsTieBreakers>
 </document>

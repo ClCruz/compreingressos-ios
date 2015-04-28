@@ -12,6 +12,7 @@
 
 @interface QMOrderDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(strong, nonatomic) QMOrder *order;
+@property (nonatomic)         BOOL     isModal;
+@property (strong, nonatomic) QMOrder *order;
 
 @end

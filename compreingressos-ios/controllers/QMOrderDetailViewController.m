@@ -9,6 +9,7 @@
 
 #import "QMOrder.h"
 #import "QMTicket.h"
+#import "QMConstants.h"
 #import "QMOrderDetailViewController.h"
 #import "QMOrderDetailHeaderCell.h"
 #import "QMOrderHistoryTicketCell.h"
@@ -19,11 +20,14 @@
 
 @implementation QMOrderDetailViewController {
 @private
+    BOOL     _isModal;
     QMOrder *_order;
+    UINavigationBar *_navigationBarForModal;
     IBOutlet UITableView *_tableView;
 }
 
 @synthesize order = _order;
+@synthesize isModal = _isModal;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +39,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self configureModalIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +48,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)configureModalIfNeeded {
+    if (!_isModal) return;
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton:)];
+    [closeButton setTintColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+}
+
+- (void)clickedOnCloseButton:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation

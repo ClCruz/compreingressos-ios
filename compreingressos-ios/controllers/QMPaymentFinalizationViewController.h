@@ -10,4 +10,6 @@
 
 @interface QMPaymentFinalizationViewController : UIViewController
 
+- (IBAction)clickedOrderHistory:(id)sender;
+
 @end

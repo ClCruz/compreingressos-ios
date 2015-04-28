@@ -7,7 +7,9 @@
 //
 
 #import "QMPaymentFinalizationViewController.h"
+#import "QMOrderDetailViewController.h"
 #import "QMConstants.h"
+#import "QMOrder.h"
 
 @interface QMPaymentFinalizationViewController ()
 
@@ -32,15 +34,24 @@
     self.navigationItem.rightBarButtonItem = closeButton;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"orderDetailSegue"]) {
+        QMOrderDetailViewController *controller = segue.destinationViewController;
+        [controller setIsModal:YES];
+        [controller setOrder:[QMOrder orderHistory][0]];
+    }
+    [self configureNextViewBackButtonWithTitle:@"Voltar"];
+    [super prepareForSegue:segue sender:sender];
 }
-*/
+
+- (void)configureNextViewBackButtonWithTitle:(NSString *)title {
+    UIBarButtonItem *nextViewBackButton = [[UIBarButtonItem alloc] initWithTitle:title
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:nil
+                                                                          action:nil];
+    [self.navigationItem setBackBarButtonItem:nextViewBackButton];
+}
+
 
 - (IBAction)clickedOnCloseButton:(id)sender {
     [CATransaction begin];
@@ -53,6 +64,10 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [CATransaction commit];
 
+}
+
+- (IBAction)clickedOrderHistory:(id)sender {
+    [self performSegueWithIdentifier:@"orderDetailSegue" sender:nil];
 }
 
 @end

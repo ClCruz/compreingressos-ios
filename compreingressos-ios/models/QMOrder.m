@@ -9,6 +9,9 @@
 #import "QMOrder.h"
 #import "QMEspetaculo.h"
 #import "QMTicket.h"
+#import "QMRequester.h"
+#import <Foundation/NSJSONSerialization.h>
+
 
 static QMOrder *instance;
 static NSMutableDictionary *orderHistoryInstance;
@@ -108,7 +111,11 @@ static NSMutableDictionary *orderHistoryInstance;
         _total        = dictionary[@"total"];
         _espetaculo   = [[QMEspetaculo alloc] initWithDictionary:dictionary[@"espetaculo"]];
         _tickets      = [self parseTickets:dictionary[@"ingressos"]];
-        _originalJson = dictionary[@"originalJson"];
+        _originalJson = [QMRequester objectOrNilForKey:@"originalJson" forDictionary:dictionary];
+        
+        if (!_originalJson) {
+            [self generateOrderJson];
+        }
         
         static NSNumberFormatter *formatter = nil;
         static dispatch_once_t onceToken;
@@ -122,6 +129,16 @@ static NSMutableDictionary *orderHistoryInstance;
     return self;
 }
 
+- (void)generateOrderJson {
+    NSMutableDictionary *dictionary = [self toDictionary];
+    [dictionary removeObjectForKey:@"originalJson"];
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:&error];
+    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    _originalJson = json;
+}
+
 - (NSMutableDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     dictionary[@"number"]       = _number;
@@ -129,7 +146,9 @@ static NSMutableDictionary *orderHistoryInstance;
     dictionary[@"total"]        = _total;
     dictionary[@"espetaculo"]   = [_espetaculo toDictionary];
     dictionary[@"ingressos"]    = [self ticketsDictionaryArray];
-    dictionary[@"originalJson"] = _originalJson;
+    if (_originalJson) {
+        dictionary[@"originalJson"] = _originalJson;
+    }
     return dictionary;
 }
 
