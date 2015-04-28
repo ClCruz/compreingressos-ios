@@ -15,6 +15,8 @@
     QMTicket *_ticket;
     IBOutlet UILabel *_placeLabel;
     IBOutlet UIImageView *_qrcodeImageView;
+    IBOutlet UILabel *_typeLabel;
+    IBOutlet UILabel *_priceLabel;
 }
 
 @synthesize ticket = _ticket;
@@ -25,8 +27,9 @@
 
 - (void)setTicket:(QMTicket *)ticket {
     _ticket = ticket;
-    
     [_placeLabel setText:_ticket.place];
+    [_priceLabel setText:[NSString stringWithFormat:@"R$ %@", _ticket.price]];
+    [_typeLabel setText:[NSString stringWithFormat:@"Tipo: %@", _ticket.type]];
     CGFloat imageSize = _qrcodeImageView.bounds.size.width;
     [_qrcodeImageView setImage:[UIImage mdQRCodeForString:_ticket.qrcodeString size:imageSize fillColor:[UIColor blackColor]]];
     [_qrcodeImageView layoutIfNeeded];

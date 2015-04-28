@@ -45,7 +45,6 @@
         NSString *monthString = [((NSString *)components[2]) uppercaseString];
         [_monthLabel setText:monthString];
     }
-//    [_dateAndHourLabel setText:[_order formattedDateAndHour]];
 }
 
 
