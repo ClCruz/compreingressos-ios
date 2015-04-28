@@ -74,7 +74,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1 + [_order.tickets count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -120,7 +120,8 @@
     }
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
-    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
+    NSLog(@"CELL SIZE: %@", NSStringFromCGSize(size));
     return size.height;
 }
 

@@ -63,6 +63,7 @@
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255DF68A1AF00D9D00486B6F /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF6891AF00D9D00486B6F /* smile.png */; };
 		255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */; };
+		255DF68E1AF0176700486B6F /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF68D1AF0176700486B6F /* map_pin.png */; };
 		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
 		256509C31AD5B86100D6DCA2 /* QMTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509C21AD5B86100D6DCA2 /* QMTicket.m */; };
 		256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256A77A41AEFB7CA003DD32F /* PassKit.framework */; };
@@ -187,6 +188,7 @@
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
 		255DF6891AF00D9D00486B6F /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_to_Passbook_Badge.png; sourceTree = "<group>"; };
+		255DF68D1AF0176700486B6F /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
 		256509BE1AD5B6DD00D6DCA2 /* QMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrder.h; sourceTree = "<group>"; };
 		256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrder.m; sourceTree = "<group>"; };
 		256509C11AD5B86100D6DCA2 /* QMTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMTicket.h; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				251D471F1AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png */,
 				255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */,
 				255DF6891AF00D9D00486B6F /* smile.png */,
+				255DF68D1AF0176700486B6F /* map_pin.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
 			path = res;
@@ -653,6 +656,7 @@
 			files = (
 				251FA1E01AC3386400C20391 /* comedia_perversa.png in Resources */,
 				251FA1E51AC3386400C20391 /* infantil.png in Resources */,
+				255DF68E1AF0176700486B6F /* map_pin.png in Resources */,
 				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
 				2588EA241ADC0EED00BC09D4 /* ingresso_icon@3x.png in Resources */,
 				250ECC6A1AE188EB001872D2 /* shows_photo@2x.png in Resources */,
