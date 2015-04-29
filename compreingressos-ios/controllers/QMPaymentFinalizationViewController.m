@@ -24,6 +24,12 @@
     [super viewDidLoad];
     CGFloat height = _lastLabel.frame.origin.y + _lastLabel.frame.size.height + 30.0f;
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, height)];
+    
+    UIBarButtonItem *buttonForLogo = [[UIBarButtonItem alloc] initWithTitle:@"Logo" style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.leftBarButtonItem = buttonForLogo;
+    UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
+    compreIngressos.alpha = 0.0;
+    [buttonForLogo setCustomView:compreIngressos];
 }
 
 - (void)didReceiveMemoryWarning {
