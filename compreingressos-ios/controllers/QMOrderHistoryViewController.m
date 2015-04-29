@@ -39,9 +39,21 @@
                                                       userInfo:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self deselectAnyRowIfNeeded];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)deselectAnyRowIfNeeded {
+    NSIndexPath *selectedRow = [_tableView indexPathForSelectedRow];
+    if (selectedRow) {
+        [_tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    }
 }
 
 
