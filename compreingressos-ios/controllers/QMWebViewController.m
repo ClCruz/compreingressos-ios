@@ -16,25 +16,25 @@
 #import "compreingressos-ios-Prefix.pch"
 
 @interface QMWebViewController () {
-    UIWebView* _webview;
-    NSString* _url;
-    QMGenre* _genre;
-    QMEspetaculo* _espetaculo;
-    BOOL _firstTimeLoad;
-    BOOL _loaded;
-    BOOL _isZerothStep;
-    IBOutlet UIButton* _nativeButton;
-    IBOutlet UIView* _nativeButtonContainer;
+    UIWebView         *_webview;
+    NSString          *_url;
+    QMGenre           *_genre;
+    QMEspetaculo      *_espetaculo;
+    BOOL               _firstTimeLoad;
+    BOOL               _loaded;
+    BOOL               _isZerothStep;
+    IBOutlet UIButton *_nativeButton;
+    IBOutlet UIView   *_nativeButtonContainer;
 }
 
 @end
 
 @implementation QMWebViewController
 
-@synthesize webview = _webview;
-@synthesize url = _url;
-@synthesize genre = _genre;
-@synthesize espetaculo = _espetaculo;
+@synthesize webview      = _webview;
+@synthesize url          = _url;
+@synthesize genre        = _genre;
+@synthesize espetaculo   = _espetaculo;
 @synthesize isZerothStep = _isZerothStep;
 
 - (void)viewDidLoad {
@@ -202,6 +202,15 @@
     QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
     [order setOriginalJson:jsonString];
     [QMOrder addOrderToHistory:order];
+    if (order.number && order.number.length > 0) {
+        [self notifyNewOrder];
+    }
+}
+
+- (void)notifyNewOrder {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOrderFinishedTag
+                                                        object:self
+                                                      userInfo:nil];
 }
 
 - (void)showFinalizationScreen {
@@ -313,11 +322,6 @@
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (json && json.length > 0 && !error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kOrderFinishedTag
-                                                            object:self
-                                                          userInfo:nil];
-    }
     return jsonDictionary;
 }
 

@@ -269,16 +269,16 @@ static CGFloat kGenresMargin = 6.0f;
     [_badgeView layoutSubviews];
     
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 1.8, 1.8);
+        _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 4, 4);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
-            _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 0.55556, 0.55556);
+            _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 0.25, 0.25);
         } completion:nil];
     }];
 }
 
 - (void)orderFinished:(UILocalNotification *)notification {
-    //    _showBadgeOnViewDidAppear = YES;
+        _showBadgeOnViewDidAppear = YES;
 }
 
 - (void)hideBadge:(UILocalNotification *)notification {
