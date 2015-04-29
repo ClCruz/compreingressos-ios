@@ -156,6 +156,14 @@
     return title;
 }
 
+- (void)configureNextViewBackButtonWithTitle:(NSString *)title {
+    UIBarButtonItem *nextViewBackButton = [[UIBarButtonItem alloc] initWithTitle:title
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:nil
+                                                                          action:nil];
+    [self.navigationItem setBackBarButtonItem:nextViewBackButton];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -204,7 +212,6 @@
     [transition setType:kCATransitionFade];
     [self.navigationController.view.layer addAnimation:transition forKey:@"someAnimation"];
     
-
     [CATransaction commit];
 }
 
@@ -360,6 +367,7 @@
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
         [controller setUrl:url];
+        [self configureNextViewBackButtonWithTitle:@"Voltar"];
         [self.navigationController pushViewController:controller animated:YES];
         [_webview stopLoading];
         return NO;
