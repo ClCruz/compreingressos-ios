@@ -58,10 +58,14 @@
 		2534775C1ADBED9B00307DE8 /* order_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253477591ADBED9B00307DE8 /* order_history_icon@2x.png */; };
 		2534775D1ADBED9B00307DE8 /* order_history_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */; };
 		253477631ADBF05800307DE8 /* QMOrderHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253477621ADBF05800307DE8 /* QMOrderHistoryViewController.m */; };
+		253E785E1AF146AC00EEF1E3 /* obrigado.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E785B1AF146AC00EEF1E3 /* obrigado.png */; };
+		253E785F1AF146AC00EEF1E3 /* obrigado@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E785C1AF146AC00EEF1E3 /* obrigado@2x.png */; };
+		253E78601AF146AC00EEF1E3 /* obrigado@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */; };
+		253E78631AF14C0900EEF1E3 /* button_wireframe.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78611AF14C0900EEF1E3 /* button_wireframe.png */; };
+		253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */; };
 		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
-		255DF68A1AF00D9D00486B6F /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF6891AF00D9D00486B6F /* smile.png */; };
 		255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */; };
 		255DF68E1AF0176700486B6F /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 255DF68D1AF0176700486B6F /* map_pin.png */; };
 		256509C01AD5B6DD00D6DCA2 /* QMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 256509BF1AD5B6DD00D6DCA2 /* QMOrder.m */; };
@@ -183,10 +187,14 @@
 		2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_history_icon@3x.png"; sourceTree = "<group>"; };
 		253477611ADBF05800307DE8 /* QMOrderHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryViewController.h; sourceTree = "<group>"; };
 		253477621ADBF05800307DE8 /* QMOrderHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryViewController.m; sourceTree = "<group>"; };
+		253E785B1AF146AC00EEF1E3 /* obrigado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obrigado.png; sourceTree = "<group>"; };
+		253E785C1AF146AC00EEF1E3 /* obrigado@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "obrigado@2x.png"; sourceTree = "<group>"; };
+		253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "obrigado@3x.png"; sourceTree = "<group>"; };
+		253E78611AF14C0900EEF1E3 /* button_wireframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_wireframe.png; sourceTree = "<group>"; };
+		253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wireframe@2x.png"; sourceTree = "<group>"; };
 		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
-		255DF6891AF00D9D00486B6F /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_to_Passbook_Badge.png; sourceTree = "<group>"; };
 		255DF68D1AF0176700486B6F /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
 		256509BE1AD5B6DD00D6DCA2 /* QMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrder.h; sourceTree = "<group>"; };
@@ -296,7 +304,6 @@
 				251FA1F51AC3476400C20391 /* background-cinza.png */,
 				251D471F1AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png */,
 				255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */,
-				255DF6891AF00D9D00486B6F /* smile.png */,
 				255DF68D1AF0176700486B6F /* map_pin.png */,
 				251FA1C71AC3386400C20391 /* icons */,
 			);
@@ -322,6 +329,9 @@
 				251FA1D21AC3386400C20391 /* musica.png */,
 				251FA1D31AC3386400C20391 /* musical.png */,
 				251FA1D41AC3386400C20391 /* musical_infantil.png */,
+				253E785B1AF146AC00EEF1E3 /* obrigado.png */,
+				253E785C1AF146AC00EEF1E3 /* obrigado@2x.png */,
+				253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */,
 				251FA1D51AC3386400C20391 /* opera.png */,
 				251FA1D61AC3386400C20391 /* perto_de_mim.png */,
 				251FA1F01AC339B600C20391 /* romance.png */,
@@ -474,6 +484,8 @@
 		253477571ADBED9B00307DE8 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				253E78611AF14C0900EEF1E3 /* button_wireframe.png */,
+				253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */,
 				253477581ADBED9B00307DE8 /* order_history_icon.png */,
 				253477591ADBED9B00307DE8 /* order_history_icon@2x.png */,
 				2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */,
@@ -657,6 +669,7 @@
 				251FA1E01AC3386400C20391 /* comedia_perversa.png in Resources */,
 				251FA1E51AC3386400C20391 /* infantil.png in Resources */,
 				255DF68E1AF0176700486B6F /* map_pin.png in Resources */,
+				253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */,
 				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
 				2588EA241ADC0EED00BC09D4 /* ingresso_icon@3x.png in Resources */,
 				250ECC6A1AE188EB001872D2 /* shows_photo@2x.png in Resources */,
@@ -665,13 +678,14 @@
 				250ECC6B1AE188EB001872D2 /* shows_photo@3x.png in Resources */,
 				251FA1DC1AC3386400C20391 /* circo.png in Resources */,
 				250ECC6C1AE188EB001872D2 /* teatro_photo.png in Resources */,
+				253E785E1AF146AC00EEF1E3 /* obrigado.png in Resources */,
 				2588EA231ADC0EED00BC09D4 /* ingresso_icon@2x.png in Resources */,
 				251FA1E41AC3386400C20391 /* drama.png in Resources */,
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
 				25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */,
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
-				255DF68A1AF00D9D00486B6F /* smile.png in Resources */,
 				255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */,
+				253E785F1AF146AC00EEF1E3 /* obrigado@2x.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
 				251FA1F71AC3476400C20391 /* background-cinza.png in Resources */,
 				251FA1EF1AC3386400C20391 /* teatro.png in Resources */,
@@ -695,10 +709,12 @@
 				251FA1F31AC33E2600C20391 /* ingressos.png in Resources */,
 				250ECC691AE188EB001872D2 /* shows_photo.png in Resources */,
 				251FA1E91AC3386400C20391 /* opera.png in Resources */,
+				253E78601AF146AC00EEF1E3 /* obrigado@3x.png in Resources */,
 				251FA1F11AC339B600C20391 /* romance.png in Resources */,
 				250ECC671AE188EB001872D2 /* muito_mais_photo.png in Resources */,
 				2534775C1ADBED9B00307DE8 /* order_history_icon@2x.png in Resources */,
 				251FA1DE1AC3386400C20391 /* comedia_dramatica.png in Resources */,
+				253E78631AF14C0900EEF1E3 /* button_wireframe.png in Resources */,
 				251FA1EE1AC3386400C20391 /* suspense.png in Resources */,
 				250ECC681AE188EB001872D2 /* perto_de_mim_photo.png in Resources */,
 				251FA1EC1AC3386400C20391 /* shows.png in Resources */,
