@@ -48,7 +48,6 @@
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
 		252FD8251AB73C820007C29B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252FD8231AB73C820007C29B /* Main.storyboard */; };
 		252FD8271AB73C820007C29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252FD8261AB73C820007C29B /* Images.xcassets */; };
-		252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252FD8281AB73C820007C29B /* LaunchScreen.xib */; };
 		252FD8361AB73C820007C29B /* compreingressos_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8351AB73C820007C29B /* compreingressos_iosTests.m */; };
 		252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
 		252FD8451AB7419E0007C29B /* QMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8431AB7419E0007C29B /* QMHomeViewController.m */; };
@@ -174,7 +173,6 @@
 		252FD8211AB73C820007C29B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		252FD8241AB73C820007C29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		252FD8261AB73C820007C29B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		252FD8291AB73C820007C29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		252FD82F1AB73C820007C29B /* compreingressos-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "compreingressos-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD8341AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD8351AB73C820007C29B /* compreingressos_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = compreingressos_iosTests.m; sourceTree = "<group>"; };
@@ -377,7 +375,6 @@
 				252FD8211AB73C820007C29B /* ViewController.m */,
 				252FD8231AB73C820007C29B /* Main.storyboard */,
 				252FD8261AB73C820007C29B /* Images.xcassets */,
-				252FD8281AB73C820007C29B /* LaunchScreen.xib */,
 				25D3B1751ADC31F100CB3924 /* lib */,
 				252FD8191AB73C820007C29B /* Supporting Files */,
 				25BB6A711AC0746B00A927A1 /* QMConstants.h */,
@@ -699,7 +696,6 @@
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
 				251FA1EA1AC3386400C20391 /* perto_de_mim.png in Resources */,
 				251D47201AE93F9E00FF3F27 /* tutorial_finalizacao_pedido.png in Resources */,
-				252FD82A1AB73C820007C29B /* LaunchScreen.xib in Resources */,
 				25033B511ADECCB800A469A4 /* ingressos@3x.png in Resources */,
 				2534775D1ADBED9B00307DE8 /* order_history_icon@3x.png in Resources */,
 				25BB6A681AC0740500A927A1 /* QMCarouselView.xib in Resources */,
@@ -874,14 +870,6 @@
 				252FD8241AB73C820007C29B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		252FD8281AB73C820007C29B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				252FD8291AB73C820007C29B /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
