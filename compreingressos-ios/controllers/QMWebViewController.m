@@ -183,7 +183,7 @@
             [SVProgressHUD dismiss];
             _loaded = YES;
             if ([self isLastStep]) {
-//                [self processOrder];
+                [self processOrder];
                 [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];
             } else {
                 [UIView animateWithDuration:0.3 animations:^{
@@ -424,7 +424,7 @@
 }
 
 - (BOOL)isLastStep {
-    return [self isFirstStep:_url];
+    return [self isSeventhStep:_url];
 }
 
 - (BOOL)isNextStep:(NSString *)url {
