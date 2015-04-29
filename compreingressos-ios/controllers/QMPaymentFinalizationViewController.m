@@ -15,10 +15,15 @@
 
 @end
 
-@implementation QMPaymentFinalizationViewController
+@implementation QMPaymentFinalizationViewController {
+    IBOutlet UIScrollView *_scrollView;
+    IBOutlet UILabel *_lastLabel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CGFloat height = _lastLabel.frame.origin.y + _lastLabel.frame.size.height + 30.0f;
+    [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, height)];
 }
 
 - (void)didReceiveMemoryWarning {

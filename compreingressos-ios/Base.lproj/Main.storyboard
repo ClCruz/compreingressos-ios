@@ -644,7 +644,7 @@
         <!--Payment Finalization View Controller-->
         <scene sceneID="8mF-xT-c49">
             <objects>
-                <viewController storyboardIdentifier="QMPaymentFinalizationViewController" id="Z2I-54-MT9" customClass="QMPaymentFinalizationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QMPaymentFinalizationViewController" automaticallyAdjustsScrollViewInsets="NO" id="Z2I-54-MT9" customClass="QMPaymentFinalizationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MD7-Gd-fGS"/>
                         <viewControllerLayoutGuide type="bottom" id="rOT-bu-eX1"/>
@@ -653,95 +653,108 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ov-yb-VMA">
-                                <rect key="frame" x="110" y="166" width="100" height="41"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1b-09-gZx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obrigado.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nr3-Eg-4IM">
+                                        <rect key="frame" x="125" y="92" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="Y0v-KT-0Lg"/>
+                                            <constraint firstAttribute="width" constant="70" id="n93-ui-Hs3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obrigado!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ov-yb-VMA">
+                                        <rect key="frame" x="110" y="178" width="100" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="ZOQ-OS-cS5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <color key="textColor" red="0.81568627450980391" green="0.066666666666666666" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compra efetuada com sucesso!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh6-n1-F1Y">
+                                        <rect key="frame" x="42" y="235" width="236" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="bMa-4y-b3A">
+                                        <rect key="frame" x="38" y="261" width="243" height="46"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Basta apresentar seus ingressos na entrada do evento">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XM-QR-KNp">
+                                        <rect key="frame" x="40" y="338" width="240" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="kep-vg-Egl"/>
+                                            <constraint firstAttribute="height" constant="40" id="knT-pP-47U"/>
+                                        </constraints>
+                                        <state key="normal" title="Ver Ingressos" backgroundImage="button_wireframe.png">
+                                            <color key="titleColor" red="0.92022499810000002" green="0.1018953803" blue="0.18530367519999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickedOrderHistory:" destination="Z2I-54-MT9" eventType="touchUpInside" id="1LX-8Z-c5o"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(verifique sua caixa de spam)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Bc-icm">
+                                        <rect key="frame" x="54" y="484" width="212" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="uWR-yA-w0p">
+                                        <rect key="frame" x="37" y="409" width="246" height="71"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Seus ingressos ficam disponíveis na área &quot;Meus Ingressos&quot; na tela inicial. E também no seu e-mail">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="ZOQ-OS-cS5"/>
+                                    <constraint firstItem="6Ov-yb-VMA" firstAttribute="top" secondItem="Nr3-Eg-4IM" secondAttribute="bottom" constant="16" id="5PF-2c-baz"/>
+                                    <constraint firstItem="hIY-Bc-icm" firstAttribute="top" secondItem="uWR-yA-w0p" secondAttribute="bottom" constant="4" id="Fge-zh-odr"/>
+                                    <constraint firstAttribute="centerX" secondItem="bMa-4y-b3A" secondAttribute="centerX" id="Fsg-vL-dS2"/>
+                                    <constraint firstAttribute="centerX" secondItem="bh6-n1-F1Y" secondAttribute="centerX" id="Imk-YR-eSc"/>
+                                    <constraint firstAttribute="centerX" secondItem="hIY-Bc-icm" secondAttribute="centerX" id="Ins-8K-Fb9"/>
+                                    <constraint firstItem="bh6-n1-F1Y" firstAttribute="top" secondItem="6Ov-yb-VMA" secondAttribute="bottom" constant="16" id="JzK-ov-ftD"/>
+                                    <constraint firstItem="Nr3-Eg-4IM" firstAttribute="top" secondItem="E1b-09-gZx" secondAttribute="top" constant="92" id="L2f-jb-UkD"/>
+                                    <constraint firstAttribute="centerX" secondItem="Nr3-Eg-4IM" secondAttribute="centerX" id="bmg-b3-UpV"/>
+                                    <constraint firstAttribute="centerX" secondItem="uWR-yA-w0p" secondAttribute="centerX" id="eTF-uk-Y9q"/>
+                                    <constraint firstItem="1XM-QR-KNp" firstAttribute="top" secondItem="bMa-4y-b3A" secondAttribute="bottom" constant="31" id="ed0-Fa-gG9"/>
+                                    <constraint firstAttribute="centerX" secondItem="1XM-QR-KNp" secondAttribute="centerX" id="eos-K0-1ju"/>
+                                    <constraint firstItem="bMa-4y-b3A" firstAttribute="top" secondItem="bh6-n1-F1Y" secondAttribute="bottom" constant="5" id="hmk-hZ-E0s"/>
+                                    <constraint firstItem="uWR-yA-w0p" firstAttribute="top" secondItem="1XM-QR-KNp" secondAttribute="bottom" constant="31" id="wD5-u0-HrT"/>
+                                    <constraint firstAttribute="centerX" secondItem="6Ov-yb-VMA" secondAttribute="centerX" id="xD5-OX-jWb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" red="0.81568627450980391" green="0.066666666666666666" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compra efetuada com sucesso!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh6-n1-F1Y">
-                                <rect key="frame" x="42" y="222" width="236" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="bMa-4y-b3A">
-                                <rect key="frame" x="39" y="246" width="243" height="45"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Basta apresentar seus ingressos na entrada do evento">
-                                        <attributes>
-                                            <color key="NSColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obrigado.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nr3-Eg-4IM">
-                                <rect key="frame" x="125" y="83" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Y0v-KT-0Lg"/>
-                                    <constraint firstAttribute="width" constant="70" id="n93-ui-Hs3"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="uWR-yA-w0p">
-                                <rect key="frame" x="37" y="388" width="246" height="69"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Seus ingressos ficam disponíveis na área &quot;Meus Ingressos&quot; na tela inicial. E também no seu e-mail">
-                                        <attributes>
-                                            <color key="NSColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(verifique sua caixa de spam)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Bc-icm">
-                                <rect key="frame" x="54" y="461" width="212" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XM-QR-KNp">
-                                <rect key="frame" x="40" y="320" width="240" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="kep-vg-Egl"/>
-                                    <constraint firstAttribute="height" constant="40" id="knT-pP-47U"/>
-                                </constraints>
-                                <state key="normal" title="Ver Ingressos" backgroundImage="button_wireframe.png">
-                                    <color key="titleColor" red="0.92022499810000002" green="0.1018953803" blue="0.18530367519999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickedOrderHistory:" destination="Z2I-54-MT9" eventType="touchUpInside" id="1LX-8Z-c5o"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Nr3-Eg-4IM" secondAttribute="centerX" id="8gd-IV-n6y"/>
-                            <constraint firstItem="6Ov-yb-VMA" firstAttribute="top" secondItem="Nr3-Eg-4IM" secondAttribute="bottom" constant="13" id="BSf-wR-8oK"/>
-                            <constraint firstItem="Nr3-Eg-4IM" firstAttribute="top" secondItem="R8v-Q9-z5w" secondAttribute="top" constant="83" id="NT8-By-nPA"/>
-                            <constraint firstItem="uWR-yA-w0p" firstAttribute="top" secondItem="1XM-QR-KNp" secondAttribute="bottom" constant="28" id="QVF-oK-j7l"/>
-                            <constraint firstAttribute="centerX" secondItem="bMa-4y-b3A" secondAttribute="centerX" id="UYl-Co-4fH"/>
-                            <constraint firstItem="1XM-QR-KNp" firstAttribute="top" secondItem="bMa-4y-b3A" secondAttribute="bottom" constant="29" id="Va1-OW-j5c"/>
-                            <constraint firstItem="bMa-4y-b3A" firstAttribute="top" secondItem="bh6-n1-F1Y" secondAttribute="bottom" constant="3" id="Xm7-u8-Ir7"/>
-                            <constraint firstItem="hIY-Bc-icm" firstAttribute="top" secondItem="uWR-yA-w0p" secondAttribute="bottom" constant="4" id="eqf-FE-QAV"/>
-                            <constraint firstAttribute="centerX" secondItem="bh6-n1-F1Y" secondAttribute="centerX" id="fTs-AA-Rjy"/>
-                            <constraint firstAttribute="centerX" secondItem="1XM-QR-KNp" secondAttribute="centerX" id="hqp-td-IwN"/>
-                            <constraint firstAttribute="centerX" secondItem="hIY-Bc-icm" secondAttribute="centerX" id="kDT-x1-ZKX"/>
-                            <constraint firstItem="bh6-n1-F1Y" firstAttribute="top" secondItem="6Ov-yb-VMA" secondAttribute="bottom" constant="15" id="pe2-nD-ol2"/>
-                            <constraint firstAttribute="centerX" secondItem="uWR-yA-w0p" secondAttribute="centerX" id="sVd-3o-kSC"/>
-                            <constraint firstAttribute="centerX" secondItem="6Ov-yb-VMA" secondAttribute="centerX" id="y8w-ME-s9i"/>
+                            <constraint firstItem="E1b-09-gZx" firstAttribute="leading" secondItem="R8v-Q9-z5w" secondAttribute="leading" id="CZJ-Mi-6vh"/>
+                            <constraint firstAttribute="bottom" secondItem="E1b-09-gZx" secondAttribute="bottom" id="CrN-fa-Uij"/>
+                            <constraint firstAttribute="trailing" secondItem="E1b-09-gZx" secondAttribute="trailing" id="skC-tN-FCJ"/>
+                            <constraint firstItem="E1b-09-gZx" firstAttribute="top" secondItem="R8v-Q9-z5w" secondAttribute="top" id="v3g-JL-krx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RKq-wa-Dgb"/>
                     <connections>
+                        <outlet property="_lastLabel" destination="hIY-Bc-icm" id="aUJ-k8-AdA"/>
+                        <outlet property="_scrollView" destination="E1b-09-gZx" id="u1q-5k-4BB"/>
                         <segue destination="6ss-N3-Izd" kind="push" identifier="orderDetailSegue" id="LUj-BX-06L"/>
                     </connections>
                 </viewController>
