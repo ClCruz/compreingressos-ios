@@ -269,10 +269,10 @@ static CGFloat kGenresMargin = 6.0f;
     [_badgeView layoutSubviews];
     
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 4, 4);
+        _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 3, 3);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
-            _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 0.25, 0.25);
+            _badgeView.transform = CGAffineTransformScale(_badgeView.transform, 0.3334, 0.3334);
         } completion:nil];
     }];
 }
