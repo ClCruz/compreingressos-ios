@@ -34,7 +34,11 @@
     QMTicket *ingresso = _order.tickets[0];
     NSLog(@"qrcode: %@", ingresso.qrcodeString);
     
-//    [self.navigationItem setTitle:[_order spectacleTitle]];
+    if ([_order.tickets count] > 1) {
+        [self.navigationItem setTitle:@"Ingressos"];
+    } else {
+        [self.navigationItem setTitle:@"Ingresso"];
+    }
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
