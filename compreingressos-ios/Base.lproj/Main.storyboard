@@ -711,10 +711,10 @@
                                         <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="uWR-yA-w0p">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="uWR-yA-w0p">
                                         <rect key="frame" x="37" y="409" width="246" height="71"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Seus ingressos ficam disponíveis na área &quot;Meus Ingressos&quot; na tela inicial. E também no seu e-mail">
+                                            <fragment content="Seus ingressos estão disponíveis na área &quot;Meus Ingressos&quot; na tela inicial. E também no seu e-mail">
                                                 <attributes>
                                                     <color key="NSColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
