@@ -15,16 +15,19 @@
 #import "QMConstants.h"
 #import "compreingressos-ios-Prefix.pch"
 
+static NSNumber *defaultWebViewBottomSpacing = nil;
+
 @interface QMWebViewController () {
-    UIWebView         *_webview;
-    NSString          *_url;
-    QMGenre           *_genre;
-    QMEspetaculo      *_espetaculo;
-    BOOL               _firstTimeLoad;
-    BOOL               _loaded;
-    BOOL               _isZerothStep;
-    IBOutlet UIButton *_nativeButton;
-    IBOutlet UIView   *_nativeButtonContainer;
+    UIWebView                   *_webview;
+    NSString                    *_url;
+    QMGenre                     *_genre;
+    QMEspetaculo                *_espetaculo;
+    BOOL                         _firstTimeLoad;
+    BOOL                         _loaded;
+    BOOL                         _isZerothStep;
+    IBOutlet UIButton           *_nativeButton;
+    IBOutlet UIView             *_nativeButtonContainer;
+    IBOutlet NSLayoutConstraint *_webviewBottomSpacing;
 }
 
 @end
@@ -53,6 +56,12 @@
     if ([self isFifthStep:_url]) {
         [self removeLoginControllerFromQueue];
     }
+    
+    /* Armazenando o valor do espaçamento inferior da webview. Será utilizado 
+       Quando for necessário esconder o botão. */
+    if (!defaultWebViewBottomSpacing) {
+        defaultWebViewBottomSpacing = [NSNumber numberWithFloat:_webviewBottomSpacing.constant];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,7 +75,11 @@
         if ([self isSixthStep:_url]) {
             [_nativeButton setTitle:@"Pagar" forState:UIControlStateNormal];
         }
+        _webviewBottomSpacing.constant = [defaultWebViewBottomSpacing floatValue];
+    } else {
+        _webviewBottomSpacing.constant = 0.0;
     }
+    [_webview layoutIfNeeded];
 }
 
 - (void)removeLoginControllerFromQueue {

@@ -593,7 +593,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM5-bl-0Td">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM5-bl-0Td" userLabel="container avancar">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baj-mt-JGv">
@@ -633,6 +633,7 @@
                     <connections>
                         <outlet property="_nativeButton" destination="baj-mt-JGv" id="vb7-yi-fcn"/>
                         <outlet property="_nativeButtonContainer" destination="YM5-bl-0Td" id="sNC-7i-Caw"/>
+                        <outlet property="_webviewBottomSpacing" destination="QPW-oZ-ou1" id="F2b-fi-BUh"/>
                         <outlet property="webview" destination="wt5-0X-8KT" id="Sxw-qZ-lu2"/>
                         <segue destination="Z2I-54-MT9" kind="custom" identifier="paymentFinalizationSegue" customClass="QMFadeInSegue" id="gK2-6s-WLx"/>
                     </connections>
