@@ -12,8 +12,6 @@
 		250ECC671AE188EB001872D2 /* muito_mais_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC601AE188EB001872D2 /* muito_mais_photo.png */; };
 		250ECC681AE188EB001872D2 /* perto_de_mim_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC611AE188EB001872D2 /* perto_de_mim_photo.png */; };
 		250ECC691AE188EB001872D2 /* shows_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC621AE188EB001872D2 /* shows_photo.png */; };
-		250ECC6A1AE188EB001872D2 /* shows_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC631AE188EB001872D2 /* shows_photo@2x.png */; };
-		250ECC6B1AE188EB001872D2 /* shows_photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC641AE188EB001872D2 /* shows_photo@3x.png */; };
 		250ECC6C1AE188EB001872D2 /* teatro_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC651AE188EB001872D2 /* teatro_photo.png */; };
 		251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */; };
 		251D471E1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D471D1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.m */; };
@@ -131,8 +129,6 @@
 		250ECC601AE188EB001872D2 /* muito_mais_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muito_mais_photo.png; sourceTree = "<group>"; };
 		250ECC611AE188EB001872D2 /* perto_de_mim_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perto_de_mim_photo.png; sourceTree = "<group>"; };
 		250ECC621AE188EB001872D2 /* shows_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shows_photo.png; sourceTree = "<group>"; };
-		250ECC631AE188EB001872D2 /* shows_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shows_photo@2x.png"; sourceTree = "<group>"; };
-		250ECC641AE188EB001872D2 /* shows_photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shows_photo@3x.png"; sourceTree = "<group>"; };
 		250ECC651AE188EB001872D2 /* teatro_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teatro_photo.png; sourceTree = "<group>"; };
 		251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compreingressos_big_logo.png; sourceTree = "<group>"; };
 		251D471C1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMPaymentFinalizationViewController.h; sourceTree = "<group>"; };
@@ -510,8 +506,6 @@
 				250ECC601AE188EB001872D2 /* muito_mais_photo.png */,
 				250ECC611AE188EB001872D2 /* perto_de_mim_photo.png */,
 				250ECC621AE188EB001872D2 /* shows_photo.png */,
-				250ECC631AE188EB001872D2 /* shows_photo@2x.png */,
-				250ECC641AE188EB001872D2 /* shows_photo@3x.png */,
 				250ECC651AE188EB001872D2 /* teatro_photo.png */,
 			);
 			path = generos;
@@ -669,10 +663,8 @@
 				253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */,
 				251FA1F61AC3476400C20391 /* background-azul.png in Resources */,
 				2588EA241ADC0EED00BC09D4 /* ingresso_icon@3x.png in Resources */,
-				250ECC6A1AE188EB001872D2 /* shows_photo@2x.png in Resources */,
 				251FA1E21AC3386400C20391 /* concerto_sinfonico.png in Resources */,
 				2588EA221ADC0EED00BC09D4 /* ingresso_icon.png in Resources */,
-				250ECC6B1AE188EB001872D2 /* shows_photo@3x.png in Resources */,
 				251FA1DC1AC3386400C20391 /* circo.png in Resources */,
 				250ECC6C1AE188EB001872D2 /* teatro_photo.png in Resources */,
 				253E785E1AF146AC00EEF1E3 /* obrigado.png in Resources */,
