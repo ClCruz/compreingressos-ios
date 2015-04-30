@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#import "UIImage+MDQRCode.h"
+//#import "UIImage+MDQRCode.h"
 #import "QMTicket.h"
 #import "QMOrderHistoryTicketCell.h"
+#import "ZXImage.h"
+#import "ZXMultiFormatWriter.h"
 
 @implementation QMOrderHistoryTicketCell {
     @private
@@ -30,8 +32,25 @@
     [_placeLabel setText:_ticket.place];
     [_priceLabel setText:[NSString stringWithFormat:@"R$ %@", _ticket.price]];
     [_typeLabel  setText:_ticket.type];
-    CGFloat imageSize = _qrcodeImageView.bounds.size.width;
-    [_qrcodeImageView setImage:[UIImage mdQRCodeForString:_ticket.qrcodeString size:imageSize fillColor:[UIColor blackColor]]];
+    
+    
+    NSString *data = _ticket.qrcodeString;
+    if (data == 0) return;
+    
+    ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
+    ZXBitMatrix *result = [writer encode:data
+                                  format:kBarcodeFormatAztec
+                                   width:300.0
+                                  height:300.0
+                                   error:nil];
+    
+    if (result) {
+        ZXImage *image = [ZXImage imageWithMatrix:result];
+        _qrcodeImageView.image = [UIImage imageWithCGImage:image.cgimage];
+    } else {
+        _qrcodeImageView.image = nil;
+    }
+    
     [_qrcodeImageView layoutIfNeeded];
     [_qrcodeImageView layoutSubviews];
 }
