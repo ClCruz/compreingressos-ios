@@ -2,6 +2,7 @@
 # platform :ios, '6.0'
 
 target 'compreingressos-ios' do
+	pod 'ZXingObjC', '~> 3.1.0'
 	pod 'SVProgressHUD'
 	pod 'AFNetworking', '~> 1.3.3'
 	pod 'SDWebImage', '~>3.7.1'
