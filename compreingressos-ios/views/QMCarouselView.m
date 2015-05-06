@@ -65,7 +65,7 @@ static const int kBannersHeightRetina3 = 156;
 
     _pageControlBg.frame = CGRectSetHeight(_pageControlBg.frame, screenWidth / 12.8f);
     _pageControlBg.frame = CGRectSetOriginY(_pageControlBg.frame, self.frame.size.height - _pageControlBg.frame.size.height);
-    [_pageControlBg setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
+    [_pageControlBg setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.35]];
 }
 
 - (void)setBanners:(NSArray *)banners {
