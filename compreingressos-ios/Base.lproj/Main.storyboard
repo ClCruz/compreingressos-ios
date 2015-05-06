@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-azul.png" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-lv-R2j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.92549019610000005" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -890,7 +890,6 @@
     </scenes>
     <resources>
         <image name="Add_to_Passbook_Badge.png" width="240" height="80"/>
-        <image name="background-azul.png" width="640" height="1136"/>
         <image name="button_wireframe.png" width="241" height="40"/>
         <image name="ingresso_icon.png" width="45" height="45"/>
         <image name="map_pin.png" width="25" height="40"/>
@@ -902,7 +901,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tDg-F5-Jlu"/>
+        <segue reference="jfz-gb-XnO"/>
         <segue reference="LUj-BX-06L"/>
     </inferredMetricsTieBreakers>
 </document>
