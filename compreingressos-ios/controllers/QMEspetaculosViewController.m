@@ -54,8 +54,8 @@
         options[@"genero"] = _genre.searchTerm;
     }
     if (_location) {
-        NSNumber *latitude = [NSNumber numberWithDouble:_location.coordinate.latitude];
-        NSNumber *longitude = [NSNumber numberWithDouble:_location.coordinate.longitude];
+        NSNumber *latitude = @(_location.coordinate.latitude);
+        NSNumber *longitude = @(_location.coordinate.longitude);
         options[@"latitude"] = latitude;
         options[@"longitude"] = longitude;
     }
