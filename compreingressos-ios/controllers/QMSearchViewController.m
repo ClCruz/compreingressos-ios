@@ -33,9 +33,16 @@
 }
 
 - (void)configureSearchBar {
+    _searchBar = [[UISearchBar alloc] init];
+    [_searchBar setPlaceholder:@"Busque eventos por nome"];
     _searchBar.delegate = self;
     self.navigationItem.titleView = _searchBar;
     [_searchBar becomeFirstResponder];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.titleView = _searchBar;
 }
 
 - (void)didReceiveMemoryWarning {

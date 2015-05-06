@@ -164,11 +164,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Busque eventos pelo nome" translatesAutoresizingMaskIntoConstraints="NO" id="AoM-Nj-NQG">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-uo-sK1">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-uo-sK1">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="9jz-3p-0Ma">
@@ -246,16 +242,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ymz-uo-sK1" firstAttribute="top" secondItem="Js1-jM-4Bl" secondAttribute="top" constant="64" id="Dz0-q6-dGJ"/>
+                            <constraint firstItem="Ymz-uo-sK1" firstAttribute="top" secondItem="Js1-jM-4Bl" secondAttribute="top" id="Dz0-q6-dGJ"/>
                             <constraint firstItem="Ymz-uo-sK1" firstAttribute="leading" secondItem="Js1-jM-4Bl" secondAttribute="leading" id="Rj7-d5-OIC"/>
-                            <constraint firstAttribute="bottom" secondItem="Ymz-uo-sK1" secondAttribute="bottom" id="cWJ-rL-Hzm"/>
+                            <constraint firstAttribute="bottom" secondItem="Ymz-uo-sK1" secondAttribute="bottom" constant="64" id="cWJ-rL-Hzm"/>
                             <constraint firstAttribute="trailing" secondItem="Ymz-uo-sK1" secondAttribute="trailing" id="ovy-Px-fXq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HX3-Vd-drq"/>
                     <connections>
                         <outlet property="_collectionView" destination="Ymz-uo-sK1" id="b9V-Tc-NeY"/>
-                        <outlet property="_searchBar" destination="AoM-Nj-NQG" id="zxV-qj-rIW"/>
                         <segue destination="x8J-8q-76o" kind="push" identifier="espetaculoWebViewSegue" id="tDg-F5-Jlu"/>
                     </connections>
                 </viewController>
@@ -901,7 +896,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jfz-gb-XnO"/>
+        <segue reference="tDg-F5-Jlu"/>
         <segue reference="LUj-BX-06L"/>
     </inferredMetricsTieBreakers>
 </document>
