@@ -23,7 +23,6 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     QMGenre                     *_genre;
     QMEspetaculo                *_espetaculo;
     BOOL                         _firstTimeLoad;
-    BOOL                         _loaded;
     BOOL                         _isZerothStep;
     IBOutlet UIButton           *_nativeButton;
     IBOutlet UIView             *_nativeButtonContainer;
@@ -44,7 +43,6 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [super viewDidLoad];
     _webview.delegate = self;
     _firstTimeLoad = YES;
-    _loaded = NO;
     _nativeButtonContainer.alpha = 0.0;
     [_nativeButtonContainer setBackgroundColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
     if ([self isLastStep]) {
@@ -60,7 +58,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     /* Armazenando o valor do espaçamento inferior da webview. Será utilizado 
        Quando for necessário esconder o botão. */
     if (!defaultWebViewBottomSpacing) {
-        defaultWebViewBottomSpacing = [NSNumber numberWithFloat:_webviewBottomSpacing.constant];
+        defaultWebViewBottomSpacing = @(_webviewBottomSpacing.constant);
     }
 }
 
@@ -83,7 +81,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (void)removeLoginControllerFromQueue {
-    int count = (int)[self.navigationController.viewControllers count];
+    NSUInteger count = [self.navigationController.viewControllers count];
     NSMutableArray *controllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
     [controllers removeObjectAtIndex:count - 2];
     [self.navigationController setViewControllers:controllers];
@@ -194,7 +192,6 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 //            NSLog(@"==================== LOADED ============================");
             [self hideScript];
             [SVProgressHUD dismiss];
-            _loaded = YES;
             if ([self isLastStep]) {
                 [self processOrder];
                 [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];

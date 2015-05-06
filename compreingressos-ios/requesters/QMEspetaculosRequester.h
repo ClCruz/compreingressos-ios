@@ -13,7 +13,5 @@
 
 @interface QMEspetaculosRequester : QMRequester
 
-+ (AFJSONRequestOperation *)requestEspetaculosWithOptions:(NSDictionary *)options forGenre:(QMGenre *)genre
-                                          onCompleteBlock:(void (^)(NSArray *espetaculos, NSNumber *total)) onCompleteBlock
-                                              onFailBlock:(void (^)(NSError *error)) onFailBlock;
++ (AFJSONRequestOperation *)requestEspetaculosWithOptions:(NSDictionary *)options onCompleteBlock:(void (^)(NSArray *espetaculos, NSNumber *total))onCompleteBlock onFailBlock:(void (^)(NSError *error))onFailBlock;
 @end

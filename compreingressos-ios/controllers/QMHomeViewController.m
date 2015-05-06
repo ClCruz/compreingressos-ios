@@ -21,6 +21,8 @@
 #import "QMEspetaculosViewController.h"
 #import "QMEspetaculosGridHeaderView.h"
 #import "QMOrderHistoryViewController.h"
+#import "QMSearchViewController.h"
+#import "QMBannerView.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -74,6 +76,7 @@ static CGFloat kGenresMargin = 6.0f;
     [self configureLocationManager];
     [self configureCarousel];
     [self configureOrderHistoryButton];
+    [self configureSearchButton];
     [self parseGenres];
     [self scrollViewDirtyFix];
     [self requestData];
@@ -146,6 +149,14 @@ static CGFloat kGenresMargin = 6.0f;
     _badgeContainer.frame = CGRectSetSize(_badgeContainer.frame, CGSizeMake(1,1));
     [orderHistoryButton addSubview:_badgeContainer];
     _badgeView = [[JSBadgeView alloc] initWithParentView:_badgeContainer alignment:JSBadgeViewAlignmentTopRight];
+}
+
+- (void)configureSearchButton {
+    UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 28.0, 29.0)];
+    [searchButton setImage:[UIImage imageNamed:@"search_icon.png"] forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(clickedOnSearchButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *searchBarButton = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
+    self.navigationItem.rightBarButtonItems = @[_orderHistoryButton, searchBarButton];
 }
 
 - (void)configureCompreIngressosLogo {
@@ -259,6 +270,10 @@ static CGFloat kGenresMargin = 6.0f;
     [self performSegueWithIdentifier:@"orderHistorySegue" sender:nil];
 }
 
+- (void)clickedOnSearchButton:(id)sender {
+    [self performSegueWithIdentifier:@"searchSegue" sender:nil];
+}
+
 - (void)clickedOnBanner:(UILocalNotification *)notification {
     NSString *url = notification.userInfo[@"url"];
     [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
@@ -298,6 +313,9 @@ static CGFloat kGenresMargin = 6.0f;
         NSString *url = (NSString *)sender;
         [controller setUrl:url];
         [controller setIsZerothStep:YES];
+    }
+    else if ([segue.destinationViewController isKindOfClass:[QMSearchViewController class]]) {
+        QMSearchViewController *controller = segue.destinationViewController;
     }
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];

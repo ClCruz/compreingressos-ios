@@ -1,40 +1,41 @@
 //
-//  QMEspetaculosViewController.m
+//  QMSearchViewController.m
 //  compreingressos-ios
 //
-//  Created by Robinson Nakamura on 3/23/15.
+//  Created by Robinson Nakamura on 5/5/15.
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#import "QMEspetaculosViewController.h"
-#import "QMGenre.h"
-#import "QMEspetaculosRequester.h"
-#import "SVProgressHUD.h"
+#import "QMSearchViewController.h"
 #import "QMEspetaculoCell.h"
+#import "SVProgressHUD.h"
+#import "QMEspetaculosRequester.h"
 #import "QMWebViewController.h"
 
-@interface QMEspetaculosViewController ()
+@interface QMSearchViewController ()
 
 @end
 
-@implementation QMEspetaculosViewController {
-    @private
-    QMGenre *_genre;
-    UICollectionView *_collectionView;
+@implementation QMSearchViewController {
+@private
+    IBOutlet UISearchBar *_searchBar;
+    IBOutlet UICollectionView *_collectionView;
     NSArray *_espetaculos;
-    CLLocation *_location;
+    NSString *_keywords;
 }
-
-@synthesize genre = _genre;
-@synthesize collectionView = _collectionView;
-@synthesize location = _location;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureSearchBar];
     _espetaculos = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    [self requestEspetaculos];
+}
+
+- (void)configureSearchBar {
+    _searchBar.delegate = self;
+    self.navigationItem.titleView = _searchBar;
+    [_searchBar becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,28 +43,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setGenre:(QMGenre *)genre {
-    _genre = genre;
-    self.navigationItem.title = genre.title;
-}
-
-- (void)requestEspetaculos {
+- (void)search {
     [SVProgressHUD show];
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-    if (_genre.searchTerm) {
-        options[@"genero"] = _genre.searchTerm;
-    }
-    if (_location) {
-        NSNumber *latitude = [NSNumber numberWithDouble:_location.coordinate.latitude];
-        NSNumber *longitude = [NSNumber numberWithDouble:_location.coordinate.longitude];
-        options[@"latitude"] = latitude;
-        options[@"longitude"] = longitude;
-    }
+    options[@"keywords"] = _keywords;
     [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
         _espetaculos = array;
         [_collectionView reloadData];
         [SVProgressHUD dismiss];
-    }                                         onFailBlock:^(NSError *error) {
+    } onFailBlock:^(NSError *error) {
         [SVProgressHUD dismiss];
     }];
 }
@@ -71,7 +59,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     QMWebViewController *controller = segue.destinationViewController;
     QMEspetaculo *espetaculo = sender;
-    [controller setGenre:_genre];
     [controller setEspetaculo:espetaculo];
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
@@ -84,7 +71,6 @@
                                                                           action:nil];
     [self.navigationItem setBackBarButtonItem:nextViewBackButton];
 }
-
 
 # pragma mark
 # pragma mark - UICollectionView Datasource
@@ -120,6 +106,25 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     QMEspetaculo *espetaculo = _espetaculos[(NSUInteger) indexPath.row];
     [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:espetaculo];
+}
+
+#pragma mark -
+#pragma mark - Search Bar Methods
+
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+//    [_searchBar setShowsCancelButton:YES animated:YES];
+//    return YES;
+//}
+//
+//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+//    [_searchBar resignFirstResponder];
+//    [_searchBar setShowsCancelButton:NO animated:YES];
+//}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [_searchBar resignFirstResponder];
+    _keywords = searchBar.text;
+    [self search];
 }
 
 @end

@@ -22,9 +22,7 @@ static NSString *const kEspetaculosPath = @"espetaculos.json";
     return kCompreIngressoHost;
 }
 
-+ (AFJSONRequestOperation *)requestEspetaculosWithOptions:(NSDictionary *)options forGenre:(QMGenre *)genre
-                           onCompleteBlock:(void (^)(NSArray *espetaculos, NSNumber *total)) onCompleteBlock
-                               onFailBlock:(void (^)(NSError *error)) onFailBlock {
++ (AFJSONRequestOperation *)requestEspetaculosWithOptions:(NSDictionary *)options onCompleteBlock:(void (^)(NSArray *espetaculos, NSNumber *total))onCompleteBlock onFailBlock:(void (^)(NSError *error))onFailBlock {
     
     NSString *path = kEspetaculosPath;
     if (options && options[@"genero"]) {
@@ -35,9 +33,9 @@ static NSString *const kEspetaculosPath = @"espetaculos.json";
         NSString *city = [self urlEncodeString:options[@"cidade"]];
         path = [self addQueryStringParamenter:@"cidade" withValue:city toUrl:path];
     }
-    if (options && options[@"busca"]) {
-        NSString *keywords = [self urlEncodeString:options[@"busca"]];
-        path = [self addQueryStringParamenter:@"busca" withValue:keywords toUrl:path];
+    if (options && options[@"keywords"]) {
+        NSString *keywords = [self urlEncodeString:options[@"keywords"]];
+        path = [self addQueryStringParamenter:@"keywords" withValue:keywords toUrl:path];
     }
     if (options && options[@"latitude"] && options[@"longitude"]) {
         NSNumber *lat = options[@"latitude"];
@@ -67,5 +65,7 @@ static NSString *const kEspetaculosPath = @"espetaculos.json";
     [operation start];
     return operation;
 }
+
+
 
 @end

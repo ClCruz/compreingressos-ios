@@ -60,6 +60,7 @@
 		253E78601AF146AC00EEF1E3 /* obrigado@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */; };
 		253E78631AF14C0900EEF1E3 /* button_wireframe.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78611AF14C0900EEF1E3 /* button_wireframe.png */; };
 		253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */; };
+		2549607B1AF93E2100EED4CF /* QMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2549607A1AF93E2100EED4CF /* QMSearchViewController.m */; };
 		255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255963E71AC1C8A100319BEB /* CoreLocation.framework */; };
 		255C6BB61AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
 		255C6BB71AB84BFD0097DC5F /* QMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */; };
@@ -78,6 +79,9 @@
 		258B93DC1AC054730007C584 /* QMEspetaculosRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D71AC054730007C584 /* QMEspetaculosRequester.m */; };
 		258B93DD1AC054730007C584 /* QMRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93D91AC054730007C584 /* QMRequester.m */; };
 		258B93DE1AC054730007C584 /* QMVisoresRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B93DB1AC054730007C584 /* QMVisoresRequester.m */; };
+		258CAE711AFA730C00C5BE9B /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE6E1AFA730C00C5BE9B /* search_icon.png */; };
+		258CAE721AFA730C00C5BE9B /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE6F1AFA730C00C5BE9B /* search_icon@2x.png */; };
+		258CAE731AFA730C00C5BE9B /* search_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE701AFA730C00C5BE9B /* search_icon@3x.png */; };
 		25BB6A5A1AC0706F00A927A1 /* QMEspetaculoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A591AC0706F00A927A1 /* QMEspetaculoCell.m */; };
 		25BB6A611AC073E800A927A1 /* QMEspetaculosGridHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A601AC073E800A927A1 /* QMEspetaculosGridHeaderView.m */; };
 		25BB6A621AC073E800A927A1 /* QMEspetaculosGridHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB6A601AC073E800A927A1 /* QMEspetaculosGridHeaderView.m */; };
@@ -186,6 +190,8 @@
 		253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "obrigado@3x.png"; sourceTree = "<group>"; };
 		253E78611AF14C0900EEF1E3 /* button_wireframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_wireframe.png; sourceTree = "<group>"; };
 		253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wireframe@2x.png"; sourceTree = "<group>"; };
+		254960791AF93E2100EED4CF /* QMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSearchViewController.h; sourceTree = "<group>"; };
+		2549607A1AF93E2100EED4CF /* QMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSearchViewController.m; sourceTree = "<group>"; };
 		255963E71AC1C8A100319BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255C6BB41AB84BFD0097DC5F /* QMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMWebViewController.h; sourceTree = "<group>"; };
 		255C6BB51AB84BFD0097DC5F /* QMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMWebViewController.m; sourceTree = "<group>"; };
@@ -213,6 +219,9 @@
 		258B93D91AC054730007C584 /* QMRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMRequester.m; sourceTree = "<group>"; };
 		258B93DA1AC054730007C584 /* QMVisoresRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMVisoresRequester.h; sourceTree = "<group>"; };
 		258B93DB1AC054730007C584 /* QMVisoresRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMVisoresRequester.m; sourceTree = "<group>"; };
+		258CAE6E1AFA730C00C5BE9B /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
+		258CAE6F1AFA730C00C5BE9B /* search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@2x.png"; sourceTree = "<group>"; };
+		258CAE701AFA730C00C5BE9B /* search_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@3x.png"; sourceTree = "<group>"; };
 		25BB6A581AC0706F00A927A1 /* QMEspetaculoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMEspetaculoCell.h; sourceTree = "<group>"; };
 		25BB6A591AC0706F00A927A1 /* QMEspetaculoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMEspetaculoCell.m; sourceTree = "<group>"; };
 		25BB6A5E1AC0725100A927A1 /* compreingressos-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "compreingressos-ios-Prefix.pch"; sourceTree = "<group>"; };
@@ -423,6 +432,8 @@
 				25D3B1731ADC275500CB3924 /* QMOrderDetailViewController.m */,
 				251D471C1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.h */,
 				251D471D1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.m */,
+				254960791AF93E2100EED4CF /* QMSearchViewController.h */,
+				2549607A1AF93E2100EED4CF /* QMSearchViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -482,6 +493,9 @@
 				253477581ADBED9B00307DE8 /* order_history_icon.png */,
 				253477591ADBED9B00307DE8 /* order_history_icon@2x.png */,
 				2534775A1ADBED9B00307DE8 /* order_history_icon@3x.png */,
+				258CAE6E1AFA730C00C5BE9B /* search_icon.png */,
+				258CAE6F1AFA730C00C5BE9B /* search_icon@2x.png */,
+				258CAE701AFA730C00C5BE9B /* search_icon@3x.png */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -673,6 +687,7 @@
 				251FA1DF1AC3386400C20391 /* comedia_musical.png in Resources */,
 				25C17A0E1AD3028200DD541F /* QMGenreView.xib in Resources */,
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
+				258CAE731AFA730C00C5BE9B /* search_icon@3x.png in Resources */,
 				255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */,
 				253E785F1AF146AC00EEF1E3 /* obrigado@2x.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
@@ -681,6 +696,7 @@
 				251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */,
 				250ECC661AE188EB001872D2 /* classica_photo.png in Resources */,
 				251FA1E11AC3386400C20391 /* comedia_romantica.png in Resources */,
+				258CAE721AFA730C00C5BE9B /* search_icon@2x.png in Resources */,
 				25EF7DD71AC37C7C0052986D /* background-red.png in Resources */,
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
 				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
@@ -705,6 +721,7 @@
 				253E78631AF14C0900EEF1E3 /* button_wireframe.png in Resources */,
 				251FA1EE1AC3386400C20391 /* suspense.png in Resources */,
 				250ECC681AE188EB001872D2 /* perto_de_mim_photo.png in Resources */,
+				258CAE711AFA730C00C5BE9B /* search_icon.png in Resources */,
 				251FA1EC1AC3386400C20391 /* shows.png in Resources */,
 				251FA1E61AC3386400C20391 /* musica.png in Resources */,
 				2534775B1ADBED9B00307DE8 /* order_history_icon.png in Resources */,
@@ -810,6 +827,7 @@
 				25D3B18C1ADC31F100CB3924 /* qrspec.c in Sources */,
 				253477631ADBF05800307DE8 /* QMOrderHistoryViewController.m in Sources */,
 				251D471E1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.m in Sources */,
+				2549607B1AF93E2100EED4CF /* QMSearchViewController.m in Sources */,
 				25BB6A7D1AC0A2D400A927A1 /* QMEspetaculosViewController.m in Sources */,
 				258B93DD1AC054730007C584 /* QMRequester.m in Sources */,
 				252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */,
