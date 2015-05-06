@@ -7,6 +7,7 @@ target 'compreingressos-ios' do
 	pod 'AFNetworking', '~> 1.3.3'
 	pod 'SDWebImage', '~>3.7.1'
 	pod 'JSBadgeView', '~> 1.3.2'
+	pod 'GoogleAnalytics-iOS-SDK', '~> 3.11'
 end
 
 target 'compreingressos-iosTests' do

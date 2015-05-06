@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C4C5A931AC067BF0F792E36"
+               BlueprintIdentifier = "8CAB0241710419E87BCAEB54"
                BuildableName = "libPods-compreingressos-ios-SDWebImage.a"
                BlueprintName = "Pods-compreingressos-ios-SDWebImage"
                ReferencedContainer = "container:Pods.xcodeproj">
