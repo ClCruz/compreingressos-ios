@@ -8,6 +8,7 @@ target 'compreingressos-ios' do
 	pod 'SDWebImage', '~>3.7.1'
 	pod 'JSBadgeView', '~> 1.3.2'
 	pod 'GoogleAnalytics-iOS-SDK', '~> 3.11'
+	pod 'Parse', '~> 1.7.2'
 end
 
 target 'compreingressos-iosTests' do

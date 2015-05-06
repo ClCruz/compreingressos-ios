@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 4
 
+// Bolts/Tasks
+#define COCOAPODS_POD_AVAILABLE_Bolts_Tasks
+#define COCOAPODS_VERSION_MAJOR_Bolts_Tasks 1
+#define COCOAPODS_VERSION_MINOR_Bolts_Tasks 1
+#define COCOAPODS_VERSION_PATCH_Bolts_Tasks 5
+
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
@@ -29,6 +35,13 @@
 #define COCOAPODS_VERSION_MAJOR_JSBadgeView 1
 #define COCOAPODS_VERSION_MINOR_JSBadgeView 3
 #define COCOAPODS_VERSION_PATCH_JSBadgeView 2
+
+// Parse
+#define COCOAPODS_POD_AVAILABLE_Parse
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.7.2.1.
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
