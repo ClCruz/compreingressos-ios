@@ -165,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-uo-sK1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="9jz-3p-0Ma">
                                     <size key="itemSize" width="155" height="240"/>
@@ -244,7 +244,7 @@
                         <constraints>
                             <constraint firstItem="Ymz-uo-sK1" firstAttribute="top" secondItem="Js1-jM-4Bl" secondAttribute="top" id="Dz0-q6-dGJ"/>
                             <constraint firstItem="Ymz-uo-sK1" firstAttribute="leading" secondItem="Js1-jM-4Bl" secondAttribute="leading" id="Rj7-d5-OIC"/>
-                            <constraint firstAttribute="bottom" secondItem="Ymz-uo-sK1" secondAttribute="bottom" constant="64" id="cWJ-rL-Hzm"/>
+                            <constraint firstAttribute="bottom" secondItem="Ymz-uo-sK1" secondAttribute="bottom" id="cWJ-rL-Hzm"/>
                             <constraint firstAttribute="trailing" secondItem="Ymz-uo-sK1" secondAttribute="trailing" id="ovy-Px-fXq"/>
                         </constraints>
                     </view>
