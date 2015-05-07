@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25033B511ADECCB800A469A4 /* ingressos@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25033B501ADECCB700A469A4 /* ingressos@3x.png */; };
+		25081C571AFB905600261A7C /* QMPushNotificationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 25081C561AFB905600261A7C /* QMPushNotificationUtils.m */; };
 		250ECC661AE188EB001872D2 /* classica_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC5F1AE188EB001872D2 /* classica_photo.png */; };
 		250ECC671AE188EB001872D2 /* muito_mais_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC601AE188EB001872D2 /* muito_mais_photo.png */; };
 		250ECC681AE188EB001872D2 /* perto_de_mim_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 250ECC611AE188EB001872D2 /* perto_de_mim_photo.png */; };
@@ -125,6 +126,8 @@
 		0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA94D18BE45DD585C66725A /* Pods-compreingressos-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		25033B501ADECCB700A469A4 /* ingressos@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@3x.png"; sourceTree = "<group>"; };
+		25081C551AFB905600261A7C /* QMPushNotificationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMPushNotificationUtils.h; sourceTree = "<group>"; };
+		25081C561AFB905600261A7C /* QMPushNotificationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMPushNotificationUtils.m; sourceTree = "<group>"; };
 		250ECC5F1AE188EB001872D2 /* classica_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classica_photo.png; sourceTree = "<group>"; };
 		250ECC601AE188EB001872D2 /* muito_mais_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muito_mais_photo.png; sourceTree = "<group>"; };
 		250ECC611AE188EB001872D2 /* perto_de_mim_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perto_de_mim_photo.png; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 		25D3B1751ADC31F100CB3924 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				25081C551AFB905600261A7C /* QMPushNotificationUtils.h */,
+				25081C561AFB905600261A7C /* QMPushNotificationUtils.m */,
 				25D3B1761ADC31F100CB3924 /* QR */,
 			);
 			path = lib;
@@ -816,6 +821,7 @@
 				258B93DD1AC054730007C584 /* QMRequester.m in Sources */,
 				252FD8481AB748C90007C29B /* QMGenreCell.m in Sources */,
 				251D47231AE95E9B00FF3F27 /* QMFadeInSegue.m in Sources */,
+				25081C571AFB905600261A7C /* QMPushNotificationUtils.m in Sources */,
 				25BB6A6D1AC0741900A927A1 /* QMBannerView.m in Sources */,
 				252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */,
 				258B93D11AC0537D0007C584 /* QMVisor.m in Sources */,
