@@ -38,6 +38,8 @@
 		251FA1F11AC339B600C20391 /* romance.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F01AC339B600C20391 /* romance.png */; };
 		251FA1F31AC33E2600C20391 /* ingressos.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1F21AC33E2600C20391 /* ingressos.png */; };
 		251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1FC1AC3484C00C20391 /* ingressos@2x.png */; };
+		25270E771B00F7BB00496D03 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E751B00F7BB00496D03 /* Fabric.framework */; };
+		25270E781B00F7BB00496D03 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E761B00F7BB00496D03 /* Crashlytics.framework */; };
 		252FD81C1AB73C820007C29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81B1AB73C820007C29B /* main.m */; };
 		252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81E1AB73C820007C29B /* AppDelegate.m */; };
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
@@ -157,6 +159,8 @@
 		251FA1F01AC339B600C20391 /* romance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = romance.png; sourceTree = "<group>"; };
 		251FA1F21AC33E2600C20391 /* ingressos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingressos.png; sourceTree = "<group>"; };
 		251FA1FC1AC3484C00C20391 /* ingressos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@2x.png"; sourceTree = "<group>"; };
+		25270E751B00F7BB00496D03 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		25270E761B00F7BB00496D03 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		252FD8161AB73C820007C29B /* compreingressos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "compreingressos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD81A1AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD81B1AB73C820007C29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -269,8 +273,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */,
+				25270E781B00F7BB00496D03 /* Crashlytics.framework in Frameworks */,
 				255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */,
 				A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */,
+				25270E771B00F7BB00496D03 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +561,8 @@
 		CDC8D68087B6BC8338626F97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25270E751B00F7BB00496D03 /* Fabric.framework */,
+				25270E761B00F7BB00496D03 /* Crashlytics.framework */,
 				256A77A41AEFB7CA003DD32F /* PassKit.framework */,
 				255963E71AC1C8A100319BEB /* CoreLocation.framework */,
 				0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */,
@@ -586,6 +594,7 @@
 				252FD8131AB73C820007C29B /* Frameworks */,
 				252FD8141AB73C820007C29B /* Resources */,
 				9F67B17696F053EAE3461698 /* Copy Pods Resources */,
+				25270E741B00F77800496D03 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -738,6 +747,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		25270E741B00F77800496D03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 87c8b5e30a4128bde2d542f32ba16ba302ae696e fb5d1d997f7182eb73308793f13089cf71902ccb6433b17ef81eb85645b3f641\n";
 		};
 		39716ACCB7E543B612511148 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -955,6 +977,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "compreingressos-ios/compreingressos-ios-Prefix.pch";
 				INFOPLIST_FILE = "compreingressos-ios/Info.plist";
@@ -973,6 +999,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "compreingressos-ios/compreingressos-ios-Prefix.pch";
 				INFOPLIST_FILE = "compreingressos-ios/Info.plist";

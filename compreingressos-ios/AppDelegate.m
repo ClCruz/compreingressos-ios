@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "QMConstants.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Fabric with:@[CrashlyticsKit]];
     [self configureNavigationBar];
     [self configureStatusBarColor];
     return YES;
