@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "QMConstants.h"
+#import "GAI.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
@@ -22,6 +23,9 @@
     [Fabric with:@[CrashlyticsKit]];
     [self configureNavigationBar];
     [self configureStatusBarColor];
+    if (!kIsDebugBuild) {
+        [self configureGoogleAnalytics];
+    }
     return YES;
 }
 
@@ -34,6 +38,19 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 20)];
     view.backgroundColor = UIColorFromRGB(kCompreIngressosDefaultRedColor);
     [self.window.rootViewController.view addSubview:view];
+}
+
+- (void)configureGoogleAnalytics {
+    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 60;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelWarning];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-16656615-2"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
