@@ -374,12 +374,12 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     
     NSString *url = [[request URL] absoluteString];
     if ([self isNextStep:url]) {
-        if (kIsDebugBuild) {
+//        if (kIsDebugBuild) {
             /* Troca a url do fluxo de compra para homol */
             if ([self isFirstStep:_url]) {
                 url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
             }
-        }
+//        }
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
         [controller setUrl:url];
