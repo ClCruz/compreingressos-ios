@@ -21,7 +21,6 @@
 @property (nonatomic, strong) QMEspetaculo *espetaculo;
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (nonatomic) BOOL isZerothStep;
-@property (nonatomic) BOOL isModal;
 
 - (IBAction)clickedOnNativeButton:(id)sender;
 
