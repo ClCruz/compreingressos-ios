@@ -130,7 +130,7 @@
     [self configureCell:sizingCell forIndexPath:indexPath];
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
-    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
     
     return size;
 }
