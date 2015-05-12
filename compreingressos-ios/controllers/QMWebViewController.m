@@ -25,6 +25,8 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     QMEspetaculo                *_espetaculo;
     BOOL                         _firstTimeLoad;
     BOOL                         _isZerothStep;
+    BOOL                         _isModal;
+    IBOutlet UIView             *_statusBarBg;
     IBOutlet UIButton           *_nativeButton;
     IBOutlet UIView             *_nativeButtonContainer;
     IBOutlet NSLayoutConstraint *_webviewBottomSpacing;
@@ -39,6 +41,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 @synthesize genre        = _genre;
 @synthesize espetaculo   = _espetaculo;
 @synthesize isZerothStep = _isZerothStep;
+@synthesize isModal      = _isModal;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,7 +83,11 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     }
     [_webview layoutIfNeeded];
     
- 
+    [self configureModalIfNeeded];
+    [self printCookies];
+}
+
+- (void)printCookies {
     NSLog(@"======================================================");
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [cookieJar cookies]) {
@@ -109,9 +116,35 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] save];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (_isModal) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [SVProgressHUD dismiss];
+}
+
+- (void)configureModalIfNeeded {
+    if (!_isModal) return;
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton:)];
+    [closeButton setTintColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [self configureCompreIngressosLogo];
+}
+
+- (void)configureCompreIngressosLogo {
+    UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
+    UIBarButtonItem *buttonForLogo = [[UIBarButtonItem alloc] initWithTitle:@"logo" style:UIBarButtonItemStyleDone target:nil action:nil];
+    [buttonForLogo setCustomView:compreIngressos];
+    self.navigationItem.leftBarButtonItem = buttonForLogo;
+}
+
+- (void)clickedOnCloseButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

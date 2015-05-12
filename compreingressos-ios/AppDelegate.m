@@ -14,6 +14,8 @@
 #import "NSHTTPCookieStorage+QMStorage.h"
 #import "SDImageCache.h"
 #import "SVProgressHUD.h"
+#import "QMPushNotificationUtils.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -24,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Fabric with:@[CrashlyticsKit]];
+    [self initParse:application];
     [self configureNavigationBar];
     [self configureStatusBarColor];
     if (!kIsDebugBuild) {
@@ -34,6 +37,22 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
     return YES;
+}
+
+- (void)initParse:(UIApplication *)application {
+    [Parse setApplicationId:@"55QlR3PGrXE0YWWnld97UG7kksTlI6j8ioa0FUIN"
+                  clientKey:@"PuVqOzx836qG4Ihv9rcy8kZNtsrU6yxTZJmfe4Uo"];
+    
+    // Register for Push Notitications
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
+                                                                                             |UIRemoteNotificationTypeSound
+                                                                                             |UIRemoteNotificationTypeAlert) categories:nil];
+        [application registerUserNotificationSettings:settings];
+    } else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:myTypes];
+    }
 }
 
 - (void)configureNavigationBar {
@@ -68,6 +87,26 @@
     //NSLog(@"  max concurrent downloads:: %d", SDWebImageManager.sharedManager.imageDownloader.maxConcurrentDownloads);
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    NSString *userChannel = [QMPushNotificationUtils parseChannelForDevice];
+    [currentInstallation addUniqueObject:userChannel forKey:@"channels"];
+    if (kIsDebugBuild) {
+        [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
+    }
+    [currentInstallation saveInBackground];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"%i - %@", (int)error.code, error.description);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
+    [QMPushNotificationUtils handlePush:userInfo];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -88,5 +127,18 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
+
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler {
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){}
+    else if ([identifier isEqualToString:@"answerAction"]){}
+}
+#endif
 
 @end
