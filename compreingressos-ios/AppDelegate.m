@@ -103,7 +103,7 @@
     NSLog(@"%i - %@", (int)error.code, error.description);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [QMPushNotificationUtils handlePush:userInfo];
 }
 
