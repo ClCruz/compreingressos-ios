@@ -21,6 +21,7 @@ QMPushNotificationUtils *sharedInstance;
 
 + (NSString *)parseChannelForDevice {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    NSLog(@"%@", currentInstallation.installationId);
     return [NSString stringWithFormat:@"customer_%@", currentInstallation.installationId];
 }
 

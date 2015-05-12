@@ -91,9 +91,9 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    NSString *userChannel = [QMPushNotificationUtils parseChannelForDevice];
-    [currentInstallation addUniqueObject:userChannel forKey:@"channels"];
     if (kIsDebugBuild) {
+        NSString *userChannel = [QMPushNotificationUtils parseChannelForDevice];
+        [currentInstallation addUniqueObject:userChannel forKey:@"channels"];
         [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
     }
     [currentInstallation saveInBackground];
