@@ -64,19 +64,24 @@
         @try {
             __block UIActivityIndicatorView *imageActivityIndicator;
             __weak UIImageView *weakImageView = _bannerImage;
+            _bannerImage.alpha = 0.0;
             [_bannerImage sd_setImageWithURL:[NSURL URLWithString:_banner.imageUrl]
                             placeholderImage:nil
                                      options:0
                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                 if (!imageActivityIndicator) {
-                    [weakImageView addSubview:imageActivityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                    imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    [weakImageView addSubview:imageActivityIndicator];
                     imageActivityIndicator.center = _carousel.center;
+                    [imageActivityIndicator setTintColor:[UIColor blackColor]];
+                    [imageActivityIndicator setColor:[UIColor blackColor]];
                     [imageActivityIndicator startAnimating];
                 }
             }
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [imageActivityIndicator removeFromSuperview];
                 imageActivityIndicator = nil;
+                [self showImage:image];
                 if (!image) {
 //                    [_bannerImage setImage:[QMConstants placeHolderImage]];
                 }

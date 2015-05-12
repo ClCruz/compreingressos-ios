@@ -203,13 +203,9 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)requestData {
     if ([self isConnected]) {
-        [SVProgressHUD show];
         if ([_visores count] == 0) { // só pede do server se não tiver pedido ainda
             [self requestVisores];
         }
-//        if ([_espetaculos count] == 0) { // só pede do server se não tiver pedido ainda
-//            [self requestEspetaculos];
-//        }
     } else {
 //        [self showNotConnectedErrorWithoutCover];
     }
@@ -235,9 +231,7 @@ static CGFloat kGenresMargin = 6.0f;
             [banners addObject:[visor toBanner]];
         }
         [_carouselView setBanners:banners];
-        [SVProgressHUD dismiss];
     } onFailBlock:^(NSError *error) {
-        [SVProgressHUD dismiss];
     }];
 }
 

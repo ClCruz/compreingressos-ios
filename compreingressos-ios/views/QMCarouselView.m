@@ -80,10 +80,8 @@ static const int kBannersHeightRetina3 = 156;
         [_spinner setAlpha:0.0];
         if (_pageControl.numberOfPages > 1) {
             [_pageControl setHidden:NO];
-            [_pageControlBg setHidden:NO];
         } else {
             [_pageControl setHidden:YES];
-            [_pageControlBg setHidden:YES];
         }
     } completion:^(BOOL finished) {
         [_spinner stopAnimating];
