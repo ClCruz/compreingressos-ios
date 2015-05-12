@@ -11,6 +11,7 @@
 #import "GAI.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "NSHTTPCookieStorage+QMStorage.h"
 
 @interface AppDelegate ()
 
@@ -26,6 +27,7 @@
     if (!kIsDebugBuild) {
         [self configureGoogleAnalytics];
     }
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
     return YES;
 }
 
@@ -72,7 +74,6 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end

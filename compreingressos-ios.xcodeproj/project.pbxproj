@@ -40,6 +40,7 @@
 		251FA1FD1AC3484C00C20391 /* ingressos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FA1FC1AC3484C00C20391 /* ingressos@2x.png */; };
 		25270E771B00F7BB00496D03 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E751B00F7BB00496D03 /* Fabric.framework */; };
 		25270E781B00F7BB00496D03 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E761B00F7BB00496D03 /* Crashlytics.framework */; };
+		252E63121B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */; };
 		252FD81C1AB73C820007C29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81B1AB73C820007C29B /* main.m */; };
 		252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81E1AB73C820007C29B /* AppDelegate.m */; };
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
@@ -161,6 +162,8 @@
 		251FA1FC1AC3484C00C20391 /* ingressos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@2x.png"; sourceTree = "<group>"; };
 		25270E751B00F7BB00496D03 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		25270E761B00F7BB00496D03 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		252E63101B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPCookieStorage+QMStorage.h"; sourceTree = "<group>"; };
+		252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPCookieStorage+QMStorage.m"; sourceTree = "<group>"; };
 		252FD8161AB73C820007C29B /* compreingressos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "compreingressos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD81A1AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD81B1AB73C820007C29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 			isa = PBXGroup;
 			children = (
 				25D3B1761ADC31F100CB3924 /* QR */,
+				252E63101B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.h */,
+				252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -831,6 +836,7 @@
 				25BB6A5A1AC0706F00A927A1 /* QMEspetaculoCell.m in Sources */,
 				258B93CD1AC053120007C584 /* QMEspetaculo.m in Sources */,
 				25D3B18C1ADC31F100CB3924 /* qrspec.c in Sources */,
+				252E63121B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m in Sources */,
 				253477631ADBF05800307DE8 /* QMOrderHistoryViewController.m in Sources */,
 				251D471E1AE93C4100FF3F27 /* QMPaymentFinalizationViewController.m in Sources */,
 				2549607B1AF93E2100EED4CF /* QMSearchViewController.m in Sources */,

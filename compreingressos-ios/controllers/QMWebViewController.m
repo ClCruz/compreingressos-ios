@@ -13,6 +13,7 @@
 #import "QMOrder.h"
 #import "QMRequester.h"
 #import "QMConstants.h"
+#import "NSHTTPCookieStorage+QMStorage.h"
 #import "compreingressos-ios-Prefix.pch"
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
@@ -78,6 +79,15 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         _webviewBottomSpacing.constant = 0.0;
     }
     [_webview layoutIfNeeded];
+    
+ 
+    NSLog(@"======================================================");
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [cookieJar cookies]) {
+        NSLog(@"%@", cookie);
+        NSLog(@"    - %@", cookie.value);
+    }
+    NSLog(@"======================================================");
 }
 
 - (void)removeLoginControllerFromQueue {
@@ -96,6 +106,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     if (_firstTimeLoad) {
         [SVProgressHUD show];
     }
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] save];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
