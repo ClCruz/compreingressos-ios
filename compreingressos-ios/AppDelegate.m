@@ -12,6 +12,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "NSHTTPCookieStorage+QMStorage.h"
+#import "SVProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +28,8 @@
     if (!kIsDebugBuild) {
         [self configureGoogleAnalytics];
     }
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
     return YES;
 }
