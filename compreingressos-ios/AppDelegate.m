@@ -12,6 +12,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "NSHTTPCookieStorage+QMStorage.h"
+#import "SDImageCache.h"
 #import "SVProgressHUD.h"
 
 @interface AppDelegate ()
@@ -28,6 +29,7 @@
     if (!kIsDebugBuild) {
         [self configureGoogleAnalytics];
     }
+    [self setupSDImageCache];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
@@ -56,6 +58,14 @@
     
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-16656615-2"];
+}
+
+- (void)setupSDImageCache {
+    NSString *bundledPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CustomPathImages"];
+    [[SDImageCache sharedImageCache] addReadOnlyCachePath:bundledPath];
+    [[SDImageCache sharedImageCache] setMaxCacheSize:50 * 1024 * 1024];
+    //[[SDImageCache sharedImageCache] clearDisk];
+    //NSLog(@"  max concurrent downloads:: %d", SDWebImageManager.sharedManager.imageDownloader.maxConcurrentDownloads);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
