@@ -30,6 +30,8 @@
     _espetaculos = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
+    [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
 }
 
 - (void)configureSearchBar {
@@ -91,22 +93,37 @@
     return 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    QMEspetaculoCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"QMEspetaculoCell" forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"QMEspetaculoCell";
+    QMEspetaculoCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (!cell) {
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
+        cell = nibs[0];
+    }
+    [self configureCell:cell forIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(QMEspetaculoCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     QMEspetaculo *espetaculo = _espetaculos[(NSUInteger) indexPath.row];
     [cell setEspetaculo:espetaculo];
     cell.layer.borderWidth = 1.0f;
     cell.layer.borderColor = [[UIColor colorWithWhite:0.8 alpha:1.0] CGColor];
-    // cell.backgroundColor = [UIColor whiteColor];
-    // cell.layer.borderWidth = 1.0;
-    // cell.layer.borderColor = [[UIColor blueColor] CGColor];
-    // NSLog(@"   %@: (%f, %f)", espetaculo.titulo, cell.frame.size.width, cell.frame.size.height);
-    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    QMEspetaculo *espetaculo = _espetaculos[(NSUInteger) indexPath.row];
-    CGSize size = [QMEspetaculoCell sizeForEspetaculo:espetaculo];
+    static QMEspetaculoCell *sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"QMEspetaculoCell" owner:self options:nil];
+        sizingCell = nibs[0];
+    });
+    
+    [self configureCell:sizingCell forIndexPath:indexPath];
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
     return size;
 }
 

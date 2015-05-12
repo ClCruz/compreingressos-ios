@@ -76,34 +76,10 @@ static const CGFloat kImageBottomMargin = 8.0;
     [_local setText:[espetaculo local]];
     [_titulo setTextColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
     
-    // _titulo.layer.borderColor = [[UIColor redColor] CGColor];
-    // _titulo.layer.borderWidth = 1.0;
-    
-    [_titulo setNumberOfLines:0];
-    [_titulo sizeToFit];
-    _titulo.center = _genero.center;
-    CGFloat tituloY = _image.frame.origin.y + _image.frame.size.height + kImageBottomMargin;
-    _titulo.frame = CGRectSetOriginY(_titulo.frame, tituloY);
-    CGFloat teatroY = _titulo.frame.origin.y + _titulo.frame.size.height + 5.0;
-    _teatro.frame = CGRectSetOriginY(_teatro.frame, teatroY);
-    CGFloat localY = _teatro.frame.origin.y + _teatro.frame.size.height + 3.0;
-    _local.frame = CGRectSetOriginY(_local.frame, localY);
-    CGFloat generoY = _local.frame.origin.y + _local.frame.size.height + 3.0;
-    _genero.frame = CGRectSetOriginY(_genero.frame, generoY);
-    
     [self configureImage];
 }
 
 - (void)configureImage {
-    NSDictionary *viewsDictionary = @{@"imageView":_image};
-    int imageSide = [QMEspetaculoCell imageSide];
-    NSString *constraintHeightFormat = [NSString stringWithFormat:@"V:[imageView(%i)]", imageSide];
-    NSString *constraintWidthFormat = [NSString stringWithFormat:@"H:[imageView(%i)]", imageSide];
-    NSArray *constraintHeight = [NSLayoutConstraint constraintsWithVisualFormat:constraintHeightFormat options:0 metrics:nil views:viewsDictionary];
-    NSArray *constraintWidth = [NSLayoutConstraint constraintsWithVisualFormat:constraintWidthFormat options:0 metrics:nil views:viewsDictionary];
-    [_image addConstraints:constraintHeight];
-    [_image addConstraints:constraintWidth];
-    
     if (_espetaculo.miniatura) {
         @try {
 //            __block UIActivityIndicatorView *imageActivityIndicator;

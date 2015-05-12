@@ -42,6 +42,7 @@
 		25270E771B00F7BB00496D03 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E751B00F7BB00496D03 /* Fabric.framework */; };
 		25270E781B00F7BB00496D03 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25270E761B00F7BB00496D03 /* Crashlytics.framework */; };
 		252E63121B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */; };
+		252E63141B026B6E003B2B12 /* QMEspetaculoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252E63131B026B6E003B2B12 /* QMEspetaculoCell.xib */; };
 		252FD81C1AB73C820007C29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81B1AB73C820007C29B /* main.m */; };
 		252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD81E1AB73C820007C29B /* AppDelegate.m */; };
 		252FD8221AB73C820007C29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252FD8211AB73C820007C29B /* ViewController.m */; };
@@ -167,6 +168,7 @@
 		25270E761B00F7BB00496D03 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		252E63101B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPCookieStorage+QMStorage.h"; sourceTree = "<group>"; };
 		252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPCookieStorage+QMStorage.m"; sourceTree = "<group>"; };
+		252E63131B026B6E003B2B12 /* QMEspetaculoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QMEspetaculoCell.xib; sourceTree = "<group>"; };
 		252FD8161AB73C820007C29B /* compreingressos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "compreingressos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		252FD81A1AB73C820007C29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FD81B1AB73C820007C29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				25BB6A651AC0740500A927A1 /* QMCarouselView.xib */,
 				25BB6A581AC0706F00A927A1 /* QMEspetaculoCell.h */,
 				25BB6A591AC0706F00A927A1 /* QMEspetaculoCell.m */,
+				252E63131B026B6E003B2B12 /* QMEspetaculoCell.xib */,
 				25BB6A5F1AC073E800A927A1 /* QMEspetaculosGridHeaderView.h */,
 				25BB6A601AC073E800A927A1 /* QMEspetaculosGridHeaderView.m */,
 				252FD8461AB748C90007C29B /* QMGenreCell.h */,
@@ -725,6 +728,7 @@
 				251FA1EE1AC3386400C20391 /* suspense.png in Resources */,
 				250ECC681AE188EB001872D2 /* perto_de_mim_photo.png in Resources */,
 				258CAE711AFA730C00C5BE9B /* search_icon.png in Resources */,
+				252E63141B026B6E003B2B12 /* QMEspetaculoCell.xib in Resources */,
 				251FA1EC1AC3386400C20391 /* shows.png in Resources */,
 				251FA1E61AC3386400C20391 /* musica.png in Resources */,
 				2534775B1ADBED9B00307DE8 /* order_history_icon.png in Resources */,

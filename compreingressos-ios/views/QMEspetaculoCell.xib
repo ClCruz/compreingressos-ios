@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalCompressionResistancePriority="751" reuseIdentifier="QMEspetaculoCell" id="K8k-mj-fc8" customClass="QMEspetaculoCell">
+            <rect key="frame" x="0.0" y="0.0" width="154" height="255"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="154" height="255"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fq3-Lu-auf">
+                        <rect key="frame" x="4" y="5" width="146" height="149"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="149" id="FVa-BZ-STm"/>
+                            <constraint firstAttribute="width" constant="146" id="qfV-0i-eue"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="DQ5-Qo-rOf" userLabel="titulo">
+                        <rect key="frame" x="61" y="164" width="32" height="20"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.5590820312" green="0.028623070970000001" blue="0.025224478580000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="G7w-Yh-eom" userLabel="teatro">
+                        <rect key="frame" x="62" y="192" width="31" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.2002051768" green="0.2002051768" blue="0.2002051768" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="tKZ-c4-o6n" userLabel="cidade">
+                        <rect key="frame" x="62" y="212" width="31" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.2002051768" green="0.2002051768" blue="0.2002051768" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="MKt-uB-QSW" userLabel="genero">
+                        <rect key="frame" x="61" y="232" width="32" height="15"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.2002051768" green="0.2002051768" blue="0.2002051768" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="MKt-uB-QSW" secondAttribute="centerX" id="99P-Ws-JJ3"/>
+                <constraint firstAttribute="bottom" secondItem="MKt-uB-QSW" secondAttribute="bottom" constant="8" id="Bo5-Gf-IRK"/>
+                <constraint firstItem="tKZ-c4-o6n" firstAttribute="top" secondItem="G7w-Yh-eom" secondAttribute="bottom" constant="5" id="Euo-eO-Cdj"/>
+                <constraint firstItem="MKt-uB-QSW" firstAttribute="top" secondItem="tKZ-c4-o6n" secondAttribute="bottom" constant="5" id="J6z-Zd-YHk"/>
+                <constraint firstAttribute="centerX" secondItem="G7w-Yh-eom" secondAttribute="centerX" id="KOc-qj-gFg"/>
+                <constraint firstItem="G7w-Yh-eom" firstAttribute="top" secondItem="DQ5-Qo-rOf" secondAttribute="bottom" constant="8" id="N7R-nl-aDR"/>
+                <constraint firstAttribute="centerX" secondItem="DQ5-Qo-rOf" secondAttribute="centerX" id="RCt-Hw-P9l"/>
+                <constraint firstItem="DQ5-Qo-rOf" firstAttribute="top" secondItem="Fq3-Lu-auf" secondAttribute="bottom" constant="10" id="SQT-d7-sQD"/>
+                <constraint firstAttribute="centerX" secondItem="tKZ-c4-o6n" secondAttribute="centerX" id="eAJ-5n-2ya"/>
+                <constraint firstItem="Fq3-Lu-auf" firstAttribute="leading" secondItem="K8k-mj-fc8" secondAttribute="leading" constant="4" id="gA5-FX-pRA"/>
+                <constraint firstAttribute="trailing" secondItem="Fq3-Lu-auf" secondAttribute="trailing" constant="4" id="nes-Fj-gpH"/>
+                <constraint firstItem="Fq3-Lu-auf" firstAttribute="top" secondItem="K8k-mj-fc8" secondAttribute="top" constant="5" id="yl4-Q1-r0O"/>
+            </constraints>
+            <size key="customSize" width="154" height="255"/>
+            <connections>
+                <outlet property="genero" destination="MKt-uB-QSW" id="tTz-WQ-yuH"/>
+                <outlet property="image" destination="Fq3-Lu-auf" id="hIe-1b-06U"/>
+                <outlet property="local" destination="tKZ-c4-o6n" id="8Ej-7z-D0Y"/>
+                <outlet property="teatro" destination="G7w-Yh-eom" id="9eL-AT-OdD"/>
+                <outlet property="titulo" destination="DQ5-Qo-rOf" id="oxV-WR-f6a"/>
+            </connections>
+            <point key="canvasLocation" x="317" y="-40.5"/>
+        </collectionViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
