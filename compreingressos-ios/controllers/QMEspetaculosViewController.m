@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
+#import <CoreMedia/CoreMedia.h>
 #import "QMEspetaculosViewController.h"
 #import "QMGenre.h"
 #import "QMEspetaculosRequester.h"
@@ -32,17 +34,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _espetaculos = [[NSMutableArray alloc] init];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
+
+    [self configureCollectionView];
     [self requestEspetaculos];
-    
-    UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
-    [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)configureCollectionView {
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    [self configureCollectionLayout];
+    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
+    UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
+    [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
+}
+
+- (void)configureCollectionLayout {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat spacing;
+    if (screenWidth <= 320) {
+        spacing = 4.0f;
+    }
+    else if (screenWidth > 320 && screenWidth < 621) {
+        spacing = 22.0f;
+    }
+    else {
+        spacing = 35.0f;
+    }
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    [layout setMinimumLineSpacing:spacing];
+    [layout setMinimumInteritemSpacing:spacing];
+    [layout setSectionInset:UIEdgeInsetsMake(spacing, spacing, spacing, spacing)];
+    [_collectionView setCollectionViewLayout:layout];
 }
 
 - (void)setGenre:(QMGenre *)genre {

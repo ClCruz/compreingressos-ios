@@ -27,13 +27,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureSearchBar];
+    [self configureCollectionView];
     _espetaculos = [[NSMutableArray alloc] init];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.titleView = _searchBar;
+}
 
-    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
-    UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
-    [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureSearchBar {
@@ -44,14 +48,32 @@
     [_searchBar becomeFirstResponder];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.titleView = _searchBar;
+- (void)configureCollectionView {
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    [self configureCollectionLayout];
+    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
+    UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
+    [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configureCollectionLayout {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat spacing;
+    if (screenWidth <= 320) {
+        spacing = 4.0f;
+    }
+    else if (screenWidth > 320 && screenWidth < 621) {
+        spacing = 22.0f;
+    }
+    else {
+        spacing = 35.0f;
+    }
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    [layout setMinimumLineSpacing:spacing];
+    [layout setMinimumInteritemSpacing:spacing];
+    [layout setSectionInset:UIEdgeInsetsMake(spacing, spacing, spacing, spacing)];
+    [_collectionView setCollectionViewLayout:layout];
 }
 
 - (void)search {

@@ -69,7 +69,6 @@ static const CGFloat kImageBottomMargin = 8.0;
 
 - (void)setEspetaculo:(QMEspetaculo *)espetaculo {
     _espetaculo = espetaculo;
-    [_titulo setFrame:originalTituloFrame];
     [_titulo setText:espetaculo.titulo];
     [_genero setText:espetaculo.genero];
     [_teatro setText:espetaculo.teatro];
