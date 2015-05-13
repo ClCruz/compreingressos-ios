@@ -30,6 +30,8 @@
     _espetaculos = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+
+    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
     UINib *cellNib = [UINib nibWithNibName:@"QMEspetaculoCell" bundle:nil];
     [_collectionView registerNib:cellNib forCellWithReuseIdentifier:@"QMEspetaculoCell"];
 }
@@ -59,7 +61,11 @@
     [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
         _espetaculos = array;
         [_collectionView reloadData];
-        [SVProgressHUD dismiss];
+        if ([_espetaculos count] == 0) {
+            [SVProgressHUD showErrorWithStatus:@"Não foi encontrado nenhum resultado..."];
+        } else {
+            [SVProgressHUD dismiss];
+        }
     } onFailBlock:^(NSError *error) {
         [SVProgressHUD dismiss];
     }];
