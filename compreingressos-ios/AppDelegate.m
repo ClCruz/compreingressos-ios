@@ -33,7 +33,7 @@
         [self configureGoogleAnalytics];
     }
     [self setupSDImageCache];
-    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
     return YES;
