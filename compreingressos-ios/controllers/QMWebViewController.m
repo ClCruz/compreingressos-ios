@@ -15,6 +15,7 @@
 #import "QMConstants.h"
 #import "NSHTTPCookieStorage+QMStorage.h"
 #import "compreingressos-ios-Prefix.pch"
+#import "QMPushNotificationUtils.h"
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
 
@@ -258,6 +259,8 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [QMOrder addOrderToHistory:order];
     if (order.number && order.number.length > 0) {
         [self notifyNewOrder];
+        [QMPushNotificationUtils unsubscribe:@"prospect"];
+        [QMPushNotificationUtils subscribe:@"client"];
     }
 }
 

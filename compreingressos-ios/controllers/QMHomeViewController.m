@@ -23,6 +23,7 @@
 #import "QMOrderHistoryViewController.h"
 #import "QMSearchViewController.h"
 #import "QMBannerView.h"
+#import "QMPushNotificationUtils.h"
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -55,7 +56,6 @@ static CGFloat kGenresMargin = 6.0f;
     IBOutlet UIBarButtonItem    *_buttonForLogo;
     QMEspetaculosGridHeaderView *_carrosselVisores;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,7 +114,7 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     if (_showBadgeOnViewDidAppear) {
         _showBadgeOnViewDidAppear = NO;
         [_badgeView setBadgeText:@"! "];

@@ -37,6 +37,28 @@ QMPushNotificationUtils *sharedInstance;
     }
 }
 
++ (BOOL)subscribedInChannel:(NSString *)channel {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    for (NSString *subscribedChannel in currentInstallation.channels) {
+        if ([subscribedChannel isEqualToString:channel]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
++ (void)subscribe:(NSString *)channel {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation addUniqueObject:channel forKey:@"channels"];
+    [currentInstallation saveInBackground];
+}
+
++ (void)unsubscribe:(NSString *)channel {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation removeObject:channel forKey:@"channels"];
+    [currentInstallation saveInBackground];
+}
+
 #pragma mark -
 #pragma mark - AlertViewDelegate
 

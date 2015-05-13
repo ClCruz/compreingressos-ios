@@ -14,5 +14,8 @@
 
 + (NSString *)parseChannelForDevice;
 + (void)handlePush:(NSDictionary *)userInfo;
++ (BOOL)subscribedInChannel:(NSString *)channel;
++ (void)subscribe:(NSString *)channel;
++ (void)unsubscribe:(NSString *)channel;
 
 @end
