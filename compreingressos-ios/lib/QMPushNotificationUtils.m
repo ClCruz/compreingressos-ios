@@ -59,21 +59,24 @@ QMPushNotificationUtils *sharedInstance;
     [currentInstallation saveInBackground];
 }
 
++ (void)openWebviewWithURL:(NSString *)url {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
+    [controller setUrl:url];
+    [controller setIsModal:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    UIViewController *homeController = [((UIWindow *)windows[[windows count] - 2]) rootViewController];
+    [homeController presentViewController:navigationController animated:YES completion:nil];
+    sharedInstance = nil;
+}
+
 #pragma mark -
 #pragma mark - AlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != 0) {
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
-        [controller setUrl:_url];
-        [controller setIsModal:YES];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        UIViewController *homeController = [((UIWindow *)windows[[windows count] - 2]) rootViewController];
-        [homeController presentViewController:navigationController animated:YES completion:nil];
-        //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
-        sharedInstance = nil;
+        [QMPushNotificationUtils openWebviewWithURL:_url];
     }
 }
 

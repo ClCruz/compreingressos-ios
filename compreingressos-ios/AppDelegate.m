@@ -15,6 +15,7 @@
 #import "SDImageCache.h"
 #import "SVProgressHUD.h"
 #import "QMPushNotificationUtils.h"
+#import "PFAnalytics.h"
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
@@ -36,6 +37,13 @@
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] load];
+
+    /* O payload do push vem por aqui apenas se o app estiver fechado. Neste caso o didReceiveRemoteNotification
+     * NÃO é chamado e o payload deve ser recuperado por aqui. */
+    NSDictionary *pushPayload = launchOptions[@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    if (pushPayload) {
+        [QMPushNotificationUtils handlePush:pushPayload];
+    }
     return YES;
 }
 
@@ -105,6 +113,8 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    /* Esta callback é chamada apenas se o app estiver aberto ou em background. Se estiver fechado o payload
+     * do push deve ser recuperado no didFinishLaunchWithOptions */
     [QMPushNotificationUtils handlePush:userInfo];
 }
 
