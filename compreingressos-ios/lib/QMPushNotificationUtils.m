@@ -30,7 +30,7 @@ QMPushNotificationUtils *sharedInstance;
     if (url) {
         sharedInstance = [[QMPushNotificationUtils alloc] init];
         [sharedInstance setUrl:url];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:userInfo[@"aps"][@"alert"] delegate:sharedInstance cancelButtonTitle:@"Fechar" otherButtonTitles:@"Ver Promoção", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:userInfo[@"aps"][@"alert"] delegate:sharedInstance cancelButtonTitle:@"Detalhes" otherButtonTitles:@"Fechar", nil];
         [alertView show];
     } else {
         [PFPush handlePush:userInfo];
@@ -75,7 +75,7 @@ QMPushNotificationUtils *sharedInstance;
 #pragma mark - AlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != 0) {
+    if (buttonIndex == 0) {
         [QMPushNotificationUtils openWebviewWithURL:_url];
     }
 }
