@@ -95,8 +95,6 @@
         [currentInstallation addUniqueObject:@"prospect" forKey:@"channels"];
     }
     if (kIsDebugBuild) {
-        NSString *userChannel = [QMPushNotificationUtils parseChannelForDevice];
-        [currentInstallation addUniqueObject:userChannel forKey:@"channels"];
         [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
     }
     [currentInstallation saveInBackground];
