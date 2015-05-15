@@ -235,7 +235,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 
 - (void)openUrl {
     /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
-    if (_url && ![_url containsString:@"app=tokecompre"]) {
+    if (_url && [_url rangeOfString:@"app=tokecompre"].length == 0) {
         _url = [QMRequester addQueryStringParamenter:@"app" withValue:@"tokecompre" toUrl:_url];
     }
     NSURL *url = [NSURL URLWithString:_url];
@@ -550,7 +550,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 
 /* Tela do detalhe do Espetáculo */
 - (BOOL)isFirstStep:(NSString *)url {
-    return [url containsString:@"espetaculos"];
+    return ([url rangeOfString:@"espetaculos"].length != 0);
 }
 
 /* Tela de escolha do assento */
