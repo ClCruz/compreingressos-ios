@@ -28,8 +28,8 @@ QMPushNotificationUtils *sharedInstance;
 }
 
 + (void)handlePush:(NSDictionary *)userInfo {
-    NSString *url =  [userInfo objectForKey:@"u"];
-    NSString *code = [userInfo objectForKey:@"c"];
+    NSString *url = userInfo[@"u"];
+    NSString *code = userInfo[@"c"];
     if (url) {
         sharedInstance = [[QMPushNotificationUtils alloc] init];
         [sharedInstance setUrl:url];
