@@ -527,7 +527,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 - (void)openNextStep:(NSString *)url {
     if (kIsDebugBuild) {
         /* Troca a url do fluxo de compra para homol */
-        if ([self isFirstStep:_url]) {
+        if ([self isFirstStep:_url] && [_url rangeOfString:@"Turma-do-Chaves"].length == 0) {
             url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
         }
     }
