@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
+#import <CoreVideo/CoreVideo.h>
+#import <CoreMedia/CoreMedia.h>
 #import "QMWebViewController.h"
 #import "SVProgressHUD.h"
 #import "QMGenre.h"
@@ -16,6 +18,7 @@
 #import "NSHTTPCookieStorage+QMStorage.h"
 #import "compreingressos-ios-Prefix.pch"
 #import "QMPushNotificationUtils.h"
+#import "QMZoomTutorialView.h"
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
 
@@ -25,6 +28,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     NSString                    *_promoCode;
     QMGenre                     *_genre;
     QMEspetaculo                *_espetaculo;
+    QMZoomTutorialView          *_tutorialView;
     BOOL                         _firstTimeLoad;
     BOOL                         _isZerothStep;
     BOOL                         _isModal;
@@ -87,7 +91,76 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [_webview layoutIfNeeded];
     
     [self configureModalIfNeeded];
-    [self printCookies];
+    // [self printCookies];
+}
+
+- (void)showTutorialIfNeeded {
+    if ([self neverShowedTutorialBefore]) {
+        [self showTutorial];
+    }
+}
+
+- (BOOL)neverShowedTutorialBefore {
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"zoomTutorial"]) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"zoomTutorial"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)showTutorial {
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"QMZoomTutorialView" owner:nil options:nil];
+    _tutorialView = nibs[0];
+    [_tutorialView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:_tutorialView];
+
+    NSLayoutConstraint *width =[NSLayoutConstraint
+                                constraintWithItem:_tutorialView
+                                attribute:NSLayoutAttributeWidth
+                                relatedBy:0
+                                toItem:self.view
+                                attribute:NSLayoutAttributeWidth
+                                multiplier:1.0
+                                constant:0];
+    NSLayoutConstraint *height =[NSLayoutConstraint
+                                 constraintWithItem:_tutorialView
+                                 attribute:NSLayoutAttributeHeight
+                                 relatedBy:0
+                                 toItem:self.view
+                                 attribute:NSLayoutAttributeHeight
+                                 multiplier:1.0
+                                 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint
+                               constraintWithItem:_tutorialView
+                               attribute:NSLayoutAttributeTop
+                               relatedBy:NSLayoutRelationEqual
+                               toItem:self.view
+                               attribute:NSLayoutAttributeTop
+                               multiplier:1.0f
+                               constant:0.f];
+    NSLayoutConstraint *leading = [NSLayoutConstraint
+                                   constraintWithItem:_tutorialView
+                                   attribute:NSLayoutAttributeLeading
+                                   relatedBy:NSLayoutRelationEqual
+                                   toItem:self.view
+                                   attribute:NSLayoutAttributeLeading
+                                   multiplier:1.0f
+                                   constant:0.f];
+
+    [self.view addConstraints:@[width, height, top, leading]];
+    
+    UITapGestureRecognizer *tutorialTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnTutorial)];
+    [tutorialTap setNumberOfTapsRequired:1];
+    [_tutorialView addGestureRecognizer:tutorialTap];
+}
+
+- (void)didTapOnTutorial {
+    [UIView animateWithDuration:0.3 animations:^{
+        _tutorialView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [_tutorialView removeFromSuperview];
+    }];
 }
 
 - (void)printCookies {
@@ -241,6 +314,9 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                 [self processOrder];
                 [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];
             } else {
+                if ([self isSecondStep:_url]) {
+                    [self showTutorialIfNeeded];
+                }
                 if ([self isThirdStep:_url]) {
                     /* Inject do código promocional caso necessário */
                     if (_promoCode) {
