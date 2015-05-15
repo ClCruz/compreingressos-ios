@@ -15,9 +15,11 @@ QMPushNotificationUtils *sharedInstance;
 @implementation QMPushNotificationUtils {
 @private
     NSString *_url;
+    NSString *_promoCode;
 }
 
 @synthesize url = _url;
+@synthesize promoCode = _promoCode;
 
 + (NSString *)parseChannelForDevice {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -26,10 +28,12 @@ QMPushNotificationUtils *sharedInstance;
 }
 
 + (void)handlePush:(NSDictionary *)userInfo {
-    NSString *url = [userInfo objectForKey:@"u"];
+    NSString *url =  [userInfo objectForKey:@"u"];
+    NSString *code = [userInfo objectForKey:@"c"];
     if (url) {
         sharedInstance = [[QMPushNotificationUtils alloc] init];
         [sharedInstance setUrl:url];
+        [sharedInstance setPromoCode:code];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:userInfo[@"aps"][@"alert"] delegate:sharedInstance cancelButtonTitle:@"Detalhes" otherButtonTitles:@"Fechar", nil];
         [alertView show];
     } else {
@@ -59,10 +63,11 @@ QMPushNotificationUtils *sharedInstance;
     [currentInstallation saveInBackground];
 }
 
-+ (void)openWebviewWithURL:(NSString *)url {
++ (void)openWebviewWithURL:(NSString *)url andPromoCode:(NSString *)promoCode {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
     [controller setUrl:url];
+    [controller setPromoCode:promoCode];
     [controller setIsModal:YES];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     NSArray *windows = [[UIApplication sharedApplication] windows];
@@ -76,7 +81,7 @@ QMPushNotificationUtils *sharedInstance;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [QMPushNotificationUtils openWebviewWithURL:_url];
+        [QMPushNotificationUtils openWebviewWithURL:_url andPromoCode:_promoCode];
     }
 }
 

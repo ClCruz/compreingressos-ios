@@ -11,6 +11,7 @@
 @interface QMPushNotificationUtils : NSObject <UIAlertViewDelegate>
 
 @property(nonatomic, strong) NSString *url;
+@property(nonatomic, strong) NSString *promoCode;
 
 + (NSString *)parseChannelForDevice;
 + (void)handlePush:(NSDictionary *)userInfo;

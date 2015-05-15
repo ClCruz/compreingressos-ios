@@ -22,6 +22,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 @interface QMWebViewController () {
     UIWebView                   *_webview;
     NSString                    *_url;
+    NSString                    *_promoCode;
     QMGenre                     *_genre;
     QMEspetaculo                *_espetaculo;
     BOOL                         _firstTimeLoad;
@@ -39,6 +40,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 
 @synthesize webview      = _webview;
 @synthesize url          = _url;
+@synthesize promoCode    = _promoCode;
 @synthesize genre        = _genre;
 @synthesize espetaculo   = _espetaculo;
 @synthesize isZerothStep = _isZerothStep;
@@ -231,16 +233,20 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 */
 
 - (void)pollDocumentReadyState {
-//    NSLog(@"polling %@", [_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"]);
-
         if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
-//            NSLog(@"==================== LOADED ============================");
+            NSLog(@"============================ LOADED ============================");
             [self hideScript];
             [SVProgressHUD dismiss];
             if ([self isLastStep]) {
                 [self processOrder];
                 [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];
             } else {
+                if ([self isThirdStep:_url]) {
+                    /* Inject do código promocional caso necessário */
+                    if (_promoCode) {
+                        [self injectPromoCode];
+                    }
+                }
                 [UIView animateWithDuration:0.3 animations:^{
                     _webview.alpha = 1.0;
                 }];
@@ -249,6 +255,21 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
         }
 
+}
+
+- (void)injectPromoCode {
+    NSString *format = @"var codigo = \"%@\"; "
+    "var groups = /<a href=\"#([\\d]+)\" rel=\"[\\d]+\">PROMO APP<\\/a>/.exec(document.documentElement.outerHTML); "
+    "var ref; "
+    "if (groups.length == 2) ref = groups[1]; "
+    "if (ref) { "
+    "    $('a[href=\"#'+ref+'\"]').click(); "
+    "    $('.container_beneficio').find('input[type=\"text\"]').val(codigo); "
+    "    $('a[class^=\"validarBin\"]').click(); "
+    "} ";
+    NSString *script = [NSString stringWithFormat:format, _promoCode];
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+    _promoCode = nil;
 }
 
 - (void)processOrder {
@@ -421,22 +442,26 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     
     NSString *url = [[request URL] absoluteString];
     if ([self isNextStep:url]) {
-        if (kIsDebugBuild) {
-            /* Troca a url do fluxo de compra para homol */
-            if ([self isFirstStep:_url]) {
-                url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
-            }
-        }
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
-        [controller setUrl:url];
-        [self configureNextViewBackButtonWithTitle:@"Voltar"];
-        [self.navigationController pushViewController:controller animated:YES];
-        [_webview stopLoading];
+        [self openNextStep:url];
         return NO;
     }
-    
     return YES;
+}
+
+- (void)openNextStep:(NSString *)url {
+    if (kIsDebugBuild) {
+        /* Troca a url do fluxo de compra para homol */
+        if ([self isFirstStep:_url]) {
+            url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
+        }
+    }
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    QMWebViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"QMWebViewController"];
+    [controller setUrl:url];
+    [controller setPromoCode:_promoCode]; // forward do codigo promocional
+    [self configureNextViewBackButtonWithTitle:@"Voltar"];
+    [self.navigationController pushViewController:controller animated:YES];
+    [_webview stopLoading];
 }
 
 - (BOOL)string:(NSString *)string matchesRegex:(NSString *)pattern {

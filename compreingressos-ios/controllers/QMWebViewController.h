@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *promoCode;
 //@property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) QMGenre *genre;
 @property (nonatomic, strong) QMEspetaculo *espetaculo;
