@@ -62,7 +62,7 @@
 
     if (json) {
         NSData *bodyData = [json dataUsingEncoding:NSUTF8StringEncoding];
-        static NSString *path = @"https://mpassbook.herokuapp.com/passes/generate.json";
+        static NSString *path = @"https://mpassbook.herokuapp.com/passes/v2/generate.json";
         NSURL *url = [NSURL URLWithString:path];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
@@ -73,18 +73,33 @@
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *req, NSHTTPURLResponse *response, id JSON) {
             /* Vai voltar um array de passes. Porém, não precisamos fazer nada com o retorno
                uma vez que os passes já foram criados no heroku. */
-            NSString *passName = [NSString stringWithFormat:@"%@.pkpass", _qrcodeString];
-            [self downloadPass:passName];
+            
+            if (JSON) {
+                NSArray *passes = JSON[@"passes"];
+                if ([passes count] > 0) {
+                    NSString *passName = passes[0];
+                    [self downloadPass:passName];
+                } else {
+                    [self showDownloadError];
+                }
+            } else {
+                [self showDownloadError];
+            }
         } failure:^(NSURLRequest *req, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Erro POST passbook %@", [error description]);
-            [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
+            [self showDownloadError];
         }];
         [operation start];
     }
 }
 
+- (void)showDownloadError {
+    
+    [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
+}
+
 - (void)downloadPass:(NSString *)passName {
-    static NSString *format = @"https://mpassbook.herokuapp.com/passes/%@";
+    static NSString *format = @"https://mpassbook.herokuapp.com/passes/v2/%@";
     NSString *path = [NSString stringWithFormat:format, passName];
     NSURL *url = [NSURL URLWithString:path];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -92,8 +107,6 @@
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", [responseObject class]);
-        
         NSData *data = (NSData *)responseObject;
         if (data != nil) {
             NSError *error = nil;
