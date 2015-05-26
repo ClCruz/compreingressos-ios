@@ -11,6 +11,7 @@
 #import "QMOrderHistoryCell.h"
 #import "QMOrderHistoryViewController.h"
 #import "QMOrderDetailViewController.h"
+#import "QMOrdersRequester.h"
 
 
 @interface QMOrderHistoryViewController ()
@@ -20,16 +21,21 @@
 @implementation QMOrderHistoryViewController {
     @private
     IBOutlet UITableView *_tableView;
-    NSArray *_orderHistory;
+    UIRefreshControl *_refreshControl;
+    NSArray *_orders;
+    BOOL _firstViewDidAppear;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _orderHistory = [QMOrder orderHistory];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_tableView addSubview:_refreshControl];
+    [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    _firstViewDidAppear = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -37,6 +43,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kHideBadgeTag
                                                         object:self
                                                       userInfo:nil];
+    if (_firstViewDidAppear) {
+        _orders = [QMOrder orderHistory];
+        [self requestData];
+        //[self sortOrdersBySentTime];
+        [_tableView reloadData];
+        _firstViewDidAppear = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,6 +69,34 @@
     }
 }
 
+/* Utilizado pelo pull to refresh */
+- (void)refreshTable {
+    // [_tableView reloadData];
+    [self requestData];
+}
+
+- (void)requestData {
+    //if ([self isConnected]) {
+        [self requestOrders];
+    //} else {
+    //    [self showPlaceholderIfNeeded];
+    //    [self showNotConnectedErrorWithoutCover];
+        [_refreshControl endRefreshing];
+   //}
+}
+
+- (void)requestOrders {
+    [QMOrdersRequester requestOrdersForUser:@"hash" onCompleteBlock:^(NSArray *orders) {
+        _orders = [QMOrder sortOrdersByOrderNumber:orders];
+        //[self showPlaceholderIfNeeded];
+        //[self sortOrdersBySentTime];
+        [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [_refreshControl endRefreshing];
+        [QMOrder setOrderHistory:_orders];
+    } onFailBlock:^(NSError *error) {
+        [_refreshControl endRefreshing];
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -79,18 +120,18 @@
 #pragma mark - TableView Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_orderHistory count];
+    return [_orders count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     QMOrderHistoryCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderHistoryCell" forIndexPath:indexPath];
-    QMOrder *order = _orderHistory[(int)indexPath.row];
+    QMOrder *order = _orders[(NSUInteger)indexPath.row];
     [cell setOrder:order];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    QMOrder *order = _orderHistory[(int)indexPath.row];
+    QMOrder *order = _orders[(NSUInteger)indexPath.row];
     [self performSegueWithIdentifier:@"orderDetailSegue" sender:order];
 }
 

@@ -22,7 +22,9 @@
 
 + (QMOrder *)sharedInstance;
 + (NSArray *)orderHistory;
++ (void)setOrderHistory:(NSArray *)orders;
 + (void)addOrderToHistory:(QMOrder *)order;
++ (NSArray *)sortOrdersByOrderNumber:(NSArray *)orders;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSMutableDictionary *)toDictionary;
 - (NSString *)formattedDateAndHour;

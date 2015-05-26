@@ -68,13 +68,7 @@ static NSMutableDictionary *orderHistoryInstance;
 
 + (NSArray *)sortedHistory {
     NSArray *history = [orderHistoryInstance allValues];
-    NSArray *sorted = [history sortedArrayUsingComparator:^NSComparisonResult(QMOrder *obj1, QMOrder *obj2) {
-        if (obj1.numericOrderNumber >= obj2.numericOrderNumber) {
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedDescending;
-        }
-    }];
+    NSArray *sorted = [self sortOrdersByOrderNumber:history];
     return sorted;
 }
 
@@ -92,6 +86,17 @@ static NSMutableDictionary *orderHistoryInstance;
         orderHistoryInstance[order.number] = order;
         [self persistOrderHistory];        
     }
+}
+
++ (NSArray *)sortOrdersByOrderNumber:(NSArray *)orders {
+    NSArray *sorted = [orders sortedArrayUsingComparator:^NSComparisonResult(QMOrder *obj1, QMOrder *obj2) {
+        if (obj1.numericOrderNumber >= obj2.numericOrderNumber) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+    return sorted;
 }
 
 + (void)persistOrderHistory {

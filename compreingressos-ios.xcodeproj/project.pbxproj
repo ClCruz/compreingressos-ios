@@ -121,6 +121,7 @@
 		25D3B18F1ADC31F100CB3924 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1871ADC31F100CB3924 /* UIImage+MDQRCode.m */; };
 		25D3B1921ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1911ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m */; };
 		25D3B1951ADD363D00CB3924 /* QMOrderHistoryTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */; };
+		337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */; };
 		7D0ACBD35497B0A56B7E3A48 /* libPods-compreingressos-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */; };
 		A208778DBCAD061C6DB7FD4B /* libPods-compreingressos-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,7 @@
 /* Begin PBXFileReference section */
 		0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA94D18BE45DD585C66725A /* Pods-compreingressos-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		250284821B10C101007959E5 /* compreingressos-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "compreingressos-ios.entitlements"; sourceTree = "<group>"; };
 		25033B501ADECCB700A469A4 /* ingressos@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@3x.png"; sourceTree = "<group>"; };
 		25081C551AFB905600261A7C /* QMPushNotificationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMPushNotificationUtils.h; sourceTree = "<group>"; };
 		25081C561AFB905600261A7C /* QMPushNotificationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMPushNotificationUtils.m; sourceTree = "<group>"; };
@@ -288,6 +290,8 @@
 		25D3B1911ADD2D2400CB3924 /* QMOrderDetailHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderDetailHeaderCell.m; sourceTree = "<group>"; };
 		25D3B1931ADD363D00CB3924 /* QMOrderHistoryTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryTicketCell.h; sourceTree = "<group>"; };
 		25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryTicketCell.m; sourceTree = "<group>"; };
+		337A4A6648526C9B7B4842B1 /* QMOrdersRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrdersRequester.h; sourceTree = "<group>"; };
+		337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrdersRequester.m; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +397,7 @@
 		252FD8181AB73C820007C29B /* compreingressos-ios */ = {
 			isa = PBXGroup;
 			children = (
+				250284821B10C101007959E5 /* compreingressos-ios.entitlements */,
 				252FD8401AB7417E0007C29B /* models */,
 				252FD8411AB7417E0007C29B /* views */,
 				252FD83F1AB7417E0007C29B /* controllers */,
@@ -541,6 +546,8 @@
 				258B93D71AC054730007C584 /* QMEspetaculosRequester.m */,
 				258B93DA1AC054730007C584 /* QMVisoresRequester.h */,
 				258B93DB1AC054730007C584 /* QMVisoresRequester.m */,
+				337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */,
+				337A4A6648526C9B7B4842B1 /* QMOrdersRequester.h */,
 			);
 			path = requesters;
 			sourceTree = "<group>";
@@ -905,6 +912,7 @@
 				252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */,
 				25C17A0C1AD3026F00DD541F /* QMGenreView.m in Sources */,
 				25BB6A7A1AC08F6400A927A1 /* QMGenre.m in Sources */,
+				337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
