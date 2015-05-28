@@ -119,7 +119,7 @@ static NSMutableDictionary *orderHistoryInstance;
         _originalJson = [QMRequester objectOrNilForKey:@"originalJson" forDictionary:dictionary];
         
         if (!_originalJson) {
-//            [self generateOrderJson];
+            [self generateOrderJson];
         }
         
         static NSNumberFormatter *formatter = nil;
