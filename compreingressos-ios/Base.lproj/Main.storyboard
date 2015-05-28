@@ -381,6 +381,7 @@
                                         <connections>
                                             <outlet property="_addressLabel" destination="Vf2-MZ-uLo" id="H9d-IN-gEG"/>
                                             <outlet property="_dayLabel" destination="rXQ-LL-1yH" id="ILp-7N-Tsi"/>
+                                            <outlet property="_mapPin" destination="nYa-TK-aKy" id="3dh-cG-VN1"/>
                                             <outlet property="_monthLabel" destination="c1K-7F-WV0" id="s5g-R4-4CT"/>
                                             <outlet property="_theaterLabel" destination="N5C-Lb-8l2" id="5Xp-HZ-fTY"/>
                                             <outlet property="_titleLabel" destination="bwv-Ad-Pqa" id="jnX-PR-CcC"/>
@@ -768,7 +769,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="gR8-QU-OoJ"/>
         <segue reference="tDg-F5-Jlu"/>
-        <segue reference="LUj-BX-06L"/>
     </inferredMetricsTieBreakers>
 </document>

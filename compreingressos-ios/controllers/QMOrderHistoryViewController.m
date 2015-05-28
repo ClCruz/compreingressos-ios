@@ -12,6 +12,7 @@
 #import "QMOrderHistoryViewController.h"
 #import "QMOrderDetailViewController.h"
 #import "QMOrdersRequester.h"
+#import "QMUser.h"
 
 
 @interface QMOrderHistoryViewController ()
@@ -86,7 +87,7 @@
 }
 
 - (void)requestOrders {
-    [QMOrdersRequester requestOrdersForUser:@"hash" onCompleteBlock:^(NSArray *orders) {
+    [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
         _orders = [QMOrder sortOrdersByOrderNumber:orders];
         //[self showPlaceholderIfNeeded];
         //[self sortOrdersBySentTime];

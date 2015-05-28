@@ -35,12 +35,12 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
-        _qrcodeString = dictionary[@"qrcode"];
-        _place        = dictionary[@"local"];
-        _type         = dictionary[@"type"];
-        _price        = dictionary[@"price"];
-        _servicePrice = dictionary[@"service_price"];
-        _total        = dictionary[@"total"];
+        _qrcodeString = [QMRequester objectOrNilForKey:@"qrcode" forDictionary:dictionary];
+        _place        = [QMRequester objectOrNilForKey:@"local" forDictionary:dictionary];
+        _type         = [QMRequester objectOrNilForKey:@"type" forDictionary:dictionary];
+        _price        = [QMRequester objectOrNilForKey:@"price" forDictionary:dictionary];
+        _servicePrice = [QMRequester objectOrNilForKey:@"service_price" forDictionary:dictionary];
+        _total        = [QMRequester objectOrNilForKey:@"total" forDictionary:dictionary];
     }
     return self;
 }

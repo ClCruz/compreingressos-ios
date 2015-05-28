@@ -6,11 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "QMRequester.h"
 
+@class QMUser;
 @class AFJSONRequestOperation;
 
 @interface QMOrdersRequester : QMRequester
 
-+ (AFJSONRequestOperation *)requestOrdersForUser:(NSString *)userId
++ (AFJSONRequestOperation *)requestOrdersForUser:(QMUser *)user
                                  onCompleteBlock:(void (^)(NSArray *orders))onCompleteBlock
                                      onFailBlock:(void (^)(NSError *error))onFailBlock;
 

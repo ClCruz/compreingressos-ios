@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#import <CoreVideo/CoreVideo.h>
-#import <CoreMedia/CoreMedia.h>
 #import "QMWebViewController.h"
 #import "SVProgressHUD.h"
 #import "QMGenre.h"
@@ -19,6 +17,7 @@
 #import "compreingressos-ios-Prefix.pch"
 #import "QMPushNotificationUtils.h"
 #import "QMZoomTutorialView.h"
+#import "QMUser.h"
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
 
@@ -92,6 +91,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     
     [self configureModalIfNeeded];
     // [self printCookies];
+    [self findAndSaveUserHash];
 }
 
 - (void)showTutorialIfNeeded {
@@ -171,6 +171,17 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         NSLog(@"    - %@", cookie.value);
     }
     NSLog(@"======================================================");
+}
+
+- (void)findAndSaveUserHash {
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [cookieJar cookies]) {
+        if ([cookie.name isEqualToString:@"user"]) {
+            QMUser *user = [QMUser sharedInstance];
+            [user setUserHash:cookie.value];
+            [user save];
+        }
+    }
 }
 
 - (void)removeLoginControllerFromQueue {

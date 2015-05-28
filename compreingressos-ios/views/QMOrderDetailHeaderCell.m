@@ -13,12 +13,13 @@
 @implementation QMOrderDetailHeaderCell {
     @private
     QMOrder *_order;
-    IBOutlet UILabel *_addressLabel;
-    IBOutlet UILabel *_titleLabel;
-    IBOutlet UILabel *_theaterLabel;
-    IBOutlet UILabel *_monthLabel;
-    IBOutlet UILabel *_dayLabel;
-    IBOutlet UILabel *_weekdayLabel;
+    IBOutlet UILabel     *_addressLabel;
+    IBOutlet UILabel     *_titleLabel;
+    IBOutlet UILabel     *_theaterLabel;
+    IBOutlet UILabel     *_monthLabel;
+    IBOutlet UILabel     *_dayLabel;
+    IBOutlet UILabel     *_weekdayLabel;
+    IBOutlet UIImageView *_mapPin;
 }
 
 @synthesize order = _order;
@@ -29,9 +30,14 @@
 
 - (void)setOrder:(QMOrder *)order {
     _order = order;
+    QMEspetaculo *espetaculo = _order.espetaculo;
     [_titleLabel setText:[_order spectacleTitle]];
-    [_theaterLabel setText:_order.espetaculo.teatro];
-    [_addressLabel setText:_order.espetaculo.endereco];
+    [_theaterLabel setText:espetaculo.teatro];
+    [_addressLabel setText:espetaculo.endereco];
+
+    if (!espetaculo.endereco) {
+        [_mapPin setHidden:YES];
+    }
     
     NSArray *components = [_order.date componentsSeparatedByString:@" "];
     if ([components count] >= 1) {

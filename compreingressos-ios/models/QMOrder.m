@@ -119,7 +119,7 @@ static NSMutableDictionary *orderHistoryInstance;
         _originalJson = [QMRequester objectOrNilForKey:@"originalJson" forDictionary:dictionary];
         
         if (!_originalJson) {
-            [self generateOrderJson];
+//            [self generateOrderJson];
         }
         
         static NSNumberFormatter *formatter = nil;
@@ -127,7 +127,7 @@ static NSMutableDictionary *orderHistoryInstance;
         dispatch_once(&onceToken, ^{
             formatter = [[NSNumberFormatter alloc] init];
         });
-        if (_number) {
+        if (_number ) {
             _numericOrderNumber = [formatter numberFromString:_number];
         }
     }
@@ -147,8 +147,8 @@ static NSMutableDictionary *orderHistoryInstance;
 - (NSMutableDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     dictionary[@"number"]       = _number;
-    dictionary[@"date"]         = _date;
-    dictionary[@"total"]        = _total;
+    if (_date) dictionary[@"date"]          = _date;
+    if (_total) dictionary[@"total"]        = _total;
     dictionary[@"espetaculo"]   = [_espetaculo toDictionary];
     dictionary[@"ingressos"]    = [self ticketsDictionaryArray];
     if (_originalJson) {
