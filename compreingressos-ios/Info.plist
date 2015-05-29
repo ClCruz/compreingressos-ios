@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>153</string>
+	<string>160</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -40,8 +40,8 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Usaremos sua localização para mostrar os eventos próximos a você.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Usaremos sua localização para mostrar os eventos próximos a você.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Usaremos sua localização para mostrar os eventos próximos a você.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
