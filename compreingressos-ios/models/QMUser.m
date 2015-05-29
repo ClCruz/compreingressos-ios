@@ -25,6 +25,10 @@ static QMUser *sharedInstance;
     return sharedInstance;
 }
 
+- (BOOL)hasHash {
+    return (_userHash && _userHash.length > 0);
+}
+
 - (void)save {
     [[NSUserDefaults standardUserDefaults] setObject:_userHash forKey:@"userHash"];
     [[NSUserDefaults standardUserDefaults] synchronize];

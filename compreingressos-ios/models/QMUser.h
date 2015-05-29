@@ -12,5 +12,6 @@
 
 + (QMUser *)sharedInstance;
 - (void)save;
+- (BOOL)hasHash;
 
 @end

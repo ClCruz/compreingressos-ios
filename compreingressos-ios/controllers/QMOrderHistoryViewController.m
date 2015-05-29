@@ -25,6 +25,7 @@
     UIRefreshControl *_refreshControl;
     NSArray *_orders;
     BOOL _firstViewDidAppear;
+    IBOutlet UIView *_placeholder;
 }
 
 - (void)viewDidLoad {
@@ -36,6 +37,7 @@
     _refreshControl = [[UIRefreshControl alloc] init];
     [_tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    _placeholder.alpha = 0.0;
     _firstViewDidAppear = YES;
 }
 
@@ -87,15 +89,26 @@
 }
 
 - (void)requestOrders {
-    [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
-        _orders = [QMOrder sortOrdersByOrderNumber:orders];
-        //[self showPlaceholderIfNeeded];
-        //[self sortOrdersBySentTime];
-        [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-        [_refreshControl endRefreshing];
-        [QMOrder setOrderHistory:_orders];
-    } onFailBlock:^(NSError *error) {
-        [_refreshControl endRefreshing];
+    QMUser *user = [QMUser sharedInstance];
+    if ([user hasHash]) {
+        [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
+            _orders = [QMOrder sortOrdersByOrderNumber:orders];
+            //[self showPlaceholderIfNeeded];
+            //[self sortOrdersBySentTime];
+            [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [_refreshControl endRefreshing];
+            [QMOrder setOrderHistory:_orders];
+        } onFailBlock:^(NSError *error) {
+            [_refreshControl endRefreshing];
+        }];
+    } else {
+        [self showPlaceholder];
+    }
+}
+
+- (void)showPlaceholder {
+    [UIView animateWithDuration:0.3 animations:^{
+        _placeholder.alpha = 1.0;
     }];
 }
 
