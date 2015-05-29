@@ -209,32 +209,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Yea-PF-hha">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="d31-sE-JYS" userLabel="placeholder">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ingresso_placeholder_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yUb-Ny-E2F">
-                                            <rect key="frame" x="112" y="161" width="97" height="76"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="76" id="dyQ-CA-PfX"/>
-                                                <constraint firstAttribute="width" constant="97" id="gpe-Ef-Hbz"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você ainda não possui nenhum ingresso." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-I0-Vps">
-                                            <rect key="frame" x="71" y="252" width="178" height="41"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.42909564393939381" green="0.42909564393939381" blue="0.42909564393939381" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="centerX" secondItem="yUb-Ny-E2F" secondAttribute="centerX" id="53c-KG-7da"/>
-                                        <constraint firstItem="yUb-Ny-E2F" firstAttribute="top" secondItem="d31-sE-JYS" secondAttribute="top" constant="161" id="R2r-32-3Mm"/>
-                                        <constraint firstAttribute="centerX" secondItem="Wjb-I0-Vps" secondAttribute="centerX" id="tyK-6Z-26f"/>
-                                        <constraint firstItem="Wjb-I0-Vps" firstAttribute="top" secondItem="yUb-Ny-E2F" secondAttribute="bottom" constant="15" id="zDa-G1-Tpu"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QMOrderHistoryCell" rowHeight="74" id="jLw-q9-Qsv" customClass="QMOrderHistoryCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -273,6 +247,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d31-sE-JYS" userLabel="placeholder">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ingresso_placeholder_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yUb-Ny-E2F">
+                                        <rect key="frame" x="112" y="161" width="97" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="76" id="dyQ-CA-PfX"/>
+                                            <constraint firstAttribute="width" constant="97" id="gpe-Ef-Hbz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Você ainda não possui nenhum ingresso." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-I0-Vps">
+                                        <rect key="frame" x="71" y="252" width="178" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.42909564393939381" green="0.42909564393939381" blue="0.42909564393939381" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="yUb-Ny-E2F" secondAttribute="centerX" id="53c-KG-7da"/>
+                                    <constraint firstItem="yUb-Ny-E2F" firstAttribute="top" secondItem="d31-sE-JYS" secondAttribute="top" constant="161" id="R2r-32-3Mm"/>
+                                    <constraint firstAttribute="centerX" secondItem="Wjb-I0-Vps" secondAttribute="centerX" id="tyK-6Z-26f"/>
+                                    <constraint firstItem="Wjb-I0-Vps" firstAttribute="top" secondItem="yUb-Ny-E2F" secondAttribute="bottom" constant="15" id="zDa-G1-Tpu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -13,6 +13,7 @@
 #import "QMOrderDetailViewController.h"
 #import "QMOrdersRequester.h"
 #import "QMUser.h"
+#import "SVProgressHUD.h"
 
 
 @interface QMOrderHistoryViewController ()
@@ -38,6 +39,7 @@
     [_tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     _placeholder.alpha = 0.0;
+    [_placeholder removeFromSuperview];
     _firstViewDidAppear = YES;
 }
 
@@ -51,7 +53,6 @@
         [self requestData];
         //[self sortOrdersBySentTime];
         [_tableView reloadData];
-        _firstViewDidAppear = NO;
     }
 }
 
@@ -91,6 +92,9 @@
 - (void)requestOrders {
     QMUser *user = [QMUser sharedInstance];
     if ([user hasHash]) {
+        if (_firstViewDidAppear) {
+            [SVProgressHUD show];
+        }
         [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
             _orders = [QMOrder sortOrdersByOrderNumber:orders];
             //[self showPlaceholderIfNeeded];
@@ -98,8 +102,12 @@
             [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             [_refreshControl endRefreshing];
             [QMOrder setOrderHistory:_orders];
+            [SVProgressHUD dismiss];
+            _firstViewDidAppear = NO;
         } onFailBlock:^(NSError *error) {
             [_refreshControl endRefreshing];
+            [SVProgressHUD dismiss];
+            _firstViewDidAppear = NO;
         }];
     } else {
         [self showPlaceholder];
@@ -107,6 +115,43 @@
 }
 
 - (void)showPlaceholder {
+    [_placeholder setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_tableView addSubview:_placeholder];
+    NSLayoutConstraint *width =[NSLayoutConstraint
+            constraintWithItem:_placeholder
+                     attribute:NSLayoutAttributeWidth
+                     relatedBy:0
+                        toItem:_tableView
+                     attribute:NSLayoutAttributeWidth
+                    multiplier:1.0
+                      constant:0];
+    NSLayoutConstraint *height =[NSLayoutConstraint
+            constraintWithItem:_placeholder
+                     attribute:NSLayoutAttributeHeight
+                     relatedBy:0
+                        toItem:_tableView
+                     attribute:NSLayoutAttributeHeight
+                    multiplier:1.0
+                      constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint
+            constraintWithItem:_placeholder
+                     attribute:NSLayoutAttributeTop
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:_tableView
+                     attribute:NSLayoutAttributeTop
+                    multiplier:1.0f
+                      constant:0.f];
+    NSLayoutConstraint *leading = [NSLayoutConstraint
+            constraintWithItem:_placeholder
+                     attribute:NSLayoutAttributeLeading
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:_tableView
+                     attribute:NSLayoutAttributeLeading
+                    multiplier:1.0f
+                      constant:0.f];
+
+    [_tableView addConstraints:@[width, height, top, leading]];
+    
     [UIView animateWithDuration:0.3 animations:^{
         _placeholder.alpha = 1.0;
     }];
