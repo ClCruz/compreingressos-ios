@@ -143,7 +143,6 @@
 /* Begin PBXFileReference section */
 		0DA0E3411C6023DEE7F506BA /* libPods-compreingressos-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA94D18BE45DD585C66725A /* Pods-compreingressos-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.release.xcconfig"; sourceTree = "<group>"; };
-		250284821B10C101007959E5 /* compreingressos-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "compreingressos-ios.entitlements"; sourceTree = "<group>"; };
 		25033B501ADECCB700A469A4 /* ingressos@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingressos@3x.png"; sourceTree = "<group>"; };
 		25081C551AFB905600261A7C /* QMPushNotificationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMPushNotificationUtils.h; sourceTree = "<group>"; };
 		25081C561AFB905600261A7C /* QMPushNotificationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMPushNotificationUtils.m; sourceTree = "<group>"; };
@@ -409,7 +408,6 @@
 		252FD8181AB73C820007C29B /* compreingressos-ios */ = {
 			isa = PBXGroup;
 			children = (
-				250284821B10C101007959E5 /* compreingressos-ios.entitlements */,
 				252FD8401AB7417E0007C29B /* models */,
 				252FD8411AB7417E0007C29B /* views */,
 				252FD83F1AB7417E0007C29B /* controllers */,
