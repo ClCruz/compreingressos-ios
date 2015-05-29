@@ -251,7 +251,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     }
     NSURL *url = [NSURL URLWithString:_url];
     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
-    _webview.alpha = 0.0;
+    // _webview.alpha = 0.0;
     [_webview loadRequest:requestURL];
 }
 
@@ -334,9 +334,9 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                         [self injectPromoCode];
                     }
                 }
-                [UIView animateWithDuration:0.3 animations:^{
-                    _webview.alpha = 1.0;
-                }];
+                // [UIView animateWithDuration:0.3 animations:^{
+                //     _webview.alpha = 1.0;
+                // }];
             }
         } else {
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
