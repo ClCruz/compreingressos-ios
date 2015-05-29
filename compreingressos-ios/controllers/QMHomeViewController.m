@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #import "JSBadgeView.h"
 #import "SVProgressHUD.h"
@@ -44,11 +49,12 @@ static CGFloat kGenresMargin = 6.0f;
     CLLocationManager *_locationManager;
     CLLocation        *_location;
     UIAlertView       *_gpsErrorAlertView;
+    UIAlertView       *_requestGpsAlertView;
     QMGenre           *_selectedGenre;
     BOOL              _segueLock;
     BOOL              _showBadgeOnViewDidAppear;
     BOOL              _hideBadgeOnViewDidAppear;
-    
+
     IBOutlet UICollectionView   *_collectionView;
     IBOutlet UIImageView        *_background;
     IBOutlet UIScrollView       *_scrollView;
@@ -168,8 +174,8 @@ static CGFloat kGenresMargin = 6.0f;
 - (void)configureLocationManager {
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 100.0f;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    _locationManager.distanceFilter = 500.0f;
 }
 
 - (void)parseGenres {
@@ -294,6 +300,10 @@ static CGFloat kGenresMargin = 6.0f;
     _hideBadgeOnViewDidAppear = YES;
 }
 
+- (BOOL)choosedNearbyMe {
+    return [_selectedGenre.title isEqualToString:((QMGenre *)_genres[0]).title];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -301,15 +311,13 @@ static CGFloat kGenresMargin = 6.0f;
         QMEspetaculosViewController *controller = segue.destinationViewController;
         [controller setGenre:_selectedGenre];
         [controller setLocation:_location];
+        _selectedGenre = nil;
     }
     else if ([segue.destinationViewController isKindOfClass:[QMWebViewController class]]) {
         QMWebViewController *controller = segue.destinationViewController;
         NSString *url = (NSString *)sender;
         [controller setUrl:url];
         [controller setIsZerothStep:YES];
-    }
-    else if ([segue.destinationViewController isKindOfClass:[QMSearchViewController class]]) {
-        QMSearchViewController *controller = segue.destinationViewController;
     }
     [self configureNextViewBackButtonWithTitle:@"Voltar"];
     [super prepareForSegue:segue sender:sender];
@@ -323,7 +331,7 @@ static CGFloat kGenresMargin = 6.0f;
     [self.navigationItem setBackBarButtonItem:nextViewBackButton];
 }
 
-- (void)goToSearchResults {
+- (void)goToEspetaculos {
     if (!_segueLock) {
         /*  Se o usuário permitir ou proibir o tokecompre de usar o gps esta callback tb será chamada. */
         [self performSegueWithIdentifier:@"espetaculosSegue" sender:nil];
@@ -331,19 +339,20 @@ static CGFloat kGenresMargin = 6.0f;
     }
 }
 
-- (void)checkLocationBeforeGoToResults {
+- (void)checkLocationBeforeGoToEspetaculos {
     if (!_location || [self locationIsOld:_location]) {
         NSLog(@"location is old, fetching another one");
         [_locationManager startUpdatingLocation];
     } else {
-        [self goToSearchResults];
+        [self goToEspetaculos];
     }
 }
 
 - (void)didSelectGenre:(QMGenre *)genre {
     _selectedGenre = genre;
-    [self checkLocationBeforeGoToResults];
+    [self checkLocationBeforeGoToEspetaculos];
 }
+
 
 # pragma mark
 # pragma mark - UICollectionView Datasource
@@ -365,12 +374,12 @@ static CGFloat kGenresMargin = 6.0f;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1.0;
+    return (NSInteger) 1.0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     QMGenreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"QMGenreCell" forIndexPath:indexPath];
-    QMGenre *genre = _genres[indexPath.row];
+    QMGenre *genre = _genres[(NSUInteger) indexPath.row];
     [cell setGenre:genre];
     return cell;
 }
@@ -386,9 +395,10 @@ static CGFloat kGenresMargin = 6.0f;
     return CGSizeMake(screenWidth, carouselHeight);
 }
 
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectedGenre = _genres[indexPath.row];
-    [self checkLocationBeforeGoToResults];
+    _selectedGenre = _genres[(NSUInteger) indexPath.row];
+    [self checkLocationBeforeGoToEspetaculos];
     // [self goToSearchResults];
 }
 
@@ -406,19 +416,37 @@ static CGFloat kGenresMargin = 6.0f;
     NSLog(@" fix -- latitude %+.6f, longitude %+.6f\n",
           _location.coordinate.latitude,
           _location.coordinate.longitude);
-    [self goToSearchResults];
+    [self goToEspetaculos];
 }
+
+
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if (error.code ==  kCLErrorDenied) {
-        NSString *message = @"Você não autorizou o tokEcompre para utilizar sua localização atual.";
-        [self showGpsErrorWithMessage:message];
+        /* Depois que o usuário negou o gps, cai aqui toda vez que pedir uma localização */
+        if (_selectedGenre) {
+            if ([self choosedNearbyMe]) {
+                [self askToRequireGps];
+
+            } else {
+                [self goToEspetaculos];
+            }
+        }
     } else {
         NSString *message = @"Não foi possível pegar sua localização atual.";
         [self showGpsErrorWithMessage:message];
     }
-    
+
     NSLog(@"  -- Location failed");
+}
+
+- (void)askToRequireGps {
+    _requestGpsAlertView = [[UIAlertView alloc] initWithTitle:nil
+                                                      message:@"Deseja permitir ao app COMPREINGRESSOS acessar sua posição de gps?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Não"
+                                            otherButtonTitles:@"Sim", nil];
+    [_requestGpsAlertView show];
 }
 
 - (void)showGpsErrorWithMessage:(NSString *)message {
@@ -439,20 +467,27 @@ static CGFloat kGenresMargin = 6.0f;
             NSLog(@"  -- permitiu o gps");
         }
         if (status == kCLAuthorizationStatusDenied) {
-            /* Neste ponto é necessário chamar o goToSearchResults porque na primeira vez q o aplicativo
-             * é executado e a msg de permissão do gps aparece, se o usuário negar a permissão, a callback
-             * didFailWithError não será chamada. */
             NSLog(@"  -- nao permitiu o gps");
-            [self goToSearchResults];
+
+            /* ------------------------------------------------------------- */
+            /* Este seria o ponto de mostrar um dialog e perguntar novamente */
+            /* se o usuário deseja ligar o gps                               */
+            /* ------------------------------------------------------------- */
+
+            /* Vamos chegar se o usuário clicou em algum gênero. Se não clicou
+            *  então o usuário acabou de abrir o app. */
+            if (_selectedGenre) {
+                [self goToEspetaculos];
+            }
         }
     } else if (status == kCLAuthorizationStatusNotDetermined) {
-        if ([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-            [[UIApplication sharedApplication] sendAction:@selector(requestAlwaysAuthorization)
-                                                       to:_locationManager
-                                                     from:self
-                                                 forEvent:nil];
-        }
-        [SVProgressHUD showErrorWithStatus:@"Você não autorizou o tokEcompre para utilizar sua localização atual"];
+        [self requestLocationAuthorization];
+    }
+}
+
+- (void)requestLocationAuthorization {
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
     }
 }
 
@@ -462,5 +497,25 @@ static CGFloat kGenresMargin = 6.0f;
     //    NSLog(@"     elapsed %f, %f", howRecent, [eventDate timeIntervalSince1970]);
     return true;
 }
+
+
+#pragma mark -
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == _requestGpsAlertView) {
+        if (buttonIndex == 1) { /* Sim */
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+                NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:settingsURL];
+            } else {
+                UIAlertView *io7message = [[UIAlertView alloc] initWithTitle:nil message:@"Você pode habilitar o gps para o COMPREINGRESSOS em Ajustes->Privacidade->Localização" delegate:self cancelButtonTitle:@"Fechar" otherButtonTitles:nil, nil];
+                [io7message show];
+            }
+
+        }
+    }
+}
+
 
 @end

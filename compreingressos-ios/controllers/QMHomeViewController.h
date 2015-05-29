@@ -10,6 +10,11 @@
 #import <CoreLocation/CoreLocation.h>
 #import "QMGenreView.h"
 
-@interface QMHomeViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout, QMGenreViewDelegate>
+@interface QMHomeViewController : UIViewController <UICollectionViewDataSource,
+        UICollectionViewDelegate,
+        CLLocationManagerDelegate,
+        UICollectionViewDelegateFlowLayout,
+        QMGenreViewDelegate,
+        UIAlertViewDelegate>
 
 @end

@@ -40,6 +40,8 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Usaremos sua localização para mostrar os eventos próximos a você.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Usaremos sua localização para mostrar os eventos próximos a você.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
