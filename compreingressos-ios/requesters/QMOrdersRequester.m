@@ -6,6 +6,7 @@
 #import "QMOrdersRequester.h"
 #import "QMOrder.h"
 #import "QMUser.h"
+#import "QMConstants.h"
 #import <AFNetworking/AFNetworking.h>
 
 static NSString *kOrdersPath = @"tickets.json";
@@ -25,6 +26,9 @@ static NSString *kOrdersPath = @"tickets.json";
 
     NSString *urlString = [self getUrlForPath:kOrdersPath];
     urlString = [self addQueryStringParamenter:@"client_id" withValue:user.userHash toUrl:urlString];
+    if (kIsDebugBuild) {
+        urlString = [self addQueryStringParamenter:@"env" withValue:@"homol" toUrl:urlString];
+    }
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
