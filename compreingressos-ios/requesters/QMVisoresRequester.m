@@ -9,6 +9,7 @@
 #import "QMVisoresRequester.h"
 #import "QMVisor.h"
 #import <AFNetworking/AFNetworking.h>
+#import "QMReachability.h"
 
 static NSString *const kVisoresPath = @"visores/lista.json";
 
@@ -21,8 +22,11 @@ static NSString *const kVisoresPath = @"visores/lista.json";
 
 + (AFJSONRequestOperation *)requestVisoresOnCompleteBlock:(void (^)(NSArray *visores)) onCompleteBlock
                                               onFailBlock:(void (^)(NSError *error)) onFailBlock {
-    
-    NSURL *url = [NSURL URLWithString:[self getUrlForPath:kVisoresPath]];
+
+    NSString *urlString = [self getUrlForPath:kVisoresPath];
+    urlString = [self addQueryStringParamenter:@"con" withValue:[self connectionType] toUrl:urlString];
+    // urlString = [self addQueryStringParamenter:@"res" withValue:[self resolution] toUrl:urlString];
+    NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -44,4 +48,17 @@ static NSString *const kVisoresPath = @"visores/lista.json";
     return operation;
 }
 
++ (NSString *)resolution {
+    return nil;
+}
+
++ (NSString *)connectionType {
+    QMReachability *networkReachability = [QMReachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == ReachableViaWiFi) {
+        return @"wifi";
+    } else {
+        return @"wwan";
+    }
+}
 @end

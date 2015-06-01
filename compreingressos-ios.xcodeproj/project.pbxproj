@@ -62,6 +62,8 @@
 		253E78601AF146AC00EEF1E3 /* obrigado@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */; };
 		253E78631AF14C0900EEF1E3 /* button_wireframe.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78611AF14C0900EEF1E3 /* button_wireframe.png */; };
 		253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */; };
+		253F91A51B1C923F000A4B98 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253F91A41B1C923F000A4B98 /* SystemConfiguration.framework */; };
+		253F91A81B1C92C0000A4B98 /* QMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 253F91A71B1C92C0000A4B98 /* QMReachability.m */; };
 		2549607B1AF93E2100EED4CF /* QMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2549607A1AF93E2100EED4CF /* QMSearchViewController.m */; };
 		2550B4421B065CE800602377 /* pinch_zoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 2550B43F1B065CE800602377 /* pinch_zoom.png */; };
 		2550B4431B065CE800602377 /* pinch_zoom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2550B4401B065CE800602377 /* pinch_zoom@2x.png */; };
@@ -209,6 +211,9 @@
 		253E785D1AF146AC00EEF1E3 /* obrigado@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "obrigado@3x.png"; sourceTree = "<group>"; };
 		253E78611AF14C0900EEF1E3 /* button_wireframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_wireframe.png; sourceTree = "<group>"; };
 		253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wireframe@2x.png"; sourceTree = "<group>"; };
+		253F91A41B1C923F000A4B98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		253F91A61B1C92C0000A4B98 /* QMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMReachability.h; sourceTree = "<group>"; };
+		253F91A71B1C92C0000A4B98 /* QMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMReachability.m; sourceTree = "<group>"; };
 		254960791AF93E2100EED4CF /* QMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSearchViewController.h; sourceTree = "<group>"; };
 		2549607A1AF93E2100EED4CF /* QMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSearchViewController.m; sourceTree = "<group>"; };
 		2550B43F1B065CE800602377 /* pinch_zoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinch_zoom.png; sourceTree = "<group>"; };
@@ -311,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253F91A51B1C923F000A4B98 /* SystemConfiguration.framework in Frameworks */,
 				256A77A51AEFB7CA003DD32F /* PassKit.framework in Frameworks */,
 				25270E781B00F7BB00496D03 /* Crashlytics.framework in Frameworks */,
 				255963E81AC1C8A100319BEB /* CoreLocation.framework in Frameworks */,
@@ -584,6 +590,8 @@
 				25D3B1761ADC31F100CB3924 /* QR */,
 				252E63101B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.h */,
 				252E63111B012CE0003B2B12 /* NSHTTPCookieStorage+QMStorage.m */,
+				253F91A61B1C92C0000A4B98 /* QMReachability.h */,
+				253F91A71B1C92C0000A4B98 /* QMReachability.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -622,6 +630,7 @@
 		CDC8D68087B6BC8338626F97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				253F91A41B1C923F000A4B98 /* SystemConfiguration.framework */,
 				25270E751B00F7BB00496D03 /* Fabric.framework */,
 				25270E761B00F7BB00496D03 /* Crashlytics.framework */,
 				256A77A41AEFB7CA003DD32F /* PassKit.framework */,
@@ -916,6 +925,7 @@
 				25081C571AFB905600261A7C /* QMPushNotificationUtils.m in Sources */,
 				25BB6A6D1AC0741900A927A1 /* QMBannerView.m in Sources */,
 				252FD81F1AB73C820007C29B /* AppDelegate.m in Sources */,
+				253F91A81B1C92C0000A4B98 /* QMReachability.m in Sources */,
 				258B93D11AC0537D0007C584 /* QMVisor.m in Sources */,
 				252FD81C1AB73C820007C29B /* main.m in Sources */,
 				25D3B18F1ADC31F100CB3924 /* UIImage+MDQRCode.m in Sources */,
