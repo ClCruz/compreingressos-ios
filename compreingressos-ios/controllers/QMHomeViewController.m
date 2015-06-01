@@ -54,6 +54,7 @@ static CGFloat kGenresMargin = 6.0f;
     BOOL              _segueLock;
     BOOL              _showBadgeOnViewDidAppear;
     BOOL              _hideBadgeOnViewDidAppear;
+    NSTimer           *_clickOnGenreTimer;
 
     IBOutlet UICollectionView   *_collectionView;
     IBOutlet UIImageView        *_background;
@@ -343,8 +344,38 @@ static CGFloat kGenresMargin = 6.0f;
     if (!_location || [self locationIsOld:_location]) {
         NSLog(@"location is old, fetching another one");
         [_locationManager startUpdatingLocation];
+        [self startClickOnGenreTimerIfNeeded];
     } else {
         [self goToEspetaculos];
+    }
+}
+
+/* Caso o gps não retorne nada em 2s, vamos prosseguir sem a
+* localização */
+- (void)startClickOnGenreTimerIfNeeded {
+    if (!_clickOnGenreTimer) {
+        [SVProgressHUD showWithStatus:@"Aguardando GPS"];
+        _clickOnGenreTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:2]
+                                                      interval:0
+                                                        target:self
+                                                      selector:@selector(clickOnGenreTimerTimeout)
+                                                      userInfo:nil
+                                                       repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:_clickOnGenreTimer forMode:NSRunLoopCommonModes];
+    }
+}
+
+- (void)clickOnGenreTimerTimeout {
+//    if (_location is )
+    _clickOnGenreTimer = nil;
+    [self goToEspetaculos];
+}
+
+- (void)stopClickOnGenreTimer {
+    if (_clickOnGenreTimer) {
+        [_clickOnGenreTimer invalidate];
+        _clickOnGenreTimer = nil;
+        [SVProgressHUD dismiss];
     }
 }
 
@@ -434,13 +465,14 @@ static CGFloat kGenresMargin = 6.0f;
         }
     } else {
         NSString *message = @"Não foi possível pegar sua localização atual.";
-        [self showGpsErrorWithMessage:message];
+//        [self showGpsErrorWithMessage:message];
     }
 
     NSLog(@"  -- Location failed");
 }
 
 - (void)askToRequireGps {
+    [self stopClickOnGenreTimer];
     _requestGpsAlertView = [[UIAlertView alloc] initWithTitle:nil
                                                       message:@"Deseja permitir ao app COMPREINGRESSOS acessar sua posição de gps?"
                                                      delegate:self
