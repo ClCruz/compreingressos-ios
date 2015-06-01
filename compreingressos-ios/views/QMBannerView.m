@@ -35,7 +35,7 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(clickedOnLinkButton)];
     singleTap.numberOfTapsRequired = 1;
     [self addGestureRecognizer:singleTap];
-        
+    [_bannerImage setOpaque:NO];
     self.frame = CGRectSetSize(self.frame, [QMBannerView sizeForBanner]);
 }
 
@@ -64,46 +64,38 @@
         @try {
             __block UIActivityIndicatorView *imageActivityIndicator;
             __weak UIImageView *weakImageView = _bannerImage;
-            _bannerImage.alpha = 0.0;
             [_bannerImage sd_setImageWithURL:[NSURL URLWithString:_banner.imageUrl]
                             placeholderImage:nil
                                      options:0
                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                if (!imageActivityIndicator) {
-                    imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                    [weakImageView addSubview:imageActivityIndicator];
-                    imageActivityIndicator.center = _carousel.center;
-                    [imageActivityIndicator setTintColor:[UIColor blackColor]];
-                    [imageActivityIndicator setColor:[UIColor blackColor]];
-                    [imageActivityIndicator startAnimating];
-                }
+                                        if (!imageActivityIndicator) {
+                                            imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                                            [weakImageView addSubview:imageActivityIndicator];
+                                            imageActivityIndicator.center = weakImageView.center;
+                                            CGFloat x = [UIScreen mainScreen].bounds.size.width - imageActivityIndicator.frame.size.width;
+                                            imageActivityIndicator.frame = CGRectSetOriginX(imageActivityIndicator.frame, x/2.0f);
+                                            [imageActivityIndicator setColor:[UIColor blackColor]];
+                                            [imageActivityIndicator startAnimating];
+                                        }
             }
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [imageActivityIndicator removeFromSuperview];
-                imageActivityIndicator = nil;
-                [self showImage:image];
-                if (!image) {
-//                    [_bannerImage setImage:[QMConstants placeHolderImage]];
-                }
+                                       [imageActivityIndicator stopAnimating];
+                                       [imageActivityIndicator removeFromSuperview];
+                                       imageActivityIndicator = nil;
+                                       [weakImageView layoutIfNeeded];
+                                       weakImageView.alpha = 0.0;
+                                       [UIView animateWithDuration:0.3 animations:^{
+                                           weakImageView.alpha = 1.0;
+                                       }];
+                                       if (!image) {
+                                           // [_bannerImage setImage:[QMConstants placeHolderImage]];
+                                       }
             }];
         }
         @catch (NSException *exception) {
             /* TODO: Usar handled exception do crittercism. Mas no pior caso não vai carregar a imagem */
         }
     }
-}
-
-- (void)showImage:(UIImage *)image {
-    [_bannerImage setImage:image];
-    _bannerImage.alpha = 0.0;
-    _description.alpha = 0.0;
-    [UIView animateWithDuration:0.2 animations:^{
-        _bannerImage.alpha = 1.0;
-        _description.alpha = 1.0;
-        _spinner.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [_spinner stopAnimating];
-    }];
 }
 
 - (BOOL)hasLink {
@@ -116,7 +108,7 @@
             if (_banner.linkIsVideo) {
                 UIButton *play = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, 80.0)];
                 [play addTarget:self action:@selector(clickedOnVideoButton) forControlEvents:UIControlEventTouchUpInside];
-                [play setImage:[UIImage imageNamed:@"ic_play_n.png"] forState:UIControlStateNormal];
+                //[play setImage:[UIImage imageNamed:@"ic_play_n.png"] forState:UIControlStateNormal];
                 [self addSubview:play];
                 play.center = self.center;
                 CGFloat deltaY = 10.0;
@@ -128,7 +120,7 @@
             } else {
                 UIButton *link = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
                 [link addTarget:self action:@selector(clickedOnLinkButton) forControlEvents:UIControlEventTouchUpInside];
-                [link setImage:[UIImage imageNamed:@"ic_link_n.png"] forState:UIControlStateNormal];
+                //[link setImage:[UIImage imageNamed:@"ic_link_n.png"] forState:UIControlStateNormal];
                 [self addSubview:link];
                 link.frame = CGRectSetOrigin(link.frame, CGPointMake(25.0f, -5.0f));
             }
