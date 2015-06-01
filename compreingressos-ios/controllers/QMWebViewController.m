@@ -18,6 +18,7 @@
 #import "QMPushNotificationUtils.h"
 #import "QMZoomTutorialView.h"
 #import "QMUser.h"
+#import "QMPaymentFinalizationViewController.h"
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
 
@@ -312,15 +313,14 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [self.navigationItem setBackBarButtonItem:nextViewBackButton];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController]
-    // Pass the selected object to the new view controller.
+    if ([segue.destinationViewController isKindOfClass:[QMPaymentFinalizationViewController class]]) {
+        QMPaymentFinalizationViewController *controller = segue.destinationViewController;
+        [controller setShowTicketsButton:![self isAssinaturas:_url]];
+    }
+    [super prepareForSegue:segue sender:sender];
 }
-*/
+
 
 - (void)pollDocumentReadyState {
         if ([[_webview stringByEvaluatingJavaScriptFromString:@"(/loaded|complete/.test(document.readyState))"] caseInsensitiveCompare:@"true"] == NSOrderedSame) {
@@ -328,7 +328,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
             [self hideScript];
             [SVProgressHUD dismiss];
             if ([self isLastStep]) {
-                [self processOrder];
+                [self processOrderIfNeeded];
                 [self performSegueWithIdentifier:@"paymentFinalizationSegue" sender:nil];
             } else {
                 if ([self isSecondStep:_url]) {
@@ -365,17 +365,30 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     _promoCode = nil;
 }
 
-- (void)processOrder {
+- (void)processOrderIfNeeded {
+    if ([self isAssinaturas:_url]) {
+        [self newOrderTasks];
+    } else {
+        QMOrder *order = [self processOrder];
+        if (order.number && order.number.length > 0) {
+            [self newOrderTasks];
+        }
+    }
+}
+
+- (QMOrder *)processOrder {
     NSString *jsonString = [self extractOrderJsonFromPage];
     NSDictionary *json = [self dictionaryWithJson:jsonString];
     QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
     [order setOriginalJson:jsonString];
     [QMOrder addOrderToHistory:order];
-    if (order.number && order.number.length > 0) {
-        [self notifyNewOrder];
-        [QMPushNotificationUtils unsubscribe:@"prospect"];
-        [QMPushNotificationUtils subscribe:@"client"];
-    }
+    return order;
+}
+
+- (void)newOrderTasks {
+    [self notifyNewOrder];
+    [QMPushNotificationUtils unsubscribe:@"prospect"];
+    [QMPushNotificationUtils subscribe:@"client"];
 }
 
 - (void)notifyNewOrder {
@@ -547,6 +560,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         /* Troca a url do fluxo de compra para homol */
         if ([self isFirstStep:_url] && [_url rangeOfString:@"Turma-do-Chaves"].length == 0) {
             url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
+            // url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=71331&eventoDS=TER%C3%87AS%20APP"; /* assinatura */
         }
     }
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -601,8 +615,13 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     return [self string:url matchesRegex:@"pagamento_ok"];
 }
 
+/* Assinaturas */
+- (BOOL)isAssinaturas:(NSString *)url {
+    return ([url rangeOfString:@"assinaturas"].length != 0);
+}
+
 - (BOOL)isLastStep {
-    return [self isSeventhStep:_url];
+    return [self isSeventhStep:_url] || [self isAssinaturas:_url];
 }
 
 - (BOOL)isNextStep:(NSString *)url {
@@ -626,9 +645,9 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         nextStep = [self isSixthStep:url];
     }
     else if ([self isSixthStep:_url]) {
-        nextStep = [self isSeventhStep:url];
+        nextStep = [self isSeventhStep:url] || [self isAssinaturas:url];
     }
-    
+
     NSLog(@"Nextstep: %i", nextStep);
     return nextStep;
 }

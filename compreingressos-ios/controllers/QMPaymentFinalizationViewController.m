@@ -16,9 +16,17 @@
 @end
 
 @implementation QMPaymentFinalizationViewController {
-    IBOutlet UIScrollView *_scrollView;
-    IBOutlet UILabel *_lastLabel;
+
+@private
+    IBOutlet UIScrollView       *_scrollView;
+    IBOutlet UILabel            *_lastLabel;
+    IBOutlet UIButton           *_seeTicketsButton;
+    IBOutlet NSLayoutConstraint *_verticalSpace1; /* entre bt 'Ver Ingressos' e a label 'Seus ingressos...' */
+    BOOL                        _showTicketsButton;
+
 }
+
+@synthesize showTicketsButton = _showTicketsButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +38,11 @@
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     compreIngressos.alpha = 0.0;
     [buttonForLogo setCustomView:compreIngressos];
+
+    if (!_showTicketsButton) {
+        [_seeTicketsButton setHidden:YES];
+        [_verticalSpace1 setConstant:-40.0f];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

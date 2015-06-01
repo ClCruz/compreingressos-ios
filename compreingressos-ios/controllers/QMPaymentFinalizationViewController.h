@@ -10,6 +10,9 @@
 
 @interface QMPaymentFinalizationViewController : UIViewController
 
+/* No caso de assinaturas, não mostraremos o botão "Ver Ingresso" */
+@property (nonatomic) BOOL showTicketsButton;
+
 - (IBAction)clickedOrderHistory:(id)sender;
 
 @end

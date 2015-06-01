@@ -774,6 +774,8 @@
                     <connections>
                         <outlet property="_lastLabel" destination="hIY-Bc-icm" id="aUJ-k8-AdA"/>
                         <outlet property="_scrollView" destination="E1b-09-gZx" id="u1q-5k-4BB"/>
+                        <outlet property="_seeTicketsButton" destination="1XM-QR-KNp" id="dZd-SD-4RI"/>
+                        <outlet property="_verticalSpace1" destination="wD5-u0-HrT" id="8od-L2-LxI"/>
                         <segue destination="6ss-N3-Izd" kind="push" identifier="orderDetailSegue" id="LUj-BX-06L"/>
                     </connections>
                 </viewController>
@@ -796,7 +798,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gR8-QU-OoJ"/>
         <segue reference="tDg-F5-Jlu"/>
+        <segue reference="LUj-BX-06L"/>
     </inferredMetricsTieBreakers>
 </document>
