@@ -25,7 +25,7 @@ static NSString *const kVisoresPath = @"visores/lista.json";
 
     NSString *urlString = [self getUrlForPath:kVisoresPath];
     urlString = [self addQueryStringParamenter:@"con" withValue:[self connectionType] toUrl:urlString];
-    // urlString = [self addQueryStringParamenter:@"res" withValue:[self resolution] toUrl:urlString];
+    urlString = [self addQueryStringParamenter:@"width" withValue:[self resolution] toUrl:urlString];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -49,7 +49,9 @@ static NSString *const kVisoresPath = @"visores/lista.json";
 }
 
 + (NSString *)resolution {
-    return nil;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    int intWidth = (int)fabsf(width);
+    return [NSString stringWithFormat:@"%d", intWidth];
 }
 
 + (NSString *)connectionType {
