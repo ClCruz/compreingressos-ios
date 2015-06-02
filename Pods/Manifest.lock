@@ -1,6 +1,19 @@
 PODS:
   - AFNetworking (1.3.4)
   - Bolts/Tasks (1.1.5)
+  - Google/Analytics (1.0.7):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.0.7):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleAnalytics (3.12.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.0)
+  - GoogleUtilities (1.0.1):
+    - GoogleSymbolUtilities (~> 1.0)
   - JSBadgeView (1.3.2)
   - Parse (1.7.2.1):
     - Bolts/Tasks (>= 1.1.5)
@@ -14,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
+  - Google/Analytics (~> 1.0.7)
   - JSBadgeView (~> 1.3.2)
   - Parse (~> 1.7.2)
   - SDWebImage (~> 3.7.1)
@@ -23,10 +37,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
+  GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   JSBadgeView: 08284afc9d0eb60069674e517cac2d37d4319208
   Parse: 8213b05b52768b34b87e1e41fd9efc88a9933f3f
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2
