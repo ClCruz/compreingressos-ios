@@ -19,6 +19,7 @@
 #import "QMZoomTutorialView.h"
 #import "QMUser.h"
 #import "QMPaymentFinalizationViewController.h"
+#import <Google/Analytics.h>
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
 
@@ -93,6 +94,11 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [self configureModalIfNeeded];
     // [self printCookies];
     [self findAndSaveUserHash];
+
+    NSString *titleForAnalytics = [self titleForStepForAnalytics:YES];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:titleForAnalytics];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)showTutorialIfNeeded {
@@ -275,15 +281,19 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (NSString *)titleForStep {
-    NSString *title = nil;
+    return [self titleForStepForAnalytics:NO];
+}
+
+
+- (NSString *)titleForStepForAnalytics:(BOOL)analytics {
+    NSString *title = @"";
     if (_isZerothStep) {
         title = @"Destaque";
     }
-    if ([self isFirstStep:_url]) {
-        if (_espetaculo) {
+    else if ([self isFirstStep:_url]) {
+        title = @"Espetáculo";
+        if (_espetaculo && !analytics) {
             title = _espetaculo.titulo;
-        } else {
-            title = @"Espetáculo";
         }
     }
     else if ([self isSecondStep:_url]) {
@@ -302,8 +312,22 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         title = @"Pagamento";
     }
 
+    /* A partir daqui, não será mostrado para o usuário, porém
+     * vamos gerar os títulos para fins de analytics */
+    else if ([self isSeventhStep:_url]) {
+        title = @"Finalização Pagamento";
+    }
+    else if ([self isAssinaturas:_url]) {
+        title = @"Assinaturas";
+    }
+
+    if (analytics) {
+        title = [NSString stringWithFormat:@"[webview] %@", title];
+    }
+
     return title;
 }
+
 
 - (void)configureNextViewBackButtonWithTitle:(NSString *)title {
     UIBarButtonItem *nextViewBackButton = [[UIBarButtonItem alloc] initWithTitle:title
@@ -511,7 +535,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-            NSLog(@"DID_FINISH_LOAD [%@]", [webView.request.URL absoluteString]);
+    NSLog(@"DID_FINISH_LOAD [%@]", [webView.request.URL absoluteString]);
 //    NSString *script = @"var tok_result = ''; $('.destaque_menor_v2').each(function() { tok_result += $(this).find('h3').first().text()}); tok_result;";
 //    NSString *result = [_webview stringByEvaluatingJavaScriptFromString:script];
 //    NSLog(@"script output: %@", result);
@@ -545,7 +569,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSLog(@"SHOULD_START_LOAD [%@]", [request.URL absoluteString]);
     NSString *body = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
-    NSLog(@"    BODY [%@]", body);
+    // NSLog(@"    BODY [%@]", body);
     
     NSString *url = [[request URL] absoluteString];
     if ([self isNextStep:url]) {
