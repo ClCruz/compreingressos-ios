@@ -207,11 +207,6 @@ static CGFloat kGenresMargin = 6.0f;
     [_scrollView addSubview:genreView];
     _bottomView = genreView;
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
-    //    [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    //    [genreView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    //    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(genreView);
-    //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
-    //    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[genreView]|" options:0 metrics: 0 views:viewsDictionary]];
 }
 
 - (void)requestData {
@@ -307,8 +302,12 @@ static CGFloat kGenresMargin = 6.0f;
     _hideBadgeOnViewDidAppear = YES;
 }
 
-- (BOOL)choosedNearbyMe {
+- (BOOL)choosedNearbyMe { /* Escolheu Perto de Mim */
     return [_selectedGenre.title isEqualToString:((QMGenre *)_genres[0]).title];
+}
+
+- (BOOL)choosedMuchMore { /* Escolheu Muito Mais */
+    return _selectedGenre == [_genres lastObject];
 }
 
 #pragma mark - Navigation
@@ -317,7 +316,9 @@ static CGFloat kGenresMargin = 6.0f;
     if ([segue.destinationViewController isKindOfClass:[QMEspetaculosViewController class]]) {
         QMEspetaculosViewController *controller = segue.destinationViewController;
         [controller setGenre:_selectedGenre];
-        [controller setLocation:_location];
+        if (![self choosedMuchMore]) { /* Perto de mim não envia location */
+            [controller setLocation:_location];
+        }
         _selectedGenre = nil;
     }
     else if ([segue.destinationViewController isKindOfClass:[QMWebViewController class]]) {
@@ -385,9 +386,19 @@ static CGFloat kGenresMargin = 6.0f;
     }
 }
 
+
+# pragma mark
+# pragma mark - QMGenreViewDelegate Delegate
+
+
 - (void)didSelectGenre:(QMGenre *)genre {
     _selectedGenre = genre;
-    [self checkLocationBeforeGoToEspetaculos];
+    /* Muito Mais mostra direto sem precisar do gps */
+    if ([self choosedMuchMore]) {
+        [self goToEspetaculos];
+    } else {
+        [self checkLocationBeforeGoToEspetaculos];
+    }
 }
 
 
@@ -435,8 +446,7 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _selectedGenre = _genres[(NSUInteger) indexPath.row];
-    [self checkLocationBeforeGoToEspetaculos];
-    // [self goToSearchResults];
+    // [self goToEspetaculos];
 }
 
 
