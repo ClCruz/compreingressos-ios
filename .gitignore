@@ -1,6 +1,8 @@
 .idea
 
 # Exclude user-specific XCode 3 and 4 files
+xcshareddata
+*.xccheckout
 *.xcuserdatad
 *.mode1
 *.mode1v3
@@ -10,4 +12,4 @@
 *.pbxuser
 *.xcuserdata
 *.xcuserstate
-*.xcuserdatad:wq
+*.xcuserdatad
