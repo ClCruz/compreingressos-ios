@@ -15,6 +15,7 @@
 #import "QMUser.h"
 #import "SVProgressHUD.h"
 #import <Google/Analytics.h>
+#import <AFNetworking/AFNetworking.h>
 
 
 @interface QMOrderHistoryViewController ()
@@ -23,11 +24,12 @@
 
 @implementation QMOrderHistoryViewController {
     @private
-    IBOutlet UITableView *_tableView;
-    UIRefreshControl *_refreshControl;
-    NSArray *_orders;
-    BOOL _firstViewDidAppear;
-    IBOutlet UIView *_placeholder;
+    IBOutlet UITableView   *_tableView;
+    IBOutlet UIView        *_placeholder;
+    UIRefreshControl       *_refreshControl;
+    NSArray                *_orders;
+    AFJSONRequestOperation *_operation;
+    BOOL                    _firstViewDidAppear;
 }
 
 - (void)viewDidLoad {
@@ -66,6 +68,11 @@
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -100,7 +107,7 @@
         if (_firstViewDidAppear) {
             [SVProgressHUD show];
         }
-        [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
+        _operation = [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
             _orders = [QMOrder sortOrdersByOrderNumber:orders];
             //[self showPlaceholderIfNeeded];
             //[self sortOrdersBySentTime];
