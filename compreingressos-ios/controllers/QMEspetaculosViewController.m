@@ -14,6 +14,7 @@
 #import "SVProgressHUD.h"
 #import "QMEspetaculoCell.h"
 #import "QMWebViewController.h"
+#import <Google/Analytics.h>
 
 @interface QMEspetaculosViewController ()
 
@@ -37,6 +38,18 @@
 
     [self configureCollectionView];
     [self requestEspetaculos];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    NSString *titleForAnalytics = @"Espetáculos";
+    if (_genre && _genre.title) {
+        titleForAnalytics = [NSString stringWithFormat:@"%@ - %@", titleForAnalytics, _genre.title];
+    }
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:titleForAnalytics];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {
