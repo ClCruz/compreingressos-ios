@@ -64,6 +64,7 @@
 		253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 253E78621AF14C0900EEF1E3 /* button_wireframe@2x.png */; };
 		253F91A51B1C923F000A4B98 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253F91A41B1C923F000A4B98 /* SystemConfiguration.framework */; };
 		253F91A81B1C92C0000A4B98 /* QMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 253F91A71B1C92C0000A4B98 /* QMReachability.m */; };
+		253F91AA1B1DC537000A4B98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 253F91A91B1DC537000A4B98 /* GoogleService-Info.plist */; };
 		2549607B1AF93E2100EED4CF /* QMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2549607A1AF93E2100EED4CF /* QMSearchViewController.m */; };
 		2550B4421B065CE800602377 /* pinch_zoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 2550B43F1B065CE800602377 /* pinch_zoom.png */; };
 		2550B4431B065CE800602377 /* pinch_zoom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2550B4401B065CE800602377 /* pinch_zoom@2x.png */; };
@@ -214,6 +215,7 @@
 		253F91A41B1C923F000A4B98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		253F91A61B1C92C0000A4B98 /* QMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMReachability.h; sourceTree = "<group>"; };
 		253F91A71B1C92C0000A4B98 /* QMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMReachability.m; sourceTree = "<group>"; };
+		253F91A91B1DC537000A4B98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		254960791AF93E2100EED4CF /* QMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSearchViewController.h; sourceTree = "<group>"; };
 		2549607A1AF93E2100EED4CF /* QMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSearchViewController.m; sourceTree = "<group>"; };
 		2550B43F1B065CE800602377 /* pinch_zoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinch_zoom.png; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		252FD8191AB73C820007C29B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				253F91A91B1DC537000A4B98 /* GoogleService-Info.plist */,
 				252FD81A1AB73C820007C29B /* Info.plist */,
 				252FD81B1AB73C820007C29B /* main.m */,
 				25BB6A5E1AC0725100A927A1 /* compreingressos-ios-Prefix.pch */,
@@ -758,6 +761,7 @@
 				251FA1DD1AC3386400C20391 /* comedia.png in Resources */,
 				258CAE731AFA730C00C5BE9B /* search_icon@3x.png in Resources */,
 				255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */,
+				253F91AA1B1DC537000A4B98 /* GoogleService-Info.plist in Resources */,
 				253E785F1AF146AC00EEF1E3 /* obrigado@2x.png in Resources */,
 				251FA1E31AC3386400C20391 /* danca.png in Resources */,
 				2550B4441B065CE800602377 /* pinch_zoom@3x.png in Resources */,

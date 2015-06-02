@@ -78,10 +78,10 @@
     [GAI sharedInstance].trackUncaughtExceptions = NO;
     
     // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 60;
+    [GAI sharedInstance].dispatchInterval = 30;
     
     // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelWarning];
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-16656615-2"];
