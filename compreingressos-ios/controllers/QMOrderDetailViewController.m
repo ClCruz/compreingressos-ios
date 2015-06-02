@@ -13,6 +13,7 @@
 #import "QMOrderDetailViewController.h"
 #import "QMOrderDetailHeaderCell.h"
 #import "QMOrderHistoryTicketCell.h"
+#import <Google/Analytics.h>
 
 @interface QMOrderDetailViewController ()
 
@@ -45,6 +46,14 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self configureModalIfNeeded];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Detalhe Ingresso"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

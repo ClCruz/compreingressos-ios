@@ -14,6 +14,7 @@
 #import "QMOrdersRequester.h"
 #import "QMUser.h"
 #import "SVProgressHUD.h"
+#import <Google/Analytics.h>
 
 
 @interface QMOrderHistoryViewController ()
@@ -59,6 +60,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self deselectAnyRowIfNeeded];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Meus Ingressos"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

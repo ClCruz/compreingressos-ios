@@ -11,6 +11,7 @@
 #import "SVProgressHUD.h"
 #import "QMEspetaculosRequester.h"
 #import "QMWebViewController.h"
+#import <Google/Analytics.h>
 
 @interface QMSearchViewController ()
 
@@ -33,6 +34,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.titleView = _searchBar;
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Busca"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

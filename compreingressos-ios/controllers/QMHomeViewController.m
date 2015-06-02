@@ -29,6 +29,7 @@
 #import "QMSearchViewController.h"
 #import "QMBannerView.h"
 #import "QMPushNotificationUtils.h"
+#import <Google/Analytics.h>
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
 
@@ -110,6 +111,10 @@ static CGFloat kGenresMargin = 6.0f;
 //
 //    QMOrder *order = [[QMOrder alloc] initWithDictionary:jsonDictionary];
 //    [QMOrder addOrderToHistory:order];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Home"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

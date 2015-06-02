@@ -10,6 +10,7 @@
 #import "QMOrderDetailViewController.h"
 #import "QMConstants.h"
 #import "QMOrder.h"
+#import <Google/Analytics.h>
 
 @interface QMPaymentFinalizationViewController ()
 
@@ -56,6 +57,10 @@
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Fechar" style:UIBarButtonItemStyleDone target:self action:@selector(clickedOnCloseButton:)];
     [closeButton setTintColor:UIColorFromRGB(kCompreIngressosDefaultRedColor)];
     self.navigationItem.rightBarButtonItem = closeButton;
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Finalização Pagamento"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

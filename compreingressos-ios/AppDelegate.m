@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "QMConstants.h"
-#import "GAI.h"
+#import <Google/Analytics.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "NSHTTPCookieStorage+QMStorage.h"
@@ -75,16 +75,20 @@
 }
 
 - (void)configureGoogleAnalytics {
-    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    /* Configure tracker from GoogleService-Info.plist. */
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    if (configureError != nil) {
+        NSLog(@"Error configuring the Google context: %@", configureError);
+    }
     
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 30;
-    
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    
-    // Initialize tracker. Replace with your tracking ID.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-16656615-2"];
+    /* Optional: configure GAI options. */
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = NO;
+    gai.dispatchInterval = 30;
+    if (kIsDebugBuild) {
+        gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+    }
 }
 
 - (void)setupSDImageCache {
