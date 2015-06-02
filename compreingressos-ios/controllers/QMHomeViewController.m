@@ -122,6 +122,7 @@ static CGFloat kGenresMargin = 6.0f;
     _segueLock = NO;
     _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
     [_carouselView resetCaroselTimer];
+    [self stopClickOnGenreTimer];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
