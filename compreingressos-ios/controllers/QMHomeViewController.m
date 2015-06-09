@@ -6,29 +6,19 @@
 //  Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
-#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
-
 #import "JSBadgeView.h"
 #import "SVProgressHUD.h"
 #import "QMVisoresRequester.h"
 #import "QMConstants.h"
 #import "QMGenre.h"
 #import "QMVisor.h"
-#import "QMOrder.h"
 #import "QMGenreCell.h"
 #import "QMCarouselView.h"
 #import "QMHomeViewController.h"
 #import "QMWebViewController.h"
 #import "QMEspetaculosViewController.h"
 #import "QMEspetaculosGridHeaderView.h"
-#import "QMOrderHistoryViewController.h"
-#import "QMSearchViewController.h"
 #import "QMBannerView.h"
-#import "QMPushNotificationUtils.h"
 #import <Google/Analytics.h>
 
 //static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
@@ -79,7 +69,6 @@ static CGFloat kGenresMargin = 6.0f;
     _genres = [[NSMutableArray alloc] init];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    
     [self configureCompreIngressosLogo];
     [self configureLocationManager];
     [self configureCarousel];
