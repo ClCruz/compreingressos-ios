@@ -78,11 +78,7 @@ static const int kBannersHeightRetina3 = 156;
     [self resetCaroselTimer];
     [UIView animateWithDuration:0.2 animations:^{
         [_spinner setAlpha:0.0];
-        if (_pageControl.numberOfPages > 1) {
-            [_pageControl setHidden:NO];
-        } else {
-            [_pageControl setHidden:YES];
-        }
+        [_pageControl setHidden:_pageControl.numberOfPages <= 1];
     } completion:^(BOOL finished) {
         [_spinner stopAnimating];
     }];
@@ -114,7 +110,7 @@ static const int kBannersHeightRetina3 = 156;
 
     QMBannerView *bannerView = nil;
     for (NSUInteger i=0; i<[_banners count]; i++) {
-        QMBanner *banner = [_banners objectAtIndex:i];
+        QMBanner *banner = _banners[i];
         bannerView = [QMBannerView allocFromNib];
         [bannerView setCarousel:self];
         [bannerView setBanner:banner];

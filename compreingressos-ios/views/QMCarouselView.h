@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "compreingressos-ios-Prefix.pch"
 
-static
-
 @interface QMCarouselView : UIView <UIScrollViewDelegate> {
     
     IBOutlet UIScrollView *scrollView;
