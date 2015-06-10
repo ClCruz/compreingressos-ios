@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "compreingressos-ios-Prefix.pch"
 
-@interface QMCarouselView : UIView <UIScrollViewDelegate> {
+@interface QMCarouselView : UITableViewCell <UIScrollViewDelegate> {
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIView *banner1;

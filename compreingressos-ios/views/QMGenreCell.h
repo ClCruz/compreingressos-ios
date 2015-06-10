@@ -10,11 +10,13 @@
 
 @class QMGenre;
 
-@interface QMGenreCell : UICollectionViewCell
+@interface QMGenreCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (strong, nonatomic) IBOutlet UILabel     *titleLabel;
-@property(nonatomic, strong)           QMGenre     *genre;
+@property (strong, nonatomic) IBOutlet UIImageView        *iconImageView;
+@property (strong, nonatomic) IBOutlet UIImageView        *separator;
+@property (strong, nonatomic) IBOutlet UILabel            *titleLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftMargin;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleLeftMargin;
+@property (strong, nonatomic)          QMGenre            *genre;
 
 @end

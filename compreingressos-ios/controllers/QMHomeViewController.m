@@ -17,13 +17,7 @@
 #import "QMHomeViewController.h"
 #import "QMWebViewController.h"
 #import "QMEspetaculosViewController.h"
-#import "QMEspetaculosGridHeaderView.h"
-#import "QMBannerView.h"
 #import <Google/Analytics.h>
-
-//static NSString *const kCompreIngressosURL = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61566&eventoDS=COSI%20FAN%20TUT%20TE";
-
-static CGFloat kGenresMargin = 6.0f;
 
 @interface QMHomeViewController ()
 
@@ -34,7 +28,6 @@ static CGFloat kGenresMargin = 6.0f;
     NSArray           *_genresJson;
     NSMutableArray    *_genres;
     QMCarouselView    *_carouselView;
-    UIView            *_bottomView; // Última view da scrollview
     UIView            *_badgeContainer;
     JSBadgeView       *_badgeView;
     CLLocationManager *_locationManager;
@@ -42,40 +35,35 @@ static CGFloat kGenresMargin = 6.0f;
     UIAlertView       *_gpsErrorAlertView;
     UIAlertView       *_requestGpsAlertView;
     QMGenre           *_selectedGenre;
-    BOOL              _segueLock;
-    BOOL              _showBadgeOnViewDidAppear;
-    BOOL              _hideBadgeOnViewDidAppear;
+    BOOL               _segueLock;
+    BOOL               _showBadgeOnViewDidAppear;
+    BOOL               _hideBadgeOnViewDidAppear;
     NSTimer           *_clickOnGenreTimer;
 
-    IBOutlet UICollectionView   *_collectionView;
-    IBOutlet UIImageView        *_background;
-    IBOutlet UIScrollView       *_scrollView;
     IBOutlet UIBarButtonItem    *_orderHistoryButton;
     IBOutlet UIBarButtonItem    *_buttonForLogo;
-    QMEspetaculosGridHeaderView *_carrosselVisores;
+    IBOutlet UITableView        *_tableView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _genresJson = @[
-                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png", @"image_url": @"perto_de_mim_photo.png", @"search_term":@""},
-                    @{@"title": @"Shows", @"icon_url": @"shows.png", @"image_url": @"shows_photo.png", @"search_term":@"Show"},
-                    @{@"title": @"Clássicos", @"icon_url": @"classica.png", @"image_url": @"classica_photo.png", @"search_term":@"Classicos"},
-                    @{@"title": @"Teatro", @"icon_url": @"teatro.png", @"image_url": @"teatro_photo.png", @"search_term":@"Teatros"},
-                    @{@"title": @"Muito Mais", @"icon_url": @"muito_mais.png", @"image_url": @"muito_mais_photo.png", @"search_term":@""}
+                    @{@"title": @"Perto de Mim", @"icon_url": @"perto_de_mim.png",    @"image_url": @"perto_de_mim_photo.png", @"search_term": @""},
+                    @{@"title": @"Shows",        @"icon_url": @"shows.png",           @"image_url": @"shows_photo.png",        @"search_term": @"Show"},
+                    @{@"title": @"Clássicos",    @"icon_url": @"comedia_musical.png", @"image_url": @"classica_photo.png",     @"search_term": @"Classicos"},
+                    @{@"title": @"Teatro",       @"icon_url": @"teatro.png",          @"image_url": @"teatro_photo.png",       @"search_term": @"Teatros"},
+                    @{@"title": @"Muito Mais",   @"icon_url": @"muito_mais.png",      @"image_url": @"muito_mais_photo.png",   @"search_term": @""}
                  ];
     
     _visores = [[NSArray alloc] init];
     _genres = [[NSMutableArray alloc] init];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
+
+    [self configureTableView];
     [self configureCompreIngressosLogo];
     [self configureLocationManager];
-    [self configureCarousel];
     [self configureOrderHistoryButton];
     [self configureSearchButton];
     [self parseGenres];
-    [self scrollViewDirtyFix];
     [self requestData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -106,10 +94,21 @@ static CGFloat kGenresMargin = 6.0f;
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
+- (void)configureTableView {
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+
+    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
+    UINib *cellNib = [UINib nibWithNibName:@"QMCarouselView" bundle:nil];
+    [_tableView registerNib:cellNib forCellReuseIdentifier:@"QMCarouselView"];
+
+    [_tableView setContentInset:UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f)];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _segueLock = NO;
-    _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
+    // _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
     [_carouselView resetCaroselTimer];
     [self stopClickOnGenreTimer];
 }
@@ -176,26 +175,10 @@ static CGFloat kGenresMargin = 6.0f;
 
 - (void)parseGenres {
     for (int i=0; i<[_genresJson count]; i++) {
-        NSDictionary *genreDict = _genresJson[i];
+        NSDictionary *genreDict = _genresJson[(NSUInteger) i];
         QMGenre *genre = [[QMGenre alloc] initWithDictionary:genreDict];
         [_genres addObject:genre];
-        [self showGenre:genre onIndex:i];
     }
-}
-
-- (void)showGenre:(QMGenre *)genre onIndex:(int)index {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat genreViewHeight = screenWidth * 0.3875f;
-    QMGenreView *genreView = (QMGenreView *)[self loadNibNamed:@"QMGenreView"];
-    [genreView setDelegate:self];
-    [genreView setGenre: genre];
-    genreView.frame = CGRectSetSize(genreView.frame, CGSizeMake(screenWidth, genreViewHeight));
-    CGFloat y = CGRectGetHeightWithOffset(_bottomView.frame) + kGenresMargin;
-    genreView.frame = CGRectSetOriginX(genreView.frame, 0.0f);
-    genreView.frame = CGRectSetOriginY(genreView.frame, y);
-    [_scrollView addSubview:genreView];
-    _bottomView = genreView;
-    [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, _bottomView.frame.origin.y + _bottomView.frame.size.height)];
 }
 
 - (void)requestData {
@@ -230,31 +213,6 @@ static CGFloat kGenresMargin = 6.0f;
         [_carouselView setBanners:banners];
     } onFailBlock:^(NSError *error) {
     }];
-}
-
-/*  */
-- (void)scrollViewDirtyFix {
-    [_scrollView setContentOffset:CGPointMake(0.0, -64.0f) animated:YES];
-}
-
-- (void)openWebview:(UILocalNotification *)notification {
-    NSString *url = notification.userInfo[@"url"];
-    [self performSegueWithIdentifier:@"espetaculoWebViewSegue" sender:url];
-}
-
-- (void)configureCarousel {
-    _carouselView = (QMCarouselView *)[self loadNibNamed:@"QMCarouselView"];
-    [_carouselView prepareCarouselForRetina4:YES];
-    [_scrollView addSubview:_carouselView];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 2.051f;
-    _carouselView.frame = CGRectSetSize(_carouselView.frame, CGSizeMake(screenWidth, carouselHeight));
-    _bottomView = _carouselView;
-}
-
-- (UIView *)loadNibNamed:(NSString *)name {
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
-    return nibs[0];
 }
 
 - (IBAction)clickedOnOrderHistory:(id)sender {
@@ -375,11 +333,6 @@ static CGFloat kGenresMargin = 6.0f;
     }
 }
 
-
-# pragma mark
-# pragma mark - QMGenreViewDelegate Delegate
-
-
 - (void)didSelectGenre:(QMGenre *)genre {
     _selectedGenre = genre;
     /* Muito Mais mostra direto sem precisar do gps */
@@ -392,50 +345,51 @@ static CGFloat kGenresMargin = 6.0f;
 
 
 # pragma mark
-# pragma mark - UICollectionView Datasource
+# pragma mark - UITableView Methods
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-           viewForSupplementaryElementOfKind:(NSString *)kind
-                                 atIndexPath:(NSIndexPath *)indexPath {
-    _carrosselVisores = [_collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                            withReuseIdentifier:@"QMEspetaculosGridHeaderView"
-                                                                   forIndexPath:indexPath];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 1.684f;
-    _carrosselVisores.frame = CGRectSetSize(_carrosselVisores.frame, CGSizeMake(screenWidth, carouselHeight));
-    return _carrosselVisores;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return 0;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 1;
+    } else {
+        return [_genres count];
+    }
 }
 
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return (NSInteger) 1.0;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    QMGenreCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"QMGenreCell" forIndexPath:indexPath];
-    QMGenre *genre = _genres[(NSUInteger) indexPath.row];
-    [cell setGenre:genre];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        _carouselView = [tableView dequeueReusableCellWithIdentifier:@"QMCarouselView" forIndexPath:indexPath];
+        [_carouselView prepareCarouselForRetina4:YES];
+        cell = _carouselView;
+    } else {
+        QMGenreCell *genreCell = [tableView dequeueReusableCellWithIdentifier:@"QMGenreCell" forIndexPath:indexPath];
+        QMGenre *genre = _genres[(NSUInteger) indexPath.row];
+        [genreCell setGenre:genre];
+        cell = genreCell;
+    }
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize size = CGSizeMake(104.0, 86.0);
-    return size;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat carouselHeight = screenWidth / 2.051f;
+        return carouselHeight;
+    } else {
+        return 70.0f/320.0f * [UIScreen mainScreen].bounds.size.width;
+    }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 1.684f;
-    return CGSizeMake(screenWidth, carouselHeight);
-}
-
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectedGenre = _genres[(NSUInteger) indexPath.row];
-    // [self goToEspetaculos];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        QMGenre *genre = _genres[(NSUInteger) indexPath.row];
+        [self didSelectGenre:genre];
+    }
 }
 
 
@@ -454,8 +408,6 @@ static CGFloat kGenresMargin = 6.0f;
           _location.coordinate.longitude);
     [self goToEspetaculos];
 }
-
-
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if (error.code ==  kCLErrorDenied) {
