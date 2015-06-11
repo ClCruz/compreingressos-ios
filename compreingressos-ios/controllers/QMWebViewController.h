@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QMSuperViewController.h"
 
 @class QMGenre;
 @class QMEspetaculo;
 
-@interface QMWebViewController : UIViewController <UIWebViewDelegate> {
+@interface QMWebViewController : QMSuperViewController <UIWebViewDelegate> {
     
 }
 

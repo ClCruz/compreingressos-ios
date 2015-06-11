@@ -13,6 +13,7 @@
 
 - (BOOL)isConnected;
 - (void)showNotConnectedError;
+- (void)showNotConnectedErrorOnRetry:(void (^)(void))onRetryBlock;
 - (void)requestData;
 
 @end

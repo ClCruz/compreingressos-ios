@@ -252,19 +252,31 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (void)openUrl {
-    /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
-    if (_url && [_url rangeOfString:@"app=tokecompre"].length == 0) {
-        _url = [QMRequester addQueryStringParamenter:@"app" withValue:@"tokecompre" toUrl:_url];
-    }
-    NSURL *url = [NSURL URLWithString:_url];
-    NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
-    [_webview loadRequest:requestURL];
+    [self requestData];
+}
 
-    /* Vamos esconder a webview em todas as páginas menos no detalhe do espetáculo.
-    *  Pois o detalhe do espetáculo demora muito para carregar causando impressão
-    *  de maior lentidão que o site. */
-    if (![self isFirstStep:_url]) {
-        _webview.alpha = 0.0;
+- (void)requestData {
+    if ([self isConnected]) {
+        /* Se não recebemos uma url, estamos no fluxo inicial, iremos montar a url a partir do espetáculo */
+        if (_url && [_url rangeOfString:@"app=tokecompre"].length == 0) {
+            _url = [QMRequester addQueryStringParamenter:@"app" withValue:@"tokecompre" toUrl:_url];
+        }
+        NSURL *url = [NSURL URLWithString:_url];
+        NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
+        [_webview loadRequest:requestURL];
+
+        /* Vamos esconder a webview em todas as páginas menos no detalhe do espetáculo.
+        *  Pois o detalhe do espetáculo demora muito para carregar causando impressão
+        *  de maior lentidão que o site. */
+        if (![self isFirstStep:_url]) {
+            _webview.alpha = 0.0;
+        }
+    } else {
+        __weak typeof(self) weakSelf = self;
+       [self showNotConnectedErrorOnRetry:^{
+           [SVProgressHUD show];
+           [weakSelf requestData];
+       }];
     }
 }
 

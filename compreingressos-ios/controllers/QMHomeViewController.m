@@ -192,10 +192,6 @@
     }
 }
 
-- (void)showNotConnectedError {
-    [super showNotConnectedError];
-}
-
 - (void)requestVisores {
     [QMVisoresRequester requestVisoresOnCompleteBlock:^(NSArray *array) {
         _visores = array;

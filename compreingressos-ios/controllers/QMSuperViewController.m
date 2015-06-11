@@ -33,13 +33,20 @@
     return alert;
 }
 
-- (void)showNotConnectedError {
-    __weak typeof(self) weakSelf = self;
-    self.retryViewBlock = ^{
-        [weakSelf requestData];
-    };
+- (void)showNotConnectedErrorOnRetry:(void (^)(void))onRetryBlock {
+    _retryViewBlock = onRetryBlock;
     _retryView = [self retryViewWithMessage:@"Sem conexão com a internet."];
     [SVProgressHUD dismiss];
+}
+
+- (void)showNotConnectedError {
+    __weak typeof(self) weakSelf = self;
+
+    void(^retryViewBlock)(void) = ^{
+        [weakSelf requestData];
+    };
+
+    [self showNotConnectedErrorOnRetry:retryViewBlock];
 }
 
 /* To be overriden by subclasses */
