@@ -370,6 +370,9 @@
         QMGenreCell *genreCell = [tableView dequeueReusableCellWithIdentifier:@"QMGenreCell" forIndexPath:indexPath];
         QMGenre *genre = _genres[(NSUInteger) indexPath.row];
         [genreCell setGenre:genre];
+        if ([_genres count] - 1 == indexPath.row) {
+            [genreCell.separator setHidden:YES];
+        }
         cell = genreCell;
     }
     return cell;
