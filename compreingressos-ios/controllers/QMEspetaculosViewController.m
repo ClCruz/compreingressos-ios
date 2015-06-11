@@ -37,12 +37,11 @@
     _espetaculos = [[NSMutableArray alloc] init];
 
     [self configureCollectionView];
-    [self requestEspetaculos];
+    [self requestData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     NSString *titleForAnalytics = @"Espetáculos";
     if (_genre && _genre.title) {
         titleForAnalytics = [NSString stringWithFormat:@"%@ - %@", titleForAnalytics, _genre.title];
@@ -90,25 +89,29 @@
     self.navigationItem.title = genre.title;
 }
 
-- (void)requestEspetaculos {
-    [SVProgressHUD show];
-    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-    if (_genre.searchTerm) {
-        options[@"genero"] = _genre.searchTerm;
+- (void)requestData {
+    if ([self isConnected]) {
+        [SVProgressHUD show];
+        NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+        if (_genre.searchTerm) {
+            options[@"genero"] = _genre.searchTerm;
+        }
+        if (_location) {
+            NSNumber *latitude = @(_location.coordinate.latitude);
+            NSNumber *longitude = @(_location.coordinate.longitude);
+            options[@"latitude"] = latitude;
+            options[@"longitude"] = longitude;
+        }
+        [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
+            _espetaculos = array;
+            [_collectionView reloadData];
+            [SVProgressHUD dismiss];
+        } onFailBlock:^(NSError *error) {
+            [SVProgressHUD dismiss];
+        }];
+    } else {
+        [self showNotConnectedError];
     }
-    if (_location) {
-        NSNumber *latitude = @(_location.coordinate.latitude);
-        NSNumber *longitude = @(_location.coordinate.longitude);
-        options[@"latitude"] = latitude;
-        options[@"longitude"] = longitude;
-    }
-    [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
-        _espetaculos = array;
-        [_collectionView reloadData];
-        [SVProgressHUD dismiss];
-    } onFailBlock:^(NSError *error) {
-        [SVProgressHUD dismiss];
-    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

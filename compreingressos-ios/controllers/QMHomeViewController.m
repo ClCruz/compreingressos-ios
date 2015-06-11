@@ -131,6 +131,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
     [_locationManager stopUpdatingLocation];
     [_carouselView stopCaroselTimer];
 }
@@ -187,20 +188,12 @@
             [self requestVisores];
         }
     } else {
-//        [self showNotConnectedErrorWithoutCover];
+        [self showNotConnectedError];
     }
 }
 
-- (BOOL)isConnected {
-//    if([QMRequester offlineMode]) return YES;
-//    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-//    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-//    if(networkStatus == ReachableViaWWAN || networkStatus == ReachableViaWiFi) {
-//        return YES;
-//    } else {
-//        return NO;
-//    }
-    return YES;
+- (void)showNotConnectedError {
+    [super showNotConnectedError];
 }
 
 - (void)requestVisores {
@@ -495,6 +488,7 @@
 #pragma mark - UIAlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView == _requestGpsAlertView) {
         if (buttonIndex == 1) { /* Sim */
             if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {

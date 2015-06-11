@@ -81,21 +81,25 @@
     [_collectionView setCollectionViewLayout:layout];
 }
 
-- (void)search {
-    [SVProgressHUD show];
-    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-    options[@"keywords"] = _keywords;
-    [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
-        _espetaculos = array;
-        [_collectionView reloadData];
-        if ([_espetaculos count] == 0) {
-            [SVProgressHUD showErrorWithStatus:@"Não foi encontrado nenhum resultado..."];
-        } else {
+- (void)requestData {
+    if ([self isConnected]) {
+        [SVProgressHUD show];
+        NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+        options[@"keywords"] = _keywords;
+        [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
+            _espetaculos = array;
+            [_collectionView reloadData];
+            if ([_espetaculos count] == 0) {
+                [SVProgressHUD showErrorWithStatus:@"Não foi encontrado nenhum resultado..."];
+            } else {
+                [SVProgressHUD dismiss];
+            }
+        } onFailBlock:^(NSError *error) {
             [SVProgressHUD dismiss];
-        }
-    } onFailBlock:^(NSError *error) {
-        [SVProgressHUD dismiss];
-    }];
+        }];
+    } else {
+        [self showNotConnectedError];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -181,7 +185,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [_searchBar resignFirstResponder];
     _keywords = searchBar.text;
-    [self search];
+    [self requestData];
 }
 
 @end

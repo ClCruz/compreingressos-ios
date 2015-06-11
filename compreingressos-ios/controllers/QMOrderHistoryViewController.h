@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QMSuperViewController.h"
 
-@interface QMOrderHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface QMOrderHistoryViewController : QMSuperViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

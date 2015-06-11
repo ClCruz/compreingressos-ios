@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "QMSuperViewController.h"
 
-@interface QMHomeViewController : UIViewController <UITableViewDataSource,
+@interface QMHomeViewController : QMSuperViewController <UITableViewDataSource,
         UITableViewDelegate,
         CLLocationManagerDelegate,
-        UICollectionViewDelegateFlowLayout,
-        UIAlertViewDelegate>
+        UICollectionViewDelegateFlowLayout>
 
 @end

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "QMSuperViewController.h"
 
 @class QMGenre;
 
-@interface QMEspetaculosViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface QMEspetaculosViewController : QMSuperViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic)          QMGenre          *genre;

@@ -107,7 +107,7 @@
 
 - (void)configureTicketCell:(QMOrderHistoryTicketCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     int ticketIndex = (int)indexPath.row - 1;
-    QMTicket *ticket = _order.tickets[ticketIndex];
+    QMTicket *ticket = _order.tickets[(NSUInteger) ticketIndex];
     [cell setTicket:ticket];
 }
 

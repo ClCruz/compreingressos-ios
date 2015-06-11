@@ -87,18 +87,17 @@
 
 /* Utilizado pelo pull to refresh */
 - (void)refreshTable {
-    // [_tableView reloadData];
     [self requestData];
 }
 
 - (void)requestData {
-    //if ([self isConnected]) {
+    if ([self isConnected]) {
         [self requestOrders];
-    //} else {
-    //    [self showPlaceholderIfNeeded];
-    //    [self showNotConnectedErrorWithoutCover];
+    } else {
+        [self showNotConnectedError];
         [_refreshControl endRefreshing];
-   //}
+        [self showPlaceholderIfNeeded];
+   }
 }
 
 - (void)requestOrders {
@@ -122,6 +121,12 @@
             _firstViewDidAppear = NO;
         }];
     } else {
+        [self showPlaceholderIfNeeded];
+    }
+}
+
+- (void)showPlaceholderIfNeeded {
+    if ([_orders count] == 0) {
         [self showPlaceholder];
     }
 }
@@ -163,7 +168,7 @@
                       constant:0.f];
 
     [_tableView addConstraints:@[width, height, top, leading]];
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         _placeholder.alpha = 1.0;
     }];

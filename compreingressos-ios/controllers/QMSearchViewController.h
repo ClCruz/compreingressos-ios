@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QMSuperViewController.h"
 
-@interface QMSearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface QMSearchViewController : QMSuperViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @end
