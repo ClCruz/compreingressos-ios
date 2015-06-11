@@ -10,6 +10,7 @@
 #import "QMCarouselView.h"
 #import "QMBanner.h"
 #import "QMBannerView.h"
+#import "QMRedPageControl.h"
 
 static const int kCarrosselPeriod = 5;
 static const int kBannersHeightRetina4 = 156;
@@ -18,7 +19,7 @@ static const int kBannersHeightRetina3 = 156;
 @implementation QMCarouselView {
 @private
     NSArray *_banners;
-    UIPageControl *_pageControl;
+    QMRedPageControl *_pageControl;
     BOOL _showLinkButton;
     BOOL _isWebviewLink;
     BOOL _showBannerDescription;

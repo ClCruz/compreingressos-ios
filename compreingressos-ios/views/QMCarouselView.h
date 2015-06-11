@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "compreingressos-ios-Prefix.pch"
 
+@class QMRedPageControl;
+
 @interface QMCarouselView : UITableViewCell <UIScrollViewDelegate> {
     
     IBOutlet UIScrollView *scrollView;
@@ -24,7 +26,7 @@
     CGFloat _bannersHeight;
     IBOutlet UIActivityIndicatorView *_spinner;
     NSMutableArray *_bannerViews;
-    IBOutlet UIView *_pageControlBg;
+    IBOutlet QMRedPageControl *_pageControlBg;
 }
 
 @property (nonatomic, strong) NSArray *banners;
