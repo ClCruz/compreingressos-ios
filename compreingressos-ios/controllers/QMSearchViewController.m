@@ -47,7 +47,7 @@
 
 - (void)configureSearchBar {
     _searchBar = [[UISearchBar alloc] init];
-    [_searchBar setPlaceholder:@"Busque eventos por nome ou cidade"];
+    [_searchBar setPlaceholder:@"Busque eventos"];
     _searchBar.delegate = self;
     self.navigationItem.titleView = _searchBar;
     [_searchBar becomeFirstResponder];
