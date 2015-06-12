@@ -370,10 +370,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        CGFloat carouselHeight = screenWidth / 2.051f;
+        CGFloat carouselHeight = screenWidth / 1.8f;
         return carouselHeight;
     } else {
-        return 70.0f/320.0f * [UIScreen mainScreen].bounds.size.width;
+        return kGenreCellHeight / 320.0f * [UIScreen mainScreen].bounds.size.width;
     }
 }
 

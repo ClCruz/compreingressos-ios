@@ -26,7 +26,7 @@
 + (CGSize)sizeForBanner {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat bannerWidth = screenWidth / 0.865f;
-    CGFloat bannerHeight = bannerWidth / 2.37f;
+    CGFloat bannerHeight = screenWidth / 1.8f;
     return CGSizeMake(bannerWidth, bannerHeight);
 }
 

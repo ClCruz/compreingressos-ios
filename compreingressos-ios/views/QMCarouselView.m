@@ -41,6 +41,7 @@ static const int kBannersHeightRetina3 = 156;
     [self setClipsToBounds:YES];
     [_spinner startAnimating];
     _bannerViews = [[NSMutableArray alloc] init];
+    [_pageControlBg setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -50,16 +51,15 @@ static const int kBannersHeightRetina3 = 156;
 
 - (CGFloat)carouselHeight {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat carouselHeight = screenWidth / 2.051f;
+    CGFloat carouselHeight = screenWidth / 1.8f;
     return carouselHeight;
 }
 
 - (void)prepareCarouselForRetina4:(BOOL)retina4 {
     isRetina4 = retina4;
-    _bannersHeight = isRetina4 ? kBannersHeightRetina4 : kBannersHeightRetina3;
-    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat carouselHeight = [self carouselHeight];
+    _bannersHeight = carouselHeight;
     self.frame = CGRectSetWidth(self.frame, screenWidth);
     self.frame = CGRectSetHeight(self.frame, carouselHeight);
     scrollView.frame = CGRectSetSize(scrollView.frame, [QMBannerView sizeForBanner]);
@@ -117,6 +117,7 @@ static const int kBannersHeightRetina3 = 156;
         [bannerView setBanner:banner];
         _pageWidth = CGRectGetWidth(bannerView.frame);
         [bannerView setFrame:CGRectSetOrigin(bannerView.frame, CGPointMake(_pageWidth * i, 0.0))];
+        [bannerView setFrame:CGRectSetHeight(bannerView.frame, _bannersHeight)];
         [bannerView setBackgroundColor:self.backgroundColor]; // forward da backgroundcolor
         if (!_showBannerDescription) [bannerView hideDescription];
         [scrollView addSubview:bannerView];

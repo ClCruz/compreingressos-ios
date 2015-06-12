@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "QMSuperViewController.h"
 
+static const float kGenreCellHeight = 66.0f;
+
 @interface QMHomeViewController : QMSuperViewController <UITableViewDataSource,
         UITableViewDelegate,
         CLLocationManagerDelegate,
