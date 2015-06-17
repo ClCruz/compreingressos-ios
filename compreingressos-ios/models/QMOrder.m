@@ -14,7 +14,8 @@
 
 
 static QMOrder *instance;
-static NSMutableDictionary *orderHistoryInstance;
+static NSMutableArray *orderHistoryArray;
+
 
 @implementation QMOrder {
     @private
@@ -53,13 +54,16 @@ static NSMutableDictionary *orderHistoryInstance;
 + (void)loadHistory {
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        if (!orderHistoryInstance) {
-            orderHistoryInstance = [[NSMutableDictionary alloc] init];
+        if (!orderHistoryArray) {
+            orderHistoryArray = [[NSMutableArray alloc] init];
             NSArray *ordersDictArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"orderHistory"];
             if (ordersDictArray) {
                 for (NSDictionary *dict in ordersDictArray) {
                     QMOrder *order = [[QMOrder alloc] initWithDictionary:dict];
-                    orderHistoryInstance[order.number] = order;
+                    [orderHistoryArray addObject:order];
+                }
+                for (QMOrder *order in orderHistoryArray) {
+                    NSLog(@" order: %@", order.number);
                 }
             }
         }
@@ -67,23 +71,19 @@ static NSMutableDictionary *orderHistoryInstance;
 }
 
 + (NSArray *)sortedHistory {
-    NSArray *history = [orderHistoryInstance allValues];
-    NSArray *sorted = [self sortOrdersByOrderNumber:history];
+    NSArray *sorted = [self sortOrdersByOrderNumber:orderHistoryArray];
     return sorted;
 }
 
 + (void)setOrderHistory:(NSArray *)orders {
-    orderHistoryInstance = [[NSMutableDictionary alloc] init];
-    for (QMOrder *order in orders) {
-        orderHistoryInstance[order.number] = order;
-    }
+    orderHistoryArray = [NSMutableArray arrayWithArray:orders];
     [self persistOrderHistory];
 }
 
 + (void)addOrderToHistory:(QMOrder *)order {
     if (order.number) {
         [QMOrder orderHistory];
-        orderHistoryInstance[order.number] = order;
+        [orderHistoryArray addObject:order];
         [self persistOrderHistory];        
     }
 }
@@ -100,10 +100,10 @@ static NSMutableDictionary *orderHistoryInstance;
 }
 
 + (void)persistOrderHistory {
-    NSMutableArray *ordersDictArray = [[NSMutableArray alloc] initWithCapacity:[orderHistoryInstance count]];
-    [orderHistoryInstance enumerateKeysAndObjectsUsingBlock:^(id key, QMOrder *obj, BOOL *stop) {
-        [ordersDictArray addObject:[obj toDictionary]];
-    }];
+    NSMutableArray *ordersDictArray = [[NSMutableArray alloc] initWithCapacity:[orderHistoryArray count]];
+    for (QMOrder *order in orderHistoryArray) {
+        [ordersDictArray addObject:[order toDictionary]];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:ordersDictArray forKey:@"orderHistory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
