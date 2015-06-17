@@ -10,8 +10,10 @@
 #import "QMOrder.h"
 #import "QMRequester.h"
 #import "SVProgressHUD.h"
+#import "QMException.h"
 #import <PassKit/PassKit.h>
 #import <AFNetworking/AFNetworking.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation QMTicket {
     @private
@@ -61,6 +63,7 @@
     NSString *json = _order.originalJson;
 
     if (json) {
+        [[Crashlytics sharedInstance] setObjectValue:json forKey:@"Pass JSON"];
         NSData *bodyData = [json dataUsingEncoding:NSUTF8StringEncoding];
         static NSString *path = @"https://mpassbook.herokuapp.com/passes/v2/generate.json";
         NSURL *url = [NSURL URLWithString:path];
@@ -73,28 +76,35 @@
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *req, NSHTTPURLResponse *response, id JSON) {
             /* Vai voltar um array de passes. Porém, não precisamos fazer nada com o retorno
                uma vez que os passes já foram criados no heroku. */
-            
             if (JSON) {
                 NSArray *passes = JSON[@"passes"];
                 if ([passes count] > 0) {
                     NSString *passName = passes[0];
                     [self downloadPass:passName];
                 } else {
-                    [self showDownloadError];
+                    [self showDownloadErrorWithTitle:@"Erro POST passbook" andDescription:@"não retornou nenhum file name"];
                 }
             } else {
-                [self showDownloadError];
+                [self showDownloadErrorWithTitle:@"Erro POST passbook" andDescription:@"não retornou resposta"];
             }
         } failure:^(NSURLRequest *req, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Erro POST passbook %@", [error description]);
-            [self showDownloadError];
+            QMException *exception = [[QMException alloc] initWithNSError:error];
+            [exception addPrefixToTitle:@"Erro POST passbook"];
+            if (_order.originalJson) exception.moreInfo = _order.originalJson;
+            [exception post];
+            [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
         }];
         [operation start];
     }
 }
 
-- (void)showDownloadError {
-    
+- (void)showDownloadErrorWithTitle:(NSString *)title andDescription:(NSString *)description {
+    QMException *exception = [[QMException alloc] init];
+    exception.title = title;
+    exception.desc = description;
+    if (_order.originalJson) exception.moreInfo = _order.originalJson;
+    [exception post];
     [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
 }
 
@@ -105,19 +115,46 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:[QMRequester requestTimeout]];
 
+    [[Crashlytics sharedInstance] setObjectValue:passName forKey:@"Pass Name"];
+
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSData *data = (NSData *)responseObject;
         if (data != nil) {
             NSError *error = nil;
             PKPass *pass = [[PKPass alloc] initWithData:data error:&error];
-            PKAddPassesViewController *controller = [[PKAddPassesViewController alloc] initWithPass:pass];
-            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:controller animated:YES completion:^{
-                [SVProgressHUD dismiss];
-            }];
+            if (!error) {
+                PKAddPassesViewController *controller = [[PKAddPassesViewController alloc] initWithPass:pass];
+                @try {
+                    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:controller animated:YES completion:^{
+                        [SVProgressHUD dismiss];
+                    }];
+                } @catch (NSException *e) {
+                    QMException *exception = [[QMException alloc] initWithNSException:e];
+                    if (_order.originalJson) [exception setMoreInfo:_order.originalJson];
+                    [exception post];
+                    [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
+                }
+            } else {
+                QMException *exception = [[QMException alloc] initWithNSError:error];
+                if (_order.originalJson) [exception setMoreInfo:_order.originalJson];
+                [exception post];
+                [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
+            }
+        } else {
+            QMException *exception = [[QMException alloc] init];
+            exception.title = @"Não recebeu nada no downloadPass";
+            exception.desc = [NSString stringWithFormat:@"Pass: %@", passName];
+            if (_order.originalJson) [exception setMoreInfo:_order.originalJson];
+            [exception post];
+            [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         NSLog(@"Error: %@", error);
+        QMException *exception = [[QMException alloc] initWithNSError:error];
+        [exception addPrefixToTitle:@"Erro no GET passbook"];
+        if (_order.originalJson) [exception setMoreInfo:_order.originalJson];
+        [exception post];
         [SVProgressHUD showErrorWithStatus:@"Não foi possível adicionar ao passbook."];
     }];
     [operation start];

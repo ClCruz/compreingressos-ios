@@ -17,7 +17,7 @@ static BOOL kDebug = NO;
 static BOOL kOfflineMode = NO;
 #pragma unused (kDebug, kOfflineMode)
 
-static NSString *kProdHost  = @"https://qprodelivery.herokuapp.com";
+static NSString *kProdHost  = @"https://tokecompre-ci.herokuapp.com";
 static NSString *kHomolHost = @"http://qprodelivery-homol.herokuapp.com";
 static NSString *kTestHost  = @"http://tok-otimizacao.herokuapp.com";
 static NSString *kLocalHost = @"http://192.168.1.114:5000";

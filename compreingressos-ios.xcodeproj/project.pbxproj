@@ -125,6 +125,8 @@
 		25D3B1951ADD363D00CB3924 /* QMOrderHistoryTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */; };
 		337A4446DBCA83584C8616B9 /* QMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4002687753BA454AB097 /* QMUser.m */; };
 		337A45BAAA468E1E561BAB01 /* QMSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A44861E395134B2992CB2 /* QMSuperViewController.m */; };
+		337A4A0FE5F196D4EB3B64E5 /* QMException.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4322DBEE679BE6883A3F /* QMException.m */; };
+		337A4F6E251DD32D5C508528 /* QMExceptionsRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4C1F4A07C2B8516C6363 /* QMExceptionsRequester.m */; };
 		337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */; };
 		EEED3F9E299F88F9F13F6A4E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B4C5E53BA3A9B012EDBF2F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -297,11 +299,15 @@
 		25D3B1931ADD363D00CB3924 /* QMOrderHistoryTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderHistoryTicketCell.h; sourceTree = "<group>"; };
 		25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderHistoryTicketCell.m; sourceTree = "<group>"; };
 		337A4002687753BA454AB097 /* QMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUser.m; sourceTree = "<group>"; };
+		337A4322DBEE679BE6883A3F /* QMException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMException.m; sourceTree = "<group>"; };
 		337A438298448B530841123B /* QMSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSuperViewController.h; sourceTree = "<group>"; };
 		337A44861E395134B2992CB2 /* QMSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSuperViewController.m; sourceTree = "<group>"; };
+		337A4766D81D55E26C9C6CD0 /* QMExceptionsRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMExceptionsRequester.h; sourceTree = "<group>"; };
 		337A49126060921ADCED1846 /* QMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUser.h; sourceTree = "<group>"; };
+		337A4928ECA82F37BB39E606 /* QMException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMException.h; sourceTree = "<group>"; };
 		337A4A6648526C9B7B4842B1 /* QMOrdersRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrdersRequester.h; sourceTree = "<group>"; };
 		337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrdersRequester.m; sourceTree = "<group>"; };
+		337A4C1F4A07C2B8516C6363 /* QMExceptionsRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMExceptionsRequester.m; sourceTree = "<group>"; };
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -502,6 +508,8 @@
 				256509C21AD5B86100D6DCA2 /* QMTicket.m */,
 				337A4002687753BA454AB097 /* QMUser.m */,
 				337A49126060921ADCED1846 /* QMUser.h */,
+				337A4322DBEE679BE6883A3F /* QMException.m */,
+				337A4928ECA82F37BB39E606 /* QMException.h */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -567,6 +575,8 @@
 				258B93DB1AC054730007C584 /* QMVisoresRequester.m */,
 				337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */,
 				337A4A6648526C9B7B4842B1 /* QMOrdersRequester.h */,
+				337A4C1F4A07C2B8516C6363 /* QMExceptionsRequester.m */,
+				337A4766D81D55E26C9C6CD0 /* QMExceptionsRequester.h */,
 			);
 			path = requesters;
 			sourceTree = "<group>";
@@ -929,6 +939,8 @@
 				337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */,
 				337A4446DBCA83584C8616B9 /* QMUser.m in Sources */,
 				337A45BAAA468E1E561BAB01 /* QMSuperViewController.m in Sources */,
+				337A4A0FE5F196D4EB3B64E5 /* QMException.m in Sources */,
+				337A4F6E251DD32D5C508528 /* QMExceptionsRequester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
