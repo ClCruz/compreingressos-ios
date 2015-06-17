@@ -41,8 +41,8 @@ static NSString *kExceptionsPath = @"handled_exceptions.json";
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *req, NSHTTPURLResponse *response, id JSON) {
         if (onCompleteBlock) onCompleteBlock();
-    } failure:^(NSURLRequest *req, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        if (onFailBlock) onFailBlock(error);
+    } failure:^(NSURLRequest *req, NSHTTPURLResponse *response, NSError *err, id JSON) {
+        if (onFailBlock) onFailBlock(err);
     }];
     [operation start];
     return operation;

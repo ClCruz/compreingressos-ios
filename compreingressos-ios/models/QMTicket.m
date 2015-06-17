@@ -14,6 +14,7 @@
 #import <PassKit/PassKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Crashlytics/Crashlytics.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation QMTicket {
     @private
@@ -25,6 +26,9 @@
     NSString *_total;
     __weak QMOrder  *_order;
 }
+
+/* Senha utilizada no hash do nome do pkpass */
+static char password[] = { 0x51, 0x4d, 0x45, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x2a, 0x65, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x3b };
 
 @synthesize qrcodeString = _qrcodeString;
 @synthesize place        = _place;
@@ -74,13 +78,11 @@
         [request setTimeoutInterval:[QMRequester requestTimeout]];
         [request setCachePolicy:[QMRequester cachePolicy]];
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *req, NSHTTPURLResponse *response, id JSON) {
-            /* Vai voltar um array de passes. Porém, não precisamos fazer nada com o retorno
-               uma vez que os passes já foram criados no heroku. */
             if (JSON) {
+                NSString *filename = [self errorMessage];
                 NSArray *passes = JSON[@"passes"];
                 if ([passes count] > 0) {
-                    NSString *passName = passes[0];
-                    [self downloadPass:passName];
+                    [self downloadPass:filename];
                 } else {
                     [self showDownloadErrorWithTitle:@"Erro POST passbook" andDescription:@"não retornou nenhum file name"];
                 }
@@ -97,6 +99,28 @@
         }];
         [operation start];
     }
+}
+
+/**
+* Retorna o nome do pkpass que será baixado no servidor.
+* Este nome de método é apenas para fins de obfuscação :P. Deveria se chamar
+* getPkpassFilename...
+*
+* O nome do arquivo é composto pelos 40 primeiros caracteres de
+*   SHA256(qrcode + order_number + senha)
+* */
+- (NSString *)errorMessage {
+    NSString *aux = [NSString stringWithCString:password encoding:NSASCIIStringEncoding]; /* pegando a senha */
+    NSString *stringIn = [NSString stringWithFormat:@"%@%@%@", _qrcodeString, _order.number, aux];
+    NSData *dataIn = [stringIn dataUsingEncoding:NSASCIIStringEncoding];
+    uint8_t digest[CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(dataIn.bytes, dataIn.length,  digest);
+    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH * 2];
+    for(int i = 0; i < 40; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    NSString *filename = [NSString stringWithFormat:@"%@.pkpass", [output substringToIndex:40]];
+    return filename;
 }
 
 - (void)showDownloadErrorWithTitle:(NSString *)title andDescription:(NSString *)description {
