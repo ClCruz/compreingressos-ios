@@ -115,10 +115,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
     if (_showBadgeOnViewDidAppear) {
         _showBadgeOnViewDidAppear = NO;
         [_badgeView setBadgeText:@"! "];
+        _badgeContainer.alpha = 1.0;
         [self animateBadge];
     }
     if (_badgeContainer.alpha > 0.0 && _hideBadgeOnViewDidAppear) {
