@@ -19,6 +19,7 @@
 #import "QMZoomTutorialView.h"
 #import "QMUser.h"
 #import "QMPaymentFinalizationViewController.h"
+#import "QMTrackPurchasesRequester.h"
 #import <Google/Analytics.h>
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
@@ -426,6 +427,9 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [self notifyNewOrder];
     [QMPushNotificationUtils unsubscribe:@"prospect"];
     [QMPushNotificationUtils subscribe:@"client"];
+    /* O Correto aqui seria criar uma fila de uploads pois não podemos perder nenhum post daqui.
+     * mesmo se cair a conexão */
+    [QMTrackPurchasesRequester postOrder:[QMOrder sharedInstance] onCompleteBlock:nil onFailBlock:nil];
 }
 
 - (void)notifyNewOrder {

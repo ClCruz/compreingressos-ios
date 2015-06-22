@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Qpro Mobile. All rights reserved.
 //
 
-static NSString *const kEspetaculosPath = @"espetaculos.json";
-
 #import "QMEspetaculosRequester.h"
 #import "QMEspetaculo.h"
 #import <AFNetworking/AFNetworking.h>
 #import "QMGenre.h"
+
+static NSString *const kEspetaculosPath = @"espetaculos.json";
 
 @implementation QMEspetaculosRequester {
 
