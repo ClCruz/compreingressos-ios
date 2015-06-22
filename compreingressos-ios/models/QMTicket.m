@@ -11,6 +11,7 @@
 #import "QMRequester.h"
 #import "SVProgressHUD.h"
 #import "QMException.h"
+#import "QMRequester.h"
 #import <PassKit/PassKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Crashlytics/Crashlytics.h>
@@ -69,8 +70,8 @@ static char password[] = { 0x51, 0x4d, 0x45, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69,
     if (json) {
         [[Crashlytics sharedInstance] setObjectValue:json forKey:@"Pass JSON"];
         NSData *bodyData = [json dataUsingEncoding:NSUTF8StringEncoding];
-        static NSString *path = @"https://mpassbook.herokuapp.com/passes/v2/generate.json";
-        NSURL *url = [NSURL URLWithString:path];
+        static NSString *urlString = @"https://mpassbook.herokuapp.com/passes/v2/generate.json";
+        NSURL *url = [NSURL URLWithString:[QMRequester addVersionToUrl:urlString]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:bodyData];

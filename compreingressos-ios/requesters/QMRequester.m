@@ -47,7 +47,7 @@ CGFloat requestTimeoutSeconds = 15.0;
 + (NSString *)getUrlForPath:(NSString *)path {
     NSString *host = [self getHost];
     NSString *url = [NSString stringWithFormat:@"%@/%@", host, path];
-    return url;
+    return [self addVersionToUrl:url];
 }
 
 + (dispatch_queue_t)getDispatchQueue {
