@@ -261,7 +261,8 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         if (_url && [_url rangeOfString:@"app=tokecompre"].length == 0) {
             _url = [QMRequester addQueryStringParamenter:@"app" withValue:@"tokecompre" toUrl:_url];
         }
-        NSURL *url = [NSURL URLWithString:_url];
+
+        NSURL *url = [NSURL URLWithString:[QMRequester addVersionToUrl:_url]];
         NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
         [_webview loadRequest:requestURL];
 
