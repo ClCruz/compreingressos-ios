@@ -20,9 +20,11 @@
 @property (nonatomic, strong) QMBanner *banner;
 @property (strong, nonatomic) IBOutlet UIView *descriptionCover;
 @property (nonatomic, weak) QMCarouselView *carousel;
+@property (nonatomic) BOOL isUsingPlaceholder;
 
 + (QMBannerView *)allocFromNib;
 + (CGSize)sizeForBanner;
 - (void)hideDescription;
+- (void)downloadPhoto;
 
 @end

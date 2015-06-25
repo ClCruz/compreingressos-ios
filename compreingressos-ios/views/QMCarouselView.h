@@ -53,4 +53,6 @@
 - (void)stopSpinner;
 
 - (void)startSpinner;
+
+- (void)retryFailedBanners;
 @end

@@ -54,13 +54,4 @@ static NSString *const kVisoresPath = @"visores/lista.json";
     return [NSString stringWithFormat:@"%d", intWidth];
 }
 
-+ (NSString *)connectionType {
-    QMReachability *networkReachability = [QMReachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-    if (networkStatus == ReachableViaWiFi) {
-        return @"wifi";
-    } else {
-        return @"wwan";
-    }
-}
 @end

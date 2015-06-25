@@ -30,6 +30,8 @@ static NSString *kNtkUrlRetorno = @"ws/orders/ntk_callback";
 
 static NSString *const kCompreIngressoHost = @"https://tokecompre-ci.herokuapp.com";
 
+static NSString *const kWifiCon = @"wifi";
+static NSString *const kWwanCon = @"wwan";
 static NSURLRequestCachePolicy kOfflineCachePolicy = NSURLRequestReturnCacheDataElseLoad;
 static NSURLRequestCachePolicy kDefaultCachePolicy = NSURLRequestUseProtocolCachePolicy;
 #pragma unused (kOfflineCachePolicy, kDefaultCachePolicy)
@@ -60,5 +62,7 @@ static NSString *kEqualMark = @"=";
 + (void)printDebugMessageWithError:(NSError *)error withTag:(NSString *)tag;
 + (id)objectOrNilForKey:(NSString *)key forDictionary:(NSDictionary *)dictionary;
 + (BOOL)booleanForKey:(NSString *)key forDictionary:(NSDictionary *)dictionary;
++ (NSString *)connectionType;
++ (BOOL)isWifi;
 
 @end

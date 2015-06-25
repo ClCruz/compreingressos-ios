@@ -38,12 +38,17 @@
     BOOL               _segueLock;
     BOOL               _showBadgeOnViewDidAppear;
     BOOL               _hideBadgeOnViewDidAppear;
+    BOOL               _requestingData;
     NSTimer           *_clickOnGenreTimer;
 
     IBOutlet UIBarButtonItem    *_orderHistoryButton;
     IBOutlet UIBarButtonItem    *_buttonForLogo;
     IBOutlet UITableView        *_tableView;
 }
+
+
+#pragma mark -
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,7 +70,7 @@
     [self configureSearchButton];
     [self parseGenres];
     [self requestData];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clickedOnBanner:)
                                                  name:kOpenEspetaculoWebviewNotificationTag
@@ -80,7 +85,12 @@
                                              selector:@selector(hideBadge:)
                                                  name:kHideBadgeTag
                                                object:nil];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didBecomeActive:)
+                                                 name:kDidBecomeActiveTag
+                                               object:nil];
+
 //    NSString *json = @"{\"number\":\"436464\",\"date\":\"sáb 28 nov\",\"total\":\"50,00\",\"espetaculo\":{\"titulo\":\"COSI FAN TUT TE\",\"endereco\":\"Praça Ramos de Azevedo, s/n - República - São Paulo, SP\",\"nome_teatro\":\"Theatro Municipal de São Paulo\",\"horario\":\"20h00\"},\"ingressos\":[{\"qrcode\":\"0054741128200000100146\",\"local\":\"SETOR 3 ANFITEATRO C-06\",\"type\":\"INTEIRA\",\"price\":\"50,00\",\"service_price\":\" 0,00\",\"total\":\"50,00\"}]}";
 //    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
 //    NSError *error = nil;
@@ -88,21 +98,10 @@
 //
 //    QMOrder *order = [[QMOrder alloc] initWithDictionary:jsonDictionary];
 //    [QMOrder addOrderToHistory:order];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Home"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-}
-
-- (void)configureTableView {
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-
-    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
-    UINib *cellNib = [UINib nibWithNibName:@"QMCarouselView" bundle:nil];
-    [_tableView registerNib:cellNib forCellReuseIdentifier:@"QMCarouselView"];
-
-    [_tableView setContentInset:UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -138,6 +137,40 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)didBecomeActive:(id)didBecomeActive {
+    if (!_requestingData) {
+        [self retryBannersIfNeeded];
+    }
+}
+
+
+#pragma mark -
+#pragma mark - Private Methods
+
+
+- (void)retryBannersIfNeeded {
+    if ([_visores count] > 0) {
+        [self retryFailedBanners];
+    } else {
+        [self requestData];
+    }
+}
+
+- (void)retryFailedBanners {
+    [_carouselView retryFailedBanners];
+}
+
+- (void)configureTableView {
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+
+    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
+    UINib *cellNib = [UINib nibWithNibName:@"QMCarouselView" bundle:nil];
+    [_tableView registerNib:cellNib forCellReuseIdentifier:@"QMCarouselView"];
+
+    [_tableView setContentInset:UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f)];
 }
 
 - (void)configureOrderHistoryButton {
@@ -193,6 +226,7 @@
 }
 
 - (void)requestVisores {
+    _requestingData = YES;
     [QMVisoresRequester requestVisoresOnCompleteBlock:^(NSArray *array) {
         _visores = array;
         NSMutableArray *banners = [[NSMutableArray alloc] init];
@@ -200,7 +234,9 @@
             [banners addObject:[visor toBanner]];
         }
         [_carouselView setBanners:banners];
+        _requestingData = NO;
     } onFailBlock:^(NSError *error) {
+        _requestingData = NO;
     }];
 }
 

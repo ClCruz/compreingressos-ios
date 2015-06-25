@@ -10,6 +10,7 @@
 #import "QMBanner.h"
 #import "QMCarouselView.h"
 #import "QMConstants.h"
+#import "QMException.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation QMBannerView {
@@ -17,11 +18,14 @@
     QMBanner *_banner;
     UIView *_descriptionCover;
     __weak QMCarouselView *_carousel;
+    BOOL _isUsingPlaceholder;
 }
 
 @synthesize banner = _banner;
 @synthesize descriptionCover = _descriptionCover;
 @synthesize carousel = _carousel;
+
+@synthesize isUsingPlaceholder = _isUsingPlaceholder;
 
 + (CGSize)sizeForBanner {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -41,7 +45,7 @@
 
 - (void)setBanner:(QMBanner *)banner {
     _banner = banner;
-    [self configurePhoto];
+    [self downloadPhoto];
     [_description setFont:[UIFont boldSystemFontOfSize:16]];
     [_description setText:_banner.description];
     [self configureLink];
@@ -58,7 +62,7 @@
     return view;
 }
 
-- (void)configurePhoto {
+- (void)downloadPhoto {
     [_bannerImage setImage:nil];
     if (_banner.imageUrl) {
         @try {
@@ -88,12 +92,18 @@
                                            weakImageView.alpha = 1.0;
                                        }];
                                        if (!image) {
+                                           _isUsingPlaceholder = YES;
                                            // [_bannerImage setImage:[QMConstants placeHolderImage]];
                                        }
             }];
         }
         @catch (NSException *exception) {
             /* TODO: Usar handled exception do crittercism. Mas no pior caso não vai carregar a imagem */
+            QMException *handled = [[QMException alloc] initWithNSException:exception];
+            [handled addPrefixToTitle:@"[Não carregou banner]"];
+            handled.moreInfo = _banner.imageUrl;
+            [handled post];
+            _isUsingPlaceholder = YES;
         }
     }
 }

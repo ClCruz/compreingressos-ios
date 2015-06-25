@@ -6,6 +6,7 @@
 
 
 #import "QMRequester.h"
+#import "QMReachability.h"
 
 NSString *appVersionParameter;
 CGFloat requestTimeoutSeconds = 15.0;
@@ -172,5 +173,20 @@ CGFloat requestTimeoutSeconds = 15.0;
         return false;
     }
 }
+
++ (NSString *)connectionType {
+    QMReachability *networkReachability = [QMReachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == ReachableViaWiFi) {
+        return kWifiCon;
+    } else {
+        return kWwanCon;
+    }
+}
+
++ (BOOL)isWifi {
+    return [[self connectionType] isEqualToString:kWifiCon];
+}
+
 
 @end

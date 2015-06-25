@@ -173,5 +173,13 @@ static const int kBannersHeightRetina3 = 156;
     [_spinner startAnimating];
 }
 
+- (void)retryFailedBanners {
+    for (QMBannerView *banner in _bannerViews) {
+        if ([banner isUsingPlaceholder]) {
+            [banner downloadPhoto];
+        }
+    }
+}
+
 @end
 
