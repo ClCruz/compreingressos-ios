@@ -95,7 +95,7 @@
     NSString *bundledPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CustomPathImages"];
     [[SDImageCache sharedImageCache] addReadOnlyCachePath:bundledPath];
     [[SDImageCache sharedImageCache] setMaxCacheSize:50 * 1024 * 1024];
-    //[[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearDisk];
     //NSLog(@"  max concurrent downloads:: %d", SDWebImageManager.sharedManager.imageDownloader.maxConcurrentDownloads);
 }
 

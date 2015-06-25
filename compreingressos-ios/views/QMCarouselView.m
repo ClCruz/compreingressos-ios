@@ -7,10 +7,12 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "QMCarouselView.h"
 #import "QMBanner.h"
 #import "QMBannerView.h"
 #import "QMRedPageControl.h"
+#import "QMLoadingView.h"
 
 static const int kCarrosselPeriod = 5;
 static const int kBannersHeightRetina4 = 156;
@@ -23,6 +25,11 @@ static const int kBannersHeightRetina3 = 156;
     BOOL _showLinkButton;
     BOOL _isWebviewLink;
     BOOL _showBannerDescription;
+    UIImageView *_staticBackground;
+    QMLoadingView *_loading;
+    UIImageView *_logo;
+    UIView *_background;
+    BOOL _finishedInitialAnimation;
 }
 
 @synthesize banners = _banners;
@@ -39,14 +46,13 @@ static const int kBannersHeightRetina3 = 156;
 
 - (void)awakeFromNib {
     [self setClipsToBounds:YES];
-    [_spinner startAnimating];
     _bannerViews = [[NSMutableArray alloc] init];
     [_pageControlBg setBackgroundColor:[UIColor clearColor]];
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    [_spinner setCenter:self.center];
 }
 
 - (CGFloat)carouselHeight {
@@ -64,9 +70,44 @@ static const int kBannersHeightRetina3 = 156;
     self.frame = CGRectSetHeight(self.frame, carouselHeight);
     scrollView.frame = CGRectSetSize(scrollView.frame, [QMBannerView sizeForBanner]);
 
-//    _pageControlBg.frame = CGRectSetHeight(_pageControlBg.frame, screenWidth / 12.8f);
-//    _pageControlBg.frame = CGRectSetOriginY(_pageControlBg.frame, self.frame.size.height - _pageControlBg.frame.size.height);
-//    [_pageControlBg setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.35]];
+    _staticBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"banner_placeholder.jpg"]];
+    _staticBackground.frame = self.frame;
+    [_staticBackground setContentMode:UIViewContentModeScaleAspectFill];
+    [self addSubview:_staticBackground];
+    _background = _staticBackground;
+
+    _logo = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 81.0f, 59.0f)];
+    [_logo setImage:[UIImage imageNamed:@"compreingressos_quebra.png"]];
+    [_background addSubview:_logo];
+    _logo.center = _background.center;
+
+    _loading = [[QMLoadingView alloc] init];
+    _loading.center = _background.center;
+    _loading.frame = CGRectOffset(_loading.frame, 0.0, 40.0);
+    [_background addSubview:_loading];
+    _loading.alpha = 0.0f;
+    [_loading start];
+    [UIView animateWithDuration:0.6 delay:0.8 options:0 animations:^{
+        _logo.frame = CGRectSetOriginY(_logo.frame, _logo.frame.origin.y - 40);
+        _loading.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        _finishedInitialAnimation = YES;
+        if([_banners count] > 0) {
+            [self hideBackground];
+        }
+    }];
+
+    [self sendSubviewToBack:_background];
+}
+
+- (void)hideBackground {
+    [UIView animateWithDuration:0.3 animations:^{
+        _logo.alpha = 0.0;
+        _loading.alpha = 0.0;
+//        [_background setAlpha:0.0];
+    } completion:^(BOOL finished) {
+        [_loading stop];
+    }];
 }
 
 - (void)setBanners:(NSArray *)banners {
@@ -77,11 +118,12 @@ static const int kBannersHeightRetina3 = 156;
     [_bannerViews removeAllObjects];
     [self configureScrollView];
     [self resetCaroselTimer];
-    [UIView animateWithDuration:0.2 animations:^{
-        [_spinner setAlpha:0.0];
+    [UIView animateWithDuration:0.3 animations:^{
         [_pageControl setHidden:_pageControl.numberOfPages <= 1];
+        if (_finishedInitialAnimation) {
+            [_background setAlpha:0.0];
+        }
     } completion:^(BOOL finished) {
-        [_spinner stopAnimating];
     }];
     _pageControl.center = _pageControlBg.center;
 }
@@ -166,11 +208,11 @@ static const int kBannersHeightRetina3 = 156;
 }
 
 - (void)stopSpinner {
-    [_spinner stopAnimating];
+
 }
 
 - (void)startSpinner {
-    [_spinner startAnimating];
+
 }
 
 - (void)retryFailedBanners {

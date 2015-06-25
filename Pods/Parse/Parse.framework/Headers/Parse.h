@@ -152,7 +152,7 @@ PF_ASSUME_NONNULL_BEGIN
 ///--------------------------------------
 
 /*!
- @abstract Set whether to show offline messages when using a Parse view or view controller related classes.
+ @abstract Set whether to start offline messages when using a Parse view or view controller related classes.
 
  @param enabled Whether a `UIAlertView` should be shown when the device is offline
  and network access is required from a view or view controller.
@@ -162,7 +162,7 @@ PF_ASSUME_NONNULL_BEGIN
 + (void)offlineMessagesEnabled:(BOOL)enabled PARSE_DEPRECATED("This method is deprecated and has no effect.");
 
 /*!
- @abstract Set whether to show an error message when using a Parse view or view controller related classes
+ @abstract Set whether to start an error message when using a Parse view or view controller related classes
  and a Parse error was generated via a query.
 
  @param enabled Whether a `UIAlertView` should be shown when an error occurs.

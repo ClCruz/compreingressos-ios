@@ -51,7 +51,7 @@ extern NSString *const PF_NONNULL_S kPFParseServer;
 /*!
  `PFCachePolicy` specifies different caching policies that could be used with <PFQuery>.
 
- This lets you show data when the user's device is offline,
+ This lets you start data when the user's device is offline,
  or when the app has just started and network requests have not yet had time to complete.
  Parse takes care of automatically flushing the cache when it takes up too much space.
 

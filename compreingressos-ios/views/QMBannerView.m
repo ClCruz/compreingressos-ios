@@ -11,6 +11,7 @@
 #import "QMCarouselView.h"
 #import "QMConstants.h"
 #import "QMException.h"
+#import "QMLoadingView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation QMBannerView {
@@ -66,34 +67,39 @@
     [_bannerImage setImage:nil];
     if (_banner.imageUrl) {
         @try {
-            __block UIActivityIndicatorView *imageActivityIndicator;
+            __block QMLoadingView *imageActivityIndicator;
             __weak UIImageView *weakImageView = _bannerImage;
             [_bannerImage sd_setImageWithURL:[NSURL URLWithString:_banner.imageUrl]
-                            placeholderImage:nil
+                            placeholderImage:[UIImage imageNamed:@"banner_placeholder.jpg"]
                                      options:0
                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                         if (!imageActivityIndicator) {
-                                            imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                                            imageActivityIndicator = [[QMLoadingView alloc] init];
+                                            imageActivityIndicator.frame = CGRectOffset(imageActivityIndicator.frame, 0.0, 40.0);
                                             [weakImageView addSubview:imageActivityIndicator];
                                             imageActivityIndicator.center = weakImageView.center;
                                             CGFloat x = [UIScreen mainScreen].bounds.size.width - imageActivityIndicator.frame.size.width;
                                             imageActivityIndicator.frame = CGRectSetOriginX(imageActivityIndicator.frame, x/2.0f);
-                                            [imageActivityIndicator setColor:[UIColor blackColor]];
-                                            [imageActivityIndicator startAnimating];
+                                            [imageActivityIndicator start];
                                         }
             }
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                       [imageActivityIndicator stopAnimating];
-                                       [imageActivityIndicator removeFromSuperview];
-                                       imageActivityIndicator = nil;
-                                       [weakImageView layoutIfNeeded];
+//                                       [weakImageView layoutIfNeeded];
                                        weakImageView.alpha = 0.0;
-                                       [UIView animateWithDuration:0.3 animations:^{
-                                           weakImageView.alpha = 1.0;
-                                       }];
-                                       if (!image) {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           [UIView animateWithDuration:0.3 animations:^{
+                                               weakImageView.alpha = 1.0;
+                                               imageActivityIndicator.alpha = 0.0;
+                                           } completion:^(BOOL finished) {
+                                               [imageActivityIndicator stop];
+                                               [imageActivityIndicator removeFromSuperview];
+                                               imageActivityIndicator = nil;
+                                           }];
+                                       });
+                                       if (image) {
+                                           _isUsingPlaceholder = NO;
+                                       } else {
                                            _isUsingPlaceholder = YES;
-                                           // [_bannerImage setImage:[QMConstants placeHolderImage]];
                                        }
             }];
         }
