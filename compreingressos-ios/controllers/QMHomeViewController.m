@@ -226,6 +226,7 @@
 }
 
 - (void)requestVisores {
+    [_carouselView showLoading]; // a primeira vez que passar por aqui, ainda não vai ter um carouselview
     _requestingData = YES;
     [QMVisoresRequester requestVisoresOnCompleteBlock:^(NSArray *array) {
         _visores = array;
@@ -237,6 +238,7 @@
         _requestingData = NO;
     } onFailBlock:^(NSError *error) {
         _requestingData = NO;
+        [_carouselView showError];
     }];
 }
 
@@ -389,7 +391,7 @@
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         _carouselView = [tableView dequeueReusableCellWithIdentifier:@"QMCarouselView" forIndexPath:indexPath];
-        [_carouselView prepareCarouselForRetina4:YES];
+        [_carouselView configure:YES];
         cell = _carouselView;
     } else {
         QMGenreCell *genreCell = [tableView dequeueReusableCellWithIdentifier:@"QMGenreCell" forIndexPath:indexPath];

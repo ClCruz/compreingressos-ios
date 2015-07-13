@@ -25,7 +25,7 @@
     _carrossel = [QMCarouselView allocFromNib];
     [self addSubview:_carrossel];
     _carrossel.frame = self.frame;
-    [_carrossel prepareCarouselForRetina4:[QMConstants isRetina4]];
+    [_carrossel configure:[QMConstants isRetina4]];
     [_carrossel setBackgroundColor:UIColorFromRGB(0xefeff4)];
     [_carrossel setShowBannerDescription:NO];
     [_carrossel setShowLinkButton:NO];

@@ -30,6 +30,7 @@ static const int kBannersHeightRetina3 = 156;
     UIImageView *_logo;
     UIView *_background;
     BOOL _finishedInitialAnimation;
+    UIImageView *_errorIcon;
 }
 
 @synthesize banners = _banners;
@@ -61,7 +62,7 @@ static const int kBannersHeightRetina3 = 156;
     return carouselHeight;
 }
 
-- (void)prepareCarouselForRetina4:(BOOL)retina4 {
+- (void)configure:(BOOL)retina4 {
     isRetina4 = retina4;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat carouselHeight = [self carouselHeight];
@@ -80,33 +81,18 @@ static const int kBannersHeightRetina3 = 156;
     [_logo setImage:[UIImage imageNamed:@"compreingressos_quebra.png"]];
     [_background addSubview:_logo];
     _logo.center = _background.center;
-
-    _loading = [[QMLoadingView alloc] init];
-    _loading.center = _background.center;
-    _loading.frame = CGRectOffset(_loading.frame, 0.0, 40.0);
-    [_background addSubview:_loading];
-    _loading.alpha = 0.0f;
-    [_loading start];
-    [UIView animateWithDuration:0.6 delay:0.8 options:0 animations:^{
-        _logo.frame = CGRectSetOriginY(_logo.frame, _logo.frame.origin.y - 40);
-        _loading.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        _finishedInitialAnimation = YES;
-        if([_banners count] > 0) {
-            [self hideBackground];
-        }
-    }];
-
     [self sendSubviewToBack:_background];
+    [self showLoading];
 }
 
 - (void)hideBackground {
     [UIView animateWithDuration:0.3 animations:^{
         _logo.alpha = 0.0;
         _loading.alpha = 0.0;
-//        [_background setAlpha:0.0];
     } completion:^(BOOL finished) {
         [_loading stop];
+        [_loading removeFromSuperview];
+        _loading = nil;
     }];
 }
 
@@ -211,10 +197,6 @@ static const int kBannersHeightRetina3 = 156;
 
 }
 
-- (void)startSpinner {
-
-}
-
 - (void)retryFailedBanners {
     for (QMBannerView *banner in _bannerViews) {
         if ([banner isUsingPlaceholder]) {
@@ -223,5 +205,66 @@ static const int kBannersHeightRetina3 = 156;
     }
 }
 
+- (void)showError {
+    [self shrinkView:_loading onComplete:^{
+        [_loading stop];
+        _loading.alpha = 0.0;
+        _errorIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error.png"]];
+        _errorIcon.frame = _loading.frame;
+        [_loading removeFromSuperview];
+        _loading = nil;
+        [self addSubview:_errorIcon];
+        [self expandViewWithBounce:_errorIcon onComplete:^{
+            [UIView animateKeyframesWithDuration:0.5 delay:1 options:0 animations:^{
+                _logo.center = self.center;
+                _errorIcon.frame = CGRectOffset(_errorIcon.frame, 0.0, 40);
+                _errorIcon.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                [_errorIcon removeFromSuperview];
+                _errorIcon = nil;
+            }];
+        }];
+    }];
+}
+
+- (void)shrinkView:(UIView *)view onComplete:(void(^)())onCompleteBlock {
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        view.transform = CGAffineTransformScale(view.transform, 0.1, 0.1);
+    } completion:^(BOOL finished) {
+        if(onCompleteBlock) onCompleteBlock();
+    }];
+}
+
+- (void)expandViewWithBounce:(UIView *)view onComplete:(void(^)())onCompleteBlock {
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        view.transform = CGAffineTransformScale(view.transform, 8, 8);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            view.transform = CGAffineTransformScale(view.transform, 0.7, 0.7);
+        } completion:^(BOOL finished) {
+            if (onCompleteBlock) onCompleteBlock();
+        }];
+    }];
+}
+
+- (void)showLoading {
+    if (!_loading) {
+        _loading = [[QMLoadingView alloc] init];
+        _loading.center = _background.center;
+        _loading.frame = CGRectOffset(_loading.frame, 0.0, 40.0);
+        [_background addSubview:_loading];
+        _loading.alpha = 0.0f;
+        [_loading start];
+        [UIView animateWithDuration:0.6 delay:0.8 options:0 animations:^{
+            _logo.frame = CGRectSetOriginY(_logo.frame, _logo.frame.origin.y - 40);
+            _loading.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            _finishedInitialAnimation = YES;
+            if([_banners count] > 0) {
+                [self hideBackground];
+            }
+        }];
+    }
+}
 @end
 

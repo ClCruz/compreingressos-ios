@@ -44,7 +44,7 @@
 @property (nonatomic) BOOL showBannerDescription;
 
 + (QMCarouselView *)allocFromNib;
-- (void)prepareCarouselForRetina4:(BOOL)retina4;
+- (void)configure:(BOOL)retina4;
 - (void)resetCaroselTimer;
 - (void)stopCaroselTimer;
 - (void)showNextBanner;
@@ -55,4 +55,8 @@
 - (void)startSpinner;
 
 - (void)retryFailedBanners;
+
+- (void)showError;
+
+- (void)showLoading;
 @end

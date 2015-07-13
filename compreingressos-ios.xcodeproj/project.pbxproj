@@ -125,6 +125,7 @@
 		25D3B1951ADD363D00CB3924 /* QMOrderHistoryTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3B1941ADD363D00CB3924 /* QMOrderHistoryTicketCell.m */; };
 		337A4071AE6FA07FB6378244 /* banner_placeholder@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 337A43577C7C9E3FDA6C114E /* banner_placeholder@3x.jpg */; };
 		337A4095ABB348F4D211E17B /* QMTrackPurchasesRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4D43B28150559D88FB6D /* QMTrackPurchasesRequester.m */; };
+		337A40981B1CF9736C85AA53 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 337A443EE7860DC376065BFE /* error.png */; };
 		337A41C1C34185A9CDC20967 /* banner_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 337A4BF33E8A1ACAB1861D2B /* banner_placeholder.jpg */; };
 		337A423EA29023F31BC86FFF /* banner_placeholder@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 337A4172D6C4229CECE6F31B /* banner_placeholder@2x.jpg */; };
 		337A428448017AE3EEB47B8B /* compreingressos_quebra.png in Resources */ = {isa = PBXBuildFile; fileRef = 337A43796CA7C459D4A9CEEF /* compreingressos_quebra.png */; };
@@ -314,6 +315,7 @@
 		337A43577C7C9E3FDA6C114E /* banner_placeholder@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "banner_placeholder@3x.jpg"; sourceTree = "<group>"; };
 		337A43796CA7C459D4A9CEEF /* compreingressos_quebra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compreingressos_quebra.png; sourceTree = "<group>"; };
 		337A438298448B530841123B /* QMSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSuperViewController.h; sourceTree = "<group>"; };
+		337A443EE7860DC376065BFE /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = error.png; path = "compreingressos-ios/res/error.png"; sourceTree = SOURCE_ROOT; };
 		337A44861E395134B2992CB2 /* QMSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSuperViewController.m; sourceTree = "<group>"; };
 		337A4766D81D55E26C9C6CD0 /* QMExceptionsRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMExceptionsRequester.h; sourceTree = "<group>"; };
 		337A479A3203AAB1E64FF211 /* QMLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMLoadingView.h; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				251FA1DB1AC3386400C20391 /* teatro.png */,
 				25A565B21B29B4D600AE554F /* teatro@2x.png */,
 				25A565B31B29B4D600AE554F /* teatro@3x.png */,
+				337A443EE7860DC376065BFE /* error.png */,
 			);
 			path = icons;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				337A4071AE6FA07FB6378244 /* banner_placeholder@3x.jpg in Resources */,
 				337A423EA29023F31BC86FFF /* banner_placeholder@2x.jpg in Resources */,
 				337A41C1C34185A9CDC20967 /* banner_placeholder.jpg in Resources */,
+				337A40981B1CF9736C85AA53 /* error.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

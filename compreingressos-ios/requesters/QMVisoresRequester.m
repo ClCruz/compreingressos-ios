@@ -30,7 +30,7 @@ static NSString *const kVisoresPath = @"visores/lista.json";
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setTimeoutInterval:15.0];
+    [request setTimeoutInterval:5.0];
     [request setCachePolicy:[QMRequester cachePolicy]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *req, NSHTTPURLResponse *response, id JSON) {
