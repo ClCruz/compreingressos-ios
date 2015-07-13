@@ -50,6 +50,7 @@ static const int kBannersHeightRetina3 = 156;
     _bannerViews = [[NSMutableArray alloc] init];
     [_pageControlBg setBackgroundColor:[UIColor clearColor]];
     self.backgroundColor = [UIColor clearColor];
+    scrollView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -104,11 +105,11 @@ static const int kBannersHeightRetina3 = 156;
     [_bannerViews removeAllObjects];
     [self configureScrollView];
     [self resetCaroselTimer];
+    if (_finishedInitialAnimation) {
+        [self hideBackground];
+    }
     [UIView animateWithDuration:0.3 animations:^{
         [_pageControl setHidden:_pageControl.numberOfPages <= 1];
-        if (_finishedInitialAnimation) {
-            [_background setAlpha:0.0];
-        }
     } completion:^(BOOL finished) {
     }];
     _pageControl.center = _pageControlBg.center;
@@ -146,7 +147,7 @@ static const int kBannersHeightRetina3 = 156;
         _pageWidth = CGRectGetWidth(bannerView.frame);
         [bannerView setFrame:CGRectSetOrigin(bannerView.frame, CGPointMake(_pageWidth * i, 0.0))];
         [bannerView setFrame:CGRectSetHeight(bannerView.frame, _bannersHeight)];
-        [bannerView setBackgroundColor:self.backgroundColor]; // forward da backgroundcolor
+//        [bannerView setBackgroundColor:self.backgroundColor]; // forward da backgroundcolor
         if (!_showBannerDescription) [bannerView hideDescription];
         [scrollView addSubview:bannerView];
         [bannerView setAlpha:0.0];

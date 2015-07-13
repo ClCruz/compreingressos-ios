@@ -11,11 +11,13 @@
 
 #import "QMVisor.h"
 #import "QMBanner.h"
+#import "QMRequester.h"
 
 @implementation QMVisor {
     @private
     NSString *_imagem;
     NSString *_url;
+    NSString *_title;
 }
 
 @synthesize imagem = _imagem;
@@ -26,13 +28,14 @@
     if (self) {
         _imagem = dictionary[@"imagem"];
         _url = dictionary[@"url"];
+        _title = [QMRequester objectOrNilForKey:@"titulo" forDictionary:dictionary];
     }
     return self;
 }
 
 - (QMBanner *)toBanner {
     QMBanner *banner = [[QMBanner alloc] init];
-    banner.description = @"teste";
+    banner.description = _title;
     banner.imageUrl = _imagem;
     banner.linkUrl = _url;
     return banner;

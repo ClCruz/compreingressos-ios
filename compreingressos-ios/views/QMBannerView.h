@@ -15,6 +15,8 @@
     IBOutlet UIImageView *_bannerImage;
     IBOutlet UILabel *_description;
     IBOutlet UIActivityIndicatorView *_spinner;
+    __weak IBOutlet UIView *_titleContainer;
+    __weak IBOutlet UILabel *_titleLabel;
 }
 
 @property (nonatomic, strong) QMBanner *banner;

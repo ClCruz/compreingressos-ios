@@ -14,6 +14,7 @@
 
 @property(nonatomic, strong) NSString *imagem;
 @property(nonatomic, strong) NSString *url;
+@property(nonatomic, strong) NSString *title;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (QMBanner *)toBanner;

@@ -20,6 +20,7 @@
     UIView *_descriptionCover;
     __weak QMCarouselView *_carousel;
     BOOL _isUsingPlaceholder;
+    __block QMLoadingView *_loadingView;
 }
 
 @synthesize banner = _banner;
@@ -40,15 +41,20 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(clickedOnLinkButton)];
     singleTap.numberOfTapsRequired = 1;
     [self addGestureRecognizer:singleTap];
-    [_bannerImage setOpaque:NO];
     self.frame = CGRectSetSize(self.frame, [QMBannerView sizeForBanner]);
+    [self setBackgroundColor:[UIColor clearColor]];
+    [_bannerImage setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)setBanner:(QMBanner *)banner {
     _banner = banner;
     [self downloadPhoto];
     [_description setFont:[UIFont boldSystemFontOfSize:16]];
-    [_description setText:_banner.description];
+    [_titleLabel setText:_banner.description];
+    if (!_banner.description) {
+        [_titleContainer removeFromSuperview];
+        _titleContainer = nil;
+    }
     [self configureLink];
 }
 
@@ -67,34 +73,45 @@
     [_bannerImage setImage:nil];
     if (_banner.imageUrl) {
         @try {
-            __block QMLoadingView *imageActivityIndicator;
             __weak UIImageView *weakImageView = _bannerImage;
+            _bannerImage.alpha = 0.0f;
             [_bannerImage sd_setImageWithURL:[NSURL URLWithString:_banner.imageUrl]
                             placeholderImage:[UIImage imageNamed:@"banner_placeholder.jpg"]
                                      options:0
                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                        if (!imageActivityIndicator) {
-                                            imageActivityIndicator = [[QMLoadingView alloc] init];
-                                            imageActivityIndicator.frame = CGRectOffset(imageActivityIndicator.frame, 0.0, 40.0);
-                                            [weakImageView addSubview:imageActivityIndicator];
-                                            imageActivityIndicator.center = weakImageView.center;
-                                            CGFloat x = [UIScreen mainScreen].bounds.size.width - imageActivityIndicator.frame.size.width;
-                                            imageActivityIndicator.frame = CGRectSetOriginX(imageActivityIndicator.frame, x/2.0f);
-                                            [imageActivityIndicator start];
+                                        if (!_loadingView) {
+                                            _loadingView = [[QMLoadingView alloc] init];
+                                            [self addSubview:_loadingView];
+                                            _loadingView.center = weakImageView.center;
+                                            if (_titleContainer) {
+                                                _loadingView.frame = CGRectOffset(_loadingView.frame, 0.0, 40.0);
+                                            }
+                                            [_loadingView start];
                                         }
             }
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                                       [weakImageView layoutIfNeeded];
-                                       weakImageView.alpha = 0.0;
                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                           [UIView animateWithDuration:0.3 animations:^{
-                                               weakImageView.alpha = 1.0;
-                                               imageActivityIndicator.alpha = 0.0;
-                                           } completion:^(BOOL finished) {
-                                               [imageActivityIndicator stop];
-                                               [imageActivityIndicator removeFromSuperview];
-                                               imageActivityIndicator = nil;
-                                           }];
+                                           CABasicAnimation *fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+                                           fadeIn.fromValue = @0.0F;
+                                           fadeIn.toValue = @1.0F;
+                                           fadeIn.duration = 0.3;
+
+                                           CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+                                           fadeOut.fromValue = @1.0F;
+                                           fadeOut.toValue = @0.0F;
+                                           fadeOut.duration = 0.3;
+                                           fadeOut.delegate = self;
+
+                                           [weakImageView.layer addAnimation:fadeIn forKey:@"opacity"];
+                                           weakImageView.layer.opacity = 1.0;
+
+                                           [_loadingView.layer addAnimation:fadeOut forKey:@"opacity"];
+                                           _loadingView.layer.opacity = 0.0;
+
+                                           if (_titleContainer) {
+                                               [_titleContainer.layer addAnimation:fadeOut forKey:@"opacity"];
+                                               _titleContainer.layer.opacity = 0.0;
+                                           }
                                        });
                                        if (image) {
                                            _isUsingPlaceholder = NO;
@@ -114,6 +131,14 @@
     }
 }
 
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
+    if (_loadingView) {
+        [_loadingView stop];
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
+    }
+}
+
 - (BOOL)hasLink {
     return (_banner.linkUrl && _banner.linkUrl.length > 0);
 }
@@ -124,7 +149,6 @@
             if (_banner.linkIsVideo) {
                 UIButton *play = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, 80.0)];
                 [play addTarget:self action:@selector(clickedOnVideoButton) forControlEvents:UIControlEventTouchUpInside];
-                //[play setImage:[UIImage imageNamed:@"ic_play_n.png"] forState:UIControlStateNormal];
                 [self addSubview:play];
                 play.center = self.center;
                 CGFloat deltaY = 10.0;
