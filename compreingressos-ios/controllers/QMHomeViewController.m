@@ -130,7 +130,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [SVProgressHUD dismiss];
     [_locationManager stopUpdatingLocation];
     [_carouselView stopCaroselTimer];
 }

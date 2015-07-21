@@ -91,7 +91,9 @@
 
 - (void)requestData {
     if ([self isConnected]) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD show];
+        _collectionView.alpha = 0.0;
         NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
         if (_genre.searchTerm) {
             options[@"genero"] = _genre.searchTerm;
@@ -105,11 +107,15 @@
         [QMEspetaculosRequester requestEspetaculosWithOptions:options onCompleteBlock:^(NSArray *array, NSNumber *total) {
             _espetaculos = array;
             [_collectionView reloadData];
+            [UIView animateWithDuration:0.3 animations:^{
+                _collectionView.alpha = 1.0;
+            }];
             [SVProgressHUD dismiss];
         } onFailBlock:^(NSError *error) {
             [SVProgressHUD dismiss];
         }];
     } else {
+        [SVProgressHUD dismiss];
         [self showNotConnectedError];
     }
 }
