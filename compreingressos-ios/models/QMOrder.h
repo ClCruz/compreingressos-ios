@@ -31,4 +31,5 @@
 - (NSString *)formattedOrderNumber;
 - (NSString *)spectacleTitle;
 
+- (NSNumber *)numericTotal;
 @end

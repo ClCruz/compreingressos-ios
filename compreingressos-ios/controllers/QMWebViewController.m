@@ -427,9 +427,27 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [self notifyNewOrder];
     [QMPushNotificationUtils unsubscribe:@"prospect"];
     [QMPushNotificationUtils subscribe:@"client"];
-    /* O Correto aqui seria criar uma fila de uploads pois não podemos perder nenhum post daqui.
+    [self trackTrasaction];
+    [self trackTrasactionOnGA];
+}
+
+- (void)trackTrasaction {
+/* O Correto aqui seria criar uma fila de uploads pois não podemos perder nenhum post daqui.
      * mesmo se cair a conexão */
     [QMTrackPurchasesRequester postOrder:[QMOrder sharedInstance] onCompleteBlock:nil onFailBlock:nil];
+}
+
+- (void)trackTrasactionOnGA {
+    if (!kIsDebugBuild) {
+        QMOrder *order = [QMOrder sharedInstance];
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createTransactionWithId:order.number
+                                                         affiliation:@"APP iOS"
+                                                             revenue:order.numericTotal
+                                                                 tax:@0
+                                                            shipping:@0
+                                                        currencyCode:@"BLR"] build]];
+    }
 }
 
 - (void)notifyNewOrder {
@@ -441,11 +459,11 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 - (void)showFinalizationScreen {
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    
+
     CATransition *transition = [CATransition animation];
     [transition setType:kCATransitionFade];
     [self.navigationController.view.layer addAnimation:transition forKey:@"someAnimation"];
-    
+
     [CATransaction commit];
 }
 

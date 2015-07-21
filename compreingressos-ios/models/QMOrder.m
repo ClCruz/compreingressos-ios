@@ -187,4 +187,18 @@ static NSMutableArray *orderHistoryArray;
     return _espetaculo.titulo;
 }
 
+- (NSNumber *)numericTotal {
+    NSNumber *number = @0;
+    if (_total) {
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[\\d]+[,\\d]*" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSRange visibleRange = NSMakeRange(0, _total.length);
+        NSArray *matches = [regex matchesInString:_total options:NSMatchingProgress range:visibleRange];
+        NSString *filteredTotal = matches[0];
+        NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+        [formatter setCurrencyDecimalSeparator:@","];
+        number = [formatter numberFromString:filteredTotal];
+    }
+    return number;
+}
 @end
