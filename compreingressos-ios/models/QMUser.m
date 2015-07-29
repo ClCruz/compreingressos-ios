@@ -21,6 +21,7 @@ static QMUser *sharedInstance;
         sharedInstance = [[QMUser alloc] init];
         NSString *userHash = [[NSUserDefaults standardUserDefaults] objectForKey:@"userHash"];
         sharedInstance.userHash = userHash;
+        // sharedInstance.userHash = @"jRDqK3pUK2%2F1itE7KhxeNIO%2FfS3MCWW2gvIKO9yWywc%3D";
     });
     return sharedInstance;
 }

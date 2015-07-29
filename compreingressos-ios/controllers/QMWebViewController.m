@@ -428,7 +428,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [QMPushNotificationUtils unsubscribe:@"prospect"];
     [QMPushNotificationUtils subscribe:@"client"];
     [self trackTrasaction];
-    [self trackTrasactionOnGA];
+    [self trackTransactionOnGA];
 }
 
 - (void)trackTrasaction {
@@ -437,7 +437,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [QMTrackPurchasesRequester postOrder:[QMOrder sharedInstance] onCompleteBlock:nil onFailBlock:nil];
 }
 
-- (void)trackTrasactionOnGA {
+- (void)trackTransactionOnGA {
     if (!kIsDebugBuild) {
         QMOrder *order = [QMOrder sharedInstance];
         id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -446,7 +446,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                                                              revenue:order.numericTotal
                                                                  tax:@0
                                                             shipping:@0
-                                                        currencyCode:@"BLR"] build]];
+                                                        currencyCode:nil] build]];
     }
 }
 
@@ -618,7 +618,8 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     if (kIsDebugBuild) {
         /* Troca a url do fluxo de compra para homol */
         if ([self isFirstStep:_url] && [_url rangeOfString:@"Turma-do-Chaves"].length == 0) {
-            url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
+            url = @"http://186.237.201.150:8081/compreingressos2/comprar/etapa1.php?apresentacao=61565";
+            // url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=61565";
             // url = @"http://186.237.201.132:81/compreingressos2/comprar/etapa1.php?apresentacao=71331&eventoDS=TER%C3%87AS%20APP"; /* assinatura */
         }
     }

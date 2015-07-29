@@ -194,10 +194,13 @@ static NSMutableArray *orderHistoryArray;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[\\d]+[,\\d]*" options:NSRegularExpressionCaseInsensitive error:&error];
         NSRange visibleRange = NSMakeRange(0, _total.length);
         NSArray *matches = [regex matchesInString:_total options:NSMatchingProgress range:visibleRange];
-        NSString *filteredTotal = matches[0];
-        NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
-        [formatter setCurrencyDecimalSeparator:@","];
-        number = [formatter numberFromString:filteredTotal];
+        if ([matches count] > 0) {
+            NSTextCheckingResult *match = matches[0];
+            NSString *filteredTotal = [_total substringWithRange:match.range];
+            NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+            [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"]];
+            number = [formatter numberFromString:filteredTotal];
+        }
     }
     return number;
 }
