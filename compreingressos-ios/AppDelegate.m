@@ -44,6 +44,21 @@
     if (pushPayload) {
         [QMPushNotificationUtils handlePush:pushPayload];
     }
+
+    /* Configurando o Analytics do Parse */
+    if (application.applicationState != UIApplicationStateBackground) {
+        // Track an app open here if we launch with a push, unless
+        // "content_available" was used to trigger a background push (introduced
+        // in iOS 7). In that case, we skip tracking here to avoid double
+        // counting the app-open.
+        BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
+        BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
+        BOOL noPushPayload = !launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+
     return YES;
 }
 
@@ -57,6 +72,7 @@
                                                                                              |UIRemoteNotificationTypeSound
                                                                                              |UIRemoteNotificationTypeAlert) categories:nil];
         [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
     } else {
         UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
@@ -109,6 +125,7 @@
     if (kIsDebugBuild) {
         [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
     }
+    // [currentInstallation addUniqueObject:@"teste_naka" forKey:@"channels"];
     [currentInstallation saveInBackground];
 }
 
@@ -120,7 +137,19 @@
     /* Esta callback é chamada apenas se o app estiver aberto ou em background. Se estiver fechado o payload
      * do push deve ser recuperado no didFinishLaunchWithOptions */
     [QMPushNotificationUtils handlePush:userInfo];
+
+    if (application.applicationState == UIApplicationStateInactive) {
+        // The application was just brought from the background to the foreground,
+        // so we consider the app as having been "opened by a push notification."
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
 }
+
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    if (application.applicationState == UIApplicationStateInactive) {
+//        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+//    }
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
