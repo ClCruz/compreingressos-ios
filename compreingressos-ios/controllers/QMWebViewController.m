@@ -20,6 +20,7 @@
 #import "QMUser.h"
 #import "QMPaymentFinalizationViewController.h"
 #import "QMTrackPurchasesRequester.h"
+#import "QMException.h"
 #import <Google/Analytics.h>
 
 static NSNumber *defaultWebViewBottomSpacing = nil;
@@ -375,7 +376,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                 if ([self isThirdStep:_url]) {
                     /* Inject do código promocional caso necessário */
                     if (_promoCode) {
-                        [self injectPromoCode];
+                        [self injectPromoCodeScript];
                     }
                 }
                 [UIView animateWithDuration:0.3 animations:^{
@@ -386,21 +387,6 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
         }
 
-}
-
-- (void)injectPromoCode {
-    NSString *format = @"var codigo = \"%@\"; "
-    "var groups = /<a href=\"#([\\d]+)\" rel=\"[\\d]+\">PROMO APP<\\/a>/.exec(document.documentElement.outerHTML); "
-    "var ref; "
-    "if (groups.length == 2) ref = groups[1]; "
-    "if (ref) { "
-    "    $('a[href=\"#'+ref+'\"]').click(); "
-    "    $('.container_beneficio').find('input[type=\"text\"]').val(codigo); "
-    "    $('a[class^=\"validarBin\"]').click(); "
-    "} ";
-    NSString *script = [NSString stringWithFormat:format, _promoCode];
-    [_webview stringByEvaluatingJavaScriptFromString:script];
-    _promoCode = nil;
 }
 
 - (void)processOrderIfNeeded {
@@ -415,7 +401,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (QMOrder *)processOrder {
-    NSString *jsonString = [self extractOrderJsonFromPage];
+    NSString *jsonString = [self extractOrderJsonFromPageScript];
     NSDictionary *json = [self dictionaryWithJson:jsonString];
     QMOrder *order = [[QMOrder sharedInstance] initWithDictionary:json];
     [order setOriginalJson:jsonString];
@@ -429,6 +415,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [QMPushNotificationUtils subscribe:@"client"];
     [self trackTrasaction];
     [self trackTransactionOnGA];
+    [self trackItemsOnGA];
 }
 
 - (void)trackTrasaction {
@@ -438,7 +425,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (void)trackTransactionOnGA {
-    if (!kIsDebugBuild) {
+//    if (!kIsDebugBuild) {
         QMOrder *order = [QMOrder sharedInstance];
         id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker send:[[GAIDictionaryBuilder createTransactionWithId:order.number
@@ -447,7 +434,26 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                                                                  tax:@0
                                                             shipping:@0
                                                         currencyCode:nil] build]];
-    }
+//    }
+}
+
+- (void)trackItemsOnGA {
+//    if (!kIsDebugBuild) {
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        QMOrder *order = [QMOrder sharedInstance];
+        NSArray *items = [self extractItemsFromGAScript];
+        if (items || items.count > 0) {
+            for (NSDictionary *itemDict in items) {
+                [tracker send:[[GAIDictionaryBuilder createItemWithTransactionId:order.number
+                                                                            name:itemDict[@"name"]
+                                                                             sku:itemDict[@"sku"]
+                                                                        category:itemDict[@"category"]
+                                                                           price:itemDict[@"price"]
+                                                                        quantity:itemDict[@"quantity"]
+                                                                    currencyCode:nil] build]];
+            }
+        }
+//    }
 }
 
 - (void)notifyNewOrder {
@@ -475,93 +481,6 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         NSLog(@"DID_START_LOAD [%@]", [webView.request.URL absoluteString]);
 }
 
-- (void)hideScript {
-    NSString *hideScript = @"$('p[class=\"creditos\"]').hide(); "
-    "$('#menu_topo').hide(); "
-    "$('.aba' && '.fechado').hide(); "
-    "$('#footer').hide(); "
-    "$('#selos').hide(); "
-    "$('.botao' && '.voltar').hide(); "
-    "$('.minha_conta').hide(); "
-    "$('.meu_codigo_cartao').hide(); "
-    "$('.imprima_agora').hide(); ";
-    [_webview stringByEvaluatingJavaScriptFromString:hideScript];
-}
-
-- (void)hideNextButtonOnWebview {
-    NSString *script = @"$('.container_botoes_etapas').hide(); ";
-    [_webview stringByEvaluatingJavaScriptFromString:script];
-}
-
-- (void)changeViewPortForZooming {
-    NSString *script = @"var all_metas=document.getElementsByTagName('meta'); "
-    @"if (all_metas){ "
-    @"    var k; "
-    @"    for (k=0; k<all_metas.length;k++) { "
-    @"        var meta_tag=all_metas[k]; "
-    @"        var viewport= meta_tag.getAttribute('name'); "
-    @"        if (viewport&& viewport=='viewport'){ "
-    @"            meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=5.0; user-scalable=1;'); "
-    @"        } "
-    @"    } "
-    @"} ";
-    [_webview stringByEvaluatingJavaScriptFromString:script];
-}
-
-- (void)clickNextButtonOnWebview {
-    NSString *script = @"var length = $('.container_botoes_etapas').find('a').length; "
-    @"$('.container_botoes_etapas').find('a')[length - 1].click(); ";
-    [_webview stringByEvaluatingJavaScriptFromString:script];
-}
-
-- (NSString *)extractOrderJsonFromPage {
-    NSString *script = @"var date_aux = new Array; "
-    @"$('.data').children().each(function(){date_aux.push($(this).html())}); "
-    @"var order_date = date_aux.join(' '); "
-    @"var spectacle_name = $('.resumo').find('.nome').html(); "
-    @"var address = $('.resumo').find('.endereco').html(); "
-    @"var theater = $('.resumo').find('.teatro').html(); "
-    @"var time = $('.resumo').find('.horario').html(); "
-    @"var order_number = $('.numero').find('a').html(); "
-    @"var order_total = $('.pedido_total').find('.valor').html(); "
-    @"var tickets = new Array; "
-    @"$('tr').each(function() { "
-    @"	var qrcode = $(this).attr('data:uid'); "
-    @"	if (typeof qrcode !== typeof undefined && qrcode !== false) { "
-    @"		var local   = $(this).find('.local').find('td').html().replace('<br>', '').split('\\n').map(trim).join(' ').trim(); "
-    @"		var type    = $(this).find('.tipo').html(); "
-    @"		var aux     = $(this).find('td'); "
-    @"		var price   = aux.eq(3).children().eq(0).html(); "
-    @"		var service = aux.eq(4).html().replace('R$', ''); "
-    @"		var total   = aux.eq(5).children().eq(0).html(); "
-    @"		tickets.push({ "
-    @"			qrcode:        qrcode, "
-    @"			local:         local, "
-    @"			type:          type, "
-    @"			price:         price, "
-    @"			service_price: service, "
-    @"			total:         total "
-    @"		}); "
-    @"	} "
-    @"}); "
-    @"var payload = { "
-    @"		number: order_number, "
-    @"		date:   order_date, "
-    @"		total:  order_total, "
-    @"		espetaculo: { "
-    @"			titulo: spectacle_name, "
-    @"			endereco: address, "
-    @"			nome_teatro: theater, "
-    @"			horario: time "
-    @"		}, "
-    @"		ingressos: tickets "
-    @"}; "
-    @"JSON.stringify(payload); ";
-    
-    NSString *json = [_webview stringByEvaluatingJavaScriptFromString:script];
-    return json;
-}
-
 - (NSDictionary *)dictionaryWithJson:(NSString *)json {
     NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
@@ -582,10 +501,10 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     } else {
         
     }
-    
-    [self hideNextButtonOnWebview];
+
+    [self hideNextButtonOnWebviewScript];
     if ([self isSecondStep:_url]) {
-        [self changeViewPortForZooming];
+        [self changeViewPortForZoomingScript];
         _webview.scalesPageToFit = YES;
     }
     if ([self isSixthStep:_url]) {
@@ -719,7 +638,160 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (IBAction)clickedOnNativeButton:(id)sender {
-    [self clickNextButtonOnWebview];
+    [self clickNextButtonOnWebviewScript];
+}
+
+
+
+#pragma mark -
+#pragma mark - Scripts
+
+- (NSArray *)extractItemsFromGAScript {
+    NSString *script = @"var regex = /_gaq.push\\(\\['_addItem',[\\W]+'([\\d]+)',[\\W]+'([\\d_]+)',[\\W]+'([\\w \\-\\u00C0-\\u017F]+)',[\\W]+'([\\w \\-\\u00C0-\\u017F]+)',[\\W]+'([\\d\\.,]*)',[\\W]+'(\\d)'/g; "
+        "var match; "
+        "var ret = ''; "
+        "while (match = regex.exec(document.documentElement.outerHTML)) { "
+        "   var i; "
+        "   for(i=1; i<= 6; i++) { "
+        "       ret += match[i]; "
+        "       if (i != 6) { "
+        "           ret += '<.elem,>'; "
+        "       } "
+        "   } "
+        "   ret = ret + '<.item,>'; "
+        "} "
+        "ret; ";
+    NSString *data = [_webview stringByEvaluatingJavaScriptFromString:script];
+    NSMutableArray *itemsArray = [[NSMutableArray alloc] init];
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"]];
+    @try {
+        NSArray *itemsStringArray = [data componentsSeparatedByString:@"<.item,>"];
+        for (NSString *itemString in itemsStringArray) {
+            if (itemString.length > 0) {
+                NSArray *elements = [itemString componentsSeparatedByString:@"<.elem,>"];
+                NSMutableDictionary *itemDict = [[NSMutableDictionary alloc] init];
+                itemDict[@"transaction"] = elements[0];
+                itemDict[@"sku"]         = elements[1];
+                itemDict[@"name"]        = elements[2];
+                itemDict[@"category"]    = elements[3];
+                itemDict[@"price"]       = [formatter numberFromString:elements[4]];
+                itemDict[@"quantity"]    = [formatter numberFromString:elements[5]];
+                [itemsArray addObject:itemDict];
+            }
+        }
+    } @catch (NSException *e) {
+        /* Cria uma QMException com o erro e adiciona o código fonte da página no more info */
+        NSString *sourceCode = [_webview stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML;"];
+        QMException *exception = [[QMException alloc] initWithNSException:e];
+        [exception setMoreInfo:sourceCode];
+        [exception post];
+    }
+
+    return itemsArray;
+}
+
+- (void)injectPromoCodeScript {
+    NSString *format = @"var codigo = \"%@\"; "
+            "var groups = /<a href=\"#([\\d]+)\" rel=\"[\\d]+\">PROMO APP<\\/a>/.exec(document.documentElement.outerHTML); "
+            "var ref; "
+            "if (groups.length == 2) ref = groups[1]; "
+            "if (ref) { "
+            "    $('a[href=\"#'+ref+'\"]').click(); "
+            "    $('.container_beneficio').find('input[type=\"text\"]').val(codigo); "
+            "    $('a[class^=\"validarBin\"]').click(); "
+            "} ";
+    NSString *script = [NSString stringWithFormat:format, _promoCode];
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+    _promoCode = nil;
+}
+
+
+- (void)hideScript {
+    NSString *script = @"$('p[class=\"creditos\"]').hide(); "
+            "$('#menu_topo').hide(); "
+            "$('.aba' && '.fechado').hide(); "
+            "$('#footer').hide(); "
+            "$('#selos').hide(); "
+            "$('.botao' && '.voltar').hide(); "
+            "$('.minha_conta').hide(); "
+            "$('.meu_codigo_cartao').hide(); "
+            "$('.imprima_agora').hide(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (void)hideNextButtonOnWebviewScript {
+    NSString *script = @"$('.container_botoes_etapas').hide(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (void)changeViewPortForZoomingScript {
+    NSString *script = @"var all_metas=document.getElementsByTagName('meta'); "
+            @"if (all_metas){ "
+            @"    var k; "
+            @"    for (k=0; k<all_metas.length;k++) { "
+            @"        var meta_tag=all_metas[k]; "
+            @"        var viewport= meta_tag.getAttribute('name'); "
+            @"        if (viewport&& viewport=='viewport'){ "
+            @"            meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=5.0; user-scalable=1;'); "
+            @"        } "
+            @"    } "
+            @"} ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (void)clickNextButtonOnWebviewScript {
+    NSString *script = @"var length = $('.container_botoes_etapas').find('a').length; "
+            @"$('.container_botoes_etapas').find('a')[length - 1].click(); ";
+    [_webview stringByEvaluatingJavaScriptFromString:script];
+}
+
+- (NSString *)extractOrderJsonFromPageScript {
+    NSString *script = @"var date_aux = new Array; "
+            @"$('.data').children().each(function(){date_aux.push($(this).html())}); "
+            @"var order_date = date_aux.join(' '); "
+            @"var spectacle_name = $('.resumo').find('.nome').html(); "
+            @"var address = $('.resumo').find('.endereco').html(); "
+            @"var theater = $('.resumo').find('.teatro').html(); "
+            @"var time = $('.resumo').find('.horario').html(); "
+            @"var order_number = $('.numero').find('a').html(); "
+            @"var order_total = $('.pedido_total').find('.valor').html(); "
+            @"var tickets = new Array; "
+            @"$('tr').each(function() { "
+            @"	var qrcode = $(this).attr('data:uid'); "
+            @"	if (typeof qrcode !== typeof undefined && qrcode !== false) { "
+            @"		var local   = $(this).find('.local').find('td').html().replace('<br>', '').split('\\n').map(trim).join(' ').trim(); "
+            @"		var type    = $(this).find('.tipo').html(); "
+            @"		var aux     = $(this).find('td'); "
+            @"		var price   = aux.eq(3).children().eq(0).html(); "
+            @"		var service = aux.eq(4).html().replace('R$', ''); "
+            @"		var total   = aux.eq(5).children().eq(0).html(); "
+            @"		tickets.push({ "
+            @"			qrcode:        qrcode, "
+            @"			local:         local, "
+            @"			type:          type, "
+            @"			price:         price, "
+            @"			service_price: service, "
+            @"			total:         total "
+            @"		}); "
+            @"	} "
+            @"}); "
+            @"var payload = { "
+            @"		number: order_number, "
+            @"		date:   order_date, "
+            @"		total:  order_total, "
+            @"		espetaculo: { "
+            @"			titulo: spectacle_name, "
+            @"			endereco: address, "
+            @"			nome_teatro: theater, "
+            @"			horario: time "
+            @"		}, "
+            @"		ingressos: tickets "
+            @"}; "
+            @"JSON.stringify(payload); ";
+
+    NSString *json = [_webview stringByEvaluatingJavaScriptFromString:script];
+    return json;
 }
 
 @end
