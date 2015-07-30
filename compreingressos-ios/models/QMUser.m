@@ -3,6 +3,7 @@
 // Copyright (c) 2015 QPRO Mobile. All rights reserved.
 //
 
+#import <Crashlytics/Crashlytics.h>
 #import "QMUser.h"
 
 static QMUser *sharedInstance;
@@ -22,6 +23,9 @@ static QMUser *sharedInstance;
         NSString *userHash = [[NSUserDefaults standardUserDefaults] objectForKey:@"userHash"];
         sharedInstance.userHash = userHash;
         // sharedInstance.userHash = @"jRDqK3pUK2%2F1itE7KhxeNIO%2FfS3MCWW2gvIKO9yWywc%3D";
+        if (sharedInstance.userHash) {
+            [CrashlyticsKit setObjectValue:sharedInstance.userHash forKey:@"USER"];
+        }
     });
     return sharedInstance;
 }
@@ -31,6 +35,7 @@ static QMUser *sharedInstance;
 }
 
 - (void)save {
+    [CrashlyticsKit setObjectValue:_userHash forKey:@"USER"];
     [[NSUserDefaults standardUserDefaults] setObject:_userHash forKey:@"userHash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

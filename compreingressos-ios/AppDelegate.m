@@ -26,7 +26,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Fabric with:@[CrashlyticsKit]];
+    [self initFabric];
     [self initParse:application];
     [self configureNavigationBar];
     [self configureStatusBarColor];
@@ -60,6 +60,12 @@
     }
 
     return YES;
+}
+
+- (void)initFabric {
+    [Fabric with:@[CrashlyticsKit]];
+    NSString *env = kIsDebugBuild ? @"TEST" : @"PROD";
+    [CrashlyticsKit setObjectValue:env forKey:@"ENV"];
 }
 
 - (void)initParse:(UIApplication *)application {
