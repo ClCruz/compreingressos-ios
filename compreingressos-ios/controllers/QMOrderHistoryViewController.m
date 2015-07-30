@@ -133,7 +133,7 @@
 
 - (void)showPlaceholder {
     [_placeholder setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_tableView addSubview:_placeholder];
+    [self.view addSubview:_placeholder];
     NSLayoutConstraint *width =[NSLayoutConstraint
             constraintWithItem:_placeholder
                      attribute:NSLayoutAttributeWidth
@@ -167,7 +167,7 @@
                     multiplier:1.0f
                       constant:0.f];
 
-    [_tableView addConstraints:@[width, height, top, leading]];
+    [self.view addConstraints:@[width, height, top, leading]];
 
     [UIView animateWithDuration:0.3 animations:^{
         _placeholder.alpha = 1.0;
