@@ -442,7 +442,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         QMOrder *order = [QMOrder sharedInstance];
         id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker send:[[GAIDictionaryBuilder createTransactionWithId:order.number
-                                                         affiliation:@"APP iOS"
+                                                         affiliation:@"compreingressos"
                                                              revenue:order.numericTotal
                                                                  tax:@0
                                                             shipping:@0
