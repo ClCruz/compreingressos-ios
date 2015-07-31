@@ -411,14 +411,18 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 
 - (void)newOrderTasks {
     [self notifyNewOrder];
-    [QMPushNotificationUtils unsubscribe:@"prospect"];
-    [QMPushNotificationUtils subscribe:@"client"];
-    [self trackTrasaction];
+    [self changeParseChannelFromProspectToClient];
+    [self trackTransaction];
     [self trackTransactionOnGA];
     [self trackItemsOnGA];
 }
 
-- (void)trackTrasaction {
+- (void)changeParseChannelFromProspectToClient {
+    [QMPushNotificationUtils unsubscribe:@"prospect"];
+    [QMPushNotificationUtils subscribe:@"client"];
+}
+
+- (void)trackTransaction {
 /* O Correto aqui seria criar uma fila de uploads pois não podemos perder nenhum post daqui.
      * mesmo se cair a conexão */
     [QMTrackPurchasesRequester postOrder:[QMOrder sharedInstance] onCompleteBlock:nil onFailBlock:nil];
@@ -426,33 +430,33 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 
 - (void)trackTransactionOnGA {
 //    if (!kIsDebugBuild) {
-        QMOrder *order = [QMOrder sharedInstance];
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createTransactionWithId:order.number
-                                                         affiliation:@"compreingressos"
-                                                             revenue:order.numericTotal
-                                                                 tax:@0
-                                                            shipping:@0
-                                                        currencyCode:nil] build]];
+    QMOrder *order = [QMOrder sharedInstance];
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createTransactionWithId:order.number
+                                                     affiliation:@"compreingressos"
+                                                         revenue:order.numericTotal
+                                                             tax:@0
+                                                        shipping:@0
+                                                    currencyCode:nil] build]];
 //    }
 }
 
 - (void)trackItemsOnGA {
 //    if (!kIsDebugBuild) {
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        QMOrder *order = [QMOrder sharedInstance];
-        NSArray *items = [self extractItemsFromGAScript];
-        if (items || items.count > 0) {
-            for (NSDictionary *itemDict in items) {
-                [tracker send:[[GAIDictionaryBuilder createItemWithTransactionId:order.number
-                                                                            name:itemDict[@"name"]
-                                                                             sku:itemDict[@"sku"]
-                                                                        category:itemDict[@"category"]
-                                                                           price:itemDict[@"price"]
-                                                                        quantity:itemDict[@"quantity"]
-                                                                    currencyCode:nil] build]];
-            }
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    QMOrder *order = [QMOrder sharedInstance];
+    NSArray *items = [self extractItemsFromGAScript];
+    if (items || items.count > 0) {
+        for (NSDictionary *itemDict in items) {
+            [tracker send:[[GAIDictionaryBuilder createItemWithTransactionId:order.number
+                                                                        name:itemDict[@"name"]
+                                                                         sku:itemDict[@"sku"]
+                                                                    category:itemDict[@"category"]
+                                                                       price:itemDict[@"price"]
+                                                                    quantity:itemDict[@"quantity"]
+                                                                currencyCode:nil] build]];
         }
+    }
 //    }
 }
 
