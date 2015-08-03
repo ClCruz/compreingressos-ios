@@ -224,17 +224,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d31-sE-JYS" userLabel="placeholder">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d31-sE-JYS" userLabel="placeholder">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ingresso_placeholder_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yUb-Ny-E2F">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ingresso_placeholder_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yUb-Ny-E2F">
                                         <rect key="frame" x="112" y="161" width="97" height="76"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="76" id="dyQ-CA-PfX"/>
                                             <constraint firstAttribute="width" constant="97" id="gpe-Ef-Hbz"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Você ainda não possui nenhum ingresso." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-I0-Vps">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você ainda não possui nenhum ingresso." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-I0-Vps">
                                         <rect key="frame" x="71" y="252" width="178" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.42909564393939381" green="0.42909564393939381" blue="0.42909564393939381" alpha="1" colorSpace="calibratedRGB"/>
@@ -253,14 +253,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Yea-PF-hha" secondAttribute="trailing" id="Sav-wm-pcc"/>
+                            <constraint firstItem="d31-sE-JYS" firstAttribute="top" secondItem="fek-3d-0BE" secondAttribute="top" id="Xhj-xt-L4M"/>
                             <constraint firstAttribute="bottom" secondItem="Yea-PF-hha" secondAttribute="bottom" id="aK7-dH-PUy"/>
+                            <constraint firstAttribute="bottom" secondItem="d31-sE-JYS" secondAttribute="bottom" id="epq-PZ-oFy"/>
                             <constraint firstItem="Yea-PF-hha" firstAttribute="top" secondItem="fek-3d-0BE" secondAttribute="top" id="juN-BX-4ym"/>
+                            <constraint firstAttribute="trailing" secondItem="d31-sE-JYS" secondAttribute="trailing" id="k0W-dB-cOC"/>
+                            <constraint firstItem="d31-sE-JYS" firstAttribute="leading" secondItem="fek-3d-0BE" secondAttribute="leading" id="pCp-Se-2ib"/>
                             <constraint firstItem="Yea-PF-hha" firstAttribute="leading" secondItem="fek-3d-0BE" secondAttribute="leading" id="zMj-Yj-6JJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meus Ingressos" id="WVx-6L-zEa"/>
                     <connections>
-                        <outlet property="_placeholder" destination="d31-sE-JYS" id="Oh3-b1-dws"/>
+                        <outlet property="_placeholder" destination="d31-sE-JYS" id="LeE-jT-OPS"/>
                         <outlet property="_tableView" destination="Yea-PF-hha" id="1n3-Ze-qek"/>
                         <segue destination="6ss-N3-Izd" kind="push" identifier="orderDetailSegue" id="gR8-QU-OoJ"/>
                     </connections>
@@ -285,6 +289,49 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QMOrderDetailLocatorCell" rowHeight="30" id="OYr-4u-8AN" customClass="QMOrderDetailLocatorCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OYr-4u-8AN" id="FlH-mr-OJS">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfl-n5-GvN">
+                                                    <rect key="frame" x="85" y="0.0" width="151" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localizador Nº" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twL-rY-Bp3">
+                                                            <rect key="frame" x="0.0" y="7" width="89" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idg-9k-bnp" userLabel="nr pedido">
+                                                            <rect key="frame" x="91" y="7" width="45" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="centerY" secondItem="idg-9k-bnp" secondAttribute="centerY" id="6FN-vW-p7Z"/>
+                                                        <constraint firstAttribute="width" constant="151" id="IFz-lI-UHT"/>
+                                                        <constraint firstItem="twL-rY-Bp3" firstAttribute="leading" secondItem="Dfl-n5-GvN" secondAttribute="leading" id="Ihi-bc-OqP"/>
+                                                        <constraint firstAttribute="height" constant="30" id="OKN-Sb-Wzz"/>
+                                                        <constraint firstAttribute="centerY" secondItem="twL-rY-Bp3" secondAttribute="centerY" id="cZ8-xf-brV"/>
+                                                        <constraint firstItem="idg-9k-bnp" firstAttribute="leading" secondItem="twL-rY-Bp3" secondAttribute="trailing" constant="2" id="moS-a8-de4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Dfl-n5-GvN" secondAttribute="centerY" id="EtA-bg-qPN"/>
+                                                <constraint firstAttribute="centerX" secondItem="Dfl-n5-GvN" secondAttribute="centerX" id="gm8-j2-2ub"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="orderNumber" destination="idg-9k-bnp" id="5aP-PL-hc8"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QMOrderDetailHeaderCell" rowHeight="122" id="tzQ-Pf-vVv" customClass="QMOrderDetailHeaderCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>

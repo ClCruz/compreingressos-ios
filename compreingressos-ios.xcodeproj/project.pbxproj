@@ -89,6 +89,7 @@
 		258CAE711AFA730C00C5BE9B /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE6E1AFA730C00C5BE9B /* search_icon.png */; };
 		258CAE721AFA730C00C5BE9B /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE6F1AFA730C00C5BE9B /* search_icon@2x.png */; };
 		258CAE731AFA730C00C5BE9B /* search_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258CAE701AFA730C00C5BE9B /* search_icon@3x.png */; };
+		2599A47A1B6F961B0018B5C9 /* QMOrderDetailLocatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2599A4791B6F961B0018B5C9 /* QMOrderDetailLocatorCell.m */; };
 		25A565AF1B29B4CB00AE554F /* classica.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A565AC1B29B4CB00AE554F /* classica.png */; };
 		25A565B01B29B4CB00AE554F /* classica@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A565AD1B29B4CB00AE554F /* classica@2x.png */; };
 		25A565B11B29B4CB00AE554F /* classica@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A565AE1B29B4CB00AE554F /* classica@3x.png */; };
@@ -261,6 +262,8 @@
 		258CAE6E1AFA730C00C5BE9B /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
 		258CAE6F1AFA730C00C5BE9B /* search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@2x.png"; sourceTree = "<group>"; };
 		258CAE701AFA730C00C5BE9B /* search_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@3x.png"; sourceTree = "<group>"; };
+		2599A4781B6F961B0018B5C9 /* QMOrderDetailLocatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMOrderDetailLocatorCell.h; sourceTree = "<group>"; };
+		2599A4791B6F961B0018B5C9 /* QMOrderDetailLocatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMOrderDetailLocatorCell.m; sourceTree = "<group>"; };
 		25A565AC1B29B4CB00AE554F /* classica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classica.png; sourceTree = "<group>"; };
 		25A565AD1B29B4CB00AE554F /* classica@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classica@2x.png"; sourceTree = "<group>"; };
 		25A565AE1B29B4CB00AE554F /* classica@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classica@3x.png"; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 				258918AF1B28CB0000761090 /* QMRedPageControl.m */,
 				337A4985C7F2C0FEA395AB56 /* QMLoadingView.m */,
 				337A479A3203AAB1E64FF211 /* QMLoadingView.h */,
+				2599A4781B6F961B0018B5C9 /* QMOrderDetailLocatorCell.h */,
+				2599A4791B6F961B0018B5C9 /* QMOrderDetailLocatorCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -974,6 +979,7 @@
 				258B93DE1AC054730007C584 /* QMVisoresRequester.m in Sources */,
 				258B93DC1AC054730007C584 /* QMEspetaculosRequester.m in Sources */,
 				2588EA1E1ADC015700BC09D4 /* QMOrderHistoryCell.m in Sources */,
+				2599A47A1B6F961B0018B5C9 /* QMOrderDetailLocatorCell.m in Sources */,
 				258B93D41AC053E60007C584 /* QMBanner.m in Sources */,
 				252FD8441AB7419E0007C29B /* QMHomeViewController.m in Sources */,
 				258918B01B28CB0000761090 /* QMRedPageControl.m in Sources */,
