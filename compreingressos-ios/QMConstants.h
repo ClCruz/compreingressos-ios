@@ -19,7 +19,7 @@ static NSString *const kHideBadgeTag = @"kHideBadgeTag";
 
 static NSString *const kDidBecomeActiveTag = @"kDidBecomeActiveTag";
 
-static BOOL            kIsDebugBuild = YES;
+static BOOL            kIsDebugBuild = NO;
 
 //static int             kCompreIngressosDefaultRedColor = 0x8d0a0c;
 static int             kCompreIngressosDefaultRedColor = 0xd0112b;
