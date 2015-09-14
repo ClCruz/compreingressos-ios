@@ -863,7 +863,7 @@
                                             <constraint firstAttribute="height" constant="21" id="xK0-Pa-vXs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Efetue o login para baixar os seus ingressos!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yg-KX-5Pd">
@@ -873,7 +873,7 @@
                                             <constraint firstAttribute="width" constant="281" id="xIn-FI-T7y"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gXw-Qj-JzZ">
@@ -883,16 +883,16 @@
                                             <constraint firstAttribute="width" constant="264" id="y61-84-yqZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QmL-UL-4B5">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QmL-UL-4B5">
                                         <rect key="frame" x="28" y="251" width="264" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="264" id="lIM-dW-Mwb"/>
                                             <constraint firstAttribute="height" constant="30" id="oCn-4X-1sm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8N-S7-uMa">
                                         <rect key="frame" x="28" y="296" width="264" height="35"/>
@@ -951,7 +951,7 @@
         <image name="ingresso_icon.png" width="45" height="45"/>
         <image name="ingresso_placeholder_icon.png" width="60" height="64"/>
         <image name="map_pin.png" width="25" height="40"/>
-        <image name="musica.png" width="75" height="72"/>
+        <image name="musica.png" width="17" height="21"/>
         <image name="obrigado.png" width="82" height="82"/>
         <image name="separator.png" width="320" height="1"/>
     </resources>
