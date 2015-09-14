@@ -75,9 +75,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
         defaultWebViewBottomSpacing = @(_webviewBottomSpacing.constant);
     }
 
-    if ([[QMUser sharedInstance] hasHash]) {
-        [self injectUserCookie];
-    }
+    [self injectUserCookieIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,7 +97,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     
     [self configureModalIfNeeded];
     [self printCookies];
-    [self findAndSaveUserHash];
+    [self saveUserHashAndPhpSession];
 
     NSString *titleForAnalytics = [self titleForStepForAnalytics:YES];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -107,29 +105,31 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
-- (void)injectUserCookie {
+- (void)injectUserCookieIfNeeded {
     QMUser *user = [QMUser sharedInstance];
-    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSDictionary *properties;
-    properties = @{
-        NSHTTPCookieName: @"user",
-        NSHTTPCookieValue: user.userHash,
-        NSHTTPCookiePath: @"/comprar",
-        NSHTTPCookieDomain: @"compra.compreingressos.com",
-        NSHTTPCookieSecure: @"0"
-    };
-    NSHTTPCookie *userCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
-    [cookieJar setCookie:userCookie];
+    if (user.userHash && user.phpSession) {
+        NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSDictionary *properties;
+        properties = @{
+                NSHTTPCookieName: @"user",
+                NSHTTPCookieValue: user.userHash,
+                NSHTTPCookiePath: @"/comprar",
+                NSHTTPCookieDomain: @"compra.compreingressos.com",
+                NSHTTPCookieSecure: @"0"
+        };
+        NSHTTPCookie *userCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
+        [cookieJar setCookie:userCookie];
 
-    properties = @{
-        NSHTTPCookieName: @"PHPSESSID",
-        NSHTTPCookieValue: user.phpSession,
-        NSHTTPCookiePath: @"/",
-        NSHTTPCookieDomain: @"compra.compreingressos.com",
-        NSHTTPCookieSecure: @"0"
-    };
-    NSHTTPCookie *sessionCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
-    [cookieJar setCookie:sessionCookie];
+        properties = @{
+                NSHTTPCookieName: @"PHPSESSID",
+                NSHTTPCookieValue: user.phpSession,
+                NSHTTPCookiePath: @"/",
+                NSHTTPCookieDomain: @"compra.compreingressos.com",
+                NSHTTPCookieSecure: @"0"
+        };
+        NSHTTPCookie *sessionCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
+        [cookieJar setCookie:sessionCookie];
+    }
 }
 
 - (void)showTutorialIfNeeded {
@@ -211,15 +211,18 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     NSLog(@"======================================================");
 }
 
-- (void)findAndSaveUserHash {
+- (void)saveUserHashAndPhpSession {
+    QMUser *user = [QMUser sharedInstance];
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [cookieJar cookies]) {
         if ([cookie.name isEqualToString:@"user"]) {
-            QMUser *user = [QMUser sharedInstance];
             [user setUserHash:cookie.value];
-            [user save];
+        }
+        if ([cookie.name isEqualToString:@"PHPSESSID"]) {
+            [user setPhpSession:cookie.value];
         }
     }
+    [user save];
 }
 
 - (void)removeLoginControllerFromQueue {
@@ -424,7 +427,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 - (void)injectCredentialsIfNeeded {
     QMUser *user = [QMUser sharedInstance];
     if (user.hasHash && user.email && user.password) {
-        NSString *script = @"$('#login');";
+         NSString *script = @"$('#login');";
         if ([_webview stringByEvaluatingJavaScriptFromString:script]) {
             script = [NSString stringWithFormat:@"$('#login').val('%@'); $('#senha').val('%@');", user.email, user.password];
             [_webview stringByEvaluatingJavaScriptFromString:script];

@@ -73,6 +73,22 @@ static QMUser *sharedInstance;
     _password = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userHash"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:QMUserPhpSession];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:QMUserEmail];
+    [self deleteCookieWithName:@"user"];
+    [self deleteCookieWithName:@"PHPSESSID"];
+}
+
+- (void)deleteCookieWithName:(NSString *)name {
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSHTTPCookie *wanted = nil;
+    for (NSHTTPCookie *cookie in [cookieJar cookies]) {
+        if ([cookie.name isEqualToString:name]) {
+            wanted = cookie;
+        }
+    }
+    if (wanted) {
+        [cookieJar deleteCookie:wanted];
+    }
 }
 
 - (void)loginOnComplete:(void (^)())onCompleteBlock onFail:(void (^)(NSError *error))onFailBlock {
