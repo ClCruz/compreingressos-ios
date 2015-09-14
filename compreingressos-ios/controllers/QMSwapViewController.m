@@ -60,7 +60,7 @@
     }
 
     if (![[QMUser sharedInstance] hasHash]) {
-        NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.9]
+        NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.8]
                                                   interval:0.0
                                                     target:self
                                                   selector:@selector(showLogin)
@@ -125,7 +125,7 @@
     [self addChildViewController:viewController];
     viewController.view.frame = CGRectMake(0, 1000, viewController.view.frame.size.width, viewController.view.frame.size.height);
     [self.detailView addSubview:viewController.view];
-    [UIView animateWithDuration:0.9 delay:0 options:UIViewAnimationOptionCurveEaseInOut
+    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseInOut
          animations:^{
              viewController.view.frame = _currentDetailViewController.view.frame;
              _currentDetailViewController.view.frame = CGRectMake(0,
