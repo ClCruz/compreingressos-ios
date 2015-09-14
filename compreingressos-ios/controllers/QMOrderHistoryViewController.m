@@ -53,16 +53,15 @@
                                                       userInfo:nil];
     if (_firstViewDidAppear) {
         _orders = [QMOrder orderHistory];
-        [self requestData];
-        //[self sortOrdersBySentTime];
         [_tableView reloadData];
+        //[self sortOrdersBySentTime];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self deselectAnyRowIfNeeded];
-    
+    [self.parentViewController.navigationItem setTitle:@"Meus Ingressos"];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Meus Ingressos"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
@@ -115,10 +114,12 @@
             [QMOrder setOrderHistory:_orders];
             [SVProgressHUD dismiss];
             _firstViewDidAppear = NO;
+            [self showPlaceholderIfNeeded];
         } onFailBlock:^(NSError *error) {
             [_refreshControl endRefreshing];
             [SVProgressHUD dismiss];
             _firstViewDidAppear = NO;
+            [self showPlaceholderIfNeeded];
         }];
     } else {
         [self showPlaceholderIfNeeded];
@@ -178,9 +179,11 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [self configureNextViewBackButtonWithTitle:@"Voltar"];
-    QMOrderDetailViewController *controller = segue.destinationViewController;
-    [controller setOrder:(QMOrder *)sender];
+    if ([segue.description isEqualToString:@"orderDetailSegue"]) {
+        [self configureNextViewBackButtonWithTitle:@"Voltar"];
+        QMOrderDetailViewController *controller = segue.destinationViewController;
+        [controller setOrder:(QMOrder *)sender];
+    }
     [super prepareForSegue:segue sender:sender];
 }
 

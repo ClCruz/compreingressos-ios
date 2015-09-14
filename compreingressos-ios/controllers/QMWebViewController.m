@@ -74,6 +74,10 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     if (!defaultWebViewBottomSpacing) {
         defaultWebViewBottomSpacing = @(_webviewBottomSpacing.constant);
     }
+
+    if ([[QMUser sharedInstance] hasHash]) {
+        [self injectUserCookie];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,13 +98,38 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
     [_webview layoutIfNeeded];
     
     [self configureModalIfNeeded];
-    // [self printCookies];
+    [self printCookies];
     [self findAndSaveUserHash];
 
     NSString *titleForAnalytics = [self titleForStepForAnalytics:YES];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:titleForAnalytics];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+- (void)injectUserCookie {
+    QMUser *user = [QMUser sharedInstance];
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSDictionary *properties;
+    properties = @{
+        NSHTTPCookieName: @"user",
+        NSHTTPCookieValue: user.userHash,
+        NSHTTPCookiePath: @"/comprar",
+        NSHTTPCookieDomain: @"compra.compreingressos.com",
+        NSHTTPCookieSecure: @"0"
+    };
+    NSHTTPCookie *userCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
+    [cookieJar setCookie:userCookie];
+
+    properties = @{
+        NSHTTPCookieName: @"PHPSESSID",
+        NSHTTPCookieValue: user.phpSession,
+        NSHTTPCookiePath: @"/",
+        NSHTTPCookieDomain: @"compra.compreingressos.com",
+        NSHTTPCookieSecure: @"0"
+    };
+    NSHTTPCookie *sessionCookie = [[NSHTTPCookie alloc] initWithProperties:properties];
+    [cookieJar setCookie:sessionCookie];
 }
 
 - (void)showTutorialIfNeeded {
@@ -379,6 +408,9 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
                         [self injectPromoCodeScript];
                     }
                 }
+                if ([self isLoginStep:_url]) {
+                    [self injectCredentialsIfNeeded];
+                }
                 [UIView animateWithDuration:0.3 animations:^{
                      _webview.alpha = 1.0;
                 }];
@@ -387,6 +419,19 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
             [self performSelector:@selector(pollDocumentReadyState) withObject:nil afterDelay:0.2];
         }
 
+}
+
+- (void)injectCredentialsIfNeeded {
+    QMUser *user = [QMUser sharedInstance];
+    if (user.hasHash && user.email && user.password) {
+        NSString *script = @"$('#login');";
+        if ([_webview stringByEvaluatingJavaScriptFromString:script]) {
+            script = [NSString stringWithFormat:@"$('#login').val('%@'); $('#senha').val('%@');", user.email, user.password];
+            [_webview stringByEvaluatingJavaScriptFromString:script];
+            script = @"$('#logar').click();";
+            [_webview stringByEvaluatingJavaScriptFromString:script];
+        }
+    }
 }
 
 - (void)processOrderIfNeeded {
@@ -581,6 +626,10 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 /* Tela de login/cadastro */
 - (BOOL)isFourthStep:(NSString *)url {
     return [self string:url matchesRegex:@"etapa3\\.php\\?redirect=etapa4\\.php"];
+}
+
+- (BOOL)isLoginStep:(NSString *)url {
+    return [self isFourthStep:url];
 }
 
 /* Tela de confirmação */

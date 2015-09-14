@@ -117,7 +117,7 @@
     NSString *bundledPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CustomPathImages"];
     [[SDImageCache sharedImageCache] addReadOnlyCachePath:bundledPath];
     [[SDImageCache sharedImageCache] setMaxCacheSize:50 * 1024 * 1024];
-    //[[SDImageCache sharedImageCache] clearDisk];
+//    [[SDImageCache sharedImageCache] clearDisk];
     //NSLog(@"  max concurrent downloads:: %d", SDWebImageManager.sharedManager.imageDownloader.maxConcurrentDownloads);
 }
 
@@ -131,7 +131,7 @@
     if (kIsDebugBuild) {
         [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
     }
-    // [currentInstallation addUniqueObject:@"teste_naka" forKey:@"channels"];
+    [currentInstallation addUniqueObject:@"testeqpro" forKey:@"channels"];
     [currentInstallation saveInBackground];
 }
 

@@ -13,6 +13,10 @@ static NSString *const kCompreIngressosURL = @"http://www.compreingressos.com/es
 
 static NSString *const kOpenEspetaculoWebviewNotificationTag = @"kOpenEspetaculoWebviewNotificationTag";
 
+static NSString *const kUserLoginTag = @"kUserLoginTag";
+
+static NSString *const kUserLogoutTag = @"kUserLogoutTag";
+
 static NSString *const kOrderFinishedTag = @"kOrderFinishedTag";
 
 static NSString *const kHideBadgeTag = @"kHideBadgeTag";
