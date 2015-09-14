@@ -22,6 +22,7 @@
 
 + (QMOrder *)sharedInstance;
 + (NSArray *)orderHistory;
++ (void)resetHistory;
 + (void)setOrderHistory:(NSArray *)orders;
 + (void)addOrderToHistory:(QMOrder *)order;
 + (NSArray *)sortOrdersByOrderNumber:(NSArray *)orders;

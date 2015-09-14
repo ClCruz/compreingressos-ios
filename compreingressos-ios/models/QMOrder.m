@@ -51,6 +51,11 @@ static NSMutableArray *orderHistoryArray;
     return [self sortedHistory];
 }
 
++ (void)resetHistory {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"orderHistory"];
+    orderHistoryArray = [[NSMutableArray alloc] init];
+}
+
 + (void)loadHistory {
     static dispatch_once_t token;
     dispatch_once(&token, ^{

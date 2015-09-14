@@ -8,6 +8,7 @@
 #import "QMUser.h"
 #import "QMUserRequester.h"
 #import "QMConstants.h"
+#import "QMOrder.h"
 
 static QMUser *sharedInstance;
 
@@ -76,6 +77,7 @@ static QMUser *sharedInstance;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:QMUserEmail];
     [self deleteCookieWithName:@"user"];
     [self deleteCookieWithName:@"PHPSESSID"];
+    [QMOrder resetHistory];
 }
 
 - (void)deleteCookieWithName:(NSString *)name {
