@@ -8,7 +8,10 @@
 
 #import "QMPushNotificationUtils.h"
 #import "QMWebViewController.h"
+#import "QMStatesChannelsHistory.h"
 #import <Parse/Parse.h>
+
+static NSDictionary *statesDict;
 
 QMPushNotificationUtils *sharedInstance;
 
@@ -74,6 +77,50 @@ QMPushNotificationUtils *sharedInstance;
     UIViewController *homeController = [((UIWindow *)windows[[windows count] - 2]) rootViewController];
     [homeController presentViewController:navigationController animated:YES completion:nil];
     sharedInstance = nil;
+}
+
++ (void)subscribeToStateCode:(NSString *)stateCode {
+    NSString *state = [self stateWithCode:stateCode];
+    QMStatesChannelsHistory *history = [QMStatesChannelsHistory sharedInstance];
+    if (![history contains:state]) {
+        [self subscribe:state];
+        [history add:state];
+    }
+}
+
++ (NSString *)stateWithCode:(NSString *)code {
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        statesDict = @{
+            @"AC":@"ACRE",
+            @"AL":@"ALAGOAS",
+            @"AM":@"AMAZONAS",
+            @"AP":@"AMAPA",
+            @"BA":@"BAHIA",
+            @"CE":@"CEARA",
+            @"DF":@"DISTRITO_FEDERAL",
+            @"ES":@"ESPIRITO_SANTO",
+            @"GO":@"GOIAS",
+            @"MA":@"MARANHAO",
+            @"MG":@"MINAS_GERAIS",
+            @"MS":@"MATO_GROSSO_DO_SUL",
+            @"MT":@"MATO_GROSSO",
+            @"PA":@"PARA",
+            @"PB":@"PARAIBA",
+            @"PE":@"PERNAMBUCO",
+            @"PI":@"PIAUI",
+            @"PR":@"PARANA",
+            @"RJ":@"RIO_DE_JANEIRO",
+            @"RN":@"RIO_GRANDE_DO_NORTE",
+            @"RO":@"RONDONIA",
+            @"RR":@"RORAIMA",
+            @"RS":@"RIO_GRANDE_DO_SUL",
+            @"SC":@"SANTA_CATARINA",
+            @"SE":@"SERGIPE",
+            @"SP":@"SAO_PAULO",
+            @"TO":@"TOCANTINS"};
+    });
+    return statesDict[code];
 }
 
 #pragma mark -

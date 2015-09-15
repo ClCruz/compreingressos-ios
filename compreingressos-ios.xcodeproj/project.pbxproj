@@ -141,6 +141,7 @@
 		337A45BAAA468E1E561BAB01 /* QMSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A44861E395134B2992CB2 /* QMSuperViewController.m */; };
 		337A469C00611B14B36E67B3 /* QMUserRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4A6E8A010A46E9ECA4D9 /* QMUserRequester.m */; };
 		337A4A0FE5F196D4EB3B64E5 /* QMException.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4322DBEE679BE6883A3F /* QMException.m */; };
+		337A4EDF276E8CEEC9998ABC /* QMStatesChannelsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4730A2600607F5C9727D /* QMStatesChannelsHistory.m */; };
 		337A4F6470EF3DA491CA92AE /* compreingressos_quebra@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 337A492E8E1294E80DD7248D /* compreingressos_quebra@2x.png */; };
 		337A4F6E251DD32D5C508528 /* QMExceptionsRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4C1F4A07C2B8516C6363 /* QMExceptionsRequester.m */; };
 		337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */; };
@@ -328,6 +329,7 @@
 		337A4002687753BA454AB097 /* QMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUser.m; sourceTree = "<group>"; };
 		337A4070527C9B2DE404946C /* custom_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom_loading@2x.png"; sourceTree = "<group>"; };
 		337A4172D6C4229CECE6F31B /* banner_placeholder@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "banner_placeholder@2x.jpg"; sourceTree = "<group>"; };
+		337A420B895C4E62F207A66E /* QMStatesChannelsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMStatesChannelsHistory.h; sourceTree = "<group>"; };
 		337A4322DBEE679BE6883A3F /* QMException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMException.m; sourceTree = "<group>"; };
 		337A43577C7C9E3FDA6C114E /* banner_placeholder@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "banner_placeholder@3x.jpg"; sourceTree = "<group>"; };
 		337A436D516E4209474B42F9 /* QMUserRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUserRequester.h; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		337A438298448B530841123B /* QMSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSuperViewController.h; sourceTree = "<group>"; };
 		337A443EE7860DC376065BFE /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = error.png; path = "compreingressos-ios/res/error.png"; sourceTree = SOURCE_ROOT; };
 		337A44861E395134B2992CB2 /* QMSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSuperViewController.m; sourceTree = "<group>"; };
+		337A4730A2600607F5C9727D /* QMStatesChannelsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMStatesChannelsHistory.m; sourceTree = "<group>"; };
 		337A4766D81D55E26C9C6CD0 /* QMExceptionsRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMExceptionsRequester.h; sourceTree = "<group>"; };
 		337A479A3203AAB1E64FF211 /* QMLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMLoadingView.h; sourceTree = "<group>"; };
 		337A482F0EEEA1785B138E45 /* QMVersionRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMVersionRequester.h; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 				337A49126060921ADCED1846 /* QMUser.h */,
 				337A4322DBEE679BE6883A3F /* QMException.m */,
 				337A4928ECA82F37BB39E606 /* QMException.h */,
+				337A4730A2600607F5C9727D /* QMStatesChannelsHistory.m */,
+				337A420B895C4E62F207A66E /* QMStatesChannelsHistory.h */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1027,6 +1032,7 @@
 				337A42A0AC605B94886464E8 /* QMLoadingView.m in Sources */,
 				337A469C00611B14B36E67B3 /* QMUserRequester.m in Sources */,
 				337A4FBB3F9A9D87C2AD3DE8 /* QMVersionRequester.m in Sources */,
+				337A4EDF276E8CEEC9998ABC /* QMStatesChannelsHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

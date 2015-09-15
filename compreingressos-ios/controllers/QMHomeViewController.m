@@ -17,6 +17,7 @@
 #import "QMHomeViewController.h"
 #import "QMWebViewController.h"
 #import "QMEspetaculosViewController.h"
+#import "QMPushNotificationUtils.h"
 #import <Google/Analytics.h>
 
 @interface QMHomeViewController ()
@@ -32,6 +33,7 @@
     JSBadgeView       *_badgeView;
     CLLocationManager *_locationManager;
     CLLocation        *_location;
+    CLGeocoder        *_geocoder;
     UIAlertView       *_gpsErrorAlertView;
     UIAlertView       *_requestGpsAlertView;
     QMGenre           *_selectedGenre;
@@ -436,6 +438,7 @@
           _location.coordinate.latitude,
           _location.coordinate.longitude);
     [self goToEspetaculos];
+    [self subscribeToStateChannel];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -516,6 +519,46 @@
     return true;
 }
 
+#pragma mark -
+#pragma mark - Reverse Geocoding Methods
+
+/* Registra o usuário no channel do Parse respectivo ao Estado onde ele se encontra.
+ * Para isso, é necessário fazer o reversegeocoding da coordenada para pegar o Estado. */
+- (void)subscribeToStateChannel {
+    [self getStateFromCurrentLocationOnComplete:^(NSString *state) {
+        if (state) {
+            [QMPushNotificationUtils subscribeToStateCode:state];
+        }
+    }];
+}
+
+- (void)getStateFromCurrentLocationOnComplete:(void (^)(NSString *state))onCompleteBlock {
+    [self geocodeLocation:_location onComplete:^(CLPlacemark *placemark) {
+        if (placemark) {
+            NSString *state = [self stateFromPlacemark:placemark];
+            onCompleteBlock(state);
+        }
+    }];
+}
+
+- (NSString *)stateFromPlacemark:(CLPlacemark *)placemark {
+    NSString *state = [placemark addressDictionary][@"State"];
+    if (!state) state = [placemark administrativeArea];
+    return state;
+}
+
+- (void)geocodeLocation:(CLLocation*)location onComplete:(void (^)(CLPlacemark *))onCompleteBlock{
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    [_geocoder reverseGeocodeLocation:_location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error && [placemarks count] > 0) {
+            onCompleteBlock(placemarks[0]);
+        } else {
+            onCompleteBlock(nil);
+        }
+    }];
+}
 
 #pragma mark -
 #pragma mark - UIAlertView Delegate

@@ -19,4 +19,5 @@
 + (void)subscribe:(NSString *)channel;
 + (void)unsubscribe:(NSString *)channel;
 
++ (void)subscribeToStateCode:(NSString *)state;
 @end
