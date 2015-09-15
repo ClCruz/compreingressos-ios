@@ -120,7 +120,11 @@ QMPushNotificationUtils *sharedInstance;
             @"SP":@"SAO_PAULO",
             @"TO":@"TOCANTINS"};
     });
-    return statesDict[code];
+    NSString *state = statesDict[code];
+    if (!state) state = statesDict[[code uppercaseString]];
+    /* Se não encontrar o estado pela sigla, vamos mandar o que veio do reverse geocoding mesmo */
+    if (!state) state = code;
+    return state;
 }
 
 #pragma mark -
