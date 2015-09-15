@@ -152,7 +152,7 @@ CGFloat requestTimeoutSeconds = 15.0;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
         NSString *appVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-        appVersionParameter = [NSString stringWithFormat:@"v=%@&os=ios", appVersion];
+        appVersionParameter = [NSString stringWithFormat:@"version=%@&os=ios", appVersion];
     });
     return appVersionParameter;
 }

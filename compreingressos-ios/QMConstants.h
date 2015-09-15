@@ -25,6 +25,10 @@ static NSString *const kDidBecomeActiveTag = @"kDidBecomeActiveTag";
 
 static BOOL            kIsDebugBuild = NO;
 
+static NSString *const kTrackId = @"980126862";
+
+static NSString *const kAppStoreLink = @"https://itunes.apple.com/us/app/apple-store/id%@?mt=8";
+
 //static int             kCompreIngressosDefaultRedColor = 0x8d0a0c;
 static int             kCompreIngressosDefaultRedColor = 0xd0112b;
 

@@ -16,9 +16,12 @@
 #import "SVProgressHUD.h"
 #import "QMPushNotificationUtils.h"
 #import "PFAnalytics.h"
+#import "QMVersionRequester.h"
 #import <Parse/Parse.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () {
+    UIAlertView *_forceUpdateView;
+}
 
 @end
 
@@ -171,9 +174,28 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+- (NSString *)forceUpdateMessage {
+    NSString *appName = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleDisplayName"];
+    NSString *message = [NSString stringWithFormat:@"Por favor, baixe a versão atualizada do app %@!", appName];
+    return message;
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidBecomeActiveTag object:nil];
+    [QMVersionRequester requestForceUpdateOnComplete:^(BOOL forceUpdate) {
+        if (forceUpdate) {
+            NSString *message = [self forceUpdateMessage];
+            _forceUpdateView = [[UIAlertView alloc] initWithTitle:@""
+                                                          message:message
+                                                         delegate:self
+                                                cancelButtonTitle:@"Atualizar"
+                                                otherButtonTitles:nil];
+            [_forceUpdateView show];
+        }
+    }                                         onFail:^(NSError *error) {
+
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -191,5 +213,19 @@
     else if ([identifier isEqualToString:@"answerAction"]){}
 }
 #endif
+
+#pragma mark -
+#pragma mark - UIAlertView Methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView == _forceUpdateView) {
+        [self redirectUserToAppStoreWithTrackId:kTrackId];
+    }
+}
+
+- (void)redirectUserToAppStoreWithTrackId:(NSString *)trackId {
+    NSString *iTunesLink = [NSString stringWithFormat:kAppStoreLink, trackId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+}
 
 @end

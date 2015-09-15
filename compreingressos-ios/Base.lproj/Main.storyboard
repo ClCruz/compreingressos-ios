@@ -722,7 +722,7 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XM-QR-KNp">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XM-QR-KNp">
                                         <rect key="frame" x="40" y="338" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="kep-vg-Egl"/>
@@ -736,7 +736,7 @@
                                             <action selector="clickedOrderHistory:" destination="Z2I-54-MT9" eventType="touchUpInside" id="1LX-8Z-c5o"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(verifique sua caixa de spam)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Bc-icm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(verifique sua caixa de spam)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Bc-icm">
                                         <rect key="frame" x="54" y="484" width="212" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.27829071970000002" green="0.27829071970000002" blue="0.27829071970000002" alpha="1" colorSpace="calibratedRGB"/>
