@@ -21,9 +21,9 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "splash_retina35.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "splash_retina35.png",
       "scale" : "2x"
     },
     {
