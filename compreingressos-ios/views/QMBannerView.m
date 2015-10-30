@@ -55,7 +55,6 @@
         [_titleContainer removeFromSuperview];
         _titleContainer = nil;
     }
-    [self configureLink];
 }
 
 - (void)hideDescription {
@@ -141,35 +140,6 @@
 
 - (BOOL)hasLink {
     return (_banner.linkUrl && _banner.linkUrl.length > 0);
-}
-
-- (void)configureLink {
-    if ([self hasLink]) {
-        if ([_carousel showLinkButton]) {
-            if (_banner.linkIsVideo) {
-                UIButton *play = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, 80.0)];
-                [play addTarget:self action:@selector(clickedOnVideoButton) forControlEvents:UIControlEventTouchUpInside];
-                [self addSubview:play];
-                play.center = self.center;
-                CGFloat deltaY = 10.0;
-                if (![QMConstants isRetina4]) {
-                    deltaY = 54.0;
-                }
-                CGPoint origin = CGPointMake(play.frame.origin.x, play.frame.origin.y - deltaY);
-                play.frame = CGRectSetOrigin(play.frame, origin);
-            } else {
-                UIButton *link = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
-                [link addTarget:self action:@selector(clickedOnLinkButton) forControlEvents:UIControlEventTouchUpInside];
-                //[link setImage:[UIImage imageNamed:@"ic_link_n.png"] forState:UIControlStateNormal];
-                [self addSubview:link];
-                link.frame = CGRectSetOrigin(link.frame, CGPointMake(25.0f, -5.0f));
-            }
-        } else {
-            UIButton *link = [[UIButton alloc] initWithFrame:self.frame];
-            [link addTarget:self action:@selector(clickedOnLinkButton) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:link];
-        }
-    }
 }
 
 - (void)clickedOnLinkButton {

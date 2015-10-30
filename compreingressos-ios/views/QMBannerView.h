@@ -12,9 +12,9 @@
 @class QMCarouselView;
 
 @interface QMBannerView : UIView {
-    IBOutlet UIImageView *_bannerImage;
-    IBOutlet UILabel *_description;
-    IBOutlet UIActivityIndicatorView *_spinner;
+    __weak IBOutlet UIImageView *_bannerImage;
+    __weak IBOutlet UILabel *_description;
+    __weak IBOutlet UIActivityIndicatorView *_spinner;
     __weak IBOutlet UIView *_titleContainer;
     __weak IBOutlet UILabel *_titleLabel;
 }
