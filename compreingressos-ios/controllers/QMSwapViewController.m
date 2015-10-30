@@ -30,7 +30,7 @@
     _firstViewDidAppear = YES;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    QMOrderHistoryViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"QMOrderHistoryViewController"];
+    QMOrderHistoryViewController *controller = (QMOrderHistoryViewController *) [storyboard instantiateViewControllerWithIdentifier:@"QMOrderHistoryViewController"];
     [self presentDetailViewController:controller];
 
     [self addLogoutButtonIfNeeded];
@@ -88,7 +88,7 @@
 - (void)userDidLogin {
     [self addLogoutButtonIfNeeded];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    QMOrderHistoryViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"QMOrderHistoryViewController"];
+    QMOrderHistoryViewController *controller = (QMOrderHistoryViewController *) [storyboard instantiateViewControllerWithIdentifier:@"QMOrderHistoryViewController"];
     [self swapCurrentControllerWith:controller];
     [controller requestData];
 }
@@ -99,7 +99,7 @@
 
 - (void)showLogin {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    QMOrderHistoryViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"QMLoginViewController"];
+    QMOrderHistoryViewController *controller = (QMOrderHistoryViewController *) [storyboard instantiateViewControllerWithIdentifier:@"QMLoginViewController"];
     [self swapCurrentControllerWith:controller];
 }
 
@@ -128,6 +128,7 @@
     [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseInOut
          animations:^{
              viewController.view.frame = _currentDetailViewController.view.frame;
+             viewController.view.frame = CGRectSetOriginY(viewController.view.frame, 64.0f);
              _currentDetailViewController.view.frame = CGRectMake(0,
                      -400,
                      _currentDetailViewController.view.frame.size.width,
