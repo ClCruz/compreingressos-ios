@@ -13,20 +13,14 @@
 
 @interface QMCarouselView : UITableViewCell <UIScrollViewDelegate> {
     
-    IBOutlet UIScrollView *scrollView;
-    IBOutlet UIView *banner1;
-    IBOutlet UIView *banner2;
-    IBOutlet UIView *banner3;
-    __weak IBOutlet UILabel *label1;
-    __weak IBOutlet UILabel *label2;
-    __weak IBOutlet UILabel *label3;
+    __weak IBOutlet UIScrollView *scrollView;
+    __weak IBOutlet UIActivityIndicatorView *_spinner;
+    __weak IBOutlet QMRedPageControl *_pageControlBg;
     CGFloat _pageWidth;
     NSTimer *caroselTimer;
     BOOL isRetina4; // fala se devemos renderizar para retina 3.5 ou retina 4 polegadas
     CGFloat _bannersHeight;
-    IBOutlet UIActivityIndicatorView *_spinner;
     NSMutableArray *_bannerViews;
-    IBOutlet QMRedPageControl *_pageControlBg;
 }
 
 @property (nonatomic, strong) NSArray *banners;
@@ -51,8 +45,6 @@
 - (void)forceCurrentPage;
 
 - (void)stopSpinner;
-
-- (void)startSpinner;
 
 - (void)retryFailedBanners;
 

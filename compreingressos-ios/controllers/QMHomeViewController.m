@@ -167,7 +167,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
 
-    /* Registrando nib QMEspetaculoCell que está fora do storyboard na collecionView */
+    /* Registrando nib QMCarouselView que está fora do storyboard */
     UINib *cellNib = [UINib nibWithNibName:@"QMCarouselView" bundle:nil];
     [_tableView registerNib:cellNib forCellReuseIdentifier:@"QMCarouselView"];
 
@@ -289,7 +289,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[QMEspetaculosViewController class]]) {
-        QMEspetaculosViewController *controller = segue.destinationViewController;
+        QMEspetaculosViewController *controller = (QMEspetaculosViewController *) segue.destinationViewController;
         [controller setGenre:_selectedGenre];
         if (![self choosedMuchMore]) { /* Perto de mim não envia location */
             [controller setLocation:_location];
@@ -297,7 +297,7 @@
         _selectedGenre = nil;
     }
     else if ([segue.destinationViewController isKindOfClass:[QMWebViewController class]]) {
-        QMWebViewController *controller = segue.destinationViewController;
+        QMWebViewController *controller = (QMWebViewController *) segue.destinationViewController;
         NSString *url = (NSString *)sender;
         [controller setUrl:url];
         [controller setIsZerothStep:YES];
@@ -391,11 +391,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if (indexPath.section == 0) {
-        _carouselView = [tableView dequeueReusableCellWithIdentifier:@"QMCarouselView" forIndexPath:indexPath];
+        _carouselView = (QMCarouselView *) [tableView dequeueReusableCellWithIdentifier:@"QMCarouselView" forIndexPath:indexPath];
         [_carouselView configure:YES];
         cell = _carouselView;
     } else {
-        QMGenreCell *genreCell = [tableView dequeueReusableCellWithIdentifier:@"QMGenreCell" forIndexPath:indexPath];
+        QMGenreCell *genreCell = (QMGenreCell *) [tableView dequeueReusableCellWithIdentifier:@"QMGenreCell" forIndexPath:indexPath];
         QMGenre *genre = _genres[(NSUInteger) indexPath.row];
         [genreCell setGenre:genre];
         if ([_genres count] - 1 == indexPath.row) {

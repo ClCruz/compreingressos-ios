@@ -15,8 +15,6 @@
 #import "QMLoadingView.h"
 
 static const int kCarrosselPeriod = 5;
-static const int kBannersHeightRetina4 = 156;
-static const int kBannersHeightRetina3 = 156;
 
 @implementation QMCarouselView {
 @private
@@ -51,6 +49,10 @@ static const int kBannersHeightRetina3 = 156;
     [_pageControlBg setBackgroundColor:[UIColor clearColor]];
     self.backgroundColor = [UIColor clearColor];
     scrollView.backgroundColor = [UIColor clearColor];
+    [self bringSubviewToFront:scrollView];
+    [self bringSubviewToFront:_pageControlBg];
+    [self bringSubviewToFront:_spinner];
+    [self bringSubviewToFront:_pageControl];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -178,11 +180,6 @@ static const int kBannersHeightRetina3 = 156;
     [scrollView setContentOffset:nextPageOffset animated:YES];
 }
 
-- (void)forceCurrentPage {
-    CGPoint nextPageOffset = [self offsetForBannerAtIndex:(int)_pageControl.currentPage];
-    [scrollView setContentOffset:nextPageOffset animated:NO];
-}
-
 - (CGPoint)offsetForBannerAtIndex:(int)bannerIndex {
     CGFloat xPos = _pageWidth * bannerIndex;
     return CGPointMake(xPos, 0.0);
@@ -242,7 +239,7 @@ static const int kBannersHeightRetina3 = 156;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
             view.transform = CGAffineTransformScale(view.transform, 0.7, 0.7);
-        } completion:^(BOOL finished) {
+        } completion:^(BOOL animationFinished) {
             if (onCompleteBlock) onCompleteBlock();
         }];
     }];
