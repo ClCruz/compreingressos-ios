@@ -15,8 +15,6 @@
 #import "QMUser.h"
 #import "SVProgressHUD.h"
 #import <Google/Analytics.h>
-#import <AFNetworking/AFNetworking.h>
-
 
 @interface QMOrderHistoryViewController ()
 
@@ -28,7 +26,6 @@
     IBOutlet UIView        *_placeholder;
     UIRefreshControl       *_refreshControl;
     NSArray                *_orders;
-    AFJSONRequestOperation *_operation;
     BOOL                    _firstViewDidAppear;
 }
 
@@ -105,7 +102,7 @@
         if (_firstViewDidAppear) {
             [SVProgressHUD show];
         }
-        _operation = [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
+        [QMOrdersRequester requestOrdersForUser:[QMUser sharedInstance] onCompleteBlock:^(NSArray *orders) {
             _orders = [QMOrder sortOrdersByOrderNumber:orders];
             //[self showPlaceholderIfNeeded];
             //[self sortOrdersBySentTime];
@@ -138,7 +135,7 @@
     NSLayoutConstraint *width =[NSLayoutConstraint
             constraintWithItem:_placeholder
                      attribute:NSLayoutAttributeWidth
-                     relatedBy:0
+                     relatedBy:NSLayoutRelationEqual
                         toItem:_tableView
                      attribute:NSLayoutAttributeWidth
                     multiplier:1.0
@@ -146,7 +143,7 @@
     NSLayoutConstraint *height =[NSLayoutConstraint
             constraintWithItem:_placeholder
                      attribute:NSLayoutAttributeHeight
-                     relatedBy:0
+                     relatedBy:NSLayoutRelationEqual
                         toItem:_tableView
                      attribute:NSLayoutAttributeHeight
                     multiplier:1.0
@@ -179,9 +176,9 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.description isEqualToString:@"orderDetailSegue"]) {
+    if ([segue.identifier isEqualToString:@"orderDetailSegue"]) {
         [self configureNextViewBackButtonWithTitle:@"Voltar"];
-        QMOrderDetailViewController *controller = segue.destinationViewController;
+        QMOrderDetailViewController *controller = (QMOrderDetailViewController *) segue.destinationViewController;
         [controller setOrder:(QMOrder *)sender];
     }
     [super prepareForSegue:segue sender:sender];
@@ -203,7 +200,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    QMOrderHistoryCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"QMOrderHistoryCell" forIndexPath:indexPath];
+    QMOrderHistoryCell *cell = (QMOrderHistoryCell *) [_tableView dequeueReusableCellWithIdentifier:@"QMOrderHistoryCell" forIndexPath:indexPath];
     QMOrder *order = _orders[(NSUInteger)indexPath.row];
     [cell setOrder:order];
     return cell;
