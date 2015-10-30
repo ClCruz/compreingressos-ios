@@ -25,8 +25,10 @@ static QMStatesChannelsHistory *instance;
 - (id)init {
     self = [super init];
     if (self) {
-        _history = [[NSUserDefaults standardUserDefaults] objectForKey:NSStringFromClass([QMStatesChannelsHistory class])];
-        if (!_history) {
+        NSDictionary *history = [[NSUserDefaults standardUserDefaults] objectForKey:NSStringFromClass([QMStatesChannelsHistory class])];
+        if (history) {
+            _history = [[NSMutableDictionary alloc] initWithDictionary:history];
+        } else {
             _history = [[NSMutableDictionary alloc] init];
         }
     }
@@ -38,8 +40,10 @@ static QMStatesChannelsHistory *instance;
 }
 
 - (void)add:(NSString *)state {
-    _history[state] = @((NSUInteger)[[[NSDate alloc] init] timeIntervalSince1970]);
-    [self persist];
+    if (state && _history) {
+        _history[state] = @((NSUInteger)[[[NSDate alloc] init] timeIntervalSince1970]);
+        [self persist];
+    }
 }
 
 - (void)persist {

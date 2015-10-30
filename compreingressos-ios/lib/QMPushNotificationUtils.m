@@ -82,7 +82,7 @@ QMPushNotificationUtils *sharedInstance;
 + (void)subscribeToStateCode:(NSString *)stateCode {
     NSString *state = [self stateWithCode:stateCode];
     QMStatesChannelsHistory *history = [QMStatesChannelsHistory sharedInstance];
-    if (![history contains:state]) {
+    if (state && history && ![history contains:state]) {
         [self subscribe:state];
         [history add:state];
     }
