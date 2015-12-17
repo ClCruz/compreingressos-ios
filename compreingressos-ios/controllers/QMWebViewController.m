@@ -656,7 +656,7 @@ static NSNumber *defaultWebViewBottomSpacing = nil;
 }
 
 - (BOOL)isLastStep {
-    return [self isSeventhStep:_url] || [self isAssinaturas:_url];
+    return [self isSeventhStep:_url];
 }
 
 - (BOOL)isNextStep:(NSString *)url {
