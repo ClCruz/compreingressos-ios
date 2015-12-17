@@ -181,8 +181,10 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    /* Avisar o resto da aplicação que o app voltou do background */
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidBecomeActiveTag object:nil];
+
+    /* Checando o force update */
     [QMVersionRequester requestForceUpdateOnComplete:^(BOOL forceUpdate) {
         if (forceUpdate) {
             NSString *message = [self forceUpdateMessage];
@@ -193,9 +195,16 @@
                                                 otherButtonTitles:nil];
             [_forceUpdateView show];
         }
-    }                                         onFail:^(NSError *error) {
+    } onFail:^(NSError *error) {
 
     }];
+
+    /* Resetar o badge count */
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
