@@ -11,7 +11,6 @@
 #import "QMRequester.h"
 #import "SVProgressHUD.h"
 #import "QMException.h"
-#import "QMRequester.h"
 #import <PassKit/PassKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import <Crashlytics/Crashlytics.h>
@@ -25,7 +24,6 @@
     NSString *_price;
     NSString *_servicePrice;
     NSString *_total;
-    __weak QMOrder  *_order;
 }
 
 /* Senha utilizada no hash do nome do pkpass */
@@ -37,7 +35,6 @@ static char password[] = { 0x51, 0x4d, 0x45, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69,
 @synthesize price        = _price;
 @synthesize servicePrice = _servicePrice;
 @synthesize total        = _total;
-@synthesize order        = _order;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
