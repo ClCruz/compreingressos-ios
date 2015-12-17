@@ -134,7 +134,7 @@
     if (kIsDebugBuild) {
         [currentInstallation addUniqueObject:@"teste" forKey:@"channels"];
     }
-    [currentInstallation addUniqueObject:@"testeqpro" forKey:@"channels"];
+    // [currentInstallation addUniqueObject:@"testeqpro" forKey:@"channels"];
     [currentInstallation saveInBackground];
 }
 
