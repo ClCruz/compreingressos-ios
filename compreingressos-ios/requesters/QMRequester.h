@@ -29,6 +29,7 @@ static NSString *kLocalHost = @"http://0.0.0.0:5001";
 static NSString *kNtkUrlRetorno = @"ws/orders/ntk_callback";
 
 static NSString *const kCompreIngressoHost = @"https://tokecompre-ci.herokuapp.com";
+static NSString *const kMPassbookHost = @"https://mpassbook.herokuapp.com";
 
 static NSString *const kWifiCon = @"wifi";
 static NSString *const kWwanCon = @"wwan";

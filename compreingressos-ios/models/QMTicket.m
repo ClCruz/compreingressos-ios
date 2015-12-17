@@ -67,7 +67,7 @@ static char password[] = { 0x51, 0x4d, 0x45, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69,
     if (json) {
         [[Crashlytics sharedInstance] setObjectValue:json forKey:@"Pass JSON"];
         NSData *bodyData = [json dataUsingEncoding:NSUTF8StringEncoding];
-        static NSString *urlString = @"https://mpassbook.herokuapp.com/passes/v2/generate.json";
+        NSString *urlString = [NSString stringWithFormat:@"%@/%@", kMPassbookHost, @"passes/v2/generate.json"];
         NSURL *url = [NSURL URLWithString:[QMRequester addVersionToUrl:urlString]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
@@ -131,9 +131,8 @@ static char password[] = { 0x51, 0x4d, 0x45, 0x78, 0x63, 0x65, 0x70, 0x74, 0x69,
 }
 
 - (void)downloadPass:(NSString *)passName {
-    static NSString *format = @"https://mpassbook.herokuapp.com/passes/v2/%@";
-    NSString *path = [NSString stringWithFormat:format, passName];
-    NSURL *url = [NSURL URLWithString:path];
+    NSString *urlString = [NSString stringWithFormat:@"%@/passes/v2/%@", kMPassbookHost, passName];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:[QMRequester requestTimeout]];
 
