@@ -9,7 +9,7 @@
 #import "QMReachability.h"
 
 NSString *appVersionParameter;
-CGFloat requestTimeoutSeconds = 15.0;
+CGFloat requestTimeoutSeconds = 60.0;
 
 @implementation QMRequester {
 

@@ -360,6 +360,7 @@
 		B0C96115133657844BC17D71 /* Pods-compreingressos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		B82F9C17C3B83CDEB7ACC83C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E3B4C5E53BA3A9B012EDBF2F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7D8725B1DD4FDA300F4154B /* compreingressos-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "compreingressos-ios.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +474,7 @@
 		252FD8181AB73C820007C29B /* compreingressos-ios */ = {
 			isa = PBXGroup;
 			children = (
+				E7D8725B1DD4FDA300F4154B /* compreingressos-ios.entitlements */,
 				252FD8401AB7417E0007C29B /* models */,
 				252FD8411AB7417E0007C29B /* views */,
 				252FD83F1AB7417E0007C29B /* controllers */,
@@ -1159,8 +1161,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "compreingressos-ios/compreingressos-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8R6A865UP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1182,8 +1186,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "compreingressos-ios/compreingressos-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8R6A865UP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

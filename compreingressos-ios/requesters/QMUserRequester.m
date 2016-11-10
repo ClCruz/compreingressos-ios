@@ -20,7 +20,6 @@ static NSString *kSessionsPath = @"sessions";
 
     NSString *urlString = [self getUrlForPath:kSessionsPath];
     NSURL *url = [NSURL URLWithString:urlString];
-
     NSDictionary *json = @{
         @"email": email,
         @"password": password
