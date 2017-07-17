@@ -146,6 +146,10 @@
 		337A4F6E251DD32D5C508528 /* QMExceptionsRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4C1F4A07C2B8516C6363 /* QMExceptionsRequester.m */; };
 		337A4F89AC35D277349D93C0 /* QMOrdersRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4AFE33D88911E8E92BF7 /* QMOrdersRequester.m */; };
 		337A4FBB3F9A9D87C2AD3DE8 /* QMVersionRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A4C5AF379666F8B9B33D1 /* QMVersionRequester.m */; };
+		AED5B0481F194E8C00A62F37 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = AED5B0451F194E8C00A62F37 /* warning.png */; };
+		AED5B0491F194E8C00A62F37 /* warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AED5B0461F194E8C00A62F37 /* warning@2x.png */; };
+		AED5B04A1F194E8C00A62F37 /* warning@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AED5B0471F194E8C00A62F37 /* warning@3x.png */; };
+		AED5B0511F1CF6AF00A62F37 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AED5B0501F1CF6AF00A62F37 /* SourceSansPro-Regular.otf */; };
 		EEED3F9E299F88F9F13F6A4E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B4C5E53BA3A9B012EDBF2F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -357,6 +361,10 @@
 		8CA710655EC2488AA579D776 /* Pods-compreingressos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		95878FC6E5528535FC06A5AF /* Pods-compreingressos-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-iosTests/Pods-compreingressos-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD5388C91C8A883829E8F26 /* libPods-compreingressos-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-compreingressos-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED5B0451F194E8C00A62F37 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
+		AED5B0461F194E8C00A62F37 /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
+		AED5B0471F194E8C00A62F37 /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@3x.png"; sourceTree = "<group>"; };
+		AED5B0501F1CF6AF00A62F37 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		B0C96115133657844BC17D71 /* Pods-compreingressos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-compreingressos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-compreingressos-ios/Pods-compreingressos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		B82F9C17C3B83CDEB7ACC83C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E3B4C5E53BA3A9B012EDBF2F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,12 +398,20 @@
 		251FA1C61AC3386400C20391 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */,
+				337A4BF33E8A1ACAB1861D2B /* banner_placeholder.jpg */,
+				337A4172D6C4229CECE6F31B /* banner_placeholder@2x.jpg */,
+				337A43577C7C9E3FDA6C114E /* banner_placeholder@3x.jpg */,
 				253477571ADBED9B00307DE8 /* buttons */,
 				251A4F9D1AC9C21100256A6B /* compreingressos_big_logo.png */,
+				337A43796CA7C459D4A9CEEF /* compreingressos_quebra.png */,
+				337A492E8E1294E80DD7248D /* compreingressos_quebra@2x.png */,
+				337A4D1DDCBB82127D120806 /* custom_loading.png */,
+				337A4070527C9B2DE404946C /* custom_loading@2x.png */,
+				251FA1C71AC3386400C20391 /* icons */,
 				251FA1F21AC33E2600C20391 /* ingressos.png */,
 				251FA1FC1AC3484C00C20391 /* ingressos@2x.png */,
 				25033B501ADECCB700A469A4 /* ingressos@3x.png */,
-				255DF68B1AF00DB200486B6F /* Add_to_Passbook_Badge.png */,
 				255DF68D1AF0176700486B6F /* map_pin.png */,
 				258918A21B28CAD900761090 /* page_control_empty.png */,
 				258918A31B28CAD900761090 /* page_control_empty@2x.png */,
@@ -409,14 +425,6 @@
 				258918901B28966500761090 /* separator.png */,
 				258918911B28966500761090 /* separator@2x.png */,
 				258918921B28966500761090 /* separator@3x.png */,
-				251FA1C71AC3386400C20391 /* icons */,
-				337A43796CA7C459D4A9CEEF /* compreingressos_quebra.png */,
-				337A492E8E1294E80DD7248D /* compreingressos_quebra@2x.png */,
-				337A4070527C9B2DE404946C /* custom_loading@2x.png */,
-				337A4D1DDCBB82127D120806 /* custom_loading.png */,
-				337A43577C7C9E3FDA6C114E /* banner_placeholder@3x.jpg */,
-				337A4172D6C4229CECE6F31B /* banner_placeholder@2x.jpg */,
-				337A4BF33E8A1ACAB1861D2B /* banner_placeholder.jpg */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -424,6 +432,9 @@
 		251FA1C71AC3386400C20391 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AED5B0451F194E8C00A62F37 /* warning.png */,
+				AED5B0461F194E8C00A62F37 /* warning@2x.png */,
+				AED5B0471F194E8C00A62F37 /* warning@3x.png */,
 				25B8BE901B18CA6800E65DC3 /* ingresso_placeholder_icon.png */,
 				25B8BE911B18CA6800E65DC3 /* ingresso_placeholder_icon@2x.png */,
 				25B8BE921B18CA6800E65DC3 /* ingresso_placeholder_icon@3x.png */,
@@ -499,6 +510,7 @@
 		252FD8191AB73C820007C29B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AED5B0501F1CF6AF00A62F37 /* SourceSansPro-Regular.otf */,
 				253F91A91B1DC537000A4B98 /* GoogleService-Info.plist */,
 				252FD81A1AB73C820007C29B /* Info.plist */,
 				252FD81B1AB73C820007C29B /* main.m */,
@@ -816,6 +828,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AED5B0481F194E8C00A62F37 /* warning.png in Resources */,
 				255DF68E1AF0176700486B6F /* map_pin.png in Resources */,
 				253E78641AF14C0900EEF1E3 /* button_wireframe@2x.png in Resources */,
 				2550B44C1B065F4D00602377 /* button_wireframe@3x.png in Resources */,
@@ -832,6 +845,7 @@
 				255DF68C1AF00DB200486B6F /* Add_to_Passbook_Badge.png in Resources */,
 				253F91AA1B1DC537000A4B98 /* GoogleService-Info.plist in Resources */,
 				25A565B51B29B4D600AE554F /* teatro@3x.png in Resources */,
+				AED5B0511F1CF6AF00A62F37 /* SourceSansPro-Regular.otf in Resources */,
 				25A565B11B29B4CB00AE554F /* classica@3x.png in Resources */,
 				253E785F1AF146AC00EEF1E3 /* obrigado@2x.png in Resources */,
 				2550B4441B065CE800602377 /* pinch_zoom@3x.png in Resources */,
@@ -846,6 +860,7 @@
 				252FD8251AB73C820007C29B /* Main.storyboard in Resources */,
 				2589189A1B28BAC300761090 /* muito_mais@2x.png in Resources */,
 				251A4F9E1AC9C21100256A6B /* compreingressos_big_logo.png in Resources */,
+				AED5B0491F194E8C00A62F37 /* warning@2x.png in Resources */,
 				2550B4491B065F3D00602377 /* close_white@2x.png in Resources */,
 				258918A91B28CAD900761090 /* page_control_empty@2x.png in Resources */,
 				25BB6A6F1AC0741900A927A1 /* QMBannerView.xib in Resources */,
@@ -860,6 +875,7 @@
 				25BB6A681AC0740500A927A1 /* QMCarouselView.xib in Resources */,
 				252FD8271AB73C820007C29B /* Images.xcassets in Resources */,
 				258918A11B28BB4B00761090 /* perto_de_mim@3x.png in Resources */,
+				AED5B04A1F194E8C00A62F37 /* warning@3x.png in Resources */,
 				25A565AF1B29B4CB00AE554F /* classica.png in Resources */,
 				251FA1F31AC33E2600C20391 /* ingressos.png in Resources */,
 				258918931B28966500761090 /* separator.png in Resources */,
