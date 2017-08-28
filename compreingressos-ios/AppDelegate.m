@@ -18,6 +18,7 @@
 #import "PFAnalytics.h"
 #import "QMVersionRequester.h"
 #import <Parse/Parse.h>
+#import "INTULocationManager.h"
 
 @interface AppDelegate () {
     UIAlertView *_forceUpdateView;
