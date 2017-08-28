@@ -18,6 +18,7 @@
 #import "QMWebViewController.h"
 #import "QMEspetaculosViewController.h"
 #import "QMPushNotificationUtils.h"
+#import "INTULocationManager.h"
 #import <Google/Analytics.h>
 
 @interface QMHomeViewController ()
@@ -34,14 +35,12 @@
     CLLocationManager *_locationManager;
     CLLocation        *_location;
     CLGeocoder        *_geocoder;
-    UIAlertView       *_gpsErrorAlertView;
     UIAlertView       *_requestGpsAlertView;
     QMGenre           *_selectedGenre;
     BOOL               _segueLock;
     BOOL               _showBadgeOnViewDidAppear;
     BOOL               _hideBadgeOnViewDidAppear;
     BOOL               _requestingData;
-    NSTimer           *_clickOnGenreTimer;
 
     IBOutlet UIBarButtonItem    *_orderHistoryButton;
     IBOutlet UIBarButtonItem    *_buttonForLogo;
@@ -314,10 +313,22 @@
 }
 
 - (void)checkLocationBeforeGoToEspetaculos {
-    // TODO: alter this method to use lib INTULocationManager
-    [self goToEspetaculos];
+    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+                                       timeout:10.0
+                          delayUntilAuthorized:YES
+                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                                             if (status == INTULocationStatusServicesDenied
+                                                     || status == INTULocationStatusServicesDisabled
+                                                     || status == INTULocationStatusTimedOut) {
+                                                 _location = nil;
+                                             } else if (currentLocation) {
+                                                 _location = currentLocation;
+                                                 [self subscribeToStateChannel];
+                                             }
+                                             [self goToEspetaculos];
+                                         }];
 }
-
 
 - (void)didSelectGenre:(QMGenre *)genre {
     _selectedGenre = genre;
@@ -328,7 +339,6 @@
         [self checkLocationBeforeGoToEspetaculos];
     }
 }
-
 
 # pragma mark
 # pragma mark - UITableView Methods
