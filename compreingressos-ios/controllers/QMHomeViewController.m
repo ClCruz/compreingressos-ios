@@ -67,7 +67,6 @@
 
     [self configureTableView];
     [self configureCompreIngressosLogo];
-    [self configureLocationManager];
     [self configureOrderHistoryButton];
     [self configureSearchButton];
     [self parseGenres];
@@ -111,7 +110,6 @@
     _segueLock = NO;
     // _scrollView.contentInset = UIEdgeInsetsMake(64.0, 0.0, kGenresMargin, 0.0);
     [_carouselView resetCaroselTimer];
-    [self stopClickOnGenreTimer];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -199,13 +197,6 @@
     UIImageView *compreIngressos = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingressos.png"]];
     [_buttonForLogo setCustomView:compreIngressos];
     [self.navigationItem setTitle:nil];
-}
-
-- (void)configureLocationManager {
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    _locationManager.distanceFilter = 500.0f;
 }
 
 - (void)parseGenres {
@@ -323,43 +314,10 @@
 }
 
 - (void)checkLocationBeforeGoToEspetaculos {
-    if (!_location || [self locationIsOld:_location]) {
-        NSLog(@"location is old, fetching another one");
-        [_locationManager startUpdatingLocation];
-        [self startClickOnGenreTimerIfNeeded];
-    } else {
-        [self goToEspetaculos];
-    }
-}
-
-/* Caso o gps não retorne nada em 2s, vamos prosseguir sem a
-* localização */
-- (void)startClickOnGenreTimerIfNeeded {
-    if (!_clickOnGenreTimer) {
-        [SVProgressHUD showWithStatus:@"Aguardando GPS"];
-        _clickOnGenreTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:2]
-                                                      interval:0
-                                                        target:self
-                                                      selector:@selector(clickOnGenreTimerTimeout)
-                                                      userInfo:nil
-                                                       repeats:NO];
-        [[NSRunLoop mainRunLoop] addTimer:_clickOnGenreTimer forMode:NSRunLoopCommonModes];
-    }
-}
-
-- (void)clickOnGenreTimerTimeout {
-//    if (_location is )
-    _clickOnGenreTimer = nil;
+    // TODO: alter this method to use lib INTULocationManager
     [self goToEspetaculos];
 }
 
-- (void)stopClickOnGenreTimer {
-    if (_clickOnGenreTimer) {
-        [_clickOnGenreTimer invalidate];
-        _clickOnGenreTimer = nil;
-        [SVProgressHUD dismiss];
-    }
-}
 
 - (void)didSelectGenre:(QMGenre *)genre {
     _selectedGenre = genre;
@@ -421,102 +379,6 @@
         QMGenre *genre = _genres[(NSUInteger) indexPath.row];
         [self didSelectGenre:genre];
     }
-}
-
-
-#pragma mark -
-#pragma mark - Location Methods
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    /* Vamos testar pegando a primeira localização que vier. Por dois motivos:
-     1 - Nao precisamos de precisão absurda
-     2 - Fica mais fácil controlar o fluxo, pois este método chama o goToSearchResults toda
-     vez que um update é recebido. E se não pararmos o updatingLocation pode dar confusão */
-    [_locationManager stopUpdatingLocation];
-    _location = [locations lastObject];
-    NSLog(@" fix -- latitude %+.6f, longitude %+.6f\n",
-          _location.coordinate.latitude,
-          _location.coordinate.longitude);
-    [self goToEspetaculos];
-    [self subscribeToStateChannel];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    if (error.code ==  kCLErrorDenied) {
-        /* Depois que o usuário negou o gps, cai aqui toda vez que pedir uma localização */
-        if (_selectedGenre) {
-            if ([self choosedNearbyMe]) {
-                [self askToRequireGps];
-
-            } else {
-                [self goToEspetaculos];
-            }
-        }
-    } else {
-        NSString *message = @"Não foi possível pegar sua localização atual.";
-//        [self showGpsErrorWithMessage:message];
-    }
-
-    NSLog(@"  -- Location failed");
-}
-
-- (void)askToRequireGps {
-    [self stopClickOnGenreTimer];
-    _requestGpsAlertView = [[UIAlertView alloc] initWithTitle:nil
-                                                      message:@"Deseja permitir ao app COMPREINGRESSOS acessar sua posição de gps?"
-                                                     delegate:self
-                                            cancelButtonTitle:@"Não"
-                                            otherButtonTitles:@"Sim", nil];
-    [_requestGpsAlertView show];
-}
-
-- (void)showGpsErrorWithMessage:(NSString *)message {
-    _gpsErrorAlertView = [[UIAlertView alloc] initWithTitle:nil
-                                                   message:message
-                                                  delegate:self
-                                         cancelButtonTitle:@"Fechar"
-                                         otherButtonTitles:nil];
-    [_gpsErrorAlertView show];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    NSLog(@"  -- didChangeAuthorizationStatus: %i", status);
-    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusAuthorized) {
-        if (status == kCLAuthorizationStatusAuthorized) {
-            /* Se o gps está permitido, então não precisa chamar o goToSearchResults pois
-             * a callback didUpdateLocations será chamada */
-            NSLog(@"  -- permitiu o gps");
-        }
-        if (status == kCLAuthorizationStatusDenied) {
-            NSLog(@"  -- nao permitiu o gps");
-
-            /* ------------------------------------------------------------- */
-            /* Este seria o ponto de mostrar um dialog e perguntar novamente */
-            /* se o usuário deseja ligar o gps                               */
-            /* ------------------------------------------------------------- */
-
-            /* Vamos chegar se o usuário clicou em algum gênero. Se não clicou
-            *  então o usuário acabou de abrir o app. */
-            if (_selectedGenre) {
-                [self goToEspetaculos];
-            }
-        }
-    } else if (status == kCLAuthorizationStatusNotDetermined) {
-        [self requestLocationAuthorization];
-    }
-}
-
-- (void)requestLocationAuthorization {
-    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [_locationManager requestWhenInUseAuthorization];
-    }
-}
-
-- (BOOL)locationIsOld:(CLLocation *)aLocation {
-    //    NSDate* eventDate = aLocation.timestamp;
-    //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    //    NSLog(@"     elapsed %f, %f", howRecent, [eventDate timeIntervalSince1970]);
-    return true;
 }
 
 #pragma mark -

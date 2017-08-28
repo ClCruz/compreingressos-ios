@@ -14,7 +14,6 @@ static const float kGenreCellHeight = 66.0f;
 
 @interface QMHomeViewController : QMSuperViewController <UITableViewDataSource,
         UITableViewDelegate,
-        CLLocationManagerDelegate,
         UICollectionViewDelegateFlowLayout>
 
 @end
